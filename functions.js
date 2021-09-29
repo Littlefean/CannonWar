@@ -35,4 +35,12 @@ class Functions {
     static timeRateAlpha(tr) {
         return (1 - tr) * 0.25;
     }
+
+    /**
+     * 计算爆炸伤害随着距离递减
+     * @param dis
+     */
+    static disBoomDamage(dis) {
+
+    }
 }

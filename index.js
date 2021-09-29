@@ -11,7 +11,7 @@ window.onload = function () {
     setInterval(() => {
         world.goTime();
         world.render(c);
-    }, 25);
+    }, 5);
 
     let addedBattery = [new Battery(1, 1, world)];
 
@@ -53,6 +53,9 @@ window.onload = function () {
     }
     document.querySelector("#towerH3").onclick = function () {
         addedBattery.push(BatteryFinally.H3(world));
+    }
+    document.querySelector("#towerH4").onclick = function () {
+        addedBattery.push(BatteryFinally.H4(world));
     }
     document.querySelector("#towerS1").onclick = function () {
         addedBattery.push(BatteryFinally.S1(world));

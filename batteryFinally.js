@@ -118,6 +118,20 @@ class BatteryFinally {
         b.bullyDeviationRotate = 0.2;
         return b;
     }
+    static H4(world) {
+        let b = new Battery(0, 0, world);
+        b.rangeR = 150;
+        b.r += 10; // todo
+        b.bullySpeed = 1;
+        b.bullySlideRate = 2;
+        b.clock += 30;
+        // b.bullyDamage += 500;
+        b.getmMinBullyFunc = BullyFinally.H_LL;
+        b.hpInit(10000);
+        b.attackBullyNum = 3;
+        b.bullyDeviationRotate = 0.8;
+        return b;
+    }
 
     static S1(world) {
         let b = new Battery(0, 0, world);

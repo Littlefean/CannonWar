@@ -48,9 +48,24 @@ class BullyFinally {
         b.bombRange = 100;
         b.accelerationV = 0.05
 
-        b.bodyColor = [255, 0, 0, 1];
+        b.bodyColor = [255, 30, 0, 1];
         b.bodyStrokeColor = [255, 100, 20, 1];
         b.bodyStrokeWidth = 4;
+        return b;
+    }
+
+    static H_LL() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 10);
+        b.damage = 410;
+
+        b.haveBomb = true;
+        b.bombDamage = 800;
+        b.bombRange = 200;
+        b.accelerationV = 0.02;
+
+        b.bodyColor = [255, 255, 0, 1];
+        b.bodyStrokeColor = [255, 100, 20, 1];
+        b.bodyStrokeWidth = 6;
         return b;
     }
 

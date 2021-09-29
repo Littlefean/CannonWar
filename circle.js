@@ -50,6 +50,9 @@ class Circle {
     setStrokeColorStr(cStr) {
         this.strokeColor = cStr;
     }
+    setStrokeColor(r, g, b, a) {
+        this.strokeColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
 
     /**
      *

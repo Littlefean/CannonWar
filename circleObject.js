@@ -120,7 +120,7 @@ class CircleObject {
             c.setStrokeWidth(0);
             c.setStrokeColorStr("transparent");
         } else {
-            c.setStrokeColorStr(this.bodyStrokeColor);
+            c.setStrokeColor(this.bodyStrokeColor);
             c.setStrokeWidth(this.bodyStrokeWidth * hpRate);
             c.setColor(...this.bodyColor);
         }

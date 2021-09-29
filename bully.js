@@ -28,7 +28,7 @@ class Bully extends CircleObject {
 
         // 爆炸炮弹的特性
         this.haveBomb = false;
-        this.bombDamage = 0;
+        this.bombDamage = 0;  // 这个应该是爆炸中心点的伤害
         this.bombRange = 0;
 
         // 穿甲炮弹的特性
@@ -80,7 +80,9 @@ class Bully extends CircleObject {
         let bC = new Circle(this.pos.x, this.pos.y, this.bombRange);
         for (let m of world.monsters) {
             if (m.getBodyCircle().impact(bC)) {
-                m.hpChange(-this.bombDamage);
+                let dis = this.pos.dis(m.pos);
+                let damage = (1 - (dis / this.bombRange)) * this.bombDamage;
+                m.hpChange(-Math.abs(damage));  // todo 需要处理好公式
             }
         }
         let e = new SpecialEffect(this.pos.copy());
