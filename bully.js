@@ -31,6 +31,10 @@ class Bully extends CircleObject {
         this.bombDamage = 0;
         this.bombRange = 0;
 
+        // 穿甲炮弹的特性
+        this.throughable = false;
+
+        // 子弹颜色
         this.bodyColor = [100, 23, 1, 0];
         this.bodyStrokeWidth = 1;
     }
@@ -44,6 +48,10 @@ class Bully extends CircleObject {
         for (let m of world.monsters) {
             if (c.impact(m.getBodyCircle())) {
                 m.hpChange(-this.damage);
+                if (this.throughable) {
+                    console.log("穿甲弹，穿过")
+                    continue;  // todo
+                }
                 this.boom();
                 this.remove();
                 break; // 一个子弹只能打到一个怪物身上

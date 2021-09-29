@@ -53,12 +53,21 @@ class BullyFinally {
         b.bodyStrokeWidth = 4;
         return b;
     }
-
+    // 散弹子弹
     static S() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
         b.r = 1.6;
         b.damage = 40;
         b.bodyColor = [0, 0, 255, 1];
+        return b;
+    }
+    //穿甲子弹
+    static T() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
+        b.throughable = true;
+        b.r = 1.6;
+        b.damage = 4;
+        b.bodyColor = [0, 255, 255, 1];
         return b;
     }
 }

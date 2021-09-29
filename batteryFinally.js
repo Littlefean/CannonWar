@@ -22,8 +22,7 @@ class BatteryFinally {
         b.getmMinBullyFunc = BullyFinally.F;
         // b.
         // b.bullyDamage = 4;
-        b.maxHp += 550;
-        b.hp += 550;
+        b.hpInit(1550);
         return b;
     }
 
@@ -35,10 +34,9 @@ class BatteryFinally {
         b.getmMinBullyFunc = BullyFinally.F;
         b.bullySpeedAddMax = 5;
         b.clock = 2;
-        b.bullyDamage = 4.1;
+        // b.bullyDamage = 4.1;
         b.bullyDeviation = 20;
-        b.maxHp += 1000;
-        b.hp += 1000;
+        b.hpInit(2000);
         return b;
     }
 
@@ -52,9 +50,8 @@ class BatteryFinally {
         b.bullySpeedAddMax = 10;
         b.getmMinBullyFunc = BullyFinally.F;
         b.clock = 1;
-        b.bullyDamage = 20;
-        b.maxHp += 5000;
-        b.hp += 5000;
+        // b.bullyDamage = 20;
+        b.hpInit(5000);
         b.bullyDeviation = 20;
         b.attackBullyNum = 3;
         return b;
@@ -70,9 +67,8 @@ class BatteryFinally {
         b.bullySpeedAddMax = 3;
         b.getmMinBullyFunc = BullyFinally.F;
         b.clock = 1;
-        b.bullyDamage = 50;
-        b.maxHp += 10000;
-        b.hp += 10000;
+        // b.bullyDamage = 50;
+        b.hpInit(10000);
         b.bullyDeviation = 50;
         b.attackBullyNum = 20;
         return b;
@@ -88,9 +84,8 @@ class BatteryFinally {
         b.bullySpeedAddMax = 0;
         b.getmMinBullyFunc = BullyFinally.H_S;
         b.clock += 5;
-        b.bullyDamage += 30;
-        b.maxHp += 100;
-        b.hp += 100;
+        // b.bullyDamage += 30;
+        b.hpInit(1100);
         return b;
     }
 
@@ -102,12 +97,12 @@ class BatteryFinally {
         b.bullySlideRate = 1.2;
         b.bullySpeedAddMax = 1;
         b.clock += 20;
-        b.bullyDamage += 500;
+        // b.bullyDamage += 500;
         b.getmMinBullyFunc = BullyFinally.H_L;
-        b.maxHp += 1000;
-        b.hp += 1000;
+        b.hpInit(2000);
         return b;
     }
+
     static H3(world) {
         let b = new Battery(0, 0, world);
         b.rangeR = 100;
@@ -116,10 +111,9 @@ class BatteryFinally {
         b.bullySlideRate = 3;
         b.bullySpeedAddMax = 1;
         b.clock += 15;
-        b.bullyDamage += 500;
+        // b.bullyDamage += 500;
         b.getmMinBullyFunc = BullyFinally.H_L;
-        b.maxHp += 1800;
-        b.hp += 1800;
+        b.hpInit(2800);
         b.attackBullyNum = 2;
         b.bullyDeviationRotate = 0.2;
         return b;
@@ -134,10 +128,9 @@ class BatteryFinally {
         b.bullySlideRate = 1.2;
         b.bullySpeedAddMax = 0;
         b.clock += 2;
-        b.bullyDamage += 15;
+        // b.bullyDamage += 15;
         b.getmMinBullyFunc = BullyFinally.S;
-        b.maxHp += 200;
-        b.hp += 200;
+        b.hpInit(1200);
         b.attackBullyNum = 3;
         b.bullyDeviationRotate = 5;
         return b;
@@ -152,9 +145,8 @@ class BatteryFinally {
         b.bullySlideRate = 2;
         b.bullySpeedAddMax = 3;
         b.clock += 5;
-        b.bullyDamage += 60;
-        b.maxHp += 700;
-        b.hp += 700;
+        // b.bullyDamage += 60;
+        b.hpInit(1000 + 700);
         b.attackBullyNum = 5;
         b.bullyDeviationRotate = 8;
         b.getmMinBullyFunc = BullyFinally.S;
@@ -170,9 +162,8 @@ class BatteryFinally {
         b.bullySlideRate = 2;
         b.bullySpeedAddMax = 3;
         b.clock += 15;
-        b.bullyDamage += 70;
-        b.maxHp += 1200;
-        b.hp += 1200;
+        // b.bullyDamage += 70;
+        b.hpInit(1000 + 1200);
         b.attackBullyNum = 15;
         b.bullyDeviationRotate = 10;
         b.getmMinBullyFunc = BullyFinally.S;
@@ -187,12 +178,24 @@ class BatteryFinally {
         b.bullySlideRate = 6;
         b.bullySpeedAddMax = 1;
         b.clock += 50;
-        b.bullyDamage += 100;
-        b.maxHp += 3000;
-        b.hp += 3000;
+        // b.bullyDamage += 100;
+        b.hpInit(3000);
         b.attackBullyNum = 50;
         b.bullyDeviationRotate = 20;
         b.getmMinBullyFunc = BullyFinally.S;
+        return b;
+    }
+
+    static T1(world) {
+        let b = new Battery(0, 0, world);
+        b.rangeR = 150;
+        b.r += 2;
+        b.bullySpeed += 1;
+        b.bullySlideRate = 2;
+        b.clock = 6;
+        // b.bullyDamage = 3;
+        b.hpInit(1100);
+        b.getmMinBullyFunc = BullyFinally.T;
         return b;
     }
 }
