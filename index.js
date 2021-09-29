@@ -11,7 +11,7 @@ window.onload = function () {
     setInterval(() => {
         world.goTime();
         world.render(c);
-    }, 50);
+    }, 25);
 
     let addedBattery = [new Battery(1, 1, world)];
 
@@ -68,6 +68,15 @@ window.onload = function () {
     }
     document.querySelector("#towerT1").onclick = function () {
         addedBattery.push(BatteryFinally.T1(world));
+    }
+    document.querySelector("#towerT2").onclick = function () {
+        addedBattery.push(BatteryFinally.T2(world));
+    }
+    document.querySelector("#towerT3").onclick = function () {
+        addedBattery.push(BatteryFinally.T3(world));
+    }
+    document.querySelector("#towerT4").onclick = function () {
+        addedBattery.push(BatteryFinally.T4(world));
     }
     document.querySelector("#test").onclick = function () {
         console.log(world.batterys);

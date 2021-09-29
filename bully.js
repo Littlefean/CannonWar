@@ -33,6 +33,7 @@ class Bully extends CircleObject {
 
         // 穿甲炮弹的特性
         this.throughable = false;
+        this.throughCutNum = 0;  // 每次削减量
 
         // 子弹颜色
         this.bodyColor = [100, 23, 1, 0];
@@ -49,7 +50,12 @@ class Bully extends CircleObject {
             if (c.impact(m.getBodyCircle())) {
                 m.hpChange(-this.damage);
                 if (this.throughable) {
-                    console.log("穿甲弹，穿过")
+                    // console.log("穿甲弹，穿过");
+                    if (this.r <= 0) {
+                        this.remove();
+                        break;
+                    }
+                    this.bodyRadiusChange(-this.throughCutNum);
                     continue;  // todo
                 }
                 this.boom();

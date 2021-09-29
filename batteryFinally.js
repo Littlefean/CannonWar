@@ -195,7 +195,44 @@ class BatteryFinally {
         b.clock = 6;
         // b.bullyDamage = 3;
         b.hpInit(1100);
-        b.getmMinBullyFunc = BullyFinally.T;
+        b.getmMinBullyFunc = BullyFinally.T_S;
+        return b;
+    }
+
+    static T2(world) {
+        let b = new Battery(0, 0, world);
+        b.rangeR = 150;
+        b.r += 2;
+        b.bullySpeed += 3;
+        b.bullySlideRate = 3;
+        b.clock = 4;
+        b.hpInit(1500);
+        b.getmMinBullyFunc = BullyFinally.T_M;
+        return b;
+    }
+
+    static T3(world) {
+        let b = new Battery(0, 0, world);
+        b.rangeR = 150;
+        b.r += 2;
+        b.bullySpeed += 3;
+        b.bullySlideRate = 5;
+        b.clock = 2;
+        b.hpInit(5000);
+        b.bullySpeedAddMax = 3;
+        b.getmMinBullyFunc = BullyFinally.T_L;
+        return b;
+    }
+    static T4(world) {
+        let b = new Battery(0, 0, world);
+        b.rangeR = 170;
+        b.r += 2;
+        b.bullySpeed = 4;
+        b.bullySlideRate = 5;
+        b.clock = 10;
+        b.hpInit(10000);
+        b.bullySpeedAddMax = 4;
+        b.getmMinBullyFunc = BullyFinally.T_LL;
         return b;
     }
 }

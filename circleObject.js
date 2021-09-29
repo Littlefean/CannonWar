@@ -52,6 +52,18 @@ class CircleObject {
     }
 
     /**
+     * 半径改变
+     * @param dr {Number}
+     */
+    bodyRadiusChange(dr) {
+        if (this.r + dr <= 0) {
+            this.r = 0;
+        } else {
+            this.r += dr;
+        }
+    }
+
+    /**
      * 死亡检测
      * @returns {boolean}
      */
