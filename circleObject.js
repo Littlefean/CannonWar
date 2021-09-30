@@ -18,6 +18,7 @@ class CircleObject {
         this.speed = new Vector(0, 0);
         this.acceleration = new Vector(0, 0);
         this.accelerationV = 0;  // 方向始终和速度方向一致的加速度 这个加速度的优先级比自定义的高
+        this.maxSpeedN = 100;  // 指的是速度向量的长度不会超过这个值
 
         this.hp = 100;
         this.maxHp = 100;
@@ -99,6 +100,10 @@ class CircleObject {
             this.speed.add(this.speed.mul(this.accelerationV));
         } else {
             this.speed.add(this.acceleration);
+        }
+        // 最大速度限制
+        if (this.speed.abs() > this.maxSpeedN) {
+            this.speed = this.speed.mul(this.maxSpeedN / this.speed.abs());
         }
         this.pos.add(this.speed);
     }

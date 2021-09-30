@@ -16,6 +16,7 @@ class World {
         this.buildings = [];
         this.monsters = [];
         this.effects = [];  // 特效层
+        this.othersBullys = [];  // 多余的子弹，比如子弹分裂后的子弹
         this.time = 0;
 
         // 安置大本
@@ -48,11 +49,9 @@ class World {
     }
 
     addMonsters() {
-        let m = Monster.randInit(this);
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(this.time));
-        m.colishDamage += Functions.timeMonsterAtt(this.time);
-        m.addPrice += Functions.timeAddPrise(this.time);
-        this.monsters.push(m);
+        // todo 当前这个是随机增加一个怪物
+        let randIndex = Math.floor(Math.random() * MONSTERS_FUNC_ARR.length);
+        this.monsters.push(MONSTERS_FUNC_ARR[randIndex](this));
     }
 
     addEffect(effect) {
@@ -78,6 +77,14 @@ class World {
             }
         }
         this.monsters = mArr;
+        // 清除独立子弹
+        // let pArr = [];
+        // for (let p of this.othersBullys) {
+        //     if (p.pos.dis(p.originalPos) < p.splitRangeRate) {
+        //         pArr.push(p);
+        //     }
+        // }
+        // this.othersBullys = pArr;
         // 清除炮塔
         let tArr = [];
         for (let t of this.batterys) {
@@ -87,7 +94,7 @@ class World {
                 let e = new EffectCircle(t.pos);
                 e.animationFunc = e.destroyAnimation;
                 this.addEffect(e);
-                console.log("添加了摧毁特效");
+                // console.log("添加了摧毁特效");
             }
         }
         this.batterys = tArr;
@@ -109,14 +116,22 @@ class World {
         this.effects = eArr;
         // 添加怪物
         if (this.time % 100 === 0) {
-            for (let i = 0; i < Functions.timeMonsterAddedNum(this.time); i++) {
+            let addNum = Functions.timeMonsterAddedNum(this.time);
+            console.log("这波怪物增加量", addNum);
+            for (let i = 0; i < addNum; i++) {
                 this.addMonsters();
             }
+            // console.log(this.monsters);
         }
         // 炮塔行动
         for (let b of this.batterys) {
             b.goStep();
         }
+        // 独立子弹行动
+        for (let p of this.othersBullys) {
+            p.goStep();
+        }
+        // 建筑行动
         for (let b of this.buildings) {
             b.goStep();
         }
@@ -141,6 +156,9 @@ class World {
         ctx.clearRect(0, 0, this.width, this.height);
 
         for (let b of this.batterys) {
+            b.render(ctx);
+        }
+        for (let b of this.othersBullys) {
             b.render(ctx);
         }
         for (let b of this.buildings) {

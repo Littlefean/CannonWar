@@ -208,4 +208,17 @@ class BullyFinally {
         b.repel = 0.1;
         return b;
     }
+
+    static SSM() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 5);
+
+        b.damage = 10;
+        // 分裂子弹特性
+        b.splitAble = true;
+        b.splitNum = 5;  // 分裂后子弹的数量
+        b.splitRandomV = 5;
+        b.splitBully = BullyFinally.Normal;
+        b.splitRangeRate = 100;  // 分裂后的子弹可以存在的攻击范围 px
+        return b;
+    }
 }

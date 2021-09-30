@@ -27,6 +27,12 @@ class EffectCircle extends Effect {
         this.circle.setColor(0, 100, 255, Functions.timeRateAlpha(this.time / this.duration));
     }
 
+    flashRedAnimation() {
+        this.circle.setStrokeWidth(0);
+        this.circle.setStrokeColorStr("transparent");
+        this.circle.setColor(255, 100, 0, Functions.timeRateAlpha(this.time / this.duration));
+    }
+
     /**
      * 绿光特效
      */

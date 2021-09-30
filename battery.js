@@ -20,7 +20,8 @@ class Battery extends CircleObject {
 
         this.bullys = [];  // 发射过的子弹
 
-        this.getmMinBullyFunc = BullyFinally.Normal;
+        this.getmMainBullyFunc = BullyFinally.Normal;  // 炮塔发射的主子弹，获取新子弹对象的方法
+        this.getmSlipedBullyFunc = BullyFinally.Normal;
 
         this.bullySpeed = 8;  // 子弹基础速度
         this.bullySpeedAddMax = 0;  // 子弹速度增加随机量
@@ -53,7 +54,6 @@ class Battery extends CircleObject {
         // 判断死亡
         if (this.isDead()) {
             // 此处代码似乎不会被执行到
-
             return;
         }
         this.attackAction();
@@ -72,6 +72,7 @@ class Battery extends CircleObject {
                 arr.push(b);
             } else {
                 b.boom();
+                b.split();
             }
         }
         this.bullys = arr;
@@ -100,9 +101,15 @@ class Battery extends CircleObject {
      *
      */
     getRunningBully() {
-        let res = this.getmMinBullyFunc();
+        let res = this.getmMainBullyFunc();
+        // console.log(this);
+        // console.log("?????", res);
+        if (res === undefined) {
+            console.log("??????? 可能是finalBully忘了return了")
+        }
         // 发射起始点
-        res.originalPos = new Vector(this.pos.x, this.pos.y);
+
+        res.originalPos = new Vector(this.pos.x, this.pos.y);  // todo 分裂蛋在此报错，res是undefined
         // 炮台绑定
         res.father = this;
         // 世界绑定
@@ -126,6 +133,8 @@ class Battery extends CircleObject {
         // 添加子弹数组
         this.bullys.push(b);
     }
+
+
 
     render(ctx) {
         // 渲染每一个子弹

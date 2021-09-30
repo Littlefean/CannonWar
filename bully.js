@@ -46,7 +46,9 @@ class Bully extends CircleObject {
         // 分裂子弹特性
         this.splitAble = false;
         this.splitNum = 5;  // 分裂后子弹的数量
-
+        this.splitRandomV = 1;
+        this.splitBully = BullyFinally.Normal;
+        this.splitRangeRate = 100;  // 分裂后的子弹可以存在的攻击范围 px
         this.repel = 0;  // 单次击退能力 这个数值会让怪物倒退一步距离，这个数值是这一步距离乘以的倍数
     }
 
@@ -75,8 +77,8 @@ class Bully extends CircleObject {
                 // 造成击退
                 m.backMove(this.repel);
                 m.changedSpeed.add(this.speed.mul(this.repel));
-                console.log(m.speed);
-                console.log(m.changedSpeed);
+                // 发生分裂
+                this.split();
                 // 删除子弹
                 this.remove();
                 break;
@@ -98,6 +100,24 @@ class Bully extends CircleObject {
             return;
         }
         this.bombFunc();
+    }
+
+    /**
+     * 子弹分裂
+     */
+    split() {
+        if (this.splitAble) {
+            for (let i = 0; i < this.splitNum; i++) {
+                let b = this.splitBully();
+                b.world = this.world;
+                b.pos = this.pos.copy();
+                b.originalPos = this.pos.copy();
+                b.speed = Vector.randCircle().mul(this.splitRandomV);
+                b.splitRangeRate = this.splitRangeRate;
+                // 添加到世界
+                this.world.othersBullys.push(b);
+            }
+        }
     }
 
     /**
@@ -146,8 +166,13 @@ class Bully extends CircleObject {
      * @returns {boolean}
      */
     outTowerViewRange() {
+
         let diff = this.pos.dis(this.originalPos);
-        return diff > this.father.rangeR * this.slideRate;
+        if (this.father !== null) {
+            return diff > this.father.rangeR * this.slideRate;
+        } else {
+            return false;  // todo 独立子弹判断出界
+        }
     }
 
     render(ctx) {
