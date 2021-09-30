@@ -30,6 +30,7 @@ class Bully extends CircleObject {
         this.haveBomb = false;
         this.bombDamage = 0;  // 这个应该是爆炸中心点的伤害
         this.bombRange = 0;
+        this.bombFunc = this.bombFire;  // 默认是火炮的爆炸方式
 
         // 穿甲炮弹的特性
         this.throughable = false;
@@ -38,6 +39,9 @@ class Bully extends CircleObject {
         // 子弹颜色
         this.bodyColor = [100, 23, 1, 0];
         this.bodyStrokeWidth = 1;
+
+        // 单次攻击减速特性
+        this.freezeCutDown = 0.98  // 越接近1表示减速效果越不明显
     }
 
     /**
@@ -50,7 +54,6 @@ class Bully extends CircleObject {
             if (c.impact(m.getBodyCircle())) {
                 m.hpChange(-this.damage);
                 if (this.throughable) {
-                    // console.log("穿甲弹，穿过");
                     if (this.r <= 0) {
                         this.remove();
                         break;
@@ -60,7 +63,7 @@ class Bully extends CircleObject {
                 }
                 this.boom();
                 this.remove();
-                break; // 一个子弹只能打到一个怪物身上
+                break;
             }
         }
     }
@@ -78,17 +81,47 @@ class Bully extends CircleObject {
         if (!this.haveBomb) {
             return;
         }
+        this.bombFunc();
+    }
+
+    /**
+     * 像火炮一样爆炸
+     */
+    bombFire() {
+        // 爆炸区域圆
         let bC = new Circle(this.pos.x, this.pos.y, this.bombRange);
-        for (let m of world.monsters) {
+        for (let m of this.world.monsters) {
             if (m.getBodyCircle().impact(bC)) {
                 let dis = this.pos.dis(m.pos);
                 let damage = (1 - (dis / this.bombRange)) * this.bombDamage;
-                m.hpChange(-Math.abs(damage));  // todo 需要处理好公式
+                m.hpChange(-Math.abs(damage));
             }
         }
         // 添加爆炸特效圆
         let e = new EffectCircle(this.pos.copy());
         e.circle.r = this.bombRange;
+        this.world.addEffect(e);
+    }
+
+    /**
+     * 像冰瓜投手一样
+     */
+    bombFreeze() {
+        // 爆炸区域圆
+        let bC = new Circle(this.pos.x, this.pos.y, this.bombRange);
+        for (let m of this.world.monsters) {
+            if (m.getBodyCircle().impact(bC)) {
+                // 均摊伤害
+                m.hpChange(-this.bombDamage);
+                if (m.speedNumb > 0.2) {
+                    m.speedNumb *= this.freezeCutDown;  // 每次减速都会叠加
+                }
+            }
+        }
+        // 添加爆炸特效圆
+        let e = new EffectCircle(this.pos.copy());
+        e.circle.r = this.bombRange;
+        e.animationFunc = e.flashBlueAnimation;
         this.world.addEffect(e);
     }
 

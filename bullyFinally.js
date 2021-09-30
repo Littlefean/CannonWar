@@ -54,6 +54,7 @@ class BullyFinally {
         b.haveBomb = true;
         b.bombDamage = 20;
         b.bombRange = 30;
+        b.bombFunc = b.bombFire;
         b.accelerationV = 0.05
 
         b.bodyColor = [255, 20, 20, 1];
@@ -70,6 +71,7 @@ class BullyFinally {
         b.haveBomb = true;
         b.bombDamage = 300;
         b.bombRange = 100;
+        b.bombFunc = b.bombFire;
         b.accelerationV = 0.05
 
         b.bodyColor = [255, 30, 0, 1];
@@ -85,6 +87,7 @@ class BullyFinally {
         b.haveBomb = true;
         b.bombDamage = 800;
         b.bombRange = 130;
+        b.bombFunc = b.bombFire;
         b.accelerationV = 0.02;
 
         b.bodyColor = [255, 255, 0, 1];
@@ -143,6 +146,56 @@ class BullyFinally {
         b.throughCutNum = 1;
         b.damage = 50;
         b.bodyColor = [0, 100, 255, 0.3];
+        return b;
+    }
+
+    // 冰冻炸弹
+    static Frozen_S() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
+        b.damage = 2;
+
+        b.haveBomb = true;
+        b.bombDamage = 1;
+        b.bombRange = 50;
+        b.bombFunc = b.bombFreeze;
+        b.freezeCutDown = 0.98
+
+        b.bodyColor = [0, 100, 255, 1];
+        b.bodyStrokeColor = [100, 100, 255, 1];
+        b.bodyStrokeWidth = 0.5;
+        return b;
+    }
+
+    static Frozen_M() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
+        b.damage = 5;
+        b.r = 2;
+
+        b.haveBomb = true;
+        b.bombDamage = 2;
+        b.bombRange = 80;
+        b.bombFunc = b.bombFreeze;
+        b.freezeCutDown = 0.9;
+
+        b.bodyColor = [0, 50, 255, 1];
+        b.bodyStrokeColor = [10, 100, 255, 1];
+        b.bodyStrokeWidth = 0.5;
+        return b;
+    }
+    static Frozen_L() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
+        b.damage = 10;
+        b.r = 5;
+
+        b.haveBomb = true;
+        b.bombDamage = 5;
+        b.bombRange = 100;
+        b.bombFunc = b.bombFreeze;
+        b.freezeCutDown = 0.7;
+
+        b.bodyColor = [0, 20, 255, 1];
+        b.bodyStrokeColor = [10, 50, 255, 1];
+        b.bodyStrokeWidth = 0.5;
         return b;
     }
 }

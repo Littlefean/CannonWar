@@ -79,6 +79,9 @@ window.onload = function () {
 
     let towerBtnArr = document.getElementsByClassName(btnClassName);
 
+    /**
+     * 时刻更新按钮状态
+     */
     setInterval(() => {
         for (let btn of towerBtnArr) {
             if (btn.dataset.price <= world.user.money) {
@@ -88,6 +91,10 @@ window.onload = function () {
             }
         }
     }, 100);
+
+    document.querySelector("#testBtn").addEventListener("click", () => {
+        world.user.money += 100000;
+    });
 }
 
 

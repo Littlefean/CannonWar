@@ -269,6 +269,67 @@ class BatteryFinally {
         b.price = 400;
         return b;
     }
+
+    static Fr1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级冰冻炮";
+        b.rangeR = 130;
+        b.r = 10;
+
+        b.bullySpeed = 2;
+        b.bullySlideRate = 1;
+        b.getmMinBullyFunc = BullyFinally.Frozen_S;
+        b.clock = 15;
+        b.hpInit(250);
+        b.price = 800;
+        return b;
+    }
+
+    static Fr2(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "2级冰冻炮";
+        b.rangeR = 140;
+        b.r = 12;
+
+        b.bullySpeed = 3;
+        b.bullySlideRate = 1;
+        b.getmMinBullyFunc = BullyFinally.Frozen_M;
+        b.clock = 10;
+        b.hpInit(800);
+        b.price = 1000;
+        return b;
+    }
+
+    static Fr3(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "3级冰冻炮";
+        b.rangeR = 150;
+        b.r = 12;
+
+        b.bullySpeed = 4;
+        b.bullySlideRate = 1;
+        b.getmMinBullyFunc = BullyFinally.Frozen_L;
+        b.clock = 10;
+        b.hpInit(2000);
+        b.price = 6000;
+        return b;
+    }
+    static Fr4(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "4级冰冻炮";
+        b.rangeR = 200;
+        b.r = 15;
+
+        b.bullySpeed = 6;
+        b.bullySlideRate = 1;
+        b.getmMinBullyFunc = BullyFinally.Frozen_L;
+        b.clock = 3;
+        b.hpInit(3000);
+        b.price = 8000;
+        b.attackBullyNum = 3;
+        b.bullyDeviationRotate = 5;
+        return b;
+    }
 }
 
 const TOWER_FUNC_ARR = [
@@ -295,5 +356,9 @@ const TOWER_FUNC_ARR = [
     BatteryFinally.T3,
     BatteryFinally.T4,
 
+    BatteryFinally.Fr1,
+    BatteryFinally.Fr2,
+    BatteryFinally.Fr3,
+    BatteryFinally.Fr4,
 ];
 
