@@ -11,6 +11,7 @@ class CircleObject {
     constructor(pos, world) {
         this.pos = pos;
         this.world = world;
+        this.gameType = "CircleObject";
         this.r = 20;  // 默认20
 
         this.speed = new Vector(0, 0);
@@ -102,9 +103,6 @@ class CircleObject {
         let yIn = -this.r < this.pos.y && this.pos.y < this.world.height + this.r;
         return xIn && yIn;
     }
-
-    // copySelf() {
-    // }
 
 
     /**

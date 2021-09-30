@@ -13,12 +13,34 @@ class World {
         this.width = width;
         this.height = height;
         this.batterys = [];
+        this.buildings = [];
         this.monsters = [];
         this.effects = [];  // 特效层
         this.time = 0;
+
+        // 安置大本
+        let RootBuilding = BuildingFinally.Root(this);
+        RootBuilding.pos = new Vector(this.width / 2, this.height / 2);
+        this.rootBuilding = RootBuilding; // 大本建筑 （特殊）
+        this.addBuilding(this.rootBuilding);
+
         this.user = {
             money: 600,
         };
+    }
+
+    /**
+     * 获取我方所有实体
+     */
+    getAllBuildingArr() {
+        let res = [];
+        for (let item of this.buildings) {
+            res.push(item);
+        }
+        for (let item of this.batterys) {
+            res.push(item);
+        }
+        return res;
     }
 
     addBattery(battery) {
@@ -33,15 +55,19 @@ class World {
         this.monsters.push(m);
     }
 
-    /**
-     *
-     * @param effect {EffectCircle}
-     */
     addEffect(effect) {
         this.effects.push(effect);
     }
 
-    goTime() {
+    /**
+     *
+     * @param building {Building}
+     */
+    addBuilding(building) {
+        this.buildings.push(building);
+    }
+
+    goTick() {
         // 清除怪物
         let mArr = [];
         for (let m of this.monsters) {
@@ -66,6 +92,14 @@ class World {
             }
         }
         this.batterys = tArr;
+        // 清除建筑
+        let bArr = [];
+        for (let b of this.buildings) {
+            if (!b.isDead()) {
+                bArr.push(b);
+            }
+        }
+        this.buildings = bArr;
         // 清除特效
         let eArr = [];
         for (let e of this.effects) {
@@ -82,6 +116,9 @@ class World {
         }
         // 炮塔行动
         for (let b of this.batterys) {
+            b.goStep();
+        }
+        for (let b of this.buildings) {
             b.goStep();
         }
         // 怪物行动
@@ -107,11 +144,12 @@ class World {
         for (let b of this.batterys) {
             b.render(ctx);
         }
-
+        for (let b of this.buildings) {
+            b.render(ctx);
+        }
         for (let m of this.monsters) {
             m.render(ctx);
         }
-
         for (let e of this.effects) {
             e.render(ctx);
         }

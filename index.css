@@ -18,6 +18,12 @@ body .choiceBtn {
   outline: solid 1px;
   overflow-y: scroll;
 }
+body .choiceBtn .Battery {
+  color: #9cdcfe;
+}
+body .choiceBtn .Building {
+  color: gold;
+}
 body .choiceBtn button {
   width: 100px;
   display: block;
@@ -25,7 +31,6 @@ body .choiceBtn button {
   padding: 3px;
   font-size: 14px;
   background-color: #1e1e1e;
-  color: #9cdcfe;
   text-shadow: #88844b;
   transition: all 0.2s;
 }

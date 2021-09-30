@@ -7,53 +7,74 @@ let world = new World(1000, 600);
 
 window.onload = function () {
 
-    setInterval(() => {
-        world.goTime();
+    let mainAni = setInterval(() => {
+        world.goTick();
         world.render(c);
-    }, 25);
+        if (world.rootBuilding.isDead()) {
+            alert("你死了");
+            location.reload();
+            clearInterval(mainAni);
+        }
+    }, 50);
 
-    let addedBattery = [];
+    let addedThings = [];
 
     /**
      * 点击画布添加炮塔
      * @param e
      */
     c.onclick = function (e) {
-        if (addedBattery.length === 0) {
+        if (addedThings.length === 0) {
             return;
         }
-        let addBattery = addedBattery.pop();
-        console.log(e);
+        let addThing = addedThings.pop();
 
-        addBattery.pos.x = e.clientX - c.offsetLeft;
-        addBattery.pos.y = e.clientY - c.offsetTop;
-        world.addBattery(addBattery);
+        addThing.pos.x = e.clientX - c.offsetLeft;
+        addThing.pos.y = e.clientY - c.offsetTop;
+        // 检测此处是否可以放建筑
+        for (let item of world.getAllBuildingArr()) {
+            if (addThing.getBodyCircle().impact(item.getBodyCircle())) {
+                // 这里不可以放建筑
+                addedThings.push(addThing);
+                return;
+            }
+        }
+        switch (addThing.gameType) {
+            case "Battery":
+                world.addBattery(addThing);
+                break;
+            case "Building":
+                world.addBuilding(addThing);
+                break;
+        }
     }
     /**
      * 动态添加所有炮塔的按钮
      */
     let cBtn = document.querySelector(".choiceBtn");
-    for (let bFunc of TOWER_FUNC_ARR) {
+    let btnClassName = "towerBtn";
+    let thingsFuncArr = [];
+    for (let bF of TOWER_FUNC_ARR) {
+        thingsFuncArr.push(bF);
+    }
+    for (let bF of BUILDING_FUNC_ARR) {
+        thingsFuncArr.push(bF);
+    }
+    for (let bFunc of thingsFuncArr) {
         let btn = document.createElement('button');
-        btn.classList.add("towerBtn");
+        btn.classList.add(btnClassName);
         let b = bFunc(world);
+        btn.classList.add(b.gameType);
         btn.innerText = b.name;
         btn.setAttribute("data-price", b.price.toString());
         btn.addEventListener("click", () => {
             world.user.money -= b.price;
-            addedBattery.push(bFunc(world));
+            addedThings.push(bFunc(world));
         });
-
         cBtn.appendChild(btn);
     }
 
-    let towerBtnArr = document.getElementsByClassName("towerBtn");
-    // for (let btn of towerBtnArr) {
-    //     btn.addEventListener("click", function () {
-    //         // 点击一个建筑按钮所执行的通用功能
-    //         world.user.money -= this.dataset.price; // 扣除金钱
-    //     });
-    // }
+    let towerBtnArr = document.getElementsByClassName(btnClassName);
 
     setInterval(() => {
         for (let btn of towerBtnArr) {
@@ -64,61 +85,6 @@ window.onload = function () {
             }
         }
     }, 100);
-    //
-    // document.querySelector("#tower").onclick = function () {
-    //     addedBattery.push(BatteryFinally.Normal(world));
-    // };
-    // document.querySelector("#towerF1").onclick = function () {
-    //     addedBattery.push(BatteryFinally.F1(world));
-    // }
-    // document.querySelector("#towerF2").onclick = function () {
-    //     addedBattery.push(BatteryFinally.F2(world));
-    // }
-    // document.querySelector("#towerF3").onclick = function () {
-    //     addedBattery.push(BatteryFinally.F3(world));
-    // }
-    // document.querySelector("#towerF4").onclick = function () {
-    //     addedBattery.push(BatteryFinally.F4(world));
-    // }
-    // document.querySelector("#towerH1").onclick = function () {
-    //     addedBattery.push(BatteryFinally.H1(world));
-    // }
-    // document.querySelector("#towerH2").onclick = function () {
-    //     addedBattery.push(BatteryFinally.H2(world));
-    // }
-    // document.querySelector("#towerH3").onclick = function () {
-    //     addedBattery.push(BatteryFinally.H3(world));
-    // }
-    // document.querySelector("#towerH4").onclick = function () {
-    //     addedBattery.push(BatteryFinally.H4(world));
-    // }
-    // document.querySelector("#towerS1").onclick = function () {
-    //     addedBattery.push(BatteryFinally.S1(world));
-    // }
-    // document.querySelector("#towerS2").onclick = function () {
-    //     addedBattery.push(BatteryFinally.S2(world));
-    // }
-    // document.querySelector("#towerS3").onclick = function () {
-    //     addedBattery.push(BatteryFinally.S3(world));
-    // }
-    // document.querySelector("#towerS4").onclick = function () {
-    //     addedBattery.push(BatteryFinally.S4(world));
-    // }
-    // document.querySelector("#towerT1").onclick = function () {
-    //     addedBattery.push(BatteryFinally.T1(world));
-    // }
-    // document.querySelector("#towerT2").onclick = function () {
-    //     addedBattery.push(BatteryFinally.T2(world));
-    // }
-    // document.querySelector("#towerT3").onclick = function () {
-    //     addedBattery.push(BatteryFinally.T3(world));
-    // }
-    // document.querySelector("#towerT4").onclick = function () {
-    //     addedBattery.push(BatteryFinally.T4(world));
-    // }
-    // document.querySelector("#test").onclick = function () {
-    //     console.log(world.batterys);
-    // }
 }
 
 

@@ -12,6 +12,7 @@ class Battery extends CircleObject {
     constructor(x, y, world) {
         super(new Vector(x, y), world);
         this.name = "普通炮塔";
+        this.gameType = "Battery";
         this.r = 10; // px;
         this.rangeR = 100;  // 射程
         this.dirction = new Vector(1, 2).to1();
