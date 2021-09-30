@@ -3,14 +3,12 @@
  * by littlefean
  */
 
-class EffectCircle extends Circle {
+class EffectCircle extends Effect {
 
     constructor(pos) {
-        super(pos.x, pos.y, 10);
-        this.duration = 10;  // 这个特效可以播放多少个时间刻度
-        this.isPlay = true;
-        this.time = 0;
+        super();
         this.animationFunc = this.flashAnimation;
+        this.circle = new Circle(pos.x, pos.y, 10);
     }
 
     /**
@@ -18,24 +16,25 @@ class EffectCircle extends Circle {
      * 用于火炮子弹爆炸
      */
     flashAnimation() {
-        this.setStrokeWidth(0);
-        this.setStrokeColorStr("transparent");
-        this.setColor(255, 255, 0, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.setStrokeWidth(0);
+        this.circle.setStrokeColorStr("transparent");
+        this.circle.setColor(255, 255, 0, Functions.timeRateAlpha(this.time / this.duration));
     }
 
     /**
      * 炮塔被摧毁的特效
      */
     destroyAnimation() {
-        this.setColor(0, 0, 0, Functions.timeRateAlpha(this.time / this.duration));
-        this.r = this.time * 10;
+        this.circle.setColor(0, 0, 0, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.r = this.time * 10;
     }
 
     goStep() {
-        this.time++;
+        super.goStep();
         this.animationFunc();
-        if (this.time >= this.duration) {
-            this.isPlay = false;
-        }
+    }
+
+    render(ctx) {
+        this.circle.render(ctx);
     }
 }

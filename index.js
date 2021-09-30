@@ -3,7 +3,7 @@
  * by littlefean
  */
 let c = document.querySelector("canvas");
-let world = new World(1000, 600);
+let world = new World(1200, 800);
 
 window.onload = function () {
 
@@ -11,7 +11,7 @@ window.onload = function () {
         world.goTick();
         world.render(c);
         if (world.rootBuilding.isDead()) {
-            alert("你死了");
+            alert("你失败了");
             location.reload();
             clearInterval(mainAni);
         }
@@ -36,6 +36,9 @@ window.onload = function () {
             if (addThing.getBodyCircle().impact(item.getBodyCircle())) {
                 // 这里不可以放建筑
                 addedThings.push(addThing);
+                let et = new EffectText("这里不能放建筑，换一个地方点一下");
+                et.pos = addThing.pos.copy();
+                world.addEffect(et);
                 return;
             }
         }

@@ -86,7 +86,7 @@ class Bully extends CircleObject {
             }
         }
         let e = new EffectCircle(this.pos.copy());
-        e.r = this.bombRange;
+        e.circle.r = this.bombRange;
         this.world.addEffect(e);
     }
 
