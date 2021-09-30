@@ -3,7 +3,40 @@
   padding: 0;
   box-sizing: border-box;
 }
-canvas {
+body #mainCanvas {
   outline: solid 1px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+body .choiceBtn {
+  width: 200px;
+  height: 100vh;
+  float: left;
+  right: 0;
+  top: 0;
+  outline: solid 1px;
+  overflow-y: scroll;
+}
+body .choiceBtn button {
+  width: 100px;
+  display: block;
+  margin: 5px auto;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: #9cdcfe;
+  text-shadow: #88844b;
+  transition: all 0.2s;
+}
+body .choiceBtn button:disabled {
+  opacity: 0.5;
+}
+body .choiceBtn button:hover {
+  color: white;
+  transform: scale(1.1);
+}
+body .choiceBtn button:active {
+  transform: scale(0.9);
 }
 /*# sourceMappingURL=index.css.map */

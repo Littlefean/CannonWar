@@ -17,7 +17,7 @@ class World {
         this.effects = [];  // 特效层
         this.time = 0;
         this.user = {
-            money: 250,
+            money: 600,
         };
     }
 
@@ -75,7 +75,7 @@ class World {
         }
         this.effects = eArr;
         // 添加怪物
-        if (this.time % 20 === 0) {
+        if (this.time % 100 === 0) {
             for (let i = 0; i < Functions.timeMonsterAddedNum(this.time); i++) {
                 this.addMonsters();
             }

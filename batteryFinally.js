@@ -21,7 +21,7 @@ class BatteryFinally {
         b.bullySpeedAddMax = 2;
         b.clock = 3;
         b.getmMinBullyFunc = BullyFinally.F_S;
-        b.price = 20;
+        b.price = 120;
         b.hpInit(1550);
         return b;
     }
@@ -37,7 +37,7 @@ class BatteryFinally {
         b.clock = 2;
         b.bullyDeviation = 20;
         b.hpInit(2000);
-        b.price = 50;
+        b.price = 150;
         return b;
     }
 
@@ -48,14 +48,14 @@ class BatteryFinally {
         b.r += 5;
 
         b.bullySpeed = 2;
-        b.bullySlideRate = 2.5;
+        b.bullySlideRate = 1.1;
         b.bullySpeedAddMax = 10;
         b.getmMinBullyFunc = BullyFinally.F_M;
         b.clock = 1;
         b.hpInit(5000);
         b.bullyDeviation = 20;
         b.attackBullyNum = 3;
-        b.price = 100;
+        b.price = 200;
         return b;
     }
 
@@ -66,14 +66,14 @@ class BatteryFinally {
         b.r += 15;
 
         b.bullySpeed = 8.2;
-        b.bullySlideRate = 5;
+        b.bullySlideRate = 1;
         b.bullySpeedAddMax = 3;
         b.getmMinBullyFunc = BullyFinally.F_L;
         b.clock = 1;
         b.hpInit(10000);
         b.bullyDeviation = 50;
         b.attackBullyNum = 5;
-        b.price = 300;
+        b.price = 400;
         return b;
     }
 
@@ -89,7 +89,7 @@ class BatteryFinally {
         b.getmMinBullyFunc = BullyFinally.H_S;
         b.clock += 5;
         b.hpInit(1100);
-        b.price = 50;
+        b.price = 150;
         return b;
     }
 
@@ -104,7 +104,7 @@ class BatteryFinally {
         b.clock += 20;
         b.getmMinBullyFunc = BullyFinally.H_L;
         b.hpInit(2000);
-        b.price = 200;
+        b.price = 300;
         return b;
     }
 
@@ -121,9 +121,10 @@ class BatteryFinally {
         b.hpInit(2800);
         b.attackBullyNum = 2;
         b.bullyDeviationRotate = 0.2;
-        b.price = 500;
+        b.price = 600;
         return b;
     }
+
     static H4(world) {
         let b = new Battery(0, 0, world);
         b.name = "4级火炮";
@@ -134,7 +135,7 @@ class BatteryFinally {
         b.clock += 30;
         b.getmMinBullyFunc = BullyFinally.H_LL;
         b.hpInit(10000);
-        b.attackBullyNum = 3;
+        b.attackBullyNum = 1;
         b.bullyDeviationRotate = 0.8;
         b.price = 1000;
         return b;
@@ -154,7 +155,7 @@ class BatteryFinally {
         b.hpInit(1200);
         b.attackBullyNum = 3;
         b.bullyDeviationRotate = 5;
-        b.price = 30;
+        b.price = 130;
         return b;
     }
 
@@ -172,7 +173,7 @@ class BatteryFinally {
         b.attackBullyNum = 5;
         b.bullyDeviationRotate = 8;
         b.getmMinBullyFunc = BullyFinally.S;
-        b.price = 60;
+        b.price = 160;
         return b;
     }
 
@@ -190,7 +191,7 @@ class BatteryFinally {
         b.attackBullyNum = 15;
         b.bullyDeviationRotate = 10;
         b.getmMinBullyFunc = BullyFinally.S;
-        b.price = 100;
+        b.price = 200;
         return b;
     }
 
@@ -207,7 +208,7 @@ class BatteryFinally {
         b.attackBullyNum = 50;
         b.bullyDeviationRotate = 20;
         b.getmMinBullyFunc = BullyFinally.S;
-        b.price = 170;
+        b.price = 270;
         return b;
     }
 
@@ -221,7 +222,7 @@ class BatteryFinally {
         b.clock = 6;
         b.hpInit(1100);
         b.getmMinBullyFunc = BullyFinally.T_S;
-        b.price = 30;
+        b.price = 130;
         return b;
     }
 
@@ -235,7 +236,7 @@ class BatteryFinally {
         b.clock = 4;
         b.hpInit(1500);
         b.getmMinBullyFunc = BullyFinally.T_M;
-        b.price = 60;
+        b.price = 160;
         return b;
     }
 
@@ -250,9 +251,10 @@ class BatteryFinally {
         b.hpInit(5000);
         b.bullySpeedAddMax = 3;
         b.getmMinBullyFunc = BullyFinally.T_L;
-        b.price = 180;
+        b.price = 280;
         return b;
     }
+
     static T4(world) {
         let b = new Battery(0, 0, world);
         b.name = "4级穿甲炮塔";
@@ -264,7 +266,34 @@ class BatteryFinally {
         b.hpInit(10000);
         b.bullySpeedAddMax = 4;
         b.getmMinBullyFunc = BullyFinally.T_LL;
-        b.price = 300;
+        b.price = 400;
         return b;
     }
 }
+
+const TOWER_FUNC_ARR = [
+
+    BatteryFinally.Normal,
+
+    BatteryFinally.F1,
+    BatteryFinally.F2,
+    BatteryFinally.F3,
+    BatteryFinally.F4,
+
+    BatteryFinally.H1,
+    BatteryFinally.H2,
+    BatteryFinally.H3,
+    BatteryFinally.H4,
+
+    BatteryFinally.S1,
+    BatteryFinally.S2,
+    BatteryFinally.S3,
+    BatteryFinally.S4,
+
+    BatteryFinally.T1,
+    BatteryFinally.T2,
+    BatteryFinally.T3,
+    BatteryFinally.T4,
+
+];
+

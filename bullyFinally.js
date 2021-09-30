@@ -84,7 +84,7 @@ class BullyFinally {
 
         b.haveBomb = true;
         b.bombDamage = 800;
-        b.bombRange = 200;
+        b.bombRange = 130;
         b.accelerationV = 0.02;
 
         b.bodyColor = [255, 255, 0, 1];

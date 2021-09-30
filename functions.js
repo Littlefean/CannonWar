@@ -8,7 +8,7 @@ class Functions {
      * @param t {Number}
      */
     static timeMonsterHp(t) {
-        return t / 5;
+        return t / 3;
     }
 
     /**
@@ -49,6 +49,10 @@ class Functions {
      * @param tick
      */
     static timeAddPrise(tick) {
-        return tick / 5;
+        let res = Math.floor(Math.log10(tick));
+        if (res <= 0) {
+            res = 1;
+        }
+        return res;
     }
 }
