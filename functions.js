@@ -43,4 +43,12 @@ class Functions {
     static disBoomDamage(dis) {
 
     }
+
+    /**
+     * 随着时间的增加，怪物打死的奖励
+     * @param tick
+     */
+    static timeAddPrise(tick) {
+        return tick / 5;
+    }
 }

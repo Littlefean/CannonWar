@@ -144,7 +144,6 @@ class CircleObject {
                 // 血条写数字
                 let txt = Math.floor(this.hp).toString();
                 ctx.fillStyle = "black";
-                ctx.beginPath();
                 ctx.font = "9px Microsoft YaHei";
                 ctx.textAlign = "center";
                 //垂直对齐方式

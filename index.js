@@ -11,9 +11,9 @@ window.onload = function () {
     setInterval(() => {
         world.goTime();
         world.render(c);
-    }, 50);
+    }, 10);
 
-    let addedBattery = [new Battery(1, 1, world)];
+    let addedBattery = [];
 
     /**
      * 点击画布添加炮塔
@@ -29,10 +29,22 @@ window.onload = function () {
         console.log(addBattery);
         world.addBattery(addBattery);
     }
+    let towerBtnArr = document.getElementsByClassName("towerBtn");
+    for (let btn of towerBtnArr) {
+        btn.addEventListener("click", function () {
+            // 点击一个建筑按钮所执行的通用功能
+            world.user.money -= this.dataset.price;
+        });
+    }
 
+    setInterval(() => {
+        for (let btn of towerBtnArr) {
+            btn.disable = btn.dataset.price >= world.user.money;
+        }
+    }, 1000);
     document.querySelector("#tower").onclick = function () {
         addedBattery.push(BatteryFinally.Normal(world));
-    }
+    };
     document.querySelector("#towerF1").onclick = function () {
         addedBattery.push(BatteryFinally.F1(world));
     }

@@ -56,7 +56,7 @@ class BullyFinally {
         b.bombRange = 30;
         b.accelerationV = 0.05
 
-        b.bodyColor = [255, 0, 0, 1];
+        b.bodyColor = [255, 20, 20, 1];
         b.bodyStrokeColor = [255, 100, 20, 1];
         b.bodyStrokeWidth = 2;
         return b;

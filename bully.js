@@ -85,7 +85,7 @@ class Bully extends CircleObject {
                 m.hpChange(-Math.abs(damage));  // todo 需要处理好公式
             }
         }
-        let e = new SpecialEffect(this.pos.copy());
+        let e = new EffectCircle(this.pos.copy());
         e.r = this.bombRange;
         this.world.addEffect(e);
     }

@@ -3,7 +3,6 @@
  * by littlefean
  */
 class World {
-    moneyEle = document.querySelector("#money");
 
     /**
      *
@@ -30,12 +29,13 @@ class World {
         let m = Monster.randInit(this);
         m.hpInit(m.maxHp + Functions.timeMonsterHp(this.time));
         m.colishDamage += Functions.timeMonsterAtt(this.time);
+        m.addPrice += Functions.timeAddPrise(this.time);
         this.monsters.push(m);
     }
 
     /**
      *
-     * @param effect {SpecialEffect}
+     * @param effect {EffectCircle}
      */
     addEffect(effect) {
         this.effects.push(effect);
@@ -48,12 +48,24 @@ class World {
             if (!m.isDead()) {
                 mArr.push(m);
             } else {
-                console.log("打死了一个怪物");
                 this.user.money += m.addPrice;
-                this.moneyEle.innerHTML = this.user.money.toString();
             }
         }
         this.monsters = mArr;
+        // 清除炮塔
+        let tArr = [];
+        for (let t of this.batterys) {
+            if (!t.isDead()) {
+                tArr.push(t);
+            } else {
+                let e = new EffectCircle(t.pos);
+                e.duration = 10;
+                e.animationFunc = e.destroyAnimation;
+                this.addEffect(e);
+                console.log("添加了摧毁特效");
+            }
+        }
+        this.batterys = tArr;
         // 清除特效
         let eArr = [];
         for (let e of this.effects) {
@@ -91,6 +103,7 @@ class World {
         let canvasElement = document.querySelector("canvas");
         let ctx = canvasElement.getContext("2d");
         ctx.clearRect(0, 0, this.width, this.height);
+
         for (let b of this.batterys) {
             b.render(ctx);
         }
@@ -102,5 +115,12 @@ class World {
         for (let e of this.effects) {
             e.render(ctx);
         }
+        // 写一些基本信息
+        ctx.font = "16px Microsoft YaHei";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.fillText("金钱：" + this.user.money.toString(), 20, 20);
+        ctx.fillText("怪物数量：" + this.monsters.length, 20, 40);
+        ctx.fillText("炮塔数量：" + this.batterys.length, 20, 60);
     }
 }

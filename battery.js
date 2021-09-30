@@ -11,6 +11,7 @@ class Battery extends CircleObject {
      */
     constructor(x, y, world) {
         super(new Vector(x, y), world);
+        this.name = "普通炮塔";
         this.r = 10; // px;
         this.rangeR = 100;  // 射程
         this.dirction = new Vector(1, 2).to1();
@@ -27,12 +28,9 @@ class Battery extends CircleObject {
         this.attackBullyNum = 1;  // 一次性发射子弹的数量
         this.bullySlideRate = 1;  // 子弹可滑行距离
 
-        this.bullyRadious = 2.5  // 每一个子弹的半径
-        this.bullyDamage = 5  // 每一发子弹的伤害
-
         this.hpInit(1000);
-        this.isBomb = false;
-        this.bombR = 0;
+
+        this.price = 10 // 这个炮塔需要花多少钱来买
 
         this.bombDamage = 0;
 
@@ -52,9 +50,10 @@ class Battery extends CircleObject {
         }
         // 判断死亡
         if (this.isDead()) {
+            // 此处代码似乎不会被执行到
+
             return;
         }
-        // console.log("bullies len:" + this.bullys.length)
         this.attackAction();
     }
 
@@ -112,17 +111,7 @@ class Battery extends CircleObject {
         let bDir = this.dirction.mul(Math.random() * this.bullySpeedAddMax + this.bullySpeed);
         bDir = bDir.deviation(this.bullyDeviationRotate);
         res.speed = bDir;
-        // 设置这个子弹的信息
-        // res.damage = this.bullyDamage;  //
-        // res.r = this.bullyRadious;  //
-        // 设置滑动距离
         res.slideRate = this.bullySlideRate;
-        // // 是否爆炸
-        // if (this.isBomb) {
-        //     res.haveBomb = true;
-        //     res.bombDamage = this.bombDamage;
-        //     res.bombRange = this.bombR;
-        // }
         return res;
     }
 
@@ -140,6 +129,9 @@ class Battery extends CircleObject {
         // 渲染每一个子弹
         for (let b of this.bullys) {
             b.render(ctx);
+        }
+        if (this.isDead()) {
+            return;
         }
         super.render(ctx);
 
