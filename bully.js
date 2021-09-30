@@ -41,7 +41,13 @@ class Bully extends CircleObject {
         this.bodyStrokeWidth = 1;
 
         // 单次攻击减速特性
-        this.freezeCutDown = 0.98  // 越接近1表示减速效果越不明显
+        this.freezeCutDown = 0.98  // 越接近1表示减速效果越不明显  todo 应该给怪物添加一个冰冻效果属性，这个速度的乘积值乘以速度
+
+        // 分裂子弹特性
+        this.splitAble = false;
+        this.splitNum = 5;  // 分裂后子弹的数量
+
+        this.repel = 0;  // 单次击退能力 这个数值会让怪物倒退一步距离，这个数值是这一步距离乘以的倍数
     }
 
     /**
@@ -52,8 +58,11 @@ class Bully extends CircleObject {
         let c = new Circle(this.pos.x, this.pos.y, this.r); // 当前子弹形状
         for (let m of world.monsters) {
             if (c.impact(m.getBodyCircle())) {
+                // 直接击中造成伤害
                 m.hpChange(-this.damage);
+                // 可以穿过
                 if (this.throughable) {
+                    // 被削减掉了
                     if (this.r <= 0) {
                         this.remove();
                         break;
@@ -61,7 +70,14 @@ class Bully extends CircleObject {
                     this.bodyRadiusChange(-this.throughCutNum);
                     continue;  // todo
                 }
+                // 发生爆炸
                 this.boom();
+                // 造成击退
+                m.backMove(this.repel);
+                m.changedSpeed.add(this.speed.mul(this.repel));
+                console.log(m.speed);
+                console.log(m.changedSpeed);
+                // 删除子弹
                 this.remove();
                 break;
             }

@@ -314,6 +314,7 @@ class BatteryFinally {
         b.price = 6000;
         return b;
     }
+
     static Fr4(world) {
         let b = new Battery(0, 0, world);
         b.name = "4级冰冻炮";
@@ -328,6 +329,58 @@ class BatteryFinally {
         b.price = 8000;
         b.attackBullyNum = 3;
         b.bullyDeviationRotate = 5;
+        return b;
+    }
+
+    static R1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级击退炮塔";
+        b.rangeR = 100;
+        b.r += 5;
+        b.bullySpeed = 1;
+        b.clock += 50;
+        b.hpInit(3000);
+        b.getmMinBullyFunc = BullyFinally.R_M;
+        b.price = 750;
+        return b;
+    }
+
+    static R2(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "2级击退炮塔";
+        b.rangeR = 100;
+        b.r += 5;
+        b.bullySpeed = 1;
+        b.clock += 45;
+        b.hpInit(3000);
+        b.getmMinBullyFunc = BullyFinally.R_M;
+        b.price = 1500;
+        return b;
+    }
+
+    static R3(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "3级击退炮塔";
+        b.rangeR = 100;
+        b.r += 5;
+        b.bullySpeed = 1;
+        b.clock += 40;
+        b.hpInit(3000);
+        b.getmMinBullyFunc = BullyFinally.R_M;
+        b.price = 2000;
+        return b;
+    }
+
+    static R4(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "4级击退炮塔";
+        b.rangeR = 100;
+        b.r += 5;
+        b.bullySpeed = 2;
+        b.clock += 30;
+        b.hpInit(3000);
+        b.getmMinBullyFunc = BullyFinally.R_M;
+        b.price = 3000;
         return b;
     }
 }
@@ -360,5 +413,11 @@ const TOWER_FUNC_ARR = [
     BatteryFinally.Fr2,
     BatteryFinally.Fr3,
     BatteryFinally.Fr4,
+
+    BatteryFinally.R1,
+    BatteryFinally.R2,
+    BatteryFinally.R3,
+    BatteryFinally.R4,
+
 ];
 

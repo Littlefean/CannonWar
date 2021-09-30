@@ -21,6 +21,8 @@ class Monster extends CircleObject {
         this.destination = new Vector(this.world.width / 2, this.world.height / 2);  // 默认的目的地是中心点
         this.bodyColor = [25, 25, 25, 0.8];
         this.hpColor = [200, 20, 20, 0.5];
+
+        this.changedSpeed = Vector.zero();  // 叠加一个被外力改变了的速度
     }
 
     /**
@@ -37,7 +39,19 @@ class Monster extends CircleObject {
 
     move() {
         this.speed = this.destination.sub(this.pos).to1().mul(this.speedNumb);
+        this.speed.add(this.changedSpeed);
         super.move();
+    }
+
+    /**
+     * 击退一步
+     * 用于被击退的效果
+     * @param rate {Number}  后退的距离是前进一步的多少倍
+     */
+    backMove( rate) {
+        let reversedSpeed = this.speed.copy();
+        reversedSpeed = reversedSpeed.mul(-1 * rate);
+        this.pos.add(reversedSpeed)
     }
 
     goStep() {

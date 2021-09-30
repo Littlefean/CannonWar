@@ -198,4 +198,14 @@ class BullyFinally {
         b.bodyStrokeWidth = 0.5;
         return b;
     }
+
+    // 击退炮弹
+    static R_M() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 5);
+
+        b.damage = 20;
+        b.bodyColor = [204, 120, 50, 1];
+        b.repel = 0.1;
+        return b;
+    }
 }
