@@ -36,6 +36,9 @@ class Functions {
         return (1 - tr) * 0.25;
     }
 
+    static timeRateAlphaDownFast(tr) {
+        return Math.pow((1 - tr) * 0.25, 2);
+    }
     /**
      * 计算爆炸伤害随着距离递减
      * @param dis

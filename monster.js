@@ -41,6 +41,7 @@ class Monster extends CircleObject {
     }
 
     goStep() {
+        super.goStep();
         // 死亡检测
         if (this.isDead()) {
             this.remove();

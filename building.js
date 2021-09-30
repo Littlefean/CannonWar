@@ -17,6 +17,7 @@ class Building extends CircleObject {
         this.hpColor = [2, 200, 50, 0.8];
 
         // 生产特性
+        this.moneyAddedAble = false;
         this.moneyAddedNum = 0;  // 一次增加多少金钱
         this.moneyAddedFreezeTime = 100;  // 多少个tick增加一次金钱
 
@@ -33,17 +34,26 @@ class Building extends CircleObject {
     }
 
     goStep() {
+        super.goStep();
         // 增加金钱
-        if (this.world.time % this.moneyAddedFreezeTime === 0) {
-            this.world.user.money += this.moneyAddedNum;
+        if (this.moneyAddedAble) {
+            if (this.liveTime % this.moneyAddedFreezeTime === 0) {
+                this.world.user.money += this.moneyAddedNum;
+                // 添加采集特效
+                let e = new EffectCircle(this.pos);
+                e.circle.r = this.r;
+                e.animationFunc = e.energeticAnimation;
+                e.duration = Math.floor(this.moneyAddedFreezeTime / 2);
+                this.world.addEffect(e);
+            }
         }
         // 回血
-        if (this.world.time % this.hpAddNumFreezeTime === 0) {
+        if (this.liveTime % this.hpAddNumFreezeTime === 0) {
             this.hpChange(this.hpAddNum);
         }
         // 给周围回血
         if (this.otherHpAddAble) {
-            if (this.world.time % this.otherHpAddFreezeTime === 0) {
+            if (this.liveTime % this.otherHpAddFreezeTime === 0) {
                 // 给周围的建筑和炮塔加血
                 for (let b of this.world.buildings) {
                     if (b !== this) {
@@ -57,6 +67,12 @@ class Building extends CircleObject {
                         b.hpChange(this.otherHpAddNum);
                     }
                 }
+                // 加血特效
+                let e = new EffectCircle(this.pos);
+                e.animationFunc = e.flashGreenAnimation;
+                e.duration = this.otherHpAddFreezeTime;
+                e.circle.r = this.otherHpAddRadius;
+                this.world.addEffect(e);
             }
         }
     }
@@ -68,7 +84,7 @@ class Building extends CircleObject {
             let c = new Circle(this.pos.x, this.pos.y, this.otherHpAddRadius);
             c.setColorStr("transparent");
             c.setStrokeColorStr("green");
-            c.setStrokeWidth(1);
+            c.setStrokeWidth(0.5);
             c.render(ctx);
         }
     }

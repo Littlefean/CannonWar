@@ -85,7 +85,6 @@ class World {
                 tArr.push(t);
             } else {
                 let e = new EffectCircle(t.pos);
-                // e.duration = 10;
                 e.animationFunc = e.destroyAnimation;
                 this.addEffect(e);
                 console.log("添加了摧毁特效");

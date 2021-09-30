@@ -7,7 +7,7 @@ class EffectCircle extends Effect {
 
     constructor(pos) {
         super();
-        this.animationFunc = this.flashAnimation;
+        this.animationFunc = this.flashFireAnimation;
         this.circle = new Circle(pos.x, pos.y, 10);
     }
 
@@ -15,10 +15,28 @@ class EffectCircle extends Effect {
      * 闪黄光特效
      * 用于火炮子弹爆炸
      */
-    flashAnimation() {
+    flashFireAnimation() {
         this.circle.setStrokeWidth(0);
         this.circle.setStrokeColorStr("transparent");
         this.circle.setColor(255, 255, 0, Functions.timeRateAlpha(this.time / this.duration));
+    }
+
+    /**
+     * 绿光特效
+     */
+    flashGreenAnimation() {
+        this.circle.setStrokeWidth(0);
+        this.circle.setStrokeColorStr("transparent");
+        this.circle.setColor(20, 200, 0, Functions.timeRateAlphaDownFast(this.time / this.duration));
+    }
+
+    /**
+     * 采集器采集特效
+     */
+    energeticAnimation() {
+        this.circle.setStrokeWidth(0);
+        this.circle.setStrokeColorStr("transparent");
+        this.circle.setColor(20, 200, 0, 1);
     }
 
     /**

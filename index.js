@@ -15,7 +15,7 @@ window.onload = function () {
             location.reload();
             clearInterval(mainAni);
         }
-    }, 50);
+    }, 25);
 
     let addedThings = [];
 

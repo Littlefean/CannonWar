@@ -12,6 +12,7 @@ class CircleObject {
         this.pos = pos;
         this.world = world;
         this.gameType = "CircleObject";
+        this.liveTime = 0;  // 自己存在了多长时间了，用于一些计时和冷却
         this.r = 20;  // 默认20
 
         this.speed = new Vector(0, 0);
@@ -74,6 +75,10 @@ class CircleObject {
             return true;
         }
         return this.hp <= 0;
+    }
+
+    goStep() {
+        this.liveTime++;
     }
 
     /**

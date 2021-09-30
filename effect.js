@@ -27,21 +27,17 @@ class EffectText extends Effect {
      */
     constructor(text) {
         super();
-        this.duration = 100;
+        this.duration = 20;
         this.pos = Vector.zero();
         this.textColor = "black";
         this.textSize = 16;
-        // this.textStrokeColor = "blue";
         this.text = text;
     }
 
     render(ctx) {
         ctx.fillStyle = this.textColor;
         ctx.font = `${this.textSize}px Microsoft YaHei`;
-        // ctx.strokeStyle = this.textStrokeColor;
-        // ctx.strokeWidth = "1px";
         ctx.textAlign = "center";
-        // ctx.strokeText(this.text, this.pos.x, this.pos.y);
-        ctx.fillText(this.text, this.pos.x, this.pos.y);
+        ctx.fillText(this.text, this.pos.x, this.pos.y - this.time);
     }
 }

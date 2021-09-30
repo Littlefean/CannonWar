@@ -44,6 +44,7 @@ class Battery extends CircleObject {
 
 
     goStep() {
+        super.goStep();
         this.removeOutRangeBullet();
         // 移动自己射过的子弹
         for (let b of this.bullys) {
@@ -80,7 +81,7 @@ class Battery extends CircleObject {
      * 一个普通炮塔的攻击机制
      */
     attackAction() {
-        if (this.world.time % this.clock !== 0) {
+        if (this.liveTime % this.clock !== 0) {
             return;
         }
         for (let m of this.world.monsters) {
