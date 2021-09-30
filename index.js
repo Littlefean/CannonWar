@@ -11,7 +11,7 @@ window.onload = function () {
     setInterval(() => {
         world.goTime();
         world.render(c);
-    }, 5);
+    }, 50);
 
     let addedBattery = [new Battery(1, 1, world)];
 

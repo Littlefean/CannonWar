@@ -10,11 +10,35 @@ class BullyFinally {
     /**
      * 机枪类型子弹
      */
-    static F() {
+    static F_S() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
+        b.r = 0.6;
+        b.damage = 1;
+        b.bodyColor = [20, 20, 20, 1];
+        b.bodyStrokeWidth = 0;
+        b.bodyStrokeColor = [0, 0, 0, 0];
+        return b;
+    }
+
+    static F_M() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
+        b.r = 0.8;
+        b.damage = 3;
+
+        b.bodyColor = [10, 10, 10, 1];
+        b.bodyStrokeWidth = 0;
+        b.bodyStrokeColor = [10, 10, 10, 0];
+        return b;
+    }
+
+    static F_L() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
         b.r = 1;
-        b.damage = 1;
-        b.bodyColor = [0, 255, 0, 1];
+        b.damage = 10;
+
+        b.bodyColor = [0, 0, 0, 1];
+        b.bodyStrokeWidth = 0;
+        b.bodyStrokeColor = [0, 0, 0, 0];
         return b;
     }
 
