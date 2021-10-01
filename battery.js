@@ -110,7 +110,7 @@ class Battery extends CircleObject {
         }
         // 发射起始点
 
-        res.originalPos = new Vector(this.pos.x, this.pos.y);  // todo 分裂蛋在此报错，res是undefined
+        res.originalPos = new Vector(this.pos.x, this.pos.y);
         // 炮台绑定
         res.father = this;
         // 世界绑定
