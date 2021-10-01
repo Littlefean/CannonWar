@@ -106,15 +106,56 @@ class MonsterFinally {
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
     }
+
+    static Thrower1(world) {
+        let m = Monster.randInit(world);
+        m.name = "碾压者1级";
+        m.throwAble = true;
+
+        m.bodyColor = [50, 150, 150, 0.5];
+        m.bodyStrokeColor = [5, 15, 15, 1];
+        m.addPrice += 150;
+        m.speedNumb = 0.4;
+        m.r = 30;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        m.colishDamage /= 1;  // 因为是碾压，所以是连贯伤害
+        return m;
+    }
+
+    static BlackHole(world) {
+        let m = Monster.randInit(world);
+        m.name = "黑洞1级";
+        m.throwAble = true;
+        m.addPrice += 1000;
+        m.speedNumb = 0.2;
+        m.bodyColor = [0, 0, 0, 1];
+        m.bodyStrokeColor = [0, 0, 0, 1];
+        m.colishDamage = 1000000000;
+
+        m.haveGArea = true;
+        m.gAreaR = 200;  // 引力场半径
+        m.gAreaNum = 2;  // 引力场强度
+
+        m.r = 100;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
 }
 
 
 const MONSTERS_FUNC_ARR = [
-    MonsterFinally.Ox1,
-    MonsterFinally.Ox2,
-    MonsterFinally.Ox3,
-    MonsterFinally.Bomber1,
-    MonsterFinally.Bomber2,
-    MonsterFinally.Bomber3,
+    // MonsterFinally.Ox1,
+    // MonsterFinally.Ox2,
+    // MonsterFinally.Ox3,
+    // MonsterFinally.Bomber1,
+    // MonsterFinally.Bomber2,
+    // MonsterFinally.Bomber3,
+    // MonsterFinally.Thrower1,
+    MonsterFinally.BlackHole,
     MonsterFinally.Normal,
 ];

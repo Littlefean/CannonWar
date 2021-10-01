@@ -78,13 +78,13 @@ class World {
         }
         this.monsters = mArr;
         // 清除独立子弹
-        // let pArr = [];
-        // for (let p of this.othersBullys) {
-        //     if (p.pos.dis(p.originalPos) < p.splitRangeRate) {
-        //         pArr.push(p);
-        //     }
-        // }
-        // this.othersBullys = pArr;
+        let pArr = [];
+        for (let p of this.othersBullys) {
+            if (!p.isOutScreen()) {
+                pArr.push(p);
+            }
+        }
+        this.othersBullys = pArr;
         // 清除炮塔
         let tArr = [];
         for (let t of this.batterys) {

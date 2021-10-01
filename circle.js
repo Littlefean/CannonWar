@@ -14,7 +14,7 @@ class Circle {
         this.y = y;
         this.r = r;
         this.strokeWidth = 2; // px
-        this.strokeColor = "black";
+        this.strokeColor = "transparent";
         this.color = "rgb(0, 0, 0)";
     }
 
@@ -73,6 +73,7 @@ class Circle {
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.fill();
+        ctx.closePath();
     }
 
     /**
@@ -81,6 +82,7 @@ class Circle {
     renderView(ctx) {
         this.setColorStr("transparent");
         this.setStrokeWidth(0.1);
+        this.setStrokeColorStr("black");
         this.render(ctx);
     }
 

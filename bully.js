@@ -21,6 +21,7 @@ class Bully extends CircleObject {
         this.speed = speed;
         this.r = r;
 
+        this.dr = 0;  // 这个子弹的半径每一个时间刻度发生的变化量
         this.originalPos = new Vector(this.pos.x, this.pos.y); // 最初发射点
         this.father = father;
         this.damage = damage;  // 击中伤害
@@ -41,7 +42,7 @@ class Bully extends CircleObject {
         this.bodyStrokeWidth = 1;
 
         // 单次攻击减速特性
-        this.freezeCutDown = 0.98  // 越接近1表示减速效果越不明显  todo 应该给怪物添加一个冰冻效果属性，这个速度的乘积值乘以速度
+        this.freezeCutDown = 1;  // 越接近1表示减速效果越不明显
 
         // 分裂子弹特性
         this.splitAble = false;
@@ -49,7 +50,31 @@ class Bully extends CircleObject {
         this.splitRandomV = 1;
         this.splitBully = BullyFinally.Normal;
         this.splitRangeRate = 100;  // 分裂后的子弹可以存在的攻击范围 px
+        this.isSliptedBully = false; // 当前这个子弹是不是分裂后的小子弹
+
         this.repel = 0;  // 单次击退能力 这个数值会让怪物倒退一步距离，这个数值是这一步距离乘以的倍数
+
+        // 烟雾子弹特性
+        this.dRGB = [0, 0, 0, 0]; // 随着时间迭代，每次颜色变化量
+        // this.maxRGB = [255, 255, 255];
+        this.burnRateAdd = 0;  // 每次击中增加 燃烧率
+    }
+
+    goStep() {
+        super.goStep();
+        this.move();
+        this.rChange();
+        super.bodyColorChange(...this.dRGB);
+        this.collide(this.world);
+        if (this.isSliptedBully) {
+            if (this.pos.dis(this.originalPos) > this.splitRangeRate) {
+                if (this.splitAble) {
+                    // 这个分裂的子弹是否还可以继续分裂
+                    this.split();
+                }
+                this.remove();
+            }
+        }
     }
 
     /**
@@ -62,6 +87,10 @@ class Bully extends CircleObject {
             if (c.impact(m.getBodyCircle())) {
                 // 直接击中造成伤害
                 m.hpChange(-this.damage);
+                // 直接击中造成改变速速效果
+                m.speedFreezeNumb *= this.freezeCutDown;  // 每次减速都会叠加
+                // 燃烧属性
+                m.burnRate += this.burnRateAdd;
                 // 可以穿过
                 if (this.throughable) {
                     // 被削减掉了
@@ -75,7 +104,7 @@ class Bully extends CircleObject {
                 // 发生爆炸
                 this.boom();
                 // 造成击退
-                m.backMove(this.repel);
+                // m.backMove(this.repel);
                 m.changedSpeed.add(this.speed.mul(this.repel));
                 // 发生分裂
                 this.split();
@@ -86,10 +115,14 @@ class Bully extends CircleObject {
         }
     }
 
-    goStep() {
-        super.goStep();
-        this.move();
-        this.collide(this.world);
+    /**
+     * 子弹每走一步 半径的改变量
+     */
+    rChange() {
+        this.r += this.dr;
+        if (this.r < 0) {
+            this.r = 0;
+        }
     }
 
     /**
@@ -107,15 +140,20 @@ class Bully extends CircleObject {
      */
     split() {
         if (this.splitAble) {
+            // console.log("开始分裂")
             for (let i = 0; i < this.splitNum; i++) {
                 let b = this.splitBully();
+                b.isSliptedBully = true;
                 b.world = this.world;
                 b.pos = this.pos.copy();
                 b.originalPos = this.pos.copy();
                 b.speed = Vector.randCircle().mul(this.splitRandomV);
                 b.splitRangeRate = this.splitRangeRate;
+
                 // 添加到世界
                 this.world.othersBullys.push(b);
+                // console.log("分裂蛋的数量：", this.world.othersBullys.length);
+                // console.log("分裂蛋的数量：", this.world.othersBullys);
             }
         }
     }
@@ -149,9 +187,8 @@ class Bully extends CircleObject {
             if (m.getBodyCircle().impact(bC)) {
                 // 均摊伤害
                 m.hpChange(-this.bombDamage);
-                if (m.speedNumb > 0.2) {
-                    m.speedNumb *= this.freezeCutDown;  // 每次减速都会叠加
-                }
+                m.speedFreezeNumb *= this.freezeCutDown;  // 每次减速都会叠加
+                m.bodyColorChange(-10, -10, 20, 0);  // 让血条的颜色变蓝
             }
         }
         // 添加爆炸特效圆

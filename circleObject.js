@@ -114,6 +114,43 @@ class CircleObject {
         return xIn && yIn;
     }
 
+    /**
+     * 是否远远的在屏幕之外
+     */
+    isOutScreen() {
+        let margin = 500;
+        let xIn = -this.r - margin < this.pos.x && this.pos.x < this.world.width + this.r + margin;
+        let yIn = -this.r - margin < this.pos.y && this.pos.y < this.world.height + this.r + margin;
+        return !(xIn && yIn);
+    }
+
+    /**
+     * 改变自身的颜色
+     * @param dr 改变量增量
+     * @param dg 改变量增量
+     * @param db 改变量增量
+     * @param da 改变量增量
+     */
+    bodyColorChange(dr, dg, db, da) {
+        this.bodyColor[0] += dr;
+        this.bodyColor[1] += dg;
+        this.bodyColor[2] += db;
+        this.bodyColor[3] += da;
+        if (this.bodyColor[3] < 0) {
+            this.bodyColor[3] = 0;
+        }
+        if (this.bodyColor[3] > 1) {
+            this.bodyColor[3] = 1;
+        }
+        for (let i = 0; i < 3; i++) {
+            if (this.bodyColor[i] < 0) {
+                this.bodyColor[i] = 0;
+            }
+            if (this.bodyColor[i] > 255) {
+                this.bodyColor[i] = 255;
+            }
+        }
+    }
 
     /**
      * 渲染

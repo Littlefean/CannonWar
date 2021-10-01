@@ -386,59 +386,141 @@ class BatteryFinally {
 
     static SS1(world) {
         let b = new Battery(0, 0, world);
-        b.name = "1级分裂弹炮塔";
+        b.name = "1级溅射炮塔";
         b.rangeR = 100;
         b.r += 5;
         b.bullySpeed = 5;
         b.clock += 20;
         b.hpInit(1000);
 
-        b.getmMainBullyFunc = BullyFinally.SSM;
-        b.getmSlipedBullyFunc = BullyFinally.F_L;
-        // console.log(396, b.getmMainBullyFunc);
+        b.getmMainBullyFunc = BullyFinally.SS_S;
         b.price = 300;
         return b;
     }
 
     static SS2(world) {
         let b = new Battery(0, 0, world);
-        b.name = "2级分裂弹炮塔";
+        b.name = "2级溅射炮塔";
         b.rangeR = 150;
         b.r += 5;
         b.bullySpeed = 8;
         b.clock += 20;
         b.hpInit(3000);
-        b.getmMainBullyFunc = BullyFinally.SSM;
-        b.getmSlipedBullyFunc = BullyFinally.S;
+        b.getmMainBullyFunc = BullyFinally.SS_M;
         b.price = 500;
         return b;
     }
 
     static SS3(world) {
         let b = new Battery(0, 0, world);
-        b.name = "3级分裂弹炮塔";
+        b.name = "3级溅射炮塔";
         b.rangeR = 200;
         b.r += 5;
         b.bullySpeed = 11;
         b.clock += 20;
         b.hpInit(5000);
-        b.getmMainBullyFunc = BullyFinally.SSM;
-        b.getmSlipedBullyFunc = BullyFinally.S;
+        b.getmMainBullyFunc = BullyFinally.SS_L;
         b.price = 1000;
         return b;
     }
 
     static SS4(world) {
         let b = new Battery(0, 0, world);
-        b.name = "4级分裂弹炮塔";
+        b.name = "4级溅射炮塔";
         b.rangeR = 250;
         b.r += 5;
         b.bullySpeed = 15;
         b.clock += 20;
         b.hpInit(10000);
-        b.getmMainBullyFunc = BullyFinally.SSM;
-        b.getmSlipedBullyFunc = BullyFinally.S;
+        b.getmMainBullyFunc = BullyFinally.SS_LL;
         b.price = 10000;
+        return b;
+    }
+
+    static FFF1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级喷火器";
+        b.rangeR = 150;
+        b.bullySpeed = 10;
+        b.clock = 1;
+
+        b.hpInit(1000);
+        b.getmMainBullyFunc = BullyFinally.Fire_M;
+        b.attackBullyNum = 1;
+        b.bullyDeviationRotate = 3;
+        b.price = 552;
+        return b;
+    }
+
+    static FFF2(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "2级喷火器";
+        b.rangeR = 200;
+        b.bullySpeed = 15;
+        b.clock = 1;
+
+        b.hpInit(5000);
+        b.getmMainBullyFunc = BullyFinally.Fire_L;
+        b.attackBullyNum = 2;
+        b.bullyDeviationRotate = 4;
+        b.price = 1000;
+        return b;
+    }
+    static FFF3(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "3级喷火器";
+        b.rangeR = 200;
+        b.bullySpeed = 18;
+        b.clock = 1;
+
+        b.hpInit(10000);
+        b.getmMainBullyFunc = BullyFinally.Fire_LL;
+        b.attackBullyNum = 2;
+        b.bullyDeviationRotate = 4;
+        b.price = 8000;
+        return b;
+    }
+    static P1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级毒气塔";
+        b.rangeR = 200;
+        b.bullySpeed = 9;
+        b.clock = 15;
+
+        b.hpInit(1000);
+        b.getmMainBullyFunc = BullyFinally.P_L;
+        b.attackBullyNum = 6;
+        b.bullyDeviationRotate = 4;
+        b.price = 2000;
+        return b;
+    }
+    static P2(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "2级毒气塔";
+        b.rangeR = 220;
+        b.bullySpeed = 9;
+        b.clock = 10;
+
+        b.hpInit(10000);
+        b.getmMainBullyFunc = BullyFinally.P_L;
+        b.attackBullyNum = 10;
+        b.bullyDeviationRotate = 8;
+        b.price = 3000;
+        return b;
+    }
+
+    static P3(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "3级毒气塔";
+        b.rangeR = 220;
+        b.bullySpeed = 9;
+        b.clock = 10;
+
+        b.hpInit(15000);
+        b.getmMainBullyFunc = BullyFinally.P_M;
+        b.attackBullyNum = 10;
+        b.bullyDeviationRotate = 8;
+        b.price = 3000;
         return b;
     }
 }
@@ -481,6 +563,14 @@ const TOWER_FUNC_ARR = [
     BatteryFinally.SS2,
     BatteryFinally.SS3,
     BatteryFinally.SS4,
+
+    BatteryFinally.FFF1,
+    BatteryFinally.FFF2,
+    BatteryFinally.FFF3,
+
+    BatteryFinally.P1,
+    BatteryFinally.P2,
+    BatteryFinally.P3,
 
 ];
 

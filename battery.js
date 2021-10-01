@@ -21,7 +21,6 @@ class Battery extends CircleObject {
         this.bullys = [];  // 发射过的子弹
 
         this.getmMainBullyFunc = BullyFinally.Normal;  // 炮塔发射的主子弹，获取新子弹对象的方法
-        this.getmSlipedBullyFunc = BullyFinally.Normal;
 
         this.bullySpeed = 8;  // 子弹基础速度
         this.bullySpeedAddMax = 0;  // 子弹速度增加随机量
@@ -46,6 +45,8 @@ class Battery extends CircleObject {
 
     goStep() {
         super.goStep();
+        super.move();  // todo 普通建筑也要加上，不然黑洞无效
+
         this.removeOutRangeBullet();
         // 移动自己射过的子弹
         for (let b of this.bullys) {
