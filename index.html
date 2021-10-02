@@ -12,22 +12,29 @@
     <button id="testBtn">测试按钮</button>
 </div>
 
-<script src="functions.js"></script>
-<script src="vector.js"></script>
-<script src="circle.js"></script>
-<script src="circleObject.js"></script>
-<script src="rectangle.js"></script>
-<script src="effect.js"></script>
-<script src="effectCircle.js"></script>
-<script src="bully.js"></script>
-<script src="bullyFinally.js"></script>
-<script src="battery.js"></script>
-<script src="batteryFinally.js"></script>
-<script src="building.js"></script>
-<script src="buildingFinally.js"></script>
+<script src="model/functions.js"></script>
+<script src="model/vector.js"></script>
+<script src="model/circle.js"></script>
+<script src="model/line.js"></script>
 
-<script src="monster.js"></script>
-<script src="monsterFinally.js"></script>
+<script src="model/circleObject.js"></script>
+<script src="model/rectangle.js"></script>
+<script src="effect/effect.js"></script>
+<script src="effect/effectCircle.js"></script>
+<script src="effect/effectLine.js"></script>
+<script src="bullys/bully.js"></script>
+<script src="bullys/bullyFinally.js"></script>
+<script src="towers/battery.js"></script>
+<script src="towers/batteryLaser.js"></script>
+<script src="towers/batteryHell.js"></script>
+<script src="towers/batteryRay.js"></script>
+<script src="towers/batteryFinally.js"></script>
+<script src="buildings/building.js"></script>
+<script src="buildings/buildingFinally.js"></script>
+
+<script src="monster/monster.js"></script>
+<script src="monster/monsterShooter.js"></script>
+<script src="monster/monsterFinally.js"></script>
 <script src="world.js"></script>
 
 <script src="index.js"></script>
@@ -39,14 +46,11 @@
 
     新增内容：
     直接的线性类攻击炮塔
-    激光炮塔
-    地狱塔
     雷电炮塔，能够导电
     震爆炮塔：攻击了会麻痹瘫痪一小段时间
     跟踪炮塔：射出的子弹具有跟踪效果，可以做跟踪导弹
     地震发生器：直接圆面积覆盖伤害
     次声炮和空气炮，攻击范围是一个扇形，可能需要做一个扇形类
-    扫描激光：一个射线在转，扫过的都有伤害
     流星锤、回旋镖
 
     地雷：
@@ -54,23 +58,14 @@
     合并陷阱、分散陷阱、强制分裂陷阱
 
     怪物：
-    修改引力机制
-    推土机：把引力改成负数
-    具有激光防御能力的怪物
-    弓箭手：会像炮塔一样攻击我们的炮塔
-    死亡后给队友产生增益效果
-    直接给队友产生增益效果：加血、加速度
+        弓箭手：会像炮塔一样攻击我们的炮塔
+
     具有像黑暗王子一样的护盾，抵抗单次高溢出伤害
     周期性无敌、周期性隐身
     速度瞬间移动，
     死亡后进化成一个比自己更强的单位
     死后分裂成多个比自己更弱的单位
     不停的召唤其他单位
-    降低伤害场
-    子弹半径减少场
-    子弹路径改变场
-    自我回血
-    自我回血速度随着自己剩余血量的变化而变化
 
     其他更新：
     做出游戏主界面

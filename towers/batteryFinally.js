@@ -466,6 +466,7 @@ class BatteryFinally {
         b.price = 1000;
         return b;
     }
+
     static FFF3(world) {
         let b = new Battery(0, 0, world);
         b.name = "3级喷火器";
@@ -480,6 +481,7 @@ class BatteryFinally {
         b.price = 8000;
         return b;
     }
+
     static P1(world) {
         let b = new Battery(0, 0, world);
         b.name = "1级毒气塔";
@@ -494,6 +496,7 @@ class BatteryFinally {
         b.price = 2000;
         return b;
     }
+
     static P2(world) {
         let b = new Battery(0, 0, world);
         b.name = "2级毒气塔";
@@ -521,6 +524,31 @@ class BatteryFinally {
         b.attackBullyNum = 10;
         b.bullyDeviationRotate = 8;
         b.price = 3000;
+        return b;
+    }
+
+    static L1(world) {
+        let b = new BatteryLaser(0, 0, world);
+        b.name = "1级镭射炮塔";
+        return b;
+    }
+
+    static He1(world) {
+        let b = new BatteryHell(0, 0, world);
+        b.name = "1级地狱塔";
+        return b;
+    }
+
+    static Ray1(world) {
+        let b = new BatteryRay(0, 0, world);
+        b.name = "1级穿射激光"
+        return b;
+    }
+
+    static RayScan1(world) {
+        let b = new BatteryRay(0, 0, world);
+        b.name = "1级扫射激光"
+        b.attackFunc = b.scanningAttack;
         return b;
     }
 }
@@ -571,6 +599,13 @@ const TOWER_FUNC_ARR = [
     BatteryFinally.P1,
     BatteryFinally.P2,
     BatteryFinally.P3,
+
+    BatteryFinally.L1,
+
+    BatteryFinally.He1,
+
+    BatteryFinally.Ray1,
+    BatteryFinally.RayScan1,
 
 ];
 

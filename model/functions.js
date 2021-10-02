@@ -58,4 +58,17 @@ class Functions {
         }
         return res;
     }
+
+    /**
+     * 地狱塔的单次伤害随着锁定时间刻的变化
+     * 几乎一秒就能秒杀
+     * @param tick
+     */
+    static timeHellTowerDamage_E(tick) {
+        return Math.exp(tick) / 100000_0000;
+    }
+
+    static timeHellTowerDamage(tick) {
+        return Math.pow(tick, 2) / 1000;
+    }
 }

@@ -13,6 +13,7 @@ class Circle {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.pos = new Vector(x, y);
         this.strokeWidth = 2; // px
         this.strokeColor = "transparent";
         this.color = "rgb(0, 0, 0)";
@@ -76,6 +77,15 @@ class Circle {
         ctx.closePath();
     }
 
+    /**
+     * 判断某一个点是否在园内
+     * @param x {Number}
+     * @param y {Number}
+     */
+    pointIn(x, y) {
+        let p = new Vector(x, y);
+        return p.sub(this.pos).abs() < this.r;
+    }
     /**
      * 当这个圆是视野圆形的时候，渲染形状
      */

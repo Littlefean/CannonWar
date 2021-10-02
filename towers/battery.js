@@ -15,7 +15,7 @@ class Battery extends CircleObject {
         this.gameType = "Battery";
         this.r = 10; // px;
         this.rangeR = 100;  // 射程
-        this.dirction = new Vector(1, 2).to1();
+        this.dirction = new Vector(1, 2).to1();  // 炮塔的朝向
         this.clock = 5 // 间歇时间 1最短 必须是整数！ 越大攻击频率越慢  遇到怪物之后的反应刻
 
         this.bullys = [];  // 发射过的子弹
@@ -33,8 +33,6 @@ class Battery extends CircleObject {
 
         this.price = 10 // 这个炮塔需要花多少钱来买
 
-        this.bombDamage = 0;
-
         this.bodyColor = [100, 100, 100, 1];
         this.hpColor = [2, 230, 13, 0.8];
         this.bodyStrokeWidth = 10;
@@ -45,7 +43,7 @@ class Battery extends CircleObject {
 
     goStep() {
         super.goStep();
-        super.move();  // todo 普通建筑也要加上，不然黑洞无效
+        super.move();
 
         this.removeOutRangeBullet();
         // 移动自己射过的子弹
@@ -99,17 +97,13 @@ class Battery extends CircleObject {
 
     /**
      * 获取一个正在运动的子弹
-     *
      */
     getRunningBully() {
         let res = this.getmMainBullyFunc();
-        // console.log(this);
-        // console.log("?????", res);
         if (res === undefined) {
             console.log("??????? 可能是finalBully忘了return了")
         }
         // 发射起始点
-
         res.originalPos = new Vector(this.pos.x, this.pos.y);
         // 炮台绑定
         res.father = this;

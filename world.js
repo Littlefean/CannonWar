@@ -44,6 +44,22 @@ class World {
         return res;
     }
 
+    /**
+     * 获取我方所有子弹，返回一个数组
+     */
+    getAllBullyToArr() {
+        let res = [];
+        for (let tower of this.batterys) {
+            for (let b of tower.bullys) {
+                res.push(b);
+            }
+        }
+        for (let b of this.othersBullys) {
+            res.push(b);
+        }
+        return res;
+    }
+
     addBattery(battery) {
         this.batterys.push(battery);
     }
@@ -94,7 +110,6 @@ class World {
                 let e = new EffectCircle(t.pos);
                 e.animationFunc = e.destroyAnimation;
                 this.addEffect(e);
-                // console.log("添加了摧毁特效");
             }
         }
         this.batterys = tArr;

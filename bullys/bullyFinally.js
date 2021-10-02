@@ -299,6 +299,7 @@ class BullyFinally {
         b.dr = 1;  // 火焰扩散
         b.dRGB = [0, -10, -10, -0.0003];  // 火焰颜色演变
         b.burnRateAdd = 0.0001;
+        b.laserDestoryAble = false;
         return b;
     }
 
@@ -320,6 +321,7 @@ class BullyFinally {
         b.dr = 2;  // 火焰扩散
         b.dRGB = [0, -10, -10, -0.0003];  // 火焰颜色演变
         b.burnRateAdd = 0.0001;
+        b.laserDestoryAble = false;
         return b;
     }
 
@@ -341,6 +343,7 @@ class BullyFinally {
         b.dr = 3;  // 火焰扩散
         b.dRGB = [+20, -5, -50, -0.0003];  // 火焰颜色演变
         b.burnRateAdd = 0.0001;
+        b.laserDestoryAble = false;
         return b;
     }
 
@@ -358,7 +361,7 @@ class BullyFinally {
         b.bodyStrokeWidth = 0;
         b.bodyStrokeColor = [255, 255, 0, 0];
         b.dr = 1;  // 扩散
-
+        b.laserDestoryAble = false;
         return b;
     }
 
@@ -375,7 +378,7 @@ class BullyFinally {
         b.bodyStrokeWidth = 0;
         b.bodyStrokeColor = [255, 255, 0, 0];
         b.dr = 2;  // 扩散
-
+        b.laserDestoryAble = false;
         return b;
     }
 }

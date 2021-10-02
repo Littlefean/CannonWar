@@ -14,6 +14,15 @@ class Vector {
     }
 
     /**
+     * 相对add函数来说，这个是有返回值的
+     * @param otherVector
+     * @returns {Vector}
+     */
+    plus(otherVector) {
+        return new Vector(this.x + otherVector.x, this.y + otherVector.y);
+    }
+
+    /**
      * 归一化处理
      */
     to1() {
@@ -98,6 +107,7 @@ class Vector {
         let y = this.y + diffY;
         return new Vector(x, y);
     }
+
     /**
      * 随机获得一个单位圆向量
      */
@@ -107,9 +117,11 @@ class Vector {
         let y = Math.cos(a);
         return new Vector(x, y);
     }
+
     static zero() {
         return new Vector(0, 0);
     }
+
     /**
      * 随机矩形边缘位置
      * @param xMin {Number}

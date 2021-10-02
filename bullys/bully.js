@@ -56,8 +56,9 @@ class Bully extends CircleObject {
 
         // 烟雾子弹特性
         this.dRGB = [0, 0, 0, 0]; // 随着时间迭代，每次颜色变化量
-        // this.maxRGB = [255, 255, 255];
         this.burnRateAdd = 0;  // 每次击中增加 燃烧率
+
+        this.laserDestoryAble = true;  // 是否可以被激光摧毁
     }
 
     goStep() {
@@ -125,6 +126,15 @@ class Bully extends CircleObject {
         }
     }
 
+    /**
+     * 更改子弹的伤害
+     */
+    damageChange(dn) {
+        this.damage += dn;
+        if (this.damage < 0) {
+            this.damage = 0;
+        }
+    }
     /**
      * 子弹爆炸直接伤害效果
      */

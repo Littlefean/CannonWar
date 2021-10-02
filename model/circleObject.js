@@ -53,7 +53,15 @@ class CircleObject {
         }
         this.hp += dh;
     }
-
+    hpSet(hp) {
+        if (hp > this.maxHp) {
+            this.hp = this.maxHp;
+        }
+        if (hp < 0) {
+            this.hp = 0;
+        }
+        this.hp = hp;
+    }
     /**
      * 半径改变
      * @param dr {Number}
@@ -61,6 +69,7 @@ class CircleObject {
     bodyRadiusChange(dr) {
         if (this.r + dr <= 0) {
             this.r = 0;
+            this.remove();  // 一旦这个东西被减小到0了，我们就认为它不存在了
         } else {
             this.r += dr;
         }
