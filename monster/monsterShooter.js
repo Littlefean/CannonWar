@@ -11,7 +11,6 @@ class MonsterShooter extends Monster {
         this.name = "射手怪物";
 
         this.rangeR = 100;
-        // this.direction = Vector.randCircle();
         this.dirction = new Vector(1, 2).to1();  // 炮塔的朝向
 
         this.getmMainBullyFunc = BullyFinally.S;  // 发射的主子弹，获取新子弹对象的方法
@@ -37,7 +36,10 @@ class MonsterShooter extends Monster {
             for (let building of this.world.getAllBuildingArr()) {
                 if (c.impact(building.getBodyCircle())) {
                     // 直接击中造成伤害
+                    console.log("造成的伤害是：", bully.damage)
                     building.hpChange(-bully.damage);
+                    console.log("目前的血量是：", building.hp)
+                    console.log(building);
                     // // 直接击中造成改变速速效果
                     // b.speedFreezeNumb *= b.freezeCutDown;  // 每次减速都会叠加
                     // // 燃烧属性
@@ -59,7 +61,7 @@ class MonsterShooter extends Monster {
                     // // 发生分裂
                     // b.split();
                     // 删除子弹
-                    building.remove();
+                    bully.remove();
                     break;
                 }
             }

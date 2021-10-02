@@ -120,7 +120,7 @@ class Monster extends CircleObject {
                 e.line.setStrokeColor(255, 0, 0, 0.1);
                 this.world.addEffect(e);
                 let ec = new EffectCircle(bully.pos.copy());
-                ec.circle.setColor(255, 0, 0, 0.1);
+                ec.circle.color.setRGBA(255, 0, 0, 0.1);
                 this.world.addEffect(ec);
                 // 删除子弹
                 bully.remove();

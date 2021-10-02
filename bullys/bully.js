@@ -38,7 +38,7 @@ class Bully extends CircleObject {
         this.throughCutNum = 0;  // 每次削减量
 
         // 子弹颜色
-        this.bodyColor = [100, 23, 1, 0];
+        this.bodyColor = new Color(100, 23, 1, 0);
         this.bodyStrokeWidth = 1;
 
         // 单次攻击减速特性
@@ -65,7 +65,10 @@ class Bully extends CircleObject {
         super.goStep();
         this.move();
         this.rChange();
-        super.bodyColorChange(...this.dRGB);
+        this.bodyColor.change(...this.dRGB);
+        // super.bodyColorChange(...this.dRGB);
+
+
         this.collide(this.world);
         if (this.isSliptedBully) {
             if (this.pos.dis(this.originalPos) > this.splitRangeRate) {
@@ -198,7 +201,8 @@ class Bully extends CircleObject {
                 // 均摊伤害
                 m.hpChange(-this.bombDamage);
                 m.speedFreezeNumb *= this.freezeCutDown;  // 每次减速都会叠加
-                m.bodyColorChange(-10, -10, 20, 0);  // 让血条的颜色变蓝
+                // m.bodyColorChange(-10, -10, 20, 0);  // 让血条的颜色变蓝
+                m.bodyColor.change(-10, -10, 20, 0);
             }
         }
         // 添加爆炸特效圆
@@ -224,7 +228,7 @@ class Bully extends CircleObject {
 
     render(ctx) {
         let c = this.getBodyCircle();
-        c.setColor(...this.bodyColor);
+        c.color = this.bodyColor;
         c.setStrokeWidth(this.bodyStrokeWidth);
         c.render(ctx);
     }

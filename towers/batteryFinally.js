@@ -548,6 +548,7 @@ class BatteryFinally {
     static RayScan1(world) {
         let b = new BatteryRay(0, 0, world);
         b.name = "1级扫射激光"
+        b.damage = 10;
         b.attackFunc = b.scanningAttack;
         return b;
     }

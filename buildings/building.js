@@ -82,8 +82,8 @@ class Building extends CircleObject {
         // 绘制加血范围圈
         if (this.otherHpAddAble) {
             let c = new Circle(this.pos.x, this.pos.y, this.otherHpAddRadius);
-            c.setColorStr("transparent");
-            c.setStrokeColorStr("green");
+            c.color = Color.Transparent();
+            c.strokeColor.setRGBA(81, 139, 60, 1);
             c.setStrokeWidth(0.5);
             c.render(ctx);
         }

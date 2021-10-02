@@ -59,9 +59,9 @@ class BatteryRay extends Battery {
             }
         }
         let e = new EffectLine(line.PosStart, line.PosEnd);
-        e.line.setStrokeColor(255, 10, 0, 1);
+        e.lineColor = [255, 10, 0, 1];
         e.line.strokeWidth = 1;
-        e.duration = 1;
+        e.duration = 50;
         this.world.addEffect(e);
         // 目标是否已经死亡
         if (this.target.isDead()) {

@@ -17,20 +17,20 @@ class EffectCircle extends Effect {
      */
     flashFireAnimation() {
         this.circle.setStrokeWidth(0);
-        this.circle.setStrokeColorStr("transparent");
-        this.circle.setColor(255, 255, 0, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.strokeColor = Color.Transparent();
+        this.circle.color.setRGBA(255, 255, 0, Functions.timeRateAlpha(this.time / this.duration));
     }
 
     flashBlueAnimation() {
         this.circle.setStrokeWidth(0);
-        this.circle.setStrokeColorStr("transparent");
-        this.circle.setColor(0, 100, 255, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.strokeColor = Color.Transparent();
+        this.circle.color.setRGBA(0, 100, 255, Functions.timeRateAlpha(this.time / this.duration));
     }
 
     flashRedAnimation() {
         this.circle.setStrokeWidth(0);
-        this.circle.setStrokeColorStr("transparent");
-        this.circle.setColor(255, 100, 0, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.strokeColor = Color.Transparent();
+        this.circle.color.setRGBA(255, 100, 0, Functions.timeRateAlpha(this.time / this.duration));
     }
 
     /**
@@ -38,8 +38,8 @@ class EffectCircle extends Effect {
      */
     flashGreenAnimation() {
         this.circle.setStrokeWidth(0);
-        this.circle.setStrokeColorStr("transparent");
-        this.circle.setColor(20, 200, 0, Functions.timeRateAlphaDownFast(this.time / this.duration));
+        this.circle.strokeColor = Color.Transparent();
+        this.circle.color.setRGBA(20, 200, 0, Functions.timeRateAlphaDownFast(this.time / this.duration));
     }
 
     /**
@@ -47,15 +47,15 @@ class EffectCircle extends Effect {
      */
     energeticAnimation() {
         this.circle.setStrokeWidth(0);
-        this.circle.setStrokeColorStr("transparent");
-        this.circle.setColor(20, 200, 0, 1);
+        this.circle.strokeColor = Color.Transparent();
+        this.circle.color.setRGBA(20, 200, 0, 1);
     }
 
     /**
      * 炮塔被摧毁的特效
      */
     destroyAnimation() {
-        this.circle.setColor(0, 0, 0, Functions.timeRateAlpha(this.time / this.duration));
+        this.circle.color.setRGBA(0, 0, 0, Functions.timeRateAlpha(this.time / this.duration));
         this.circle.r = this.time * 10;
     }
 

@@ -23,10 +23,10 @@ class CircleObject {
         this.hp = 100;
         this.maxHp = 100;
 
-        this.hpColor = [122, 12, 12, 1];
-        this.bodyColor = [20, 20, 20, 1];
+        this.hpColor = new Color(122, 12, 12, 1);
+        this.bodyColor = new Color(20, 20, 20, 1);
         this.bodyStrokeWidth = 5;
-        this.bodyStrokeColor = [0, 0, 0, 0];
+        this.bodyStrokeColor = Color.Transparent();
         this.hpBarHeight = 10;
     }
 
@@ -53,6 +53,7 @@ class CircleObject {
         }
         this.hp += dh;
     }
+
     hpSet(hp) {
         if (hp > this.maxHp) {
             this.hp = this.maxHp;
@@ -62,6 +63,7 @@ class CircleObject {
         }
         this.hp = hp;
     }
+
     /**
      * 半径改变
      * @param dr {Number}
@@ -100,7 +102,12 @@ class CircleObject {
     }
 
     getBodyCircle() {
-        return new Circle(this.pos.x, this.pos.y, this.r);
+        let res = new Circle(this.pos.x, this.pos.y, this.r);
+        res.color = this.bodyColor;
+        res.strokeColor = this.bodyStrokeColor;
+        let hpRate = this.hp / this.maxHp;
+        res.setStrokeWidth(this.bodyStrokeWidth * hpRate);
+        return res;
     }
 
     move() {
@@ -134,34 +141,6 @@ class CircleObject {
     }
 
     /**
-     * 改变自身的颜色
-     * @param dr 改变量增量
-     * @param dg 改变量增量
-     * @param db 改变量增量
-     * @param da 改变量增量
-     */
-    bodyColorChange(dr, dg, db, da) {
-        this.bodyColor[0] += dr;
-        this.bodyColor[1] += dg;
-        this.bodyColor[2] += db;
-        this.bodyColor[3] += da;
-        if (this.bodyColor[3] < 0) {
-            this.bodyColor[3] = 0;
-        }
-        if (this.bodyColor[3] > 1) {
-            this.bodyColor[3] = 1;
-        }
-        for (let i = 0; i < 3; i++) {
-            if (this.bodyColor[i] < 0) {
-                this.bodyColor[i] = 0;
-            }
-            if (this.bodyColor[i] > 255) {
-                this.bodyColor[i] = 255;
-            }
-        }
-    }
-
-    /**
      * 渲染
      * @param ctx
      */
@@ -169,15 +148,6 @@ class CircleObject {
         let hpRate = this.hp / this.maxHp;
         // 渲染身体
         let c = this.getBodyCircle();
-        if (this.isDead()) {
-            c.setColor(230, 230, 230, 1);
-            c.setStrokeWidth(0);
-            c.setStrokeColorStr("transparent");
-        } else {
-            c.setStrokeColor(this.bodyStrokeColor);
-            c.setStrokeWidth(this.bodyStrokeWidth * hpRate);
-            c.setColor(...this.bodyColor);
-        }
         c.render(ctx);
 
         // 这是一个有血量的实体，渲染血量条
@@ -193,7 +163,7 @@ class CircleObject {
                 // 血条填充
                 let rect = new Rectangle(this.pos.x - this.r, this.pos.y - this.r - 2.5 * barH, this.r * 2 * hpRate, barH);
                 rect.setStrokeWidth(0);
-                rect.setFillColor(...this.hpColor);
+                rect.setFillColor(...this.hpColor.toArr());
                 rect.render(ctx);
                 // 血条写数字
                 let txt = Math.floor(this.hp).toString();

@@ -21,6 +21,10 @@ class Line {
         this.strokeWidth = 1;
     }
 
+    setStrokeColorStr(str) {
+        this.strokeColorStr = str;
+    }
+
     setStrokeColor(r, g, b, a) {
         this.strokeColorStr = `rgba(${r},${g},${b},${a})`;
     }
