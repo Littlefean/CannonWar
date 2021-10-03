@@ -41,6 +41,14 @@ class EffectCircle extends Effect {
         this.circle.strokeColor = MyColor.Transparent();
         this.circle.fillColor.setRGBA(20, 200, 0, Functions.timeRateAlphaDownFast(this.time / this.duration));
     }
+    /**
+     * 棕色光特效
+     */
+    flashBrownAnimation() {
+        this.circle.setStrokeWidth(0);
+        this.circle.strokeColor = MyColor.Transparent();
+        this.circle.fillColor.setRGBA(101, 77, 39, Functions.timeRateAlphaDownFast(this.time / this.duration));
+    }
 
     /**
      * 采集器采集特效

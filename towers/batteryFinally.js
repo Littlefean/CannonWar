@@ -552,6 +552,27 @@ class BatteryFinally {
         b.attackFunc = b.scanningAttack;
         return b;
     }
+
+    static E1(world) {
+        let b = new BatteryLaser(0, 0, world);
+        b.name = "1级地震发生器"
+        b.laserBaseDamage = 10;
+        b.attackFunc = b.earthquakeAttack;
+        return b;
+    }
+
+    static Z1(world) {
+        let b = new BatteryLaser(0, 0, world);
+        b.name = "1级电击塔"
+        b.rangeR = 300;
+        b.laserFreezeMax = 50;
+        b.laserFreezeNow = 25;
+        b.laserBaseDamage = 10;
+        b.laserMaxDamage = 100;
+        b.laserDamagePreAdd = 2;
+        b.attackFunc = b.zapAttack;
+        return b;
+    }
 }
 
 const TOWER_FUNC_ARR = [
@@ -607,6 +628,9 @@ const TOWER_FUNC_ARR = [
 
     BatteryFinally.Ray1,
     BatteryFinally.RayScan1,
+
+    BatteryFinally.E1,
+    BatteryFinally.Z1,
 
 ];
 

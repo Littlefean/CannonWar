@@ -132,7 +132,7 @@ class World {
         // 添加怪物
         if (this.time % 100 === 0) {
             let addNum = Functions.timeMonsterAddedNum(this.time);
-            console.log("这波怪物增加量", addNum);
+            // console.log("这波怪物增加量", addNum);
             for (let i = 0; i < addNum; i++) {
                 this.addMonsters();
             }
