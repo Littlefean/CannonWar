@@ -97,6 +97,13 @@ class Vector {
     }
 
     /**
+     * 将一个向量逆时针旋转90度
+     */
+    rotate90() {
+        return new Vector(-this.y, this.x);
+    }
+
+    /**
      * 随机偏移
      * @param diff {Number} 便宜距离
      */

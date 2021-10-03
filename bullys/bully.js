@@ -89,6 +89,10 @@ class Bully extends CircleObject {
         let c = new Circle(this.pos.x, this.pos.y, this.r); // 当前子弹形状
         for (let m of world.monsters) {
             if (c.impact(m.getBodyCircle())) {
+                // 如果击中的对象是具有瞬移能力的
+                if (m.teleportingAble) {
+                    m.teleporting();
+                }
                 // 直接击中造成伤害
                 m.hpChange(-this.damage);
                 // 直接击中造成改变速速效果

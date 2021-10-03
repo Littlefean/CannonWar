@@ -403,6 +403,7 @@ class MonsterFinally {
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
     }
+
     static Slime_M(world) {
         let m = Monster.randInit(world);
         m.name = "Slime_M";
@@ -421,6 +422,7 @@ class MonsterFinally {
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
     }
+
     static Slime_S(world) {
         let m = Monster.randInit(world);
         m.name = "Slime_S";
@@ -431,6 +433,104 @@ class MonsterFinally {
         m.bodyStrokeWidth = 3;
         m.r = 10;
         m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static witch_N(world) {
+        let m = Monster.randInit(world);
+        m.name = "暗夜女巫";
+        m.addPrice += 10;
+        m.speedNumb = 0.3;
+        m.bodyColor = MyColor.arrTo([152, 118, 170, 0.8]);
+        m.bodyStrokeColor = MyColor.arrTo([152, 118, 170, 1]);
+        m.bodyStrokeWidth = 5;
+
+        m.r = 30;
+
+        m.deadSummonAble = true;
+        m.summonAble = true;
+        m.summonCount = 4;
+        m.summonDistance = Math.random() * 30 + 30;
+        m.summonMonsterFunc = MonsterFinally.bat;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static bat(world) {
+        let m = Monster.randInit(world);
+        m.name = "蝙蝠";
+        m.addPrice += 10;
+        m.speedNumb = 3;
+        m.bodyColor = MyColor.arrTo([152, 118, 170, 0.8]);
+        m.bodyStrokeColor = MyColor.arrTo([152, 118, 170, 1]);
+        m.bodyStrokeWidth = 5;
+
+        m.accelerationV = 0.01;
+        m.maxSpeedN = 5;
+        m.r = 5;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static Spoke(world) {
+        let m = Monster.randInit(world);
+        m.name = "醉酒懒汉";
+        m.speedNumb = 3;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.changeSpeedFunc = m.selfSwingMove;
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static SpokeMan(world) {
+        let m = Monster.randInit(world);
+        m.name = "溜冰";
+        m.speedNumb = 3;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.changeSpeedFunc = m.selfSuddenlyMove;
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static Exciting(world) {
+        let m = Monster.randInit(world);
+        m.name = "激动";
+        m.speedNumb = 3;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.changeSpeedFunc = m.selfExcitingMove;
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static Visitor(world) {
+        let m = Monster.randInit(world);
+        m.name = "参观者";
+        m.speedNumb = 3;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.changeSpeedFunc = m.selfDoubleSwingMove;
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static Enderman(world) {
+        let m = Monster.randInit(world);
+        m.name = "小黑";
+        m.speedNumb = 1;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+
+        m.teleportingAble = true;
         m.colishDamage += Functions.timeMonsterAtt(world.time);
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
@@ -459,7 +559,14 @@ const MONSTERS_FUNC_ARR = [
     // MonsterFinally.DamageReducers,
     // MonsterFinally.Shouter,
 
-    MonsterFinally.Slime_L,
+    // MonsterFinally.Slime_L,
+    // MonsterFinally.witch_N,
+    // MonsterFinally.bat,
+    // MonsterFinally.Spoke,
+    // MonsterFinally.SpokeMan,
+    // MonsterFinally.Exciting,
+    // MonsterFinally.Visitor,
+    MonsterFinally.Enderman,
 
-    MonsterFinally.Normal,
+    // MonsterFinally.Normal,
 ];

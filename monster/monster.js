@@ -19,6 +19,9 @@ class Monster extends CircleObject {
         this.speedFreezeNumb = 1;
         this.minFreezeNum = 0.2;  // 冰冻速度削减属性不能低于这个数值，如果将这个数字设置为1，表示该怪物免疫冰冻
 
+        this.changedSpeed = Vector.zero();  // 叠加一个被外力改变了的速度
+        this.changeSpeedFunc = () => {
+        };
         this.maxSpeedN = 15;  // 怪物的最大速度通常不能超过这个值
         this.burnMaxSpeedN = 2;  // 怪物通过点燃获得的最大急躁速度倍率，若1则不会获得点燃加速
         this.burnRate = 0;  // 当前燃烧率 [0, 1]，怪物每一个tick会掉落总体血量的这么多倍数
@@ -32,7 +35,6 @@ class Monster extends CircleObject {
         this.bodyColor = MyColor.arrTo([25, 25, 25, 0.8]);
         this.hpColor = MyColor.arrTo([200, 20, 20, 0.5]);
 
-        this.changedSpeed = Vector.zero();  // 叠加一个被外力改变了的速度
 
         // 死亡自爆特性
         this.bombSelfAble = false;
@@ -81,9 +83,16 @@ class Monster extends CircleObject {
 
         // 死亡召唤能力
         this.deadSummonAble = false;
+        this.summonAble = false;  // 随时召唤能力
+        this.summonFreezeTime = 100;  // 多少个时间刻度召唤一次
         this.summonCount = 4;  // 一次性召唤的数量
         this.summonDistance = 30;  // 召唤的怪物与自己的距离
         this.summonMonsterFunc = MonsterFinally.Normal;
+
+        // 小黑特性
+        this.teleportingAble = false;
+        this.teleportingRange = 100;  // 一次瞬移半径
+        this.teleportingCount = 3;
     }
 
     /**
@@ -93,6 +102,46 @@ class Monster extends CircleObject {
         let res = new this(Vector.randRectBrim(0, world.width, 0, world.height), world);
         res.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
         return res;
+    }
+
+    /**
+     * 瞬移
+     */
+    teleporting() {
+        if (this.teleportingAble) {
+            this.pos.add(Vector.randCircle().mul(this.teleportingRange));
+            this.teleportingCount--;
+            if (this.teleportingCount < 0) {
+                this.teleportingCount = 0;
+            }
+        }
+    }
+
+    /**
+     * 具有奇怪的自我步伐的能力
+     * 一种更新 额外速度 的方法
+     * 该方法存在后能够抵御击退效果，甚至可以躲避子弹
+     */
+    selfSwingMove() {
+        let vec = this.destination.sub(this.pos).to1();
+        this.changedSpeed = vec.rotate90().mul(Math.sin(this.liveTime / 10) * 10);
+    }
+
+    selfSuddenlyMove() {
+        let vec = this.destination.sub(this.pos).to1();
+        this.changedSpeed = vec.mul((Math.sin(this.liveTime / 10) + 1) * 2);
+    }
+
+    selfExcitingMove() {
+        let vec = this.destination.sub(this.pos).to1();
+        this.changedSpeed = vec.mul((Math.sin(this.liveTime / 4) + 0.3) * 6);
+    }
+
+    selfDoubleSwingMove() {
+        // 像黑洞吸进去东西的轨迹
+        let vec = this.destination.sub(this.pos).to1();
+        this.changedSpeed = vec.rotate90().mul(Math.sin(Math.pow(this.liveTime / 10, 0.5)) * 10);
+        this.changedSpeed.plus(vec.mul(Math.cos(Math.pow(this.liveTime / 10, 2))) * 20);
     }
 
     move() {
@@ -114,7 +163,8 @@ class Monster extends CircleObject {
         this.acceleration = vec.mul(this.accelerationV);
         // 额外速度矢量对速度增益 击退
         this.speed.add(this.changedSpeed);
-
+        // 自我更新外界对自己的影响速度
+        this.changeSpeedFunc();
 
         // 加速度对额外速度增益
         this.changedSpeed.add(this.acceleration);
@@ -284,40 +334,45 @@ class Monster extends CircleObject {
     /**
      * 进行召唤（分裂）
      */
-    summon() {
+    deadSummon() {
         if (this.deadSummonAble) {
-            for (let i = 0; i < this.summonCount; i++) {
-                let m = this.summonMonsterFunc(this.world);
-                m.pos = this.pos.plus(Vector.randCircle().mul(this.summonDistance));
-                this.world.addMonster(m);
+            this.summonFunc();
+        }
+    }
 
-                console.log(m);
+    summonFunc() {
+        for (let i = 0; i < this.summonCount; i++) {
+            let m = this.summonMonsterFunc(this.world);
+            m.pos = this.pos.plus(Vector.randCircle().mul(this.summonDistance));
+            this.world.addMonster(m);
+        }
+    }
+
+    /**
+     * 随时召唤
+     */
+    summon() {
+        if (this.summonAble) {
+            if (this.liveTime % this.summonFreezeTime === 0) {
+                this.summonFunc();
             }
         }
     }
 
+    hpChange(dh) {
+        return super.hpChange(dh);
+    }
+
     remove() {
-        this.summon();
+        this.deadSummon();
         super.remove();
         this.hpSet(0);
     }
 
-    goStep() {
-        super.goStep();
-        // 激光防御
-        this.laserDefend();
-        // 产生增益
-        this.gainOther();
-        // 子弹场
-        this.bullyChange();
-        // 死亡检测
-        if (this.isDead()) {
-            // 自爆
-            this.bombSelf();
-            this.remove();
-        }
-        this.gravyPower();
-        // 碰撞检测
+    /**
+     * 碰撞检测
+     */
+    clash() {
         // 与纯建筑碰撞
         for (let b of this.world.buildings) {
             if (this.getBodyCircle().impact(b.getBodyCircle())) {
@@ -341,6 +396,28 @@ class Monster extends CircleObject {
                 }
             }
         }
+    }
+
+    goStep() {
+        super.goStep();
+        // 激光防御
+        this.laserDefend();
+        // 召唤
+        this.summon();
+        // 产生增益
+        this.gainOther();
+        // 子弹场
+        this.bullyChange();
+        // 死亡检测
+        if (this.isDead()) {
+            // 自爆
+            this.bombSelf();
+            this.remove();
+        }
+        // 引力场生效
+        this.gravyPower();
+        // 碰撞检测
+        this.clash();
         // 效果增加
         // 燃烧
         if (this.burnRate > this.maxBurnRate) {
