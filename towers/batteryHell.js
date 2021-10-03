@@ -43,12 +43,14 @@ class BatteryHell extends Battery {
             this.targetLiveTime++;
             // 添加特效
             let e = new EffectLine(this.pos, this.target.pos);
-            e.line.setStrokeColor(255, 200, 2, 0.8);
-            e.line.strokeWidth = 5;
+            e.initLineStyle(new MyColor(255, 200, 2, 0.8), 5);
+            // e.line.setStrokeColor(255, 200, 2, 0.8);
+            // e.line.strokeWidth = 5;
             this.world.addEffect(e);
             e = new EffectLine(this.pos, this.target.pos);
-            e.line.setStrokeColor(255, 0, 2, 1);
-            e.line.strokeWidth = 2;
+            e.initLineStyle(new MyColor(255, 0, 2, 1), 2);
+            // e.line.setStrokeColor(255, 0, 2, 1);
+            // e.line.strokeWidth = 2;
             this.world.addEffect(e);
         }
         if (this.target.isDead()) {

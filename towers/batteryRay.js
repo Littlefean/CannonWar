@@ -44,6 +44,22 @@ class BatteryRay extends Battery {
     }
 
     /**
+     * 朝着目标方向发射一个激光
+     */
+    shoot() {
+        let line = new Line(this.pos, this.pos.plus(this.dirction.mul(this.rayLen)));
+        for (let m of this.world.monsters) {
+            if (line.intersectWithCircle(m.getBodyCircle())) {
+                m.hpChange(-this.damage);
+            }
+        }
+        let e = new EffectLine(line.PosStart, line.PosEnd);
+        e.initLineStyle(new MyColor(255, 10, 0, 1), 1);
+        e.duration = 50;
+        this.world.addEffect(e);
+    }
+
+    /**
      * 普通进攻
      */
     attack() {
@@ -52,17 +68,7 @@ class BatteryRay extends Battery {
             return;
         }
         // 进攻目标
-        let line = new Line(this.pos, this.pos.plus(this.dirction.mul(this.rayLen)));
-        for (let m of this.world.monsters) {
-            if (line.intersectWithCircle(m.getBodyCircle())) {
-                m.hpChange(-this.damage);
-            }
-        }
-        let e = new EffectLine(line.PosStart, line.PosEnd);
-        e.lineColor = [255, 10, 0, 1];
-        e.line.strokeWidth = 1;
-        e.duration = 50;
-        this.world.addEffect(e);
+        this.shoot();
         // 目标是否已经死亡
         if (this.target.isDead()) {
             this.loseTarget();
@@ -77,17 +83,7 @@ class BatteryRay extends Battery {
         let theta = this.scanningSpeed * this.liveTime;
         this.dirction = new Vector(Math.sin(theta), Math.cos(theta));
         // 进攻目标
-        let line = new Line(this.pos, this.pos.plus(this.dirction.mul(this.rayLen)));
-        for (let m of this.world.monsters) {
-            if (line.intersectWithCircle(m.getBodyCircle())) {
-                m.hpChange(-this.damage);
-            }
-        }
-        let e = new EffectLine(line.PosStart, line.PosEnd);
-        e.line.setStrokeColor(255, 10, 0, 1);
-        e.line.strokeWidth = 1;
-        e.duration = 1;
-        this.world.addEffect(e);
+        this.shoot();
     }
 
     goStep() {

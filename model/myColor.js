@@ -2,7 +2,7 @@
  *
  * by littlefean
  */
-class Color {
+class MyColor {
     /**
      *
      * @param r {Number}
@@ -15,6 +15,10 @@ class Color {
         this.g = this.limit0_255(g);
         this.b = this.limit0_255(b);
         this.a = this.limit0_1(a);
+    }
+
+    toStringRGBA() {
+        return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
     }
 
     setRGB(r, g, b) {
@@ -49,29 +53,34 @@ class Color {
         this.a = this.limit0_1(this.a);
     }
 
+    changeAlpha(newAlpha) {
+        this.a = newAlpha;
+    }
+
     toArr() {
         return [this.r, this.g, this.b, this.a];
     }
 
     static BLACK() {
-        return new Color(0, 0, 0, 1);
+        return new MyColor(0, 0, 0, 1);
     }
 
     static GRAY() {
-        return new Color(60, 63, 65, 1);
+        return new MyColor(60, 63, 65, 1);
     }
 
     static Transparent() {
-        return new Color(0, 0, 0, 0);
+        return new MyColor(0, 0, 0, 0);
+    }
+
+    static arrTo(arr) {
+        return new MyColor(...arr);
     }
 
     toStringRGB() {
         return `rgb(${this.r}, ${this.g}, ${this.b})`;
     }
 
-    toStringRGBA() {
-        return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
-    }
 
     limit0_255(n) {
         let res = n;

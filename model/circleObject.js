@@ -23,10 +23,10 @@ class CircleObject {
         this.hp = 100;
         this.maxHp = 100;
 
-        this.hpColor = new Color(122, 12, 12, 1);
-        this.bodyColor = new Color(20, 20, 20, 1);
+        this.hpColor = new MyColor(122, 12, 12, 1);
+        this.bodyColor = new MyColor(20, 20, 20, 1);
         this.bodyStrokeWidth = 5;
-        this.bodyStrokeColor = Color.Transparent();
+        this.bodyStrokeColor = MyColor.Transparent();
         this.hpBarHeight = 10;
     }
 
@@ -103,7 +103,8 @@ class CircleObject {
 
     getBodyCircle() {
         let res = new Circle(this.pos.x, this.pos.y, this.r);
-        res.color = this.bodyColor;
+        // console.log(res.fillColor, res.strokeColor);
+        res.fillColor = this.bodyColor;
         res.strokeColor = this.bodyStrokeColor;
         let hpRate = this.hp / this.maxHp;
         res.setStrokeWidth(this.bodyStrokeWidth * hpRate);
@@ -163,7 +164,7 @@ class CircleObject {
                 // 血条填充
                 let rect = new Rectangle(this.pos.x - this.r, this.pos.y - this.r - 2.5 * barH, this.r * 2 * hpRate, barH);
                 rect.setStrokeWidth(0);
-                rect.setFillColor(...this.hpColor.toArr());
+                rect.setFillColor(this.hpColor.r, this.hpColor.g, this.hpColor.b, this.hpColor.a);
                 rect.render(ctx);
                 // 血条写数字
                 let txt = Math.floor(this.hp).toString();

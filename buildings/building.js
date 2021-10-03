@@ -14,7 +14,7 @@ class Building extends CircleObject {
         this.name = "默认建筑";
         this.price = 10;
         this.hpInit(1000);
-        this.hpColor = [2, 200, 50, 0.8];
+        this.hpColor = MyColor.arrTo([2, 200, 50, 0.8]);
 
         // 生产特性
         this.moneyAddedAble = false;
@@ -82,7 +82,7 @@ class Building extends CircleObject {
         // 绘制加血范围圈
         if (this.otherHpAddAble) {
             let c = new Circle(this.pos.x, this.pos.y, this.otherHpAddRadius);
-            c.color = Color.Transparent();
+            c.fillColor = MyColor.Transparent();
             c.strokeColor.setRGBA(81, 139, 60, 1);
             c.setStrokeWidth(0.5);
             c.render(ctx);

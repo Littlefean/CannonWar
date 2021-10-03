@@ -33,10 +33,10 @@ class Battery extends CircleObject {
 
         this.price = 10 // 这个炮塔需要花多少钱来买
 
-        this.bodyColor = [100, 100, 100, 1];
-        this.hpColor = [2, 230, 13, 0.8];
+        this.bodyColor = MyColor.arrTo([100, 100, 100, 1]);
+        this.hpColor = MyColor.arrTo([2, 230, 13, 0.8]);
         this.bodyStrokeWidth = 10;
-        this.bodyStrokeColor = [22, 22, 22, 1];
+        this.bodyStrokeColor = MyColor.arrTo([22, 22, 22, 1]);
         this.hpBarHeight = 5;
     }
 
@@ -128,7 +128,6 @@ class Battery extends CircleObject {
         // 添加子弹数组
         this.bullys.push(b);
     }
-
 
 
     render(ctx) {

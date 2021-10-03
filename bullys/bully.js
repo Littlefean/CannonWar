@@ -38,7 +38,7 @@ class Bully extends CircleObject {
         this.throughCutNum = 0;  // 每次削减量
 
         // 子弹颜色
-        this.bodyColor = new Color(100, 23, 1, 0);
+        this.bodyColor = new MyColor(100, 23, 1, 0);
         this.bodyStrokeWidth = 1;
 
         // 单次攻击减速特性
@@ -228,7 +228,7 @@ class Bully extends CircleObject {
 
     render(ctx) {
         let c = this.getBodyCircle();
-        c.color = this.bodyColor;
+        c.fillColor = this.bodyColor;
         c.setStrokeWidth(this.bodyStrokeWidth);
         c.render(ctx);
     }

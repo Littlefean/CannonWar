@@ -70,8 +70,9 @@ class BatteryLaser extends Battery {
             this.target.hpChange(-d);
             // 添加特效
             let e = new EffectLine(this.pos, this.target.pos);
-            e.line.setStrokeColor(0, 100, 255, 0.8);
-            e.line.strokeWidth = 5;
+            e.initLineStyle(new MyColor(0, 100, 255, 0.7), 50);
+            e.animationFunc = e.laserAnimation;
+            e.duration = 10;
             this.world.addEffect(e);
         }
     }
@@ -102,6 +103,7 @@ class BatteryLaser extends Battery {
         rectB.setFillColor(0, 0, 0, 0);
         rectB.setStrokeColor(1, 1, 1);
         rectB.render(ctx);
+
         // 填充
         rect = new Rectangle(this.pos.x - this.r, this.pos.y + this.r + 3.8 * barH, this.r * 2 * rate, barH);
         rect.setStrokeWidth(0);

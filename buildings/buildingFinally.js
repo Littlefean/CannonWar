@@ -10,9 +10,9 @@ class BuildingFinally {
         res.r = 20;
         res.hpInit(10000);
 
-        res.bodyStrokeColor = [0, 0, 0, 1];
+        res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
         res.bodyStrokeWidth = 5;
-        res.bodyColor = [50, 50, 50, 1];
+        res.bodyColor = new MyColor(50, 50, 50, 1);
         return res;
     }
 
@@ -26,9 +26,9 @@ class BuildingFinally {
         res.r = 3;
         res.hpInit(300);
 
-        res.bodyStrokeColor = [0, 0, 0, 1];
+        res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
         res.bodyStrokeWidth = 1;
-        res.bodyColor = [0, 0, 0, 0];
+        res.bodyColor = new MyColor(0, 0, 0, 0);
         return res;
     }
 
@@ -44,9 +44,9 @@ class BuildingFinally {
         res.hpInit(3000);
         res.price = 100;
 
-        res.bodyStrokeColor = [0, 0, 0, 1];
+        res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
         res.bodyStrokeWidth = 1;
-        res.bodyColor = [25, 25, 25, 0.8];
+        res.bodyColor = new MyColor(25, 25, 25, 0.8);
         return res;
     }
 

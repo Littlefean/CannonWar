@@ -15,22 +15,13 @@ class Line {
         this.x2 = p2.x;
         this.y1 = p1.y;
         this.y2 = p2.y;
-        this.len = p1.sub(p2).abs();
 
-        this.strokeColorStr = 'black';
+        this.strokeColor = MyColor.BLACK();
         this.strokeWidth = 1;
     }
 
-    setStrokeColorStr(str) {
-        this.strokeColorStr = str;
-    }
-
-    setStrokeColor(r, g, b, a) {
-        this.strokeColorStr = `rgba(${r},${g},${b},${a})`;
-    }
-
     render(ctx) {
-        ctx.strokeStyle = this.strokeColorStr;
+        ctx.strokeStyle = this.strokeColor.toStringRGBA();
         ctx.lineWidth = this.strokeWidth;
         ctx.beginPath();
         ctx.moveTo(this.x1, this.y1);
@@ -65,41 +56,5 @@ class Line {
         let angle2 = (c.x - p2.x) * (p1.x - p2.x) + (c.y - p2.y) * (p1.y - p2.y);
         //余弦为正，则是锐角，一定相交
         return angle1 > 0 && angle2 > 0;
-        // let ABC = this.getABC();
-        // let dist1 = ABC.A * c.x + ABC.B * c.y + ABC.C;
-        // dist1 *= dist1;
-        // let dist2 = (ABC.A * ABC.A + ABC.B * ABC.B) * c.r * c.r;
-        // if (dist1 > dist2) {
-        //     //圆心到直线p1p2的距离大于半径，不相交
-        //     return false;
-        // }
-        // let angle1 = (c.x - this.x1) * (this.x2 - this.x1) + (c.y - this.y1) * (this.y2 - this.y1);
-        // let angle2 = (c.x - this.x2) * (this.x1 - this.x2) + (c.y - this.y2) * (this.y1 - this.y2);
-        // return angle1 > 0 && angle2 > 0;
-    }
-
-    /**
-     * 求出一般式方程
-     * 返回abc三个系数
-     */
-    getABC() {
-        let a = this.y2 - this.y1;
-        let b = this.x1 - this.y2;
-        let g = this.gcd(a, b);
-        a /= g;
-        b /= g;
-        let c = -(a * this.x1 + b * this.x2);
-        return {A: a, B: b, C: c};
-    }
-
-    gcd(m, n) {
-        //辗转相除法 求最大公约数
-        let u = +m, v = +n, t = v;
-        while (v !== 0) {
-            t = u % v;
-            u = v;
-            v = t;
-        }
-        return u
     }
 }

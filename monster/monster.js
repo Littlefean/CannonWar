@@ -28,8 +28,8 @@ class Monster extends CircleObject {
         this.r = 15;  // 身体半径
         this.addPrice = 10;  // 奖金
         this.destination = new Vector(this.world.width / 2, this.world.height / 2);  // 默认的目的地是中心点
-        this.bodyColor = [25, 25, 25, 0.8];
-        this.hpColor = [200, 20, 20, 0.5];
+        this.bodyColor = MyColor.arrTo([25, 25, 25, 0.8]);
+        this.hpColor = MyColor.arrTo([200, 20, 20, 0.5]);
 
         this.changedSpeed = Vector.zero();  // 叠加一个被外力改变了的速度
 
@@ -84,7 +84,7 @@ class Monster extends CircleObject {
      */
     static randInit(world) {
         let res = new this(Vector.randRectBrim(0, world.width, 0, world.height), world);
-        res.bodyStrokeColor = [0, 0, 0, 1];
+        res.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
         return res;
     }
 
@@ -117,10 +117,11 @@ class Monster extends CircleObject {
                 let startPos = this.pos.copy();
                 startPos.add(Vector.randCircle());
                 let e = new EffectLine(startPos, bully.pos.copy());
-                e.line.setStrokeColor(255, 0, 0, 0.1);
+                e.initLineStyle(new MyColor(255, 0, 0, 0.1), 1);
+                // e.line.setStrokeColor(255, 0, 0, 0.1);
                 this.world.addEffect(e);
                 let ec = new EffectCircle(bully.pos.copy());
-                ec.circle.color.setRGBA(255, 0, 0, 0.1);
+                ec.circle.fillColor.setRGBA(255, 0, 0, 0.1);
                 this.world.addEffect(ec);
                 // 删除子弹
                 bully.remove();
@@ -186,8 +187,9 @@ class Monster extends CircleObject {
                             m.speedNumb += this.gainDetails.gainSpeedNAddNum;
                             // 添加增益特效
                             let e = new EffectLine(this.pos, m.pos);
-                            e.line.setStrokeColor(0, 200, 0, 0.5);
-                            e.line.strokeWidth = 3;
+                            e.initLineStyle(new MyColor(0, 200, 0, 0.5), 3);
+                            // e.line.setStrokeColor(0, 200, 0, 0.5);
+                            // e.line.strokeWidth = 3;
                             this.world.addEffect(e);
                         }
                     }

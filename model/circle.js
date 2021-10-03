@@ -16,8 +16,8 @@ class Circle {
         this.pos = new Vector(x, y);
         this.strokeWidth = 2; // px
 
-        this.strokeColor = Color.GRAY();
-        this.color = Color.BLACK();
+        this.strokeColor = MyColor.GRAY();
+        this.fillColor = MyColor.BLACK();
     }
 
     /**
@@ -35,7 +35,8 @@ class Circle {
     }
 
     render(ctx) {
-        ctx.fillStyle = this.color.toStringRGBA();
+        // console.log(this.fillColor);
+        ctx.fillStyle = this.fillColor.toStringRGBA();  // todo bug 这个方法没有
         ctx.lineWidth = this.strokeWidth;
         ctx.strokeStyle = this.strokeColor.toStringRGBA();
         ctx.beginPath();
@@ -59,9 +60,9 @@ class Circle {
      * 当这个圆是视野圆形的时候，渲染形状
      */
     renderView(ctx) {
-        this.color = Color.Transparent();
+        this.fillColor = MyColor.Transparent();
         this.setStrokeWidth(0.1);
-        this.strokeColor = Color.BLACK();
+        this.strokeColor = MyColor.BLACK();
         this.render(ctx);
     }
 
