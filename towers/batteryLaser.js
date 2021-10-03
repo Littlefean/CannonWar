@@ -43,7 +43,6 @@ class BatteryLaser extends Battery {
             let maxCount = 10;  // 允许递归的最大次数
             let damageMultipleRate = 5; // 每多打一个目标，攻击伤害就翻多少倍
             let zapDamage = this.laserBaseDamage + this.laserDamageAdd;
-            let _width = 2;
             let attacked = false;
 
             let dfs = () => {
@@ -66,14 +65,26 @@ class BatteryLaser extends Battery {
                             attacked = true;
 
                             // 添加一段特效
+
                             let e = new EffectLine(nowPos, m.pos);
                             e.duration = 20;
-                            _width *= 2;
-                            e.initLineStyle(new MyColor(0, 200, 255, 1), _width);
+                            let blue = new MyColor(0, 200, 255, 0.9);
+                            blue.change(+30 * (10 - maxCount), -20 * (10 - maxCount), 10, 0);
+                            e.initLineStyle(blue, 20);
                             e.animationFunc = e.laserAnimation;
                             this.world.addEffect(e);
 
+
                             nowPos = m.pos.copy();
+                            // 电炸特效
+                            {
+                                let ec = new EffectCircle(nowPos);
+                                ec.duration = 15;
+                                ec.initCircleStyle(new MyColor(103, 150, 162, 1),
+                                    blue, 1);
+                                ec.animationFunc = ec.bombAnimation;
+                                this.world.addEffect(ec);
+                            }
                             break;
                         }
                     }

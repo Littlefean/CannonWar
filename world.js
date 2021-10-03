@@ -70,6 +70,14 @@ class World {
         this.monsters.push(MONSTERS_FUNC_ARR[randIndex](this));
     }
 
+    /**
+     * 往世界中添加一个怪物
+     * @param monster {Monster}
+     */
+    addMonster(monster) {
+        this.monsters.push(monster);
+    }
+
     addEffect(effect) {
         this.effects.push(effect);
     }

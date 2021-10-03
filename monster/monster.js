@@ -20,6 +20,7 @@ class Monster extends CircleObject {
         this.minFreezeNum = 0.2;  // 冰冻速度削减属性不能低于这个数值，如果将这个数字设置为1，表示该怪物免疫冰冻
 
         this.maxSpeedN = 15;  // 怪物的最大速度通常不能超过这个值
+        this.burnMaxSpeedN = 2;  // 怪物通过点燃获得的最大急躁速度倍率，若1则不会获得点燃加速
         this.burnRate = 0;  // 当前燃烧率 [0, 1]，怪物每一个tick会掉落总体血量的这么多倍数
         this.maxBurnRate = 0.005;  // 通常怪物的最大燃烧速率是 %，如果设置为0则表示免疫燃烧。
 
@@ -77,6 +78,12 @@ class Monster extends CircleObject {
         this.laserRecoverFreeze = 10;  // 多少个时间刻度恢复一次子弹数量
         this.laserRecoverNum = 10;  // 一次恢复多少个激光防御数量
         this.laserRadius = 100;  // 激光防御范围的半径
+
+        // 死亡召唤能力
+        this.deadSummonAble = false;
+        this.summonCount = 4;  // 一次性召唤的数量
+        this.summonDistance = 30;  // 召唤的怪物与自己的距离
+        this.summonMonsterFunc = MonsterFinally.Normal;
     }
 
     /**
@@ -90,10 +97,27 @@ class Monster extends CircleObject {
 
     move() {
         // 使得速度朝着目标移动
-        this.speed = this.destination.sub(this.pos).to1().mul(this.speedNumb * this.speedFreezeNumb);
-        this.acceleration = this.destination.sub(this.pos).to1().mul(this.accelerationV);
-        this.changedSpeed.add(this.acceleration);
+        // 方向单位1矢量
+        let vec = this.destination.sub(this.pos).to1();
+
+        // 冰冻减速效果
+        // 冻结 限制更新速度
+        if (this.minFreezeNum > this.speedFreezeNumb) {
+            this.speedFreezeNumb = this.minFreezeNum;
+        }
+        if (this.speedFreezeNumb > this.burnMaxSpeedN) {
+            this.speedFreezeNumb = this.burnMaxSpeedN;
+        }
+        // 计算得到这个怪物自身的速度矢量
+        this.speed = vec.mul(this.speedNumb).mul(this.speedFreezeNumb);
+        // 计算加速度
+        this.acceleration = vec.mul(this.accelerationV);
+        // 额外速度矢量对速度增益 击退
         this.speed.add(this.changedSpeed);
+
+
+        // 加速度对额外速度增益
+        this.changedSpeed.add(this.acceleration);
         super.move();
     }
 
@@ -257,7 +281,23 @@ class Monster extends CircleObject {
         }
     }
 
+    /**
+     * 进行召唤（分裂）
+     */
+    summon() {
+        if (this.deadSummonAble) {
+            for (let i = 0; i < this.summonCount; i++) {
+                let m = this.summonMonsterFunc(this.world);
+                m.pos = this.pos.plus(Vector.randCircle().mul(this.summonDistance));
+                this.world.addMonster(m);
+
+                console.log(m);
+            }
+        }
+    }
+
     remove() {
+        this.summon();
         super.remove();
         this.hpSet(0);
     }
@@ -307,10 +347,7 @@ class Monster extends CircleObject {
             this.burnRate = this.maxBurnRate;
         }
         this.hpChange(-this.burnRate * this.maxHp);
-        // 冻结 限制更新速度
-        if (this.minFreezeNum > this.speedFreezeNumb) {
-            this.minFreezeNum = this.speedFreezeNumb;
-        }
+
         // 移动
         this.move();
     }

@@ -384,29 +384,82 @@ class MonsterFinally {
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
     }
+
+    static Slime_L(world) {
+        let m = Monster.randInit(world);
+        m.name = "Slime_L";
+        m.addPrice += 10;
+        m.speedNumb = 0.4;
+        m.bodyColor = MyColor.arrTo([171, 236, 97, 0.8]);
+        m.bodyStrokeColor = MyColor.arrTo([47, 113, 56, 1]);
+        m.bodyStrokeWidth = 12;
+        m.r = 50;
+
+        m.deadSummonAble = true;
+        m.summonMonsterFunc = MonsterFinally.Slime_M;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+    static Slime_M(world) {
+        let m = Monster.randInit(world);
+        m.name = "Slime_M";
+        m.addPrice += 10;
+        m.speedNumb = 0.6;
+        m.bodyColor = MyColor.arrTo([171, 236, 97, 0.8]);
+        m.bodyStrokeColor = MyColor.arrTo([47, 113, 56, 1]);
+        m.bodyStrokeWidth = 5;
+        m.r = 30;
+
+        m.deadSummonAble = true;
+        m.summonMonsterFunc = MonsterFinally.Slime_S;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+    static Slime_S(world) {
+        let m = Monster.randInit(world);
+        m.name = "Slime_S";
+        m.addPrice += 10;
+        m.speedNumb = 0.8;
+        m.bodyColor = MyColor.arrTo([171, 236, 97, 0.8]);
+        m.bodyStrokeColor = MyColor.arrTo([47, 113, 56, 1]);
+        m.bodyStrokeWidth = 3;
+        m.r = 10;
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
 }
 
 
 const MONSTERS_FUNC_ARR = [
-    MonsterFinally.Ox1,
-    MonsterFinally.Ox2,
-    MonsterFinally.Ox3,
-    MonsterFinally.Bomber1,
-    MonsterFinally.Bomber2,
-    MonsterFinally.Bomber3,
-    MonsterFinally.Thrower1,
-    MonsterFinally.BlackHole,
-    MonsterFinally.Bulldozer,
-    MonsterFinally.Glans,
-    MonsterFinally.Medic,
-    MonsterFinally.Medic_M,
-    MonsterFinally.Medic_S,
-    MonsterFinally.AttackAdder,
-    MonsterFinally.SpeedAdder,
-    MonsterFinally.BulletWearer,
-    MonsterFinally.BulletRepellent,
-    MonsterFinally.DamageReducers,
-    MonsterFinally.Shouter,
+    // MonsterFinally.Ox1,
+    // MonsterFinally.Ox2,
+    // MonsterFinally.Ox3,
+    // MonsterFinally.Bomber1,
+    // MonsterFinally.Bomber2,
+    // MonsterFinally.Bomber3,
+    // MonsterFinally.Thrower1,
+    // MonsterFinally.BlackHole,
+    // MonsterFinally.Bulldozer,
+    // MonsterFinally.Glans,
+    // MonsterFinally.Medic,
+    // MonsterFinally.Medic_M,
+    // MonsterFinally.Medic_S,
+    // MonsterFinally.AttackAdder,
+    // MonsterFinally.SpeedAdder,
+    // MonsterFinally.BulletWearer,
+    // MonsterFinally.BulletRepellent,
+    // MonsterFinally.DamageReducers,
+    // MonsterFinally.Shouter,
+
+    MonsterFinally.Slime_L,
 
     MonsterFinally.Normal,
 ];

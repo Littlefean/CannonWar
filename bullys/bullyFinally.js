@@ -153,11 +153,11 @@ class BullyFinally {
     // 冰冻炸弹
     static Frozen_S() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
-        b.damage = 2;
+        b.damage = 0.1;
 
         b.haveBomb = true;
-        b.bombDamage = 1;
-        b.bombRange = 50;
+        b.bombDamage = 0.1;
+        b.bombRange = 10;
         b.bombFunc = b.bombFreeze;
         b.freezeCutDown = 0.98
 
@@ -169,12 +169,12 @@ class BullyFinally {
 
     static Frozen_M() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
-        b.damage = 5;
+        b.damage = 0.1;
         b.r = 2;
 
         b.haveBomb = true;
-        b.bombDamage = 2;
-        b.bombRange = 80;
+        b.bombDamage = 0.1;
+        b.bombRange = 20;
         b.bombFunc = b.bombFreeze;
         b.freezeCutDown = 0.9;
 
@@ -186,12 +186,12 @@ class BullyFinally {
 
     static Frozen_L() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 1);
-        b.damage = 10;
+        b.damage = 0.1;
         b.r = 5;
 
         b.haveBomb = true;
-        b.bombDamage = 5;
-        b.bombRange = 100;
+        b.bombDamage = 0.1;
+        b.bombRange = 30;
         b.bombFunc = b.bombFreeze;
         b.freezeCutDown = 0.7;
 
@@ -286,7 +286,6 @@ class BullyFinally {
     // 火焰粒子弹
     static Fire_M() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 10);
-        // b.damage = 0.01;
         b.damage = 0;  // 没有直接伤害
         b.r = 10;
         // 火焰贯穿
@@ -319,7 +318,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([255, 255, 31, 0.1]);
         b.bodyStrokeWidth = 0;
         b.bodyStrokeColor = MyColor.arrTo([255, 255, 0, 0]);
-        b.freezeCutDown = 1.001;  // 加速效果
+        b.freezeCutDown = 1.0009;  // 加速效果
 
         b.dr = 2;  // 火焰扩散
         b.dRGB = [0, -10, -10, -0.0003];  // 火焰颜色演变
@@ -341,7 +340,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([50, 100, 255, 0.1]);
         b.bodyStrokeWidth = 0;
         b.bodyStrokeColor = MyColor.arrTo([255, 255, 0, 0]);
-        b.freezeCutDown = 1.001;  // 加速效果
+        b.freezeCutDown = 1.0005;  // 加速效果
 
         b.dr = 3;  // 火焰扩散
         b.dRGB = [+20, -5, -50, -0.0003];  // 火焰颜色演变

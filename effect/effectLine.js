@@ -41,7 +41,7 @@ class EffectLine extends Effect {
             this.line.initWidth = this.line.strokeWidth;
         }
         this.line.strokeWidth = Functions.timeRateAlpha(this.time / this.duration) * this.line.initWidth;
-        console.log(this.line.strokeWidth);
+        // console.log(this.line.strokeWidth);
         // this.line.strokeWidth *= this.time / this.duration;
         // this.line.strokeWidth *= 0.01;
         // this.line.strokeColor.changeAlpha(Functions.timeRateAlpha(this.time / this.duration));

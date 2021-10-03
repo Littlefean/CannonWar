@@ -94,7 +94,15 @@ class Bully extends CircleObject {
                 // 直接击中造成改变速速效果
                 m.speedFreezeNumb *= this.freezeCutDown;  // 每次减速都会叠加
                 // 燃烧属性
-                m.burnRate += this.burnRateAdd;
+                if (this.burnRateAdd > 0) {
+                    m.burnRate += this.burnRateAdd;
+                    if (m.speedFreezeNumb < 1) {
+                        // 清除冰冻属性
+                        m.speedFreezeNumb = 1
+                    }
+                    m.bodyColor.change(+20, -1, -1, 0);
+                }
+
                 // 可以穿过
                 if (this.throughable) {
                     // 被削减掉了
@@ -103,7 +111,7 @@ class Bully extends CircleObject {
                         break;
                     }
                     this.bodyRadiusChange(-this.throughCutNum);
-                    continue;  // todo
+                    continue;
                 }
                 // 发生爆炸
                 this.boom();
@@ -192,6 +200,8 @@ class Bully extends CircleObject {
 
     /**
      * 像冰瓜投手一样
+     * 产生一个冷却圆范围，让怪物都减速，
+     * 改变怪物身体颜色，并添加一个特效圆。
      */
     bombFreeze() {
         // 爆炸区域圆
@@ -201,8 +211,10 @@ class Bully extends CircleObject {
                 // 均摊伤害
                 m.hpChange(-this.bombDamage);
                 m.speedFreezeNumb *= this.freezeCutDown;  // 每次减速都会叠加
-                // m.bodyColorChange(-10, -10, 20, 0);  // 让血条的颜色变蓝
-                m.bodyColor.change(-10, -10, 20, 0);
+                m.bodyColor.change(-1, -1, 20, 0);
+
+                // 清除燃烧属性
+                m.burnRate = 0;
             }
         }
         // 添加爆炸特效圆
