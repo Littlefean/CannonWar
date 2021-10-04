@@ -535,38 +535,60 @@ class MonsterFinally {
         m.addPrice += Functions.timeAddPrise(world.time);
         return m;
     }
+
+    static Mts(world) {
+        let m = MonsterMortis.randInit(world);
+        m.name = "麦缇斯";
+        m.speedNumb = 1;
+
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
+
+    static T800(world) {
+        let m = MonsterTerminator.randInit(world);
+        m.name = "T800";
+        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
+        m.colishDamage += Functions.timeMonsterAtt(world.time);
+        m.addPrice += Functions.timeAddPrise(world.time);
+        return m;
+    }
 }
 
 
 const MONSTERS_FUNC_ARR = [
-    // MonsterFinally.Ox1,
-    // MonsterFinally.Ox2,
-    // MonsterFinally.Ox3,
-    // MonsterFinally.Bomber1,
-    // MonsterFinally.Bomber2,
-    // MonsterFinally.Bomber3,
-    // MonsterFinally.Thrower1,
-    // MonsterFinally.BlackHole,
-    // MonsterFinally.Bulldozer,
-    // MonsterFinally.Glans,
-    // MonsterFinally.Medic,
-    // MonsterFinally.Medic_M,
-    // MonsterFinally.Medic_S,
-    // MonsterFinally.AttackAdder,
-    // MonsterFinally.SpeedAdder,
-    // MonsterFinally.BulletWearer,
-    // MonsterFinally.BulletRepellent,
-    // MonsterFinally.DamageReducers,
-    // MonsterFinally.Shouter,
+    MonsterFinally.Ox1,
+    MonsterFinally.Ox2,
+    MonsterFinally.Ox3,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Bomber2,
+    MonsterFinally.Bomber3,
+    MonsterFinally.Thrower1,
+    MonsterFinally.BlackHole,
+    MonsterFinally.Bulldozer,
+    MonsterFinally.Glans,
+    MonsterFinally.Medic,
+    MonsterFinally.Medic_M,
+    MonsterFinally.Medic_S,
+    MonsterFinally.AttackAdder,
+    MonsterFinally.SpeedAdder,
+    MonsterFinally.BulletWearer,
+    MonsterFinally.BulletRepellent,
+    MonsterFinally.DamageReducers,
+    MonsterFinally.Shouter,
 
-    // MonsterFinally.Slime_L,
-    // MonsterFinally.witch_N,
-    // MonsterFinally.bat,
-    // MonsterFinally.Spoke,
-    // MonsterFinally.SpokeMan,
-    // MonsterFinally.Exciting,
-    // MonsterFinally.Visitor,
+    MonsterFinally.Slime_L,
+    MonsterFinally.witch_N,
+    MonsterFinally.bat,
+    MonsterFinally.Spoke,
+    MonsterFinally.SpokeMan,
+    MonsterFinally.Exciting,
+    MonsterFinally.Visitor,
     MonsterFinally.Enderman,
+    MonsterFinally.Mts,
+    MonsterFinally.T800,
 
-    // MonsterFinally.Normal,
+    MonsterFinally.Normal,
 ];

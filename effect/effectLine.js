@@ -25,6 +25,11 @@ class EffectLine extends Effect {
         this.line.strokeColor = color;
     }
 
+    randomColorAnimation() {
+        let c = 10;
+        this.line.strokeColor.change(Math.random() * c, Math.random() * c, Math.random() * c, 1);
+    }
+
     /**
      * 线淡出动画
      */

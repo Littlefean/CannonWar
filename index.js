@@ -52,6 +52,18 @@ window.onload = function () {
         }
     }
     /**
+     * 鼠标在画布上移动 更新准备放置的位置
+     * @param e
+     */
+    c.onmousemove = function (e) {
+        if (addedThings.length === 0) {
+            return;
+        }
+        world.user.putLoc.building = addedThings[addedThings.length - 1];
+        world.user.putLoc.x = e.clientX - c.offsetLeft;
+        world.user.putLoc.y = e.clientY - c.offsetTop;
+    }
+    /**
      * 动态添加所有炮塔的按钮
      */
     let cBtn = document.querySelector(".choiceBtn");

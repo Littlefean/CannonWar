@@ -20,6 +20,38 @@ class Line {
         this.strokeWidth = 1;
     }
 
+    /**
+     * 修改这个线的位置，通过两个端点
+     * @param p1 {Vector} 起点
+     * @param p2 {Vector} 终点
+     */
+    resetLine(p1, p2) {
+        this.PosStart = p1;
+        this.PosEnd = p2;
+        this.x1 = p1.x;
+        this.x2 = p2.x;
+        this.y1 = p1.y;
+        this.y2 = p2.y;
+    }
+
+    /**
+     * 平移这个线段到某个位置上
+     * @param loc {Vector} 平移到某个中心位置上
+     */
+    moveTo(loc) {
+        let oldCenter = this.getCenter();
+        let dv = loc.sub(oldCenter);
+        this.resetLine(this.PosStart.plus(dv), this.PosEnd.plus(dv));
+    }
+
+    /**
+     * 将线段平移一段距离
+     * @param vec {Vector}
+     */
+    move(vec) {
+        this.resetLine(this.PosStart.plus(vec), this.PosEnd.plus(vec));
+    }
+
     render(ctx) {
         ctx.strokeStyle = this.strokeColor.toStringRGBA();
         ctx.lineWidth = this.strokeWidth;
@@ -28,6 +60,13 @@ class Line {
         ctx.lineTo(this.x2, this.y2);
         ctx.closePath();
         ctx.stroke();
+    }
+
+    /**
+     * 获取这个直线的中心点
+     */
+    getCenter() {
+        return new Vector((this.x1 + this.x2) / 2, (this.y1 + this.y2) / 2)
     }
 
     /**

@@ -29,6 +29,19 @@ class Functions {
     }
 
     /**
+     * 第n波怪物的总量
+     * @param level
+     */
+    static levelMonsterFlowNum(level) {
+        // let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
+        // return res <= 0 ? 1 : res;
+        let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
+        res += Math.log(level + 1) * 10;
+        res = Math.floor(res);
+        return res <= 0 ? 1 : res;
+    }
+
+    /**
      * 返回透明度，特效进行越彻底，越透明
      * @param tr 特效进度 0~1
      */
@@ -39,6 +52,7 @@ class Functions {
     static timeRateAlphaDownFast(tr) {
         return Math.pow((1 - tr) * 0.25, 2);
     }
+
     /**
      * 计算爆炸伤害随着距离递减
      * @param dis

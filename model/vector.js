@@ -97,6 +97,31 @@ class Vector {
     }
 
     /**
+     * 一个点 p1 绕着旋转原点 p0 旋转 a 度
+     返回旋转后的点
+     https://jingyan.baidu.com/article/2c8c281dfbf3dd0009252a7b.html
+     * @param p0 {Vector}
+     * @param p1 {Vector}
+     * @param a {Number}
+     */
+    static rotatePoint(p0, p1, a) {
+        let ry0 = p0.y;
+        let rx0 = p0.x;
+        let x = p1.x;
+        let y = p1.y;
+
+        let cos = x => {
+            return Math.cos(x);
+        };
+        let sin = x => {
+            return Math.sin(x);
+        };
+        let x0 = (x - rx0) * cos(a) - (y - ry0) * sin(a) + rx0;
+        let y0 = (x - rx0) * sin(a) + (y - ry0) * cos(a) + ry0;
+        return new Vector(x0, y0);
+    }
+
+    /**
      * 将一个向量逆时针旋转90度
      */
     rotate90() {

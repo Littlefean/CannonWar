@@ -283,6 +283,42 @@ class BullyFinally {
         return b;
     }
 
+    /**
+     * 荒野乱斗中仙人掌斯派克的父亲爆裂子弹
+     * @returns {Bully}
+     * @constructor
+     */
+    static SpikeBully() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 10);
+        b.splitAble = true;
+        b.splitNum = 10;
+        b.splitRandomV = 0;
+        b.splitV = 3;
+        b.splitRotate = Math.PI * 2;
+        b.splitRangeRate = 250;
+        b.splitBully = BullyFinally.CactusNeedle;
+
+        b.r = 10;
+        b.bodyColor = MyColor.arrTo([97, 150, 66, 1]);
+        b.bodyStrokeColor = new MyColor(41, 53, 29, 1);
+        b.bodyStrokeWidth = 3;
+        return b;
+    }
+
+    /**
+     * 仙人掌针 子弹
+     * @constructor
+     */
+    static CactusNeedle() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 10);
+
+        b.r = 1;
+        b.bodyColor = MyColor.arrTo([97, 150, 66, 1]);
+        b.bodyStrokeColor = new MyColor(41, 53, 29, 1);
+        b.bodyStrokeWidth = 3;
+        return b;
+    }
+
     // 火焰粒子弹
     static Fire_M() {
         let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 10);
@@ -381,6 +417,45 @@ class BullyFinally {
         b.bodyStrokeColor = MyColor.arrTo([255, 255, 0, 0]);
         b.dr = 2;  // 扩散
         b.laserDestoryAble = false;
+        return b;
+    }
+
+    /**
+     * 跟踪导弹炮
+     * @returns {Bully}
+     * @constructor
+     */
+    static H_Target_L() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
+        b.r = 6;
+        b.damage = 410;
+
+        b.haveBomb = true;
+        b.bombDamage = 300;
+        b.bombRange = 100;
+        b.bombFunc = b.bombFire;
+
+        b.targetAble = true;
+
+        b.bodyColor = MyColor.arrTo([168, 182, 172, 1]);
+        b.bodyStrokeColor = MyColor.arrTo([255, 198, 109, 1]);
+        b.bodyStrokeWidth = 4;
+        return b;
+    }
+
+    /**
+     * 佩佩子弹
+     * @constructor
+     */
+    static PiperBully() {
+        let b = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
+        b.damage = 100;
+        b.dDamage = 10;
+        b.r = 10;
+        b.dr = 0.3;
+        b.bodyColor = MyColor.arrTo([235, 110, 142, 1]);
+        b.bodyStrokeColor = MyColor.arrTo([60, 222, 243, 1]);
+        b.bodyStrokeWidth = 3;
         return b;
     }
 }

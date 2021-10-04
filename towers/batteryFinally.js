@@ -141,9 +141,44 @@ class BatteryFinally {
         return b;
     }
 
+    static H_Target_1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级跟踪导弹炮";
+        b.rangeR = 250;
+        b.r += 10;
+        b.bullySpeed = 10;
+        b.bullySlideRate = 6;
+        b.clock += 30;
+        b.getmMainBullyFunc = BullyFinally.H_Target_L;
+        b.hpInit(10000);
+        b.attackBullyNum = 1;
+        b.bullyDeviationRotate = 0.8;
+        b.price = 1000;
+        return b;
+    }
+
+    static Sh1(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "1级散弹炮塔";
+        b.rangeR += 20;
+        b.r += 2;
+
+        b.bullySpeed += 0.5;
+        b.bullySlideRate = 1.2;
+        b.bullySpeedAddMax = 0;
+        b.clock += 2;
+        b.getmMainBullyFunc = BullyFinally.S;
+        b.hpInit(1200);
+        b.attackBullyNum = 5;
+        b.bullyRotate = 1;
+        b.attackFunc = b.shrapnelAttack;
+        b.price = 130;
+        return b;
+    }
+
     static S1(world) {
         let b = new Battery(0, 0, world);
-        b.name = "1级散弹";
+        b.name = "1级喷泻炮塔";
         b.rangeR += 20;
         b.r += 2;
 
@@ -161,7 +196,7 @@ class BatteryFinally {
 
     static S2(world) {
         let b = new Battery(0, 0, world);
-        b.name = "2级散弹";
+        b.name = "2级喷泻炮塔";
         b.rangeR += 25;
         b.r += 4;
 
@@ -179,7 +214,7 @@ class BatteryFinally {
 
     static S3(world) {
         let b = new Battery(0, 0, world);
-        b.name = "3级散弹";
+        b.name = "3级喷泻炮塔";
         b.rangeR += 25;
         b.r += 6;
 
@@ -197,7 +232,7 @@ class BatteryFinally {
 
     static S4(world) {
         let b = new Battery(0, 0, world);
-        b.name = "4级散弹";
+        b.name = "4级喷泻炮塔";
         b.rangeR = 120;
         b.r += 10;
         b.bullySpeed += 4;
@@ -545,6 +580,31 @@ class BatteryFinally {
         return b;
     }
 
+    static RayBit1(world) {
+        let b = new BatteryRay(0, 0, world);
+        b.name = "1级8-bit炮塔"
+        b.rayMoveSpeed = 10;
+        b.rayMaxRange = 300;
+        b.rayClock = 10;
+        b.rayLen = 30;  // 射线的长度
+        b.attackFunc = b.shootingAttack;
+        return b;
+    }
+
+    static RayBit2(world) {
+        let b = new BatteryRay(0, 0, world);
+        b.name = "2级8-bit炮塔"
+        b.rayMoveSpeed = 20;
+        b.rangeR = 300;
+        b.rayMaxRange = 300;
+        b.rayClock = 2;
+        b.rayLen = 40;  // 射线的长度
+        b.rayNum = 1;
+        b.rayDeviationRotate = 0.1;
+        b.attackFunc = b.shootingAttack;
+        return b;
+    }
+
     static RayScan1(world) {
         let b = new BatteryRay(0, 0, world);
         b.name = "1级扫射激光"
@@ -573,6 +633,54 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         return b;
     }
+
+    static Ham1() {
+        let b = new BatteryHammer(0, 0, world);
+        b.name = "流星锤子";
+
+        return b;
+    }
+
+    static Boomerang() {
+        let b = new BatteryBoomerang(0, 0, world);
+        return b;
+    }
+
+    static Piper(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "佩佩";
+        b.rangeR = 300;
+        b.r += 1;
+        b.bullySpeed = 20;
+        b.clock = 30;
+        b.getmMainBullyFunc = BullyFinally.PiperBully;
+        b.price = 520;
+        b.hpInit(150);
+        return b;
+    }
+
+    static Ger(world) {
+        let b = new BatteryRay(0, 0, world);
+        b.name = "格尔"
+        b.rayMoveSpeed = 10;
+        b.rayMaxRange = 300;
+        b.rayClock = 20;
+        b.rayLen = 30;  // 射线的长度
+        b.rayRepel = 1;
+        b.attackFunc = b.gerAttack;
+        return b;
+    }
+
+    static Spike(world) {
+        let b = new Battery(0, 0, world);
+        b.name = "斯派克"
+        b.rangeR = 200;
+        b.bullySpeed = 5;
+        b.clock = 20;
+        b.getmMainBullyFunc = BullyFinally.SpikeBully;
+        b.price = 900;
+        return b;
+    }
 }
 
 const TOWER_FUNC_ARR = [
@@ -588,6 +696,10 @@ const TOWER_FUNC_ARR = [
     BatteryFinally.H2,
     BatteryFinally.H3,
     BatteryFinally.H4,
+
+    BatteryFinally.H_Target_1,
+
+    BatteryFinally.Sh1,
 
     BatteryFinally.S1,
     BatteryFinally.S2,
@@ -628,9 +740,18 @@ const TOWER_FUNC_ARR = [
 
     BatteryFinally.Ray1,
     BatteryFinally.RayScan1,
+    BatteryFinally.RayBit1,
+    BatteryFinally.RayBit2,
 
     BatteryFinally.E1,
     BatteryFinally.Z1,
+
+    BatteryFinally.Ham1,
+    BatteryFinally.Boomerang,
+
+    BatteryFinally.Piper,
+    BatteryFinally.Ger,
+    BatteryFinally.Spike,
 
 ];
 

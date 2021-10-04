@@ -16,6 +16,11 @@ class EffectCircle extends Effect {
         this.circle.strokeColor = strokeColor;
         this.circle.fillColor = fillColor;
     }
+
+    /**
+     * 没有特效
+     */
+    noneAnimation() {}
     /**
      * 炸了的的特效
      * 电炸
@@ -24,7 +29,9 @@ class EffectCircle extends Effect {
         this.circle.fillColor.changeAlpha(Functions.timeRateAlpha(this.time / this.duration));
         this.circle.r = this.time * 5;
     }
-
+    flashAnimation() {
+        this.circle.fillColor.changeAlpha(Functions.timeRateAlpha(this.time / this.duration))
+    }
     /**
      * 闪黄光特效
      * 用于火炮子弹爆炸

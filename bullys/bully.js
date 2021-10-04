@@ -25,6 +25,7 @@ class Bully extends CircleObject {
         this.originalPos = new Vector(this.pos.x, this.pos.y); // 最初发射点
         this.father = father;
         this.damage = damage;  // 击中伤害
+        this.dDamage = 0;  // 每经过一个时间刻度，击中伤害增加
         this.slideRate = 2;  // 子弹能够滑出自己炮塔视野的多少倍才会消失
 
         // 爆炸炮弹的特性
@@ -38,7 +39,7 @@ class Bully extends CircleObject {
         this.throughCutNum = 0;  // 每次削减量
 
         // 子弹颜色
-        this.bodyColor = new MyColor(100, 23, 1, 0);
+        this.bodyColor = new MyColor(100, 23, 1, 1);
         this.bodyStrokeWidth = 1;
 
         // 单次攻击减速特性
@@ -48,6 +49,8 @@ class Bully extends CircleObject {
         this.splitAble = false;
         this.splitNum = 5;  // 分裂后子弹的数量
         this.splitRandomV = 1;
+        this.splitV = 0;  // 分裂后正常旋转的速度
+        this.splitRotate = 0;  // 分裂后子弹相对原来方向的扩展张角
         this.splitBully = BullyFinally.Normal;
         this.splitRangeRate = 100;  // 分裂后的子弹可以存在的攻击范围 px
         this.isSliptedBully = false; // 当前这个子弹是不是分裂后的小子弹
@@ -59,15 +62,22 @@ class Bully extends CircleObject {
         this.burnRateAdd = 0;  // 每次击中增加 燃烧率
 
         this.laserDestoryAble = true;  // 是否可以被激光摧毁
+
+        // 跟踪子弹特性
+        this.targetAble = false;  // 跟踪子弹的特性
+        this.viewRadius = 100;  // 跟踪视野
+        this.target = null;  // 当前是否有目标
+        this.speedToTargetN = 5;  // 找到目标的时候的速度
     }
 
     goStep() {
         super.goStep();
         this.move();
         this.rChange();
+        this.damageChange(this.dDamage);
         this.bodyColor.change(...this.dRGB);
-        // super.bodyColorChange(...this.dRGB);
-
+        // 跟踪子弹获取目标
+        this.getTarget();
 
         this.collide(this.world);
         if (this.isSliptedBully) {
@@ -77,6 +87,35 @@ class Bully extends CircleObject {
                     this.split();
                 }
                 this.remove();
+            }
+        }
+    }
+
+    move() {
+        if (this.targetAble && this.haveTarget()) {
+            let dV = this.target.pos.sub(this.pos).to1().mul(this.speedToTargetN);
+            this.pos.add(dV);
+        } else {
+            super.move();
+        }
+    }
+
+    haveTarget() {
+        return !(this.target === null || this.target === undefined || this.target.isDead());
+    }
+
+    /**
+     * 跟踪子弹获取目标
+     */
+    getTarget() {
+        if (this.targetAble) {
+            if (!this.haveTarget()) {
+                for (let m of this.world.monsters) {
+                    if (m.getBodyCircle().impact(new Circle(this.pos.x, this.pos.y, this.viewRadius))) {
+                        this.target = m;
+                        break;
+                    }
+                }
             }
         }
     }
@@ -150,6 +189,7 @@ class Bully extends CircleObject {
             this.damage = 0;
         }
     }
+
     /**
      * 子弹爆炸直接伤害效果
      */
@@ -165,7 +205,8 @@ class Bully extends CircleObject {
      */
     split() {
         if (this.splitAble) {
-            // console.log("开始分裂")
+            // todo
+            let fatherV = this.speed.copy(); // 父亲速度方向
             for (let i = 0; i < this.splitNum; i++) {
                 let b = this.splitBully();
                 b.isSliptedBully = true;
@@ -173,12 +214,14 @@ class Bully extends CircleObject {
                 b.pos = this.pos.copy();
                 b.originalPos = this.pos.copy();
                 b.speed = Vector.randCircle().mul(this.splitRandomV);
+                let newDir = fatherV.copy();
+                newDir = Vector.rotatePoint(Vector.zero(), newDir, this.splitRotate * (i / this.splitNum));
+                newDir = Vector.rotatePoint(Vector.zero(), newDir, -this.splitRotate / 2);
+                b.speed.add(newDir.mul(this.splitV));
                 b.splitRangeRate = this.splitRangeRate;
 
                 // 添加到世界
                 this.world.othersBullys.push(b);
-                // console.log("分裂蛋的数量：", this.world.othersBullys.length);
-                // console.log("分裂蛋的数量：", this.world.othersBullys);
             }
         }
     }
@@ -247,5 +290,9 @@ class Bully extends CircleObject {
         c.fillColor = this.bodyColor;
         c.setStrokeWidth(this.bodyStrokeWidth);
         c.render(ctx);
+        // 跟踪子弹渲染视野
+        if (this.targetAble) {
+            new Circle(this.pos.x, this.pos.y, this.viewRadius).renderView(ctx);
+        }
     }
 }

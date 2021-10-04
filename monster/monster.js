@@ -374,21 +374,10 @@ class Monster extends CircleObject {
      */
     clash() {
         // 与纯建筑碰撞
-        for (let b of this.world.buildings) {
+        for (let b of this.world.getAllBuildingArr()) {
             if (this.getBodyCircle().impact(b.getBodyCircle())) {
                 // 自爆
                 this.bombSelf();
-                b.hpChange(-this.colishDamage);
-                // 没有穿过碾压属性直接清除自己
-                if (!this.throwAble) {
-                    this.remove();
-                    break;
-                }
-            }
-        }
-        // 与子炮塔碰撞
-        for (let b of this.world.batterys) {
-            if (this.getBodyCircle().impact(b.getBodyCircle())) {
                 b.hpChange(-this.colishDamage);
                 if (!this.throwAble) {
                     this.remove();
@@ -422,8 +411,9 @@ class Monster extends CircleObject {
         // 燃烧
         if (this.burnRate > this.maxBurnRate) {
             this.burnRate = this.maxBurnRate;
+        } if (this.burnRate !== 0) {
+            this.hpChange(-this.burnRate * this.maxHp);
         }
-        this.hpChange(-this.burnRate * this.maxHp);
 
         // 移动
         this.move();

@@ -1,15 +1,10 @@
-/**
- *
- * by littlefean
- */
-let a = {
-    "abs": 123,
+function levelMonsterFlowNum(level) {
+    let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
+    res += Math.log(level + 1) * 10;
+    res = Math.floor(res);
+    return res <= 0 ? 1 : res;
 }
 
-a["n1"] = 123;
-a["n3"] = 156;
-a["n3"] = undefined;
-
-for (let item in a) {
-    console.log(item);
+for (let i = 1; i < 500; i++) {
+    console.log(i, levelMonsterFlowNum(i));
 }

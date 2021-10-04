@@ -103,7 +103,6 @@ class CircleObject {
 
     getBodyCircle() {
         let res = new Circle(this.pos.x, this.pos.y, this.r);
-        // console.log(res.fillColor, res.strokeColor);
         res.fillColor = this.bodyColor;
         res.strokeColor = this.bodyStrokeColor;
         let hpRate = this.hp / this.maxHp;

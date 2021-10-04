@@ -26,6 +26,11 @@ class Battery extends CircleObject {
         this.bullySpeedAddMax = 0;  // 子弹速度增加随机量
         this.bullyDeviationRotate = 0;  // 子弹平面随机偏移 方向方面的
         this.bullyDeviation = 0;  // 子弹平面随机偏移
+        /**
+         * 散弹单侧张角
+         * @type {number} 弧度
+         */
+        this.bullyRotate = 0;
         this.attackBullyNum = 1;  // 一次性发射子弹的数量
         this.bullySlideRate = 1;  // 子弹可滑行距离
 
@@ -38,6 +43,7 @@ class Battery extends CircleObject {
         this.bodyStrokeWidth = 10;
         this.bodyStrokeColor = MyColor.arrTo([22, 22, 22, 1]);
         this.hpBarHeight = 5;
+        this.attackFunc = this.normalAttack;
     }
 
 
@@ -55,7 +61,7 @@ class Battery extends CircleObject {
             // 此处代码似乎不会被执行到
             return;
         }
-        this.attackAction();
+        this.attackFunc();
     }
 
     /**
@@ -80,7 +86,7 @@ class Battery extends CircleObject {
     /**
      * 一个普通炮塔的攻击机制
      */
-    attackAction() {
+    normalAttack() {
         if (this.liveTime % this.clock !== 0) {
             return;
         }
@@ -95,6 +101,28 @@ class Battery extends CircleObject {
         }
     }
 
+    /**
+     * 散弹枪的攻击机制
+     */
+    shrapnelAttack() {
+        if (this.liveTime % this.clock !== 0) {
+            return;
+        }
+        for (let m of this.world.monsters) {
+            if (this.getViewCircle().impact(m.getBodyCircle())) {
+                let targetDir = m.pos.sub(this.pos).to1();  // 瞄准怪物的方向
+                for (let i = 0; i < this.attackBullyNum; i++) {
+                    // todo 更改this。的朝向
+                    this.dirction = Vector.rotatePoint(Vector.zero(), targetDir,
+                        2 * this.bullyRotate * (i / this.attackBullyNum))
+                    this.dirction = Vector.rotatePoint(Vector.zero(), this.dirction,
+                        -this.bullyRotate);
+                    this.fire();
+                }
+                break;
+            }
+        }
+    }
     /**
      * 获取一个正在运动的子弹
      */

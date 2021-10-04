@@ -27,7 +27,12 @@ class World {
 
         this.user = {
             money: 600,
+            putLoc: {x: 0, y: 0, able: false, building: null}
         };
+
+        // 当前怪物流信息
+        this.monsterFlow = MonsterGroup.getMonsterFlow(this, 1);
+        this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, 2);
     }
 
     /**
@@ -137,14 +142,20 @@ class World {
             }
         }
         this.effects = eArr;
-        // 添加怪物
-        if (this.time % 100 === 0) {
-            let addNum = Functions.timeMonsterAddedNum(this.time);
-            // console.log("这波怪物增加量", addNum);
-            for (let i = 0; i < addNum; i++) {
-                this.addMonsters();
-            }
-            // console.log(this.monsters);
+        // 添加怪物流
+        if (this.monsterFlow.couldBegin()) {
+            this.monsterFlow.addToWorld();
+
+            this.monsterFlow = this.monsterFlowNext.copySelf();
+            this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, this.monsterFlowNext.level + 1);
+        }
+        if (this.monsterFlow.delayTick === 200 - 1) {
+            // 添加文字提醒
+            let et = new EffectText(`第 ${this.monsterFlow.level} 波即将到来！`);
+            et.textSize = 40;
+            et.duration = 100;
+            et.pos = new Vector(this.width / 2, this.height / 2);
+            this.addEffect(et);
         }
         // 炮塔行动
         for (let b of this.batterys) {
@@ -193,6 +204,16 @@ class World {
         for (let e of this.effects) {
             e.render(ctx);
         }
+        // 渲染即将放置的位置
+        if (this.user.putLoc.building !== null) {
+            let x = this.user.putLoc.x;
+            let y = this.user.putLoc.y;
+            let body = new Circle(x, y, this.user.putLoc.building.r);
+            body.renderView(ctx);
+
+            new Circle(x, y, this.user.putLoc.building.rangeR).renderView(ctx);
+        }
+
         // 写一些基本信息
         ctx.font = "16px Microsoft YaHei";
         ctx.fillStyle = "black";
@@ -200,5 +221,9 @@ class World {
         ctx.fillText("金钱：" + this.user.money.toString(), 20, 20);
         ctx.fillText("怪物数量：" + this.monsters.length, 20, 40);
         ctx.fillText("炮塔数量：" + this.batterys.length, 20, 60);
+        ctx.fillText("炮塔数量：" + this.batterys.length, 20, 60);
+        ctx.fillText("下一波：" + this.monsterFlow.toString(), 20, 80);
+        ctx.fillText("当前波数：" + (this.monsterFlow.level - 1), 20, 100);
+        ctx.fillText("倒计时：" + (this.monsterFlow.delayTick), 20, 120);
     }
 }
