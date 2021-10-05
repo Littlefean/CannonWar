@@ -28,6 +28,9 @@ class CircleObject {
         this.bodyStrokeWidth = 5;
         this.bodyStrokeColor = MyColor.Transparent();
         this.hpBarHeight = 10;
+
+        // 一些细节描述，用于在Wiki中展示
+        this.comment = "细节待补充.....内容还在完善中。。。";
     }
 
     /**

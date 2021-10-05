@@ -411,7 +411,8 @@ class Monster extends CircleObject {
         // 燃烧
         if (this.burnRate > this.maxBurnRate) {
             this.burnRate = this.maxBurnRate;
-        } if (this.burnRate !== 0) {
+        }
+        if (this.burnRate !== 0) {
             this.hpChange(-this.burnRate * this.maxHp);
         }
 
@@ -421,6 +422,10 @@ class Monster extends CircleObject {
 
     render(ctx) {
         super.render(ctx);
+        // 绘制贴图
+
+        ctx.drawImage(MONSTERS_IMG, 0, 0, MONSTER_IMG_PRE_WIDTH, MONSTER_IMG_PRE_HEIGHT,
+            this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
         // 写上名字
         ctx.fillStyle = "black";
         ctx.font = "12px Microsoft YaHei";
@@ -471,5 +476,15 @@ class Monster extends CircleObject {
             ctx.textBaseline = "top";
             ctx.fillText(txt, this.pos.x, this.pos.y - this.r - diff * barH + 1);
         }
+    }
+
+    /**
+     * 通过索引获得当前这个炮塔的贴图在大图片中的切割起始位置
+     * @param n 索引
+     */
+    getImgStartPosByIndex(n) {
+        let x = n % Math.floor(MONSTERS_IMG.width / MONSTER_IMG_PRE_WIDTH);
+        let y = Math.floor(n / Math.floor(MONSTERS_IMG.height / MONSTER_IMG_PRE_HEIGHT));
+        return new Vector(x * MONSTER_IMG_PRE_WIDTH, y * MONSTER_IMG_PRE_HEIGHT);
     }
 }

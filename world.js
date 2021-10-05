@@ -182,7 +182,7 @@ class World {
 
     /**
      *
-     * @param canvasEle {HTMLElement}
+     * @param canvasEle {Element}
      */
     render(canvasEle) {
         let canvasElement = document.querySelector("canvas");

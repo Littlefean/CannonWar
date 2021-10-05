@@ -7,10 +7,100 @@
 </head>
 
 <body>
-<canvas width="1200" height="800" id="mainCanvas"></canvas>
-<div class="choiceBtn">
-    <button id="testBtn">测试按钮</button>
+<div class="gameApp">
+    <div class="main-interface interface">
+        <h1>Cannon War</h1>
+        <h2>炮塔战争</h2>
+        <div class="btnList">
+            <button class="startGame">开始游戏</button>
+            <button class="wiki">游戏图鉴</button>
+        </div>
+        <div class="leftTopArea">
+            <button class="soundSet">开启声音（未开发）</button>
+        </div>
+    </div>
+
+    <div class="modeChoice-interface interface" style="display: none">
+        <h1>Mode Choice</h1>
+        <h2>模式选择</h2>
+        <div class="btnList">
+            <button class="endlessMode">无尽模式</button>
+            <button class="rottenMode">摆烂模式（未开发）</button>
+        </div>
+        <div class="leftTopArea">
+            <button class="backPage">返回</button>
+        </div>
+    </div>
+
+    <div class="wiki-interface interface" style="display: none">
+        <h1>CannonWar wiki</h1>
+        <h2>炮塔战争图鉴</h2>
+        <div class="btnList">
+            <button class="cannonList">Cannon</button>
+            <button class="monsterList">Monster</button>
+        </div>
+        <div class="leftTopArea">
+            <button class="backPage">返回</button>
+        </div>
+    </div>
+
+    <div class="cannon-interface interface" style="display: none">
+        <h1>Cannons</h1>
+        <h2>炮塔大全</h2>
+        <div class="content">
+
+        </div>
+        <div class="leftTopArea">
+            <button class="backPage">返回</button>
+        </div>
+    </div>
+
+    <div class="monsters-interface interface" style="display: none">
+        <h1>Monsters</h1>
+        <h2>怪物大全</h2>
+        <div class="content">
+
+        </div>
+        <div class="leftTopArea">
+            <button class="backPage">返回</button>
+        </div>
+    </div>
+
+    <div class="interface war-interface" style="display: none">
+        <canvas width="1200" height="780" id="mainCanvas"></canvas>
+        <div class="rightTopArea">
+            <button class="backPage">返回</button>
+        </div>
+    </div>
+
 </div>
+<div class="choiceBtn" style="display: none">
+    <div class="initPanel"></div>
+
+    <div class="choicePanel" style="display: none">
+        <div class="monsterData">
+            <p>名字：<span class="monsterName"></span></p>
+            <p>细节描述：<span class="monsterComment"></span></p>
+        </div>
+        <div class="buildingData">
+            <p>名字：<span class="buildingName"></span></p>
+            <p>细节描述：<span class="buildingComment"></span></p>
+            <!--  升级列表  -->
+            <div class="levelUpList"></div>
+            <button class="levelDown">降级</button>
+            <button class="sell">不想要了，卖钱</button>
+
+        </div>
+    </div>
+
+    <div class="putPanel" style="display: none">
+        <p>您当前选择的是：<span class="choiceName"></span></p>
+        <p>需要消耗：<span class="choiceMoney"></span></p>
+        <p>请点击游戏界面上的位置进行放置</p>
+        <button class="cancelPut">取消放置</button>
+    </div>
+</div>
+
 <script src="model/myColor.js"></script>
 <script src="model/functions.js"></script>
 <script src="model/vector.js"></script>
@@ -64,6 +154,21 @@
     周期性隐身
 
     其他更新：
-    做出游戏主界面
     做一个仓库栈显示
+
+    建筑升级系统：
+    判断建筑是否可以升级，建筑有一个属性叫：
+    可选择的升级列表建筑的属性，
+    判断里面是否有可以升级的建筑，
+    如果有的话，显示这个建筑可以升级
+    建筑可以点击，点击了之后右边的按钮会变成这个建筑可以升级的列表
+    同时增加一个时间几乎无限长的特效来圈主当前这个建筑。
+    打印这个建筑的基础信息。名字
+    如果点击了其中的一个可以升级成的建筑，那么就会立刻删除这个建筑，
+    然后新建一个升级后了的那个建筑，同时扣除相应的金钱。
+    同时界面会更新成当前的这个升级后了的建筑
+
+    如果点击了别处空白地方，右边的按钮面板会变成初始面板。
+    如果点击了怪物，会把怪物的信息展示在右边的面板上。
+    如果怪物突然死了，则右边的怪物信息面板就会消失，变成初始面板
 -->

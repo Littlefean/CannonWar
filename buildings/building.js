@@ -77,6 +77,11 @@ class Building extends CircleObject {
         }
     }
 
+    remove() {
+        this.hpSet(0);
+        super.remove();
+    }
+
     render(ctx) {
         super.render(ctx);
         // 绘制加血范围圈

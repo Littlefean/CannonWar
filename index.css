@@ -3,20 +3,171 @@
   padding: 0;
   box-sizing: border-box;
 }
-body #mainCanvas {
-  outline: solid 1px;
-  position: relative;
+body {
+  overflow: hidden;
+}
+body .gameApp {
+  width: 100%;
+  height: 100vh;
   left: 0;
   top: 0;
+  outline: solid 1px;
+  position: absolute;
+}
+body .gameApp .interface {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: skyblue;
+}
+body .gameApp .interface h1 {
+  width: 100%;
+  top: 15%;
+  position: absolute;
+  text-align: center;
+  font-family: "Times New Roman", serif;
+  font-size: 60px;
+}
+body .gameApp .interface h2 {
+  width: 100%;
+  top: 15%;
+  position: absolute;
+  text-align: center;
+  font-family: "Times New Roman", serif;
+  top: 25%;
+  font-size: 40px;
+}
+body .gameApp .interface .leftTopArea {
+  outline: solid 1px;
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+}
+body .gameApp .interface .leftTopArea button {
+  background-color: #1e1e1e;
+  color: orange;
+  display: block;
+  margin: 30px auto;
+  padding: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 0;
+}
+body .gameApp .interface .leftTopArea button:hover {
+  transform: scale(1.1);
+}
+body .gameApp .interface .btnList {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  outline: solid 1px;
+  transform: translateX(-150px);
+}
+body .gameApp .interface .btnList button {
+  background-color: #1e1e1e;
+  color: orange;
+  display: block;
+  margin: 30px auto;
+  padding: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Times New Roman", serif;
+}
+body .gameApp .interface .btnList button:hover {
+  transform: scale(1.1);
+}
+body .gameApp .war-interface .rightTopArea {
+  width: 100px;
+  position: absolute;
+  outline: solid 1px;
+  right: 12%;
+  top: 0;
+}
+body .gameApp .war-interface .rightTopArea .backPage {
+  background-color: #1e1e1e;
+  color: orange;
+  display: block;
+  margin: 30px auto;
+  padding: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+body .gameApp .war-interface .rightTopArea .backPage:hover {
+  transform: scale(1.1);
+}
+body .gameApp .cannon-interface,
+body .gameApp .monsters-interface {
+  overflow-y: scroll;
+}
+body .gameApp .cannon-interface h1,
+body .gameApp .monsters-interface h1,
+body .gameApp .cannon-interface h2,
+body .gameApp .monsters-interface h2 {
+  position: static;
+}
+body .gameApp .cannon-interface .content,
+body .gameApp .monsters-interface .content {
+  width: 90%;
+  margin: 0 auto;
+  background-color: gray;
+  overflow: hidden;
+}
+body .gameApp .cannon-interface .content .tower,
+body .gameApp .monsters-interface .content .tower,
+body .gameApp .cannon-interface .content .monster,
+body .gameApp .monsters-interface .content .monster {
+  outline: solid 1px;
+  float: left;
+  width: 300px;
+  min-height: 300px;
+  padding: 30px;
+  margin: 10px;
+}
+body .gameApp .cannon-interface .content .tower h3,
+body .gameApp .monsters-interface .content .tower h3,
+body .gameApp .cannon-interface .content .monster h3,
+body .gameApp .monsters-interface .content .monster h3 {
+  text-align: center;
+  line-height: 2em;
+  font-family: "Times New Roman", serif;
+}
+body .gameApp .cannon-interface .content .tower .tower-shape,
+body .gameApp .monsters-interface .content .tower .tower-shape,
+body .gameApp .cannon-interface .content .monster .tower-shape,
+body .gameApp .monsters-interface .content .monster .tower-shape,
+body .gameApp .cannon-interface .content .tower .monster-shape,
+body .gameApp .monsters-interface .content .tower .monster-shape,
+body .gameApp .cannon-interface .content .monster .monster-shape,
+body .gameApp .monsters-interface .content .monster .monster-shape {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+body .gameApp .cannon-interface .leftTopArea,
+body .gameApp .monsters-interface .leftTopArea {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+body .gameApp #mainCanvas {
+  left: 0;
+  top: 0;
+  outline: solid 1px;
 }
 body .choiceBtn {
   width: 200px;
   height: 100vh;
-  float: left;
+  position: absolute;
   right: 0;
   top: 0;
   outline: solid 1px;
   overflow-y: scroll;
+  background-color: pink;
 }
 body .choiceBtn .Battery {
   color: #9cdcfe;
@@ -43,5 +194,8 @@ body .choiceBtn button:hover {
 }
 body .choiceBtn button:active {
   transform: scale(0.9);
+}
+button {
+  color: white;
 }
 /*# sourceMappingURL=index.css.map */

@@ -37,13 +37,19 @@ class Battery extends CircleObject {
         this.hpInit(1000);
 
         this.price = 10 // 这个炮塔需要花多少钱来买
-
+        this.levelUpArr = [  // 这个炮塔接下来可以升级成什么建筑
+            BatteryFinally.F1,
+            BatteryFinally.H1,
+        ];
         this.bodyColor = MyColor.arrTo([100, 100, 100, 1]);
         this.hpColor = MyColor.arrTo([2, 230, 13, 0.8]);
         this.bodyStrokeWidth = 10;
         this.bodyStrokeColor = MyColor.arrTo([22, 22, 22, 1]);
         this.hpBarHeight = 5;
         this.attackFunc = this.normalAttack;
+
+        // 贴图编号
+        this.imgIndex = 0;
     }
 
 
@@ -62,6 +68,11 @@ class Battery extends CircleObject {
             return;
         }
         this.attackFunc();
+    }
+
+    remove() {
+        this.hpSet(0);
+        super.remove();
     }
 
     /**
@@ -123,6 +134,7 @@ class Battery extends CircleObject {
             }
         }
     }
+
     /**
      * 获取一个正在运动的子弹
      */
@@ -157,6 +169,15 @@ class Battery extends CircleObject {
         this.bullys.push(b);
     }
 
+    /**
+     * 通过索引获得当前这个炮塔的贴图在大图片中的切割起始位置
+     * @param n 索引
+     */
+    getImgStartPosByIndex(n) {
+        let x = n % Math.floor(TOWERS_IMG.width / TOWER_IMG_PRE_WIDTH);
+        let y = Math.floor(n / Math.floor(TOWERS_IMG.height / TOWER_IMG_PRE_HEIGHT));
+        return new Vector(x * TOWER_IMG_PRE_WIDTH, y * TOWER_IMG_PRE_HEIGHT);
+    }
 
     render(ctx) {
         // 渲染每一个子弹
@@ -167,7 +188,10 @@ class Battery extends CircleObject {
             return;
         }
         super.render(ctx);
-
+        // 渲染贴图
+        let imgStartPos = this.getImgStartPosByIndex(this.imgIndex);
+        ctx.drawImage(TOWERS_IMG, imgStartPos.x, imgStartPos.y, TOWER_IMG_PRE_WIDTH, TOWER_IMG_PRE_HEIGHT,
+            this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
         // 渲染视野半径圆
         if (!this.isDead()) {
             this.getViewCircle().renderView(ctx);

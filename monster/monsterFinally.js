@@ -592,3 +592,9 @@ const MONSTERS_FUNC_ARR = [
 
     MonsterFinally.Normal,
 ];
+// 打算画一个1000 x 1000 的图片，其中能容纳 100个100x100的方块，这些网格中放置怪物贴图
+const MONSTERS_IMG = new Image();
+MONSTERS_IMG.src = "monster/imgs/monsters.png";
+const MONSTER_IMG_PRE_WIDTH = 100;
+const MONSTER_IMG_PRE_HEIGHT = 100;
+

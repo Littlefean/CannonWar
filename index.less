@@ -6,22 +6,168 @@
 
 
 body {
-  #mainCanvas {
-    outline: solid 1px;
-    position: relative;
+  overflow: hidden;
+
+  .gameApp {
+    width: 100%;
+    height: 100vh;
     left: 0;
     top: 0;
+    outline: solid 1px;
+    position: absolute;
+
+    .fonts() {
+      font-family: "Times New Roman", serif;
+    }
+
+
+    .header() {
+      // 界面标题样式
+      width: 100%;
+      top: 15%;
+      position: absolute;
+      text-align: center;
+      .fonts();
+    }
+
+    .interface {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: skyblue;
+
+      h1 {
+        .header();
+        font-size: 60px;
+      }
+
+      h2 {
+        .header();
+        top: 25%;
+        font-size: 40px;
+      }
+
+      .leftTopArea {
+        outline: solid 1px;
+        width: 100px;
+        height: 100px;
+        padding: 30px;
+
+        button {
+          .interfaceBtn();
+          margin: 0;
+        }
+      }
+
+      .btnList {
+        width: 300px;
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        outline: solid 1px;
+        transform: translateX(-150px);
+
+        button {
+          .interfaceBtn();
+          font-size: 20px;
+          .fonts();
+        }
+      }
+    }
+
+    .war-interface {
+      .rightTopArea {
+        width: 100px;
+        //height: 100px;
+        position: absolute;
+        outline: solid 1px;
+        right: 12%;
+        top: 0;
+
+        .backPage {
+          .interfaceBtn();
+        }
+      }
+    }
+
+    .cannon-interface, .monsters-interface {
+      overflow-y: scroll;
+
+      h1, h2 {
+        position: static;
+      }
+
+      .content {
+        width: 90%;
+        margin: 0 auto;
+        background-color: gray;
+        overflow: hidden;
+
+        .tower, .monster {
+          outline: solid 1px;
+          float: left;
+          width: 300px;
+          //height: 300px;
+          min-height: 300px;
+          padding: 30px;
+          margin: 10px;
+
+          h3 {
+            text-align: center;
+            line-height: 2em;
+            .fonts();
+          }
+
+          .tower-shape, .monster-shape {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .leftTopArea {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    #mainCanvas {
+      left: 0;
+      top: 0;
+      outline: solid 1px;
+    }
+
+    .interfaceBtn() {
+      background-color: #1e1e1e;
+      color: orange;
+      display: block;
+      margin: 30px auto;
+      padding: 10px;
+      transition: all 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
+
 
   .choiceBtn {
     width: 200px;
     height: 100vh;
-    //position: absolute;
-    float: left;
+    position: absolute;
+    //float: left;
     right: 0;
     top: 0;
     outline: solid 1px;
     overflow-y: scroll;
+    background-color: pink;
 
     .Battery {
       color: rgb(156, 220, 254);
@@ -55,4 +201,8 @@ body {
       }
     }
   }
+}
+
+button {
+  color: white;
 }

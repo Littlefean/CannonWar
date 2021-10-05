@@ -41,7 +41,7 @@ class MonsterGroup {
         return res;
     }
 
-    upDateCount() {
+    updateCount() {
         for (let n of this.kindCount) {
             this.monsterCount += n;
         }
@@ -78,7 +78,7 @@ class MonsterGroup {
             res.kinds.push(MONSTERS_FUNC_ARR[randIndex]);
             res.kindCount.push(Math.floor(sumNum / 2));
         }
-        res.upDateCount();
+        res.updateCount();
         return res;
     }
 

@@ -634,16 +634,15 @@ class BatteryFinally {
         return b;
     }
 
-    static Ham1() {
+    static Ham1(world) {
         let b = new BatteryHammer(0, 0, world);
         b.name = "流星锤子";
 
         return b;
     }
 
-    static Boomerang() {
-        let b = new BatteryBoomerang(0, 0, world);
-        return b;
+    static Boomerang(world) {
+        return new BatteryBoomerang(0, 0, world);
     }
 
     static Piper(world) {
@@ -755,3 +754,11 @@ const TOWER_FUNC_ARR = [
 
 ];
 
+const TOWERS_IMG = new Image();
+TOWERS_IMG.src = "towers/imgs/towers.png";
+const TOWER_IMG_PRE_WIDTH = 100;
+const TOWER_IMG_PRE_HEIGHT = 100;
+// 一个一个给每一个炮塔赋值上编号
+for (let i = 0; i < TOWER_FUNC_ARR.length; i++) {
+
+}
