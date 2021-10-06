@@ -30,6 +30,7 @@ class BatteryFinally {
             BatteryFinally.StoneCannon,
         ];
         res.levelDownGetter = BatteryFinally.BasicCannon;
+        res.imgIndex = 1;
         return res;
     }
 
@@ -43,6 +44,7 @@ class BatteryFinally {
             BatteryFinally.TraditionalCannon_Large,
             BatteryFinally.TraditionalCannon_MultiTube,
         ];
+        res.imgIndex = 20;
         return res;
     }
 
@@ -60,6 +62,7 @@ class BatteryFinally {
             BatteryFinally.Thunder_1,
             BatteryFinally.Laser,
         ];
+        b.imgIndex = 50;
         return b;
     }
 
@@ -72,6 +75,7 @@ class BatteryFinally {
         res.name = "回旋镖";
         res.levelUpArr = [BatteryFinally.Boomerang_Far_1, BatteryFinally.Boomerang_Power_1];
         res.levelDownGetter = BatteryFinally.AncientCannon;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -80,6 +84,7 @@ class BatteryFinally {
         res.name = "远程回旋镖1级";
         res.levelUpArr = [BatteryFinally.Boomerang_Far_2];
         res.levelDownGetter = BatteryFinally.Boomerang;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -88,6 +93,7 @@ class BatteryFinally {
         res.name = "远程回旋镖2级";
         res.levelUpArr = [BatteryFinally.Boomerang_Far_3];
         res.levelDownGetter = BatteryFinally.Boomerang_Far_1;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -96,6 +102,7 @@ class BatteryFinally {
         res.name = "远程回旋镖3级";
         res.levelUpArr = [];
         res.levelDownGetter = BatteryFinally.Boomerang_Far_2;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -104,6 +111,7 @@ class BatteryFinally {
         res.name = "力量回旋镖1级";
         res.levelUpArr = [BatteryFinally.Boomerang_Power_2];
         res.levelDownGetter = BatteryFinally.Boomerang;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -112,6 +120,7 @@ class BatteryFinally {
         res.name = "力量回旋镖2级";
         res.levelUpArr = [BatteryFinally.Boomerang_Power_3];
         res.levelDownGetter = BatteryFinally.Boomerang_Power_1;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -120,6 +129,7 @@ class BatteryFinally {
         res.name = "力量回旋镖3级";
         res.levelUpArr = [];
         res.levelDownGetter = BatteryFinally.Boomerang_Power_2;
+        res.imgIndex = 2;
         return res;
     }
 
@@ -128,6 +138,7 @@ class BatteryFinally {
         res.name = "弓箭塔1级";
         res.levelUpArr = [BatteryFinally.ArrowBow_2, BatteryFinally.Crossbow_1];
         res.levelDownGetter = BatteryFinally.AncientCannon;
+        res.imgIndex = 4;
         return res;
     }
 
@@ -136,6 +147,7 @@ class BatteryFinally {
         res.name = "弓箭塔2级";
         res.levelUpArr = [BatteryFinally.ArrowBow_3];
         res.levelDownGetter = BatteryFinally.ArrowBow_1;
+        res.imgIndex = 4;
         return res;
     }
 
@@ -144,6 +156,7 @@ class BatteryFinally {
         res.name = "弓箭塔3级";
         res.levelUpArr = [BatteryFinally.ArrowBow_4];
         res.levelDownGetter = BatteryFinally.ArrowBow_2;
+        res.imgIndex = 4;
         return res;
     }
 
@@ -152,6 +165,7 @@ class BatteryFinally {
         res.name = "弓箭塔4级";
         res.levelUpArr = [];
         res.levelDownGetter = BatteryFinally.ArrowBow_3;
+        res.imgIndex = 4;
         return res;
     }
 
@@ -160,6 +174,7 @@ class BatteryFinally {
         res.name = "连弩1级";
         res.levelUpArr = [BatteryFinally.Crossbow_2];
         res.levelDownGetter = BatteryFinally.ArrowBow_1;
+        res.imgIndex = 3;
         return res;
     }
 
@@ -168,6 +183,7 @@ class BatteryFinally {
         res.name = "连弩2级";
         res.levelUpArr = [BatteryFinally.Crossbow_3];
         res.levelDownGetter = BatteryFinally.Crossbow_1;
+        res.imgIndex = 3;
         return res;
     }
 
@@ -176,6 +192,7 @@ class BatteryFinally {
         res.name = "连弩3级";
         res.levelUpArr = [];
         res.levelDownGetter = BatteryFinally.Crossbow_2;
+        res.imgIndex = 3;
         return res;
     }
 
@@ -184,6 +201,7 @@ class BatteryFinally {
         b.name = "流星锤";
         b.levelUpArr = [BatteryFinally.Hammer_Fast_1, BatteryFinally.Hammer_Power_1];
         b.levelDownGetter = BatteryFinally.AncientCannon;
+        b.imgIndex = 5;
         return b;
     }
 
@@ -192,6 +210,7 @@ class BatteryFinally {
         b.name = "快速流星锤1级";
         b.levelUpArr = [BatteryFinally.Hammer_Fast_2];
         b.levelDownGetter = BatteryFinally.Hammer;
+        b.imgIndex = 5;
         return b;
     }
 
@@ -200,6 +219,7 @@ class BatteryFinally {
         b.name = "快速流星锤2级";
         b.levelUpArr = [BatteryFinally.Hammer_Fast_3];
         b.levelDownGetter = BatteryFinally.Hammer_Fast_1;
+        b.imgIndex = 5;
         return b;
     }
 
@@ -208,6 +228,7 @@ class BatteryFinally {
         b.name = "快速流星锤3级";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Hammer_Fast_2;
+        b.imgIndex = 5;
         return b;
     }
 
@@ -216,6 +237,7 @@ class BatteryFinally {
         b.name = "重型流星锤1级";
         b.levelUpArr = [BatteryFinally.Hammer];
         b.levelDownGetter = BatteryFinally.Hammer_Power_2;
+        b.imgIndex = 6;
         return b;
     }
 
@@ -224,6 +246,7 @@ class BatteryFinally {
         b.name = "重型流星锤2级";
         b.levelUpArr = [BatteryFinally.Hammer_Power_3];
         b.levelDownGetter = BatteryFinally.Hammer_Power_1;
+        b.imgIndex = 6;
         return b;
     }
 
@@ -232,6 +255,7 @@ class BatteryFinally {
         b.name = "重型流星锤3级";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Hammer_Power_2;
+        b.imgIndex = 6;
         return b;
     }
 
@@ -240,6 +264,7 @@ class BatteryFinally {
         b.name = "加农炮";
         b.levelUpArr = [BatteryFinally.StoneCannon_Far_1, BatteryFinally.StoneCannon_Power_1];
         b.levelDownGetter = BatteryFinally.AncientCannon;
+        b.imgIndex = 7;
         return b;
     }
 
@@ -248,6 +273,7 @@ class BatteryFinally {
         b.name = "远程加农炮1级";
         b.levelUpArr = [BatteryFinally.StoneCannon_Far_2];
         b.levelDownGetter = BatteryFinally.StoneCannon;
+        b.imgIndex = 8;
         return b;
     }
 
@@ -256,6 +282,7 @@ class BatteryFinally {
         b.name = "远程加农炮2级";
         b.levelUpArr = [BatteryFinally.StoneCannon_Far_3];
         b.levelDownGetter = BatteryFinally.StoneCannon_Far_1;
+        b.imgIndex = 8;
         return b;
     }
 
@@ -264,6 +291,7 @@ class BatteryFinally {
         b.name = "远程加农炮3级";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.StoneCannon_Far_2;
+        b.imgIndex = 8;
         return b;
     }
 
@@ -279,6 +307,7 @@ class BatteryFinally {
         b.price = 1500;
         b.levelUpArr = [BatteryFinally.StoneCannon_Power_2];
         b.levelDownGetter = BatteryFinally.StoneCannon;
+        b.imgIndex = 9;
         return b;
     }
 
@@ -294,6 +323,7 @@ class BatteryFinally {
         b.price = 2000;
         b.levelUpArr = [BatteryFinally.StoneCannon_Power_3];
         b.levelDownGetter = BatteryFinally.StoneCannon_Power_1;
+        b.imgIndex = 9;
         return b;
     }
 
@@ -309,6 +339,7 @@ class BatteryFinally {
         b.price = 3000;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.StoneCannon_Power_2;
+        b.imgIndex = 9;
         return b;
     }
 
@@ -320,6 +351,7 @@ class BatteryFinally {
         res.name = "小型军事炮塔";
         res.levelUpArr = [BatteryFinally.Rifle_1, BatteryFinally.MachineGun_1, BatteryFinally.ArmorPiercing_1];
         res.levelDownGetter = BatteryFinally.TraditionalCannon;
+        res.imgIndex = 21;
         return res;
     }
 
@@ -328,6 +360,8 @@ class BatteryFinally {
         res.name = "中型军事炮塔";
 
         res.levelDownGetter = BatteryFinally.TraditionalCannon;
+        res.levelUpArr = [BatteryFinally.AirCannon_1, BatteryFinally.Earthquake];
+        res.imgIndex = 22;
         return res;
     }
 
@@ -335,6 +369,8 @@ class BatteryFinally {
         let res = new Battery(0, 0, world);
         res.name = "大型军事炮塔";
         res.levelDownGetter = BatteryFinally.TraditionalCannon;
+        res.imgIndex = 23;
+        res.levelUpArr = [BatteryFinally.Artillery_1, BatteryFinally.MissileGun_1]
         return res;
     }
 
@@ -342,6 +378,8 @@ class BatteryFinally {
         let res = new Battery(0, 0, world);
         res.name = "多管军事炮塔";
         res.levelDownGetter = BatteryFinally.TraditionalCannon;
+        res.imgIndex = 24;
+        res.levelUpArr = [BatteryFinally.ThreeTubeCannon, BatteryFinally.SprayCannon_1, BatteryFinally.PowderCannon]
         return res;
     }
 
@@ -350,6 +388,7 @@ class BatteryFinally {
         res.name = "1级步枪";
         res.levelDownGetter = BatteryFinally.TraditionalCannon_Small;
         res.levelUpArr = [BatteryFinally.Rifle_2];
+        res.imgIndex = 25;
         return res;
     }
 
@@ -358,6 +397,7 @@ class BatteryFinally {
         res.name = "2级步枪";
         res.levelUpArr = [BatteryFinally.Rifle_3]
         res.levelDownGetter = BatteryFinally.Rifle_1;
+        res.imgIndex = 25;
         return res;
     }
 
@@ -366,22 +406,8 @@ class BatteryFinally {
         res.name = "3级步枪";
         res.levelUpArr = [];
         res.levelDownGetter = BatteryFinally.Rifle_2;
+        res.imgIndex = 25;
         return res;
-    }
-
-    static MachineGun_0(world) {
-        let b = new Battery(0, 0, world);
-        b.name = "0级重机枪";
-        b.rangeR = 200;
-        b.r += 2;
-        b.bullySpeed += 5;
-        b.bullySpeedAddMax = 2;
-        b.clock = 3;
-        b.getmMainBullyFunc = BullyFinally.F_S;
-        b.price = 120;
-        b.hpInit(1550);
-        b.levelUpArr = [BatteryFinally.MachineGun_1];
-        return b;
     }
 
     static MachineGun_1(world) {
@@ -398,7 +424,9 @@ class BatteryFinally {
         b.price = 150;
         b.levelUpArr = [BatteryFinally.MachineGun_2];
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Small;
+        b.imgIndex = 26;
         return b;
+
     }
 
     static MachineGun_2(world) {
@@ -418,6 +446,7 @@ class BatteryFinally {
         b.price = 200;
         b.levelUpArr = [BatteryFinally.MachineGun_3];
         b.levelDownGetter = BatteryFinally.MachineGun_1;
+        b.imgIndex = 26;
         return b;
     }
 
@@ -438,20 +467,7 @@ class BatteryFinally {
         b.price = 400;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.MachineGun_2;
-        return b;
-    }
-
-    static ArmorPiercing_0(world) {
-        let b = new Battery(0, 0, world);
-        b.name = "0级穿甲炮";
-        b.rangeR = 150;
-        b.r += 2;
-        b.bullySpeed += 1;
-        b.bullySlideRate = 2;
-        b.clock = 6;
-        b.hpInit(1100);
-        b.getmMainBullyFunc = BullyFinally.T_S;
-        b.price = 130;
+        b.imgIndex = 27;
         return b;
     }
 
@@ -468,6 +484,7 @@ class BatteryFinally {
         b.price = 160;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Small;
         b.levelUpArr = [BatteryFinally.ArmorPiercing_2];
+        b.imgIndex = 28;
         return b;
     }
 
@@ -485,6 +502,7 @@ class BatteryFinally {
         b.price = 280;
         b.levelUpArr = [BatteryFinally.ArmorPiercing_3];
         b.levelDownGetter = BatteryFinally.AirCannon_1;
+        b.imgIndex = 29;
         return b;
     }
 
@@ -502,22 +520,7 @@ class BatteryFinally {
         b.price = 400;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.AirCannon_2;
-        return b;
-    }
-
-    static Artillery_0(world) {
-        let b = new Battery(0, 0, world);
-        b.name = "0级火炮";
-        b.rangeR += 100;
-        b.r += 4;
-
-        b.bullySpeed = 2;
-        b.bullySlideRate = 1.2;
-        b.bullySpeedAddMax = 0;
-        b.getmMainBullyFunc = BullyFinally.H_S;
-        b.clock += 5;
-        b.hpInit(1100);
-        b.price = 150;
+        b.imgIndex = 29;
         return b;
     }
 
@@ -535,6 +538,7 @@ class BatteryFinally {
         b.price = 300;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Large;
         b.levelUpArr = [BatteryFinally.Artillery_2];
+        b.imgIndex = 33;
         return b;
     }
 
@@ -554,6 +558,7 @@ class BatteryFinally {
         b.price = 600;
         b.levelDownGetter = BatteryFinally.Artillery_1;
         b.levelUpArr = [BatteryFinally.Artillery_3];
+        b.imgIndex = 34;
         return b;
     }
 
@@ -572,6 +577,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.Artillery_2;
         b.levelUpArr = [];
+        b.imgIndex = 34;
         return b;
     }
 
@@ -590,6 +596,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Large;
         b.levelUpArr = [BatteryFinally.MissileGun_2];
+        b.imgIndex = 35;
         return b;
     }
 
@@ -608,6 +615,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.MissileGun_1;
         b.levelUpArr = [BatteryFinally.MissileGun_3];
+        b.imgIndex = 35;
         return b;
     }
 
@@ -626,6 +634,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.MissileGun_2;
         b.levelUpArr = [];
+        b.imgIndex = 35;
         return b;
     }
 
@@ -640,6 +649,7 @@ class BatteryFinally {
         b.attackFunc = b.gerAttack;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Middle;
         b.levelUpArr = [BatteryFinally.AirCannon_2];
+        b.imgIndex = 30;
         return b;
     }
 
@@ -654,6 +664,7 @@ class BatteryFinally {
         b.attackFunc = b.gerAttack;
         b.levelDownGetter = BatteryFinally.AirCannon_1;
         b.levelUpArr = [BatteryFinally.AirCannon_3];
+        b.imgIndex = 30;
         return b;
     }
 
@@ -668,6 +679,7 @@ class BatteryFinally {
         b.attackFunc = b.gerAttack;
         b.levelDownGetter = BatteryFinally.AirCannon_2;
         b.levelUpArr = [];
+        b.imgIndex = 30;
         return b;
     }
 
@@ -678,6 +690,7 @@ class BatteryFinally {
         b.attackFunc = b.earthquakeAttack;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Middle;
         b.levelUpArr = [BatteryFinally.Earthquake_Power_1, BatteryFinally.Earthquake_Speed_1];
+        b.imgIndex = 31;
         return b;
     }
 
@@ -688,6 +701,7 @@ class BatteryFinally {
         b.attackFunc = b.earthquakeAttack;
         b.levelDownGetter = BatteryFinally.Earthquake;
         b.levelUpArr = [BatteryFinally.Earthquake_Power_2];
+        b.imgIndex = 32;
         return b;
     }
 
@@ -698,6 +712,7 @@ class BatteryFinally {
         b.attackFunc = b.earthquakeAttack;
         b.levelDownGetter = BatteryFinally.Earthquake_Power_1;
         b.levelUpArr = [];
+        b.imgIndex = 32;
         return b;
     }
 
@@ -708,6 +723,7 @@ class BatteryFinally {
         b.attackFunc = b.earthquakeAttack;
         b.levelDownGetter = BatteryFinally.Earthquake;
         b.levelUpArr = [BatteryFinally.Earthquake_Speed_2];
+        b.imgIndex = 31;
         return b;
     }
 
@@ -718,6 +734,7 @@ class BatteryFinally {
         b.attackFunc = b.earthquakeAttack;
         b.levelDownGetter = BatteryFinally.Earthquake_Speed_1;
         b.levelUpArr = [];
+        b.imgIndex = 31;
         return b;
     }
 
@@ -729,6 +746,7 @@ class BatteryFinally {
 
         b.levelDownGetter = BatteryFinally.TraditionalCannon_MultiTube;
         b.levelUpArr = [BatteryFinally.Flamethrower_1, BatteryFinally.FrozenCannon_1, BatteryFinally.Poison_1];
+        b.imgIndex = 36;
         return b;
     }
 
@@ -761,6 +779,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.PowderCannon;
         b.levelUpArr = [BatteryFinally.Flamethrower_2];
+        b.imgIndex = 37;
         return b;
     }
 
@@ -778,6 +797,7 @@ class BatteryFinally {
         b.price = 8000;
         b.levelDownGetter = BatteryFinally.Flamethrower_1;
         b.levelUpArr = [];
+        b.imgIndex = 37;
         return b;
     }
 
@@ -795,6 +815,7 @@ class BatteryFinally {
         b.price = 6000;
         b.levelDownGetter = BatteryFinally.PowderCannon;
         b.levelUpArr = [BatteryFinally.FrozenCannon_2];
+        b.imgIndex = 39;
         return b;
     }
 
@@ -814,6 +835,7 @@ class BatteryFinally {
         b.bullyDeviationRotate = 5;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.FrozenCannon_1;
+        b.imgIndex = 39;
         return b;
     }
 
@@ -831,6 +853,7 @@ class BatteryFinally {
         b.price = 3000;
         b.levelDownGetter = BatteryFinally.PowderCannon;
         b.levelUpArr = [BatteryFinally.Poison_2];
+        b.imgIndex = 38;
         return b;
     }
 
@@ -848,6 +871,7 @@ class BatteryFinally {
         b.price = 3000;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Poison_1;
+        b.imgIndex = 38;
         return b;
     }
 
@@ -856,6 +880,7 @@ class BatteryFinally {
         b.name = "三管炮塔";
         b.levelDownGetter = BatteryFinally.TraditionalCannon_MultiTube;
         b.levelUpArr = [BatteryFinally.Shotgun_1, BatteryFinally.ShotCannon_1];
+        b.imgIndex = 42;
         return b;
     }
 
@@ -877,6 +902,7 @@ class BatteryFinally {
         b.price = 130;
         b.levelDownGetter = BatteryFinally.ThreeTubeCannon;
         b.levelUpArr = [BatteryFinally.Shotgun_2];
+        b.imgIndex = 44;
         return b;
     }
 
@@ -898,6 +924,7 @@ class BatteryFinally {
         b.price = 130;
         b.levelDownGetter = BatteryFinally.Shotgun_1;
         b.levelUpArr = [];
+        b.imgIndex = 44;
         return b;
     }
 
@@ -918,6 +945,7 @@ class BatteryFinally {
         b.price = 200;
         b.levelDownGetter = BatteryFinally.ThreeTubeCannon;
         b.levelUpArr = [BatteryFinally.ShotCannon_2];
+        b.imgIndex = 43;
         return b;
     }
 
@@ -937,6 +965,7 @@ class BatteryFinally {
         b.price = 270;
         b.levelDownGetter = BatteryFinally.ShotCannon_1;
         b.levelUpArr = [];
+        b.imgIndex = 43;
         return b;
     }
 
@@ -953,6 +982,7 @@ class BatteryFinally {
         b.price = 300;
         b.levelDownGetter = BatteryFinally.TraditionalCannon_MultiTube;
         b.levelUpArr = [BatteryFinally.SprayCannon_2, BatteryFinally.SprayCannon_Double];
+        b.imgIndex = 40;
         return b;
     }
 
@@ -968,6 +998,7 @@ class BatteryFinally {
         b.price = 500;
         b.levelDownGetter = BatteryFinally.SprayCannon_1;
         b.levelUpArr = [BatteryFinally.SprayCannon_3];
+        b.imgIndex = 40;
         return b;
     }
 
@@ -983,6 +1014,7 @@ class BatteryFinally {
         b.price = 1000;
         b.levelDownGetter = BatteryFinally.SprayCannon_2;
         b.levelUpArr = [];
+        b.imgIndex = 40;
         return b;
     }
 
@@ -998,6 +1030,7 @@ class BatteryFinally {
         b.price = 10000;
         b.levelDownGetter = BatteryFinally.SprayCannon_1;
         b.levelUpArr = [BatteryFinally.SprayCannon_Three];
+        b.imgIndex = 41;
         return b;
     }
 
@@ -1013,6 +1046,7 @@ class BatteryFinally {
         b.price = 10000;
         b.levelDownGetter = BatteryFinally.SprayCannon_Double;
         b.levelUpArr = [];
+        b.imgIndex = 41;
         return b;
     }
 
@@ -1029,6 +1063,7 @@ class BatteryFinally {
         b.attackFunc = b.shootingAttack;
         b.levelDownGetter = BatteryFinally.FutureCannon_1;
         b.levelUpArr = [BatteryFinally.FutureCannon_3];
+        b.imgIndex = 51;
         return b;
     }
 
@@ -1045,6 +1080,7 @@ class BatteryFinally {
         b.attackFunc = b.shootingAttack;
         b.levelDownGetter = BatteryFinally.FutureCannon_2;
         b.levelUpArr = [BatteryFinally.FutureCannon_4];
+        b.imgIndex = 52;
         return b;
     }
 
@@ -1061,6 +1097,7 @@ class BatteryFinally {
         b.attackFunc = b.shootingAttack;
         b.levelDownGetter = BatteryFinally.FutureCannon_3;
         b.levelUpArr = [BatteryFinally.FutureCannon_5];
+        b.imgIndex = 53;
         return b;
     }
 
@@ -1077,6 +1114,7 @@ class BatteryFinally {
         b.attackFunc = b.shootingAttack;
         b.levelDownGetter = BatteryFinally.FutureCannon_4;
         b.levelUpArr = [];
+        b.imgIndex = 54;
         return b;
     }
 
@@ -1092,6 +1130,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [BatteryFinally.Thunder_2, BatteryFinally.ThunderBall_1];
         b.levelDownGetter = BatteryFinally.FutureCannon_1;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1107,6 +1146,7 @@ class BatteryFinally {
         b.hpInit(150);
         b.levelUpArr = [BatteryFinally.ThunderBall_2];
         b.levelDownGetter = BatteryFinally.Thunder_1;
+        b.imgIndex = 56;
         return b;
     }
 
@@ -1122,6 +1162,7 @@ class BatteryFinally {
         b.hpInit(150);
         b.levelUpArr = [BatteryFinally.ThunderBall_3];
         b.levelDownGetter = BatteryFinally.ThunderBall_1;
+        b.imgIndex = 56;
         return b;
     }
 
@@ -1137,6 +1178,7 @@ class BatteryFinally {
         b.hpInit(150);
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.ThunderBall_2;
+        b.imgIndex = 56;
         return b;
     }
 
@@ -1152,6 +1194,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [BatteryFinally.Thunder_Far_1, BatteryFinally.Thunder_Power_1];
         b.levelDownGetter = BatteryFinally.Thunder_1;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1167,6 +1210,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [BatteryFinally.Thunder_Far_2];
         b.levelDownGetter = BatteryFinally.Thunder_2;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1182,6 +1226,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Thunder_Far_1;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1197,6 +1242,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [BatteryFinally.Thunder_Power_2];
         b.levelDownGetter = BatteryFinally.Thunder_2;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1212,6 +1258,7 @@ class BatteryFinally {
         b.attackFunc = b.zapAttack;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Thunder_Power_1;
+        b.imgIndex = 55;
         return b;
     }
 
@@ -1220,6 +1267,7 @@ class BatteryFinally {
         b.name = "激光塔";
         b.levelUpArr = [BatteryFinally.Laser_Blue_1, BatteryFinally.Laser_Red, BatteryFinally.Laser_Green_1];
         b.levelDownGetter = BatteryFinally.FutureCannon_1;
+        b.imgIndex = 60;
         return b;
     }
 
@@ -1228,6 +1276,7 @@ class BatteryFinally {
         b.name = "1级蓝激光";
         b.levelUpArr = [BatteryFinally.Laser_Blue_2, BatteryFinally.Laser_Hell_1];
         b.levelDownGetter = BatteryFinally.Laser;
+        b.imgIndex = 59;
         return b;
     }
 
@@ -1236,6 +1285,7 @@ class BatteryFinally {
         b.name = "2级蓝激光";
         b.levelUpArr = [BatteryFinally.Laser_Blue_3];
         b.levelDownGetter = BatteryFinally.Laser_Blue_1;
+        b.imgIndex = 59;
         return b;
     }
 
@@ -1244,6 +1294,7 @@ class BatteryFinally {
         b.name = "3级蓝激光";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Laser_Blue_2;
+        b.imgIndex = 59;
         return b;
     }
 
@@ -1252,6 +1303,7 @@ class BatteryFinally {
         b.name = "1级地狱激光塔";
         b.levelUpArr = [BatteryFinally.Laser_Hell_2]
         b.levelDownGetter = BatteryFinally.Laser_Blue_1;
+        b.imgIndex = 69;
         return b;
     }
 
@@ -1260,6 +1312,7 @@ class BatteryFinally {
         b.name = "2级地狱激光塔";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Laser_Hell_1;
+        b.imgIndex = 69;
         return b;
     }
 
@@ -1269,6 +1322,7 @@ class BatteryFinally {
         b.name = "1级绿激光";
         b.levelDownGetter = BatteryFinally.Laser;
         b.levelUpArr = [BatteryFinally.Laser_Green_2];
+        b.imgIndex = 58;
         return b;
     }
 
@@ -1278,6 +1332,7 @@ class BatteryFinally {
         b.name = "2级绿激光";
         b.levelUpArr = [BatteryFinally.Laser_Green_3];
         b.levelDownGetter = BatteryFinally.Laser_Green_1;
+        b.imgIndex = 58;
         return b;
     }
 
@@ -1287,6 +1342,7 @@ class BatteryFinally {
         b.name = "3级绿激光";
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Laser_Blue_2;
+        b.imgIndex = 58;
         return b;
     }
 
@@ -1295,6 +1351,7 @@ class BatteryFinally {
         b.name = "红激光"
         b.levelUpArr = [BatteryFinally.Laser_Red_Alpha_1, BatteryFinally.Laser_Red_Beta_1];
         b.levelDownGetter = BatteryFinally.Laser;
+        b.imgIndex = 57;
         return b;
     }
 
@@ -1303,6 +1360,7 @@ class BatteryFinally {
         b.name = "1级Alpha红激光";
         b.levelUpArr = [BatteryFinally.Laser_Red_Alpha_2];
         b.levelDownGetter = BatteryFinally.Laser_Red;
+        b.imgIndex = 57;
         return b;
     }
 
@@ -1311,6 +1369,7 @@ class BatteryFinally {
         b.name = "2级Alpha红激光"
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.Laser_Red_Alpha_1;
+        b.imgIndex = 57;
         return b;
     }
 
@@ -1321,6 +1380,7 @@ class BatteryFinally {
         b.attackFunc = b.scanningAttack;
         b.levelUpArr = [BatteryFinally.Laser_Red_Beta_2];
         b.levelDownGetter = BatteryFinally.Laser_Red;
+        b.imgIndex = 57;
         return b;
     }
 
@@ -1331,6 +1391,7 @@ class BatteryFinally {
         b.attackFunc = b.scanningAttack;
         b.levelDownGetter = BatteryFinally.Laser_Red_Beta_1;
         b.levelUpArr = [];
+        b.imgIndex = 57;
         return b;
     }
 }

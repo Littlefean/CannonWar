@@ -295,7 +295,7 @@ function endlessMode() {
                 let btn = document.createElement('button');
                 btn.classList.add(btnClassName);
                 let b = bFunc(world);
-                btn.innerText = b.name + ` ${b.price}￥`;
+                btn.innerHTML = b.name + `<br>${b.price}￥`;
                 btn.classList.add(b.gameType);
                 btn.setAttribute("data-price", b.price.toString());
                 // 按钮点击后会把该按钮产生的实例绑定到待添加物品变量上
@@ -360,7 +360,7 @@ function endlessMode() {
                     let btn = document.createElement("button");
                     btn.classList.add(btnClassName);
                     let levelUpObj = item(world);
-                    btn.innerText = levelUpObj.name + ` ${levelUpObj.price}￥`;
+                    btn.innerHTML = levelUpObj.name + `<br>${levelUpObj.price}￥`;
                     btn.classList.add(levelUpObj.gameType);
                     btn.setAttribute("data-price", levelUpObj.price.toString());
                     btn.addEventListener("click", () => {
@@ -371,7 +371,8 @@ function endlessMode() {
                         let newTower = item(world);
                         newTower.pos = levelUpPos;
                         world.addBattery(newTower);
-                        selectedThing = newTower;  // 点击升级完了之后应该是升级之后的塔
+                        // selectedThing = newTower;  // 点击升级完了之后应该是升级之后的塔
+                        selectedThing = null;
                     });
                     levelUpListEle.appendChild(btn);
                 }

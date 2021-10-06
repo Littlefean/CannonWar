@@ -13,7 +13,7 @@ class Battery extends CircleObject {
         super(new Vector(x, y), world);
         this.name = "普通炮塔";
         this.gameType = "Battery";
-        this.r = 10; // px;
+        this.r = 15; // px;
         this.rangeR = 100;  // 射程
         this.dirction = new Vector(1, 2).to1();  // 炮塔的朝向
         this.clock = 5 // 间歇时间 1最短 必须是整数！ 越大攻击频率越慢  遇到怪物之后的反应刻
@@ -44,8 +44,8 @@ class Battery extends CircleObject {
 
         this.bodyColor = MyColor.arrTo([100, 100, 100, 1]);
         this.hpColor = MyColor.arrTo([2, 230, 13, 0.8]);
-        this.bodyStrokeWidth = 10;
-        this.bodyStrokeColor = MyColor.arrTo([22, 22, 22, 1]);
+        this.bodyStrokeWidth = 1;
+        this.bodyStrokeColor = MyColor.Transparent();
         this.hpBarHeight = 5;
         this.attackFunc = this.normalAttack;
 
@@ -181,10 +181,6 @@ class Battery extends CircleObject {
     }
 
     render(ctx) {
-        // 渲染每一个子弹
-        for (let b of this.bullys) {
-            b.render(ctx);
-        }
         if (this.isDead()) {
             return;
         }
@@ -196,6 +192,10 @@ class Battery extends CircleObject {
         // 渲染视野半径圆
         if (!this.isDead()) {
             this.getViewCircle().renderView(ctx);
+        }
+        // 渲染每一个子弹  子弹在覆盖身体上层
+        for (let b of this.bullys) {
+            b.render(ctx);
         }
         // 渲染升级图
         if (this.isUpLevelAble()) {
