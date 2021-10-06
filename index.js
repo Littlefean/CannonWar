@@ -5,6 +5,8 @@
 
 let app = document.querySelector(".gameApp");
 let interfaceArr = app.children;
+const UP_LEVEL_ICON = new Image();
+UP_LEVEL_ICON.src = "icon/icon_upgrade.png";
 
 window.onload = function () {
     mainInterface();
@@ -293,7 +295,7 @@ function endlessMode() {
                 let btn = document.createElement('button');
                 btn.classList.add(btnClassName);
                 let b = bFunc(world);
-                btn.innerText = b.name;
+                btn.innerText = b.name + ` ${b.price}￥`;
                 btn.classList.add(b.gameType);
                 btn.setAttribute("data-price", b.price.toString());
                 // 按钮点击后会把该按钮产生的实例绑定到待添加物品变量上
@@ -358,33 +360,49 @@ function endlessMode() {
                     let btn = document.createElement("button");
                     btn.classList.add(btnClassName);
                     let levelUpObj = item(world);
-                    btn.innerText = levelUpObj.name;
+                    btn.innerText = levelUpObj.name + ` ${levelUpObj.price}￥`;
                     btn.classList.add(levelUpObj.gameType);
                     btn.setAttribute("data-price", levelUpObj.price.toString());
                     btn.addEventListener("click", () => {
-                        console.log("点击了升级按钮");
                         world.user.money -= levelUpObj.price;
+                        console.log("点击了升级按钮");
                         let levelUpPos = selectedThing.pos.copy();
                         selectedThing.remove();
                         let newTower = item(world);
                         newTower.pos = levelUpPos;
                         world.addBattery(newTower);
+                        selectedThing = newTower;  // 点击升级完了之后应该是升级之后的塔
                     });
                     levelUpListEle.appendChild(btn);
                 }
 
                 panelEle.querySelector(".levelDown").addEventListener("click", () => {
                     // 降级这个建筑
-
+                    let func = selectedThing.levelDownGetter;
+                    if (func === null) {
+                        // 这个建筑降低到最低级了
+                        alert("这个建筑不可以降级，或者已经降低到最低级了");
+                    } else {
+                        let downObj = func(world);
+                        world.user.money += (selectedThing.price / 4);  // 降级返还的金钱是升级的四分之一
+                        let levelUpPos = selectedThing.pos.copy();
+                        selectedThing.remove();
+                        downObj.pos = levelUpPos;
+                        world.addBattery(downObj);
+                        selectedThing = null;  // 完了之后要退出当前界面
+                    }
                 });
                 panelEle.querySelector(".sell").addEventListener("click", () => {
                     // 卖了这个建筑
+                    // 任何一个建筑买了只能换来自身价格的一半
+                    world.user.money += Math.floor(selectedThing.price / 2);
                     selectedThing.remove();
-                    world.user.money += 10;  // 任何一个建筑买了只能换来十块钱
                     console.log("加了钱了");  // 这个函数内部总是会点击了之后调用不止一次；
                     selectedThing = null;
                 });
-
+                panelEle.querySelector(".cancelChoice").addEventListener("click", () => {
+                    selectedThing = null;
+                });
             }
         }
     }

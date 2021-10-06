@@ -31,6 +31,7 @@ class Building extends CircleObject {
         this.otherHpAddNum = 0;
         this.otherHpAddFreezeTime = 100;
 
+        this.levelUpArr = []
     }
 
     goStep() {

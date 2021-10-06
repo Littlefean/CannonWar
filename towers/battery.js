@@ -37,10 +37,11 @@ class Battery extends CircleObject {
         this.hpInit(1000);
 
         this.price = 10 // 这个炮塔需要花多少钱来买
+
         this.levelUpArr = [  // 这个炮塔接下来可以升级成什么建筑
-            BatteryFinally.F1,
-            BatteryFinally.H1,
         ];
+        this.levelDownGetter = null;
+
         this.bodyColor = MyColor.arrTo([100, 100, 100, 1]);
         this.hpColor = MyColor.arrTo([2, 230, 13, 0.8]);
         this.bodyStrokeWidth = 10;
@@ -196,6 +197,12 @@ class Battery extends CircleObject {
         if (!this.isDead()) {
             this.getViewCircle().renderView(ctx);
         }
+        // 渲染升级图
+        if (this.isUpLevelAble()) {
+            let upDateImgStartPos = this.pos.plus(new Vector(this.r * 0.2, -this.r * 1.5));
+            ctx.drawImage(UP_LEVEL_ICON, 0, 0, 100, 100,
+                upDateImgStartPos.x, upDateImgStartPos.y + Math.sin(this.liveTime / 5) * 5, 20, 20);
+        }
     }
 
     /**
@@ -206,5 +213,15 @@ class Battery extends CircleObject {
         return new Circle(this.pos.x, this.pos.y, this.rangeR);
     }
 
-
+    /**
+     * 判断是否可以升级了
+     */
+    isUpLevelAble() {
+        for (let getterFunc of this.levelUpArr) {
+            if (this.world.user.money >= getterFunc(this.world).price) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

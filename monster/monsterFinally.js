@@ -11,6 +11,16 @@ class MonsterFinally {
         return m;
     }
 
+    static TestMonster(world) {
+        let m = Monster.randInit(world);
+        m.name = "鸡肋的测试怪物";
+        m.hpInit(1);
+        m.colishDamage = 0;
+        m.addPrice = 10;
+        m.comment = "这个是程序测试用的";
+        return m;
+    }
+
     static Ox1(world) {
         let m = Monster.randInit(world);
         m.name = "铁牛1级";
@@ -559,38 +569,39 @@ class MonsterFinally {
 
 
 const MONSTERS_FUNC_ARR = [
-    MonsterFinally.Ox1,
-    MonsterFinally.Ox2,
-    MonsterFinally.Ox3,
-    MonsterFinally.Bomber1,
-    MonsterFinally.Bomber2,
-    MonsterFinally.Bomber3,
-    MonsterFinally.Thrower1,
-    MonsterFinally.BlackHole,
-    MonsterFinally.Bulldozer,
-    MonsterFinally.Glans,
-    MonsterFinally.Medic,
-    MonsterFinally.Medic_M,
-    MonsterFinally.Medic_S,
-    MonsterFinally.AttackAdder,
-    MonsterFinally.SpeedAdder,
-    MonsterFinally.BulletWearer,
-    MonsterFinally.BulletRepellent,
-    MonsterFinally.DamageReducers,
-    MonsterFinally.Shouter,
+    // MonsterFinally.Ox1,
+    // MonsterFinally.Ox2,
+    // MonsterFinally.Ox3,
+    // MonsterFinally.Bomber1,
+    // MonsterFinally.Bomber2,
+    // MonsterFinally.Bomber3,
+    // MonsterFinally.Thrower1,
+    // MonsterFinally.BlackHole,
+    // MonsterFinally.Bulldozer,
+    // MonsterFinally.Glans,
+    // MonsterFinally.Medic,
+    // MonsterFinally.Medic_M,
+    // MonsterFinally.Medic_S,
+    // MonsterFinally.AttackAdder,
+    // MonsterFinally.SpeedAdder,
+    // MonsterFinally.BulletWearer,
+    // MonsterFinally.BulletRepellent,
+    // MonsterFinally.DamageReducers,
+    // MonsterFinally.Shouter,
+    //
+    // MonsterFinally.Slime_L,
+    // MonsterFinally.witch_N,
+    // MonsterFinally.bat,
+    // MonsterFinally.Spoke,
+    // MonsterFinally.SpokeMan,
+    // MonsterFinally.Exciting,
+    // MonsterFinally.Visitor,
+    // MonsterFinally.Enderman,
+    // MonsterFinally.Mts,
+    // MonsterFinally.T800,
 
-    MonsterFinally.Slime_L,
-    MonsterFinally.witch_N,
-    MonsterFinally.bat,
-    MonsterFinally.Spoke,
-    MonsterFinally.SpokeMan,
-    MonsterFinally.Exciting,
-    MonsterFinally.Visitor,
-    MonsterFinally.Enderman,
-    MonsterFinally.Mts,
-    MonsterFinally.T800,
-
-    MonsterFinally.Normal,
+    // MonsterFinally.Normal,
+    MonsterFinally.TestMonster,
 ];
 // 打算画一个1000 x 1000 的图片，其中能容纳 100个100x100的方块，这些网格中放置怪物贴图
 const MONSTERS_IMG = new Image();
