@@ -66,15 +66,30 @@
         </div>
     </div>
 
+    <!--    游戏战斗界面  -->
     <div class="interface war-interface" style="display: none">
         <canvas width="1200" height="780" id="mainCanvas"></canvas>
         <div class="rightTopArea">
             <button class="backPage">返回</button>
         </div>
+        <!--一个小升级窗口-->
+        <div id="smallLevelUpPanel">
+            <p><span class="name"></span>可以升级为：</p>
+            <div class="levelUpItems">
+                <!--这个盒子里的内容会不断清空更新-->
+            </div>
+            <div class="otherItems">
+                <!--  这个盒子里的内容也会不断清空-->
+                <!--  <div class="item">降级</div>-->
+                <!--  <div class="item">卖钱</div>-->
+            </div>
+        </div>
+
     </div>
 
 </div>
 <div class="choiceBtn" style="display: none">
+
     <div class="initPanel"></div>
 
     <div class="choicePanel" style="display: none">
@@ -82,26 +97,19 @@
             <p>名字：<span class="monsterName"></span></p>
             <p>细节描述：<span class="monsterComment"></span></p>
         </div>
-        <div class="buildingData">
-            <p>名字：<span class="buildingName"></span></p>
-            <p>细节描述：<span class="buildingComment"></span></p>
-            <p>可以升级为：</p>
-            <!--  升级列表  -->
-            <div class="levelUpList"></div>
-            <button class="levelDown">降级</button>
-            <button class="sell">不想要了，卖钱</button>
-            <button class="cancelChoice">取消选择</button>
-
-        </div>
-    </div>
-
-    <div class="putPanel" style="display: none">
-        <p>您当前选择的是：<span class="choiceName"></span></p>
-        <p>需要消耗：<span class="choiceMoney"></span></p>
-        <p>请点击游戏界面上的位置进行放置</p>
-        <button class="cancelPut">取消放置</button>
+<!--        <div class="buildingData">-->
+<!--            <p>名字：<span class="buildingName"></span></p>-->
+<!--            <p>细节描述：<span class="buildingComment"></span></p>-->
+<!--            <p>可以升级为：</p>-->
+<!--            &lt;!&ndash;  升级列表  &ndash;&gt;-->
+<!--            <div class="levelUpList"></div>-->
+<!--            <button class="levelDown">降级</button>-->
+<!--            <button class="sell">不想要了，卖钱</button>-->
+<!--            <button class="cancelChoice">取消选择</button>-->
+<!--        </div>-->
     </div>
 </div>
+
 
 <script src="model/myColor.js"></script>
 <script src="model/functions.js"></script>

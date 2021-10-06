@@ -264,12 +264,12 @@ function endlessMode() {
         }
     }, 25);
 
-    let addedThing = null;  // 当前准备添加到画布的东西
+    let addedThingFunc = null;  // 当前准备添加到画布的东西  应该是一个构造器（函数）。
     let selectedThing = null; // 当前选中的东西
     let btnClassName = "towerBtn";
     let initBtnListClassName = "initPanel";  // 选择界面的初始面板 div类名
     let selectedListClassName = "choicePanel";  // 选择界面的选择对象面板 div类名
-    let putListClassName = "putPanel";  // 放置选择对象时候的面板 div类名
+    let smallLevelUpPanelEle = document.querySelector("#smallLevelUpPanel");  // 升级窗口的元素
 
     /**
      * 显示初始化面板
@@ -298,12 +298,22 @@ function endlessMode() {
                 btn.innerHTML = b.name + `<br>${b.price}￥`;
                 btn.classList.add(b.gameType);
                 btn.setAttribute("data-price", b.price.toString());
-                // 按钮点击后会把该按钮产生的实例绑定到待添加物品变量上
+                // 按钮点击后会把构造函数绑定在添加物品上
                 btn.addEventListener("click", () => {
-                    addedThing = bFunc(world);
+                    addedThingFunc = bFunc;
                 });
                 panelEle.appendChild(btn);
             }
+            // 取消选择按钮
+            let cancelBtn = document.createElement("button");
+            cancelBtn.innerText = "取消放置模式";
+            cancelBtn.id = "cancelSelect";
+            cancelBtn.addEventListener("click", () => {
+                addedThingFunc = null;
+                world.user.putLoc.building = null;
+            });
+            panelEle.appendChild(cancelBtn);
+
             // 测试按钮
             let testB = document.createElement("button");
             testB.id = "testBtn";
@@ -311,25 +321,53 @@ function endlessMode() {
             testB.addEventListener("click", () => {
                 world.user.money += 100000;
             });
+
             panelEle.appendChild(testB);
         }
     }
 
     /**
-     * 显示舞台上选中了的物品的界面
+     * 时刻刷新右侧的选择面板
      */
-    function showSelectedPanel() {
+    setInterval(() => {
+        if (addedThingFunc === null && selectedThing === null) {
+            showInitPanel();
+        } else if (selectedThing !== null) {
+            showSelectedPanel(false);
+        }
+    }, 100);
+
+    /**
+     * 更改右键行为
+     * @param e
+     * @returns {boolean}
+     */
+    document.oncontextmenu = function (e) {
+        let ev = e || window.event;
+        if (ev.button === 2) { //判断是否是右键
+            addedThingFunc = null;
+            world.user.putLoc.building = null;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 显示舞台上选中了的物品的界面
+     * @param forceAble 是否是强制刷新
+     */
+    function showSelectedPanel(forceAble) {
         let panelEle = document.querySelector(`.${selectedListClassName}`);
         if (panelEle.style.display === "block") {
             // 当前已经是在展示的了，不用再被刷新了
             // 但是这样会导致点击查看一个东西之后还要点击一下空白的地方才能查看另一个东西
-            return;
+            if (!forceAble) {
+                return;
+            }
         }
         hideAllPanel();
         panelEle.style.display = "block";
-
         if (panelEle.innerHTML === "") {
-            panelEle.innerHTML = "你选中了一个东西";
         } else {
             let hideAllData = () => {
                 for (let data of panelEle.children) {
@@ -344,85 +382,7 @@ function endlessMode() {
                 panelEle.querySelector(".monsterData").style.display = "block";
                 panelEle.querySelector(".monsterName").innerHTML = selectedThing.name;
                 panelEle.querySelector(".monsterComment").innerHTML = selectedThing.comment;
-            } else if (selectedThing.gameType === "Building" || selectedThing.gameType === "Battery") {
-                /**
-                 * 建筑或者炮塔信息展示界面
-                 */
-                hideAllData();
-                panelEle.querySelector(".buildingData").style.display = "block";
-                panelEle.querySelector(".buildingName").innerHTML = selectedThing.name;
-                panelEle.querySelector(".buildingComment").innerHTML = selectedThing.comment;
-
-                let levelUpListEle = panelEle.querySelector(".levelUpList");
-                levelUpListEle.innerHTML = "";
-                // 创建所有可以升级成的建筑，添加按钮
-                for (let item of selectedThing.levelUpArr) {
-                    let btn = document.createElement("button");
-                    btn.classList.add(btnClassName);
-                    let levelUpObj = item(world);
-                    btn.innerHTML = levelUpObj.name + `<br>${levelUpObj.price}￥`;
-                    btn.classList.add(levelUpObj.gameType);
-                    btn.setAttribute("data-price", levelUpObj.price.toString());
-                    btn.addEventListener("click", () => {
-                        world.user.money -= levelUpObj.price;
-                        console.log("点击了升级按钮");
-                        let levelUpPos = selectedThing.pos.copy();
-                        selectedThing.remove();
-                        let newTower = item(world);
-                        newTower.pos = levelUpPos;
-                        world.addBattery(newTower);
-                        // selectedThing = newTower;  // 点击升级完了之后应该是升级之后的塔
-                        selectedThing = null;
-                    });
-                    levelUpListEle.appendChild(btn);
-                }
-
-                panelEle.querySelector(".levelDown").addEventListener("click", () => {
-                    // 降级这个建筑
-                    let func = selectedThing.levelDownGetter;
-                    if (func === null) {
-                        // 这个建筑降低到最低级了
-                        alert("这个建筑不可以降级，或者已经降低到最低级了");
-                    } else {
-                        let downObj = func(world);
-                        world.user.money += (selectedThing.price / 4);  // 降级返还的金钱是升级的四分之一
-                        let levelUpPos = selectedThing.pos.copy();
-                        selectedThing.remove();
-                        downObj.pos = levelUpPos;
-                        world.addBattery(downObj);
-                        selectedThing = null;  // 完了之后要退出当前界面
-                    }
-                });
-                panelEle.querySelector(".sell").addEventListener("click", () => {
-                    // 卖了这个建筑
-                    // 任何一个建筑买了只能换来自身价格的一半
-                    world.user.money += Math.floor(selectedThing.price / 2);
-                    selectedThing.remove();
-                    console.log("加了钱了");  // 这个函数内部总是会点击了之后调用不止一次；
-                    selectedThing = null;
-                });
-                panelEle.querySelector(".cancelChoice").addEventListener("click", () => {
-                    selectedThing = null;
-                });
             }
-        }
-    }
-
-    function showPutPanel() {
-        let panelEle = document.querySelector(`.${putListClassName}`);
-        if (panelEle.style.display === "block") {
-            return;
-        }
-        hideAllPanel();
-        panelEle.style.display = "block";
-        if (panelEle.innerHTML === "") {
-            panelEle.innerHTML = "请放置这个东西";
-        } else {
-            panelEle.querySelector(".cancelPut").addEventListener("click", () => {
-                addedThing = null;
-            });
-            panelEle.querySelector(".choiceName").innerHTML = addedThing.name;
-            panelEle.querySelector(".choiceMoney").innerHTML = addedThing.price;
         }
     }
 
@@ -436,21 +396,114 @@ function endlessMode() {
     }
 
     /**
-     * 时刻刷新右侧的选择面板
+     * 升级面板鼠标离开事件
      */
-    setInterval(() => {
-        if (addedThing !== null) {
-            // 显示：请放置这个炮塔，并展示这个炮塔的信息
-            showPutPanel();
-        } else if (selectedThing !== null) {
-            // 显示：当前选择的这个东西的信息
-            showSelectedPanel();
-        } else {
-            // 显示：初始默认面板
-            showInitPanel();
-        }
-    }, 100);
+    smallLevelUpPanelEle.addEventListener("mouseleave", () => {
+        hideSmallLevelUpPanelEle();
+    });
 
+    /**
+     * 隐藏小面板
+     */
+    function hideSmallLevelUpPanelEle() {
+        smallLevelUpPanelEle.style.display = "none";
+    }
+
+    /**
+     * 显示小升级面板
+     * 引用外部变量：  smallLevelUpPanelEle  world
+     * @param thing {Battery}  是什么建筑的
+     * @param clickPos {Vector} 鼠标点击的位置
+     */
+    function showSmallLevelUpPanel(thing, clickPos) {
+        // 弹出一个升级界面
+        smallLevelUpPanelEle.style.display = "block";
+        smallLevelUpPanelEle.style.left = clickPos.x + 10 + "px";
+        smallLevelUpPanelEle.style.top = clickPos.y + 10 + "px";
+        // 设置弹出界面里面的内容
+        let nameSpan = smallLevelUpPanelEle.querySelector(".name");
+        nameSpan.innerHTML = thing.name;
+        let listEle = smallLevelUpPanelEle.querySelector(".levelUpItems");
+        console.log(listEle);
+        listEle.innerHTML = "";  // 先清空
+        // 遍历可以升级的项
+        if (thing.levelUpArr.length === 0) {
+            // 已经顶级了
+            let tips = document.createElement("p");
+            tips.innerText = '这个建筑已经顶级啦！';
+            listEle.appendChild(tips);
+        }
+        for (let levelUpItemFunc of thing.levelUpArr) {
+            // 设置当前这个升级项目按钮
+            let levelUpObj = levelUpItemFunc(world);
+            let divLevelUpItemEle = document.createElement("div");
+            divLevelUpItemEle.classList.add("levelUpItem");
+            // 设置标签内容
+            divLevelUpItemEle.innerHTML = levelUpObj.name + `<br>${levelUpObj.price}元`;
+            // 给标签绑定价格属性
+            divLevelUpItemEle.setAttribute("data-price", levelUpObj.price.toString());
+
+            listEle.appendChild(divLevelUpItemEle);
+
+            // 给这个升级项添加点击属性
+            divLevelUpItemEle.addEventListener("click", () => {
+                if (world.user.money >= divLevelUpItemEle.dataset.price) {
+                    // 点击之后，更换把炮塔升级，同时更新升级面板里的属性
+                    let pos = thing.pos.copy();
+                    world.user.money -= thing.price;
+                    let newThing = levelUpItemFunc(world);
+                    newThing.pos = pos;
+                    world.addBattery(newThing);
+                    thing.remove();
+
+                    showSmallLevelUpPanel(newThing, clickPos);  // 看似是递归，但实际上又不是递归
+                } else {
+                    let et = new EffectText("钱不够！");
+                    et.pos = clickPos;
+                    world.addEffect(et);
+                }
+            });
+        }
+        let otherItemsEle = smallLevelUpPanelEle.querySelector(".otherItems");
+        otherItemsEle.innerHTML = ""; // 先清空
+        // 设置降级项
+        let levelDownEle = document.createElement("div");
+        levelDownEle.classList.add("item");
+        levelDownEle.innerHTML = `降级<br>+${thing.price / 4}元`;
+
+        levelDownEle.addEventListener("click", () => {
+            // 降级点击函数
+            let fatherFunc = thing.levelDownGetter;
+            if (fatherFunc === null) {
+                // 已经不能降级了
+                let et = new EffectText("无法降级！");
+                et.pos = clickPos;
+                world.addEffect(et);
+            } else {
+                let downObj = fatherFunc(world);
+                world.user.money += thing.price / 4;
+                let newPos = thing.pos.copy();
+                thing.remove();
+                downObj.pos = newPos;
+                world.addBattery(downObj);
+                // 更新
+                showSmallLevelUpPanel(downObj, clickPos);  // 刷新小面板
+            }
+        });
+        otherItemsEle.appendChild(levelDownEle);
+        // 设置出售项
+        let saleDownEle = document.createElement("div");
+        saleDownEle.classList.add("item");
+        saleDownEle.innerHTML = `卖了<br>+${thing.price / 2}元`;
+        saleDownEle.addEventListener("click", () => {
+            // 卖了点击函数
+            world.user.money += Math.floor(thing.price / 2);
+            thing.remove();
+            // 隐藏小面板
+            hideSmallLevelUpPanelEle();
+        });
+        otherItemsEle.appendChild(saleDownEle);
+    }
 
     /**
      * 点击画布放置炮塔
@@ -460,13 +513,15 @@ function endlessMode() {
      */
     canvasEle.onclick = function (e) {
         let clickPos = new Vector(e.clientX - canvasEle.offsetLeft, e.clientY - canvasEle.offsetTop);
-        if (addedThing === null) {
+        if (addedThingFunc === null) {
             // 手上没有炮塔
-            // 检测点击的此处是否是炮塔
+            // 检测点击的此处是否是炮塔或者建筑
             for (let item of world.getAllBuildingArr()) {
                 if (item.getBodyCircle().pointIn(clickPos.x, clickPos.y)) {
-                    // 这里有炮塔
-                    selectedThing = item;
+                    // 这里有炮塔或者建筑
+                    // selectedThing = item;
+                    // showSelectedPanel(true);
+                    showSmallLevelUpPanel(item, clickPos);
                     return;
                 }
             }
@@ -475,12 +530,14 @@ function endlessMode() {
                 if (item.getBodyCircle().pointIn(clickPos.x, clickPos.y)) {
                     // 这里有怪物
                     selectedThing = item;
+                    showSelectedPanel(true);
                     return;
                 }
             }
             selectedThing = null;
         } else {
             // 手上有炮塔，放置炮塔
+            let addedThing = addedThingFunc(world);
             addedThing.pos = clickPos;
             // 检测此处是否可以放建筑
             for (let item of world.getAllBuildingArr()) {
@@ -502,7 +559,6 @@ function endlessMode() {
                     world.addBuilding(addedThing);
                     break;
             }
-            addedThing = null;
         }
     }
 
@@ -511,10 +567,10 @@ function endlessMode() {
      * @param e
      */
     canvasEle.onmousemove = function (e) {
-        if (addedThing === null) {
+        if (addedThingFunc === null) {
             return;
         }
-        world.user.putLoc.building = addedThing;
+        world.user.putLoc.building = addedThingFunc(world);
         world.user.putLoc.x = e.clientX - canvasEle.offsetLeft;
         world.user.putLoc.y = e.clientY - canvasEle.offsetTop;
     }
@@ -523,6 +579,7 @@ function endlessMode() {
     /**
      * 时刻更新按钮状态
      * 让按钮是否可以点击，金钱限制
+     * 更新是否取消放置的按钮
      */
     let freshBtn = setInterval(() => {
         let towerBtnArr = document.getElementsByClassName(btnClassName);
@@ -535,6 +592,12 @@ function endlessMode() {
         }
         if (gameEnd) {
             clearInterval(freshBtn);
+        }
+        let cancelSelectBtn = document.getElementById("cancelSelect");
+        if (addedThingFunc === null) {
+            cancelSelectBtn.setAttribute("disabled", "disabled");
+        } else {
+            cancelSelectBtn.removeAttribute("disabled");
         }
     }, 100);
 

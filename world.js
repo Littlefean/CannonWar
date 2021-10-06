@@ -205,7 +205,7 @@ class World {
             e.render(ctx);
         }
         // 渲染即将放置的位置
-        if (this.user.putLoc.building !== null) {
+        if (this.user.putLoc.building !== null && this.user.putLoc.building !== undefined) {
             let x = this.user.putLoc.x;
             let y = this.user.putLoc.y;
             let body = new Circle(x, y, this.user.putLoc.building.r);
