@@ -74,6 +74,33 @@ class Functions {
     }
 
     /**
+     * 随着波数的增加，怪物的血量上限的变化
+     * @param level
+     * @returns {number}
+     */
+    static levelMonsterHpAdded(level) {
+        return Math.floor(Math.pow(level, 3) + Math.pow(level, 0.5) * 60);
+    }
+
+    /**
+     * 波数与T800数量的函数
+     * @param level
+     * @returns {number|number}
+     */
+    static levelT800Count(level) {
+        let res = Math.floor(Math.pow(level, 0.35));
+        return res < 1 ? 1 : res;
+    }
+
+    /**
+     * 随着怪物波数的增加，每个怪物奖金的量
+     * @param level
+     */
+    static levelAddPrice(level) {
+        return Math.floor(Math.log(level) * (level / 10)) + 10;
+    }
+
+    /**
      * 地狱塔的单次伤害随着锁定时间刻的变化
      * 几乎一秒就能秒杀
      * @param tick
@@ -85,4 +112,25 @@ class Functions {
     static timeHellTowerDamage(tick) {
         return Math.pow(tick, 2) / 1000;
     }
+
+    /**
+     * 怪物的冲撞伤害随着波数的增加
+     * @param level
+     */
+    static levelCollideAdded(level) {
+        return Math.floor(Math.pow(level, 2));
+    }
+
+    /**
+     * 新放置塔楼的价格与塔楼目前数量之间的关系
+     * @param num
+     * @constructor
+     */
+    static TowerNumPriceAdded(num) {
+        return Math.floor(Math.exp(num) / 1000);
+    }
 }
+
+// for (let i = 1; i < 1000; i++) {
+//     console.log(i, Functions.TowerNumPriceAdded(i));
+// }

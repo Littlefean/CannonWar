@@ -58,25 +58,38 @@ class MonsterGroup {
         res.level = level;
         res.kinds = [];
         res.kindCount = [];
+        /**
+         * 随机选择数组中的一个元素
+         * @param arr 数组类型
+         */
+        let choice = (arr) => {
+            return arr[Math.floor(Math.random() * arr.length)];
+        };
+        let monsterArr;
+        if (level < 10) {
+            monsterArr = MONSTERS_FUNC_ARR_1;
+        } else {
+            monsterArr = MONSTERS_FUNC_ARR_ALL;
+        }
 
-        let sumNum = Functions.levelMonsterFlowNum(level);
-        // let sumNum = 10;
-
-        // if (level % 20 === 0) {
-        //
-        // } else if (level % 10 === 0) {
-        //
-        // } else if (level % 5 === 0) {
-        //
-        // } else {
-        //
-        // }
-
-        // 随机选择两种怪物,也有可能是同一种
-        for (let i = 0; i < 2; i++) {
-            let randIndex = Math.floor(Math.random() * MONSTERS_FUNC_ARR.length);
-            res.kinds.push(MONSTERS_FUNC_ARR[randIndex]);
-            res.kindCount.push(Math.floor(sumNum / 2));
+        if (level % 10 === 0) {
+            let sumNum = Functions.levelT800Count(level);
+            res.kinds.push(MonsterFinally.T800);
+            res.kindCount.push(sumNum);
+        } else if (level % 5 === 0) {
+            // 随机选择三种怪物,也有可能是同一种
+            let sumNum = Functions.levelMonsterFlowNum(level);
+            for (let i = 0; i < 3; i++) {
+                res.kinds.push(choice(monsterArr));
+                res.kindCount.push(Math.floor(sumNum / 3));
+            }
+        } else {
+            // 随机选择两种怪物,也有可能是同一种
+            let sumNum = Functions.levelMonsterFlowNum(level);
+            for (let i = 0; i < 2; i++) {
+                res.kinds.push(choice(monsterArr));
+                res.kindCount.push(Math.floor(sumNum / 2));
+            }
         }
         res.updateCount();
         return res;
@@ -119,7 +132,9 @@ class MonsterGroup {
                 let kind = this.kinds[i];
                 let count = this.kindCount[i];
                 for (let j = 0; j < count; j++) {
-                    this.world.monsters.push(kind(this.world));
+                    let m = kind(this.world);
+                    m.dataInit(this.level);
+                    this.world.monsters.push(m);
                 }
             }
         }

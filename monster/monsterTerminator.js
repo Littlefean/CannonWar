@@ -14,14 +14,20 @@ class MonsterTerminator extends Monster {
 
     hpChange(dh) {
         let damage = -dh;
-        if (damage < 1) {
-        } else if (damage < 50) {
+        if (damage < 10) {
+            return;
+        }
+        if (damage < 100) {
+            super.hpChange(-0.0001);
+        } else if (damage < 300) {
             super.hpChange(-0.1);
-        } else if (damage < 100) {
+        } else if (damage < 500) {
             super.hpChange(-1);
         } else if (damage < 1500) {
             super.hpChange(-10);
-        } else {
+        } else if (damage < 3000) {
+            super.hpChange(-100);
+        }else {
             super.hpChange(dh);
         }
     }

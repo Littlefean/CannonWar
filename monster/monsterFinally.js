@@ -5,9 +5,8 @@
 class MonsterFinally {
     static Normal(world) {
         let m = Monster.randInit(world);
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.speedNumb = 0.3;
+        m.comment = "一个最普通的怪物";
         return m;
     }
 
@@ -30,9 +29,8 @@ class MonsterFinally {
         m.accelerationV = 0.01;
         m.maxSpeedN = 5;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 1;
+        m.comment = "速度会越来越快";
         return m;
     }
 
@@ -45,9 +43,8 @@ class MonsterFinally {
         m.accelerationV = 0.05;
         m.maxSpeedN = 7;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 1;
+        m.comment = "加速度，速度越来越快";
         return m;
     }
 
@@ -60,9 +57,8 @@ class MonsterFinally {
         m.accelerationV = 0.1;
         m.maxSpeedN = 10;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 1;
+        m.comment = "比普通铁牛加速的更快";
         return m;
     }
 
@@ -77,9 +73,8 @@ class MonsterFinally {
         m.bombSelfRange = 80;
         m.bombSelfDamage = 200;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 2;
+        m.comment = "死了会爆炸";
         return m;
     }
 
@@ -94,9 +89,8 @@ class MonsterFinally {
         m.bombSelfRange = 120;
         m.bombSelfDamage = 800;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 2;
+        m.comment = "爆炸伤害更大";
         return m;
     }
 
@@ -111,9 +105,8 @@ class MonsterFinally {
         m.bombSelfRange = 200;
         m.bombSelfDamage = 5000;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 2;
+        m.comment = "爆炸伤害更更大";
         return m;
     }
 
@@ -128,10 +121,9 @@ class MonsterFinally {
         m.speedNumb = 0.4;
         m.r = 30;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
         m.colishDamage /= 1;  // 因为是碾压，所以是连贯伤害
+        m.imgIndex = 3;
+        m.comment = "直接碾压你的建筑，伤害很大";
         return m;
     }
 
@@ -139,7 +131,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "黑洞1级";
         m.throwAble = true;
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([0, 0, 0, 1]);
         m.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
@@ -150,9 +142,8 @@ class MonsterFinally {
         m.gAreaNum = 2;  // 引力场强度
 
         m.r = 50;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 4;
+        m.comment = "会把你的建筑吸走";
         return m;
     }
 
@@ -160,7 +151,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "推土机1级";
         m.throwAble = true;
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([50, 30, 50, 1]);
         m.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
@@ -171,16 +162,15 @@ class MonsterFinally {
         m.gAreaNum = -2;  // 引力场强度
 
         m.r = 25;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 5;
+        m.comment = "会把你的建筑推开，和黑洞相反";
         return m;
     }
 
     static Glans(world) {
         let m = Monster.randInit(world);
         m.name = "鳖蛋子";
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([152, 118, 170, 1]);
         m.r = 25;
@@ -194,16 +184,15 @@ class MonsterFinally {
         m.laserRecoverNum = 20;  // 一次恢复多少个激光防御数量
         m.laserRadius = 100;  // 激光防御范围的半径
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 6;
+        m.comment = "有激光防御能力，就是能摧毁射过来的子弹，但是摧毁子弹需要激光能量，激光能量是有限的，弱点是非子弹类伤害";
         return m;
     }
 
     static Medic(world) {
         let m = Monster.randInit(world);
         m.name = "丢包医疗兵";
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([105, 117, 60, 1]);
         m.r = 20;
@@ -219,16 +208,15 @@ class MonsterFinally {
             gainMaxHpAddedNum: 0, // 一次加血量上限
         };
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 7;
+        m.comment = "不停的给队友恢复固定的血量";
         return m;
     }
 
     static Medic_S(world) {
         let m = Monster.randInit(world);
         m.name = "搞比例医疗兵";
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([92, 117, 79, 1]);
         m.r = 30;
@@ -244,16 +232,15 @@ class MonsterFinally {
             gainMaxHpAddedNum: 0, // 一次加血量上限
         };
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 8;
+        m.comment = "不停的给队友恢复他们自身最大血量一定比例的血量";
         return m;
     }
 
     static Medic_M(world) {
         let m = Monster.randInit(world);
         m.name = "上限医疗兵";
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([120, 188, 85, 1]);
         m.r = 40;
@@ -269,16 +256,15 @@ class MonsterFinally {
             gainMaxHpAddedNum: 100, // 一次加血量上限
         };
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 9;
+        m.comment = "不停的给身边的队友增加血量上限";
         return m;
     }
 
     static SpeedAdder(world) {
         let m = Monster.randInit(world);
         m.name = "速度增加";
-        m.addPrice += 1000;
+        m.addPrice += 10;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([68, 230, 249, 1]);
         m.r = 10;
@@ -294,16 +280,15 @@ class MonsterFinally {
             gainMaxHpAddedNum: 0, // 一次加血量上限
         };
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 10;
+        m.comment = "会给身边的队友增加速度，但是不能给自己增加速度，但是两个它们在一起的时候就有意思了";
         return m;
     }
 
     static AttackAdder(world) {
         let m = Monster.randInit(world);
         m.name = "攻击增加";
-        m.addPrice += 1000;
+        m.addPrice += 15;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([255, 198, 109, 1]);
         m.r = 10;
@@ -319,16 +304,15 @@ class MonsterFinally {
             gainMaxHpAddedNum: 0, // 一次加血量上限
         };
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 11;
+        m.comment = "不停的给身边的队友增加攻击力，增加的攻击力是撞击伤害。所以你要小心一点。";
         return m;
     }
 
     static BulletWearer(world) {
         let m = Monster.randInit(world);
         m.name = "子弹削子";
-        m.addPrice += 1000;
+        m.addPrice += 20;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([62, 134, 160, 1]);
         m.r = 10;
@@ -338,16 +322,15 @@ class MonsterFinally {
         m.bullyChangeDetails.f = 5;
         m.bullyChangeDetails.bullyDR = -1;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 12;
+        m.comment = "自身会有一个场，这个场里的子弹会不停的减少子弹半径";
         return m;
     }
 
     static BulletRepellent(world) {
         let m = Monster.randInit(world);
         m.name = "子弹排斥者";
-        m.addPrice += 1000;
+        m.addPrice += 30;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([186, 166, 128, 1]);
         m.r = 20;
@@ -357,17 +340,14 @@ class MonsterFinally {
         m.bullyChangeDetails.f = 1;
         // m.bullyChangeDetails.bullyDR = -1;
         m.bullyChangeDetails.bullyAN = 1;
-
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 13;
         return m;
     }
 
     static DamageReducers(world) {
         let m = Monster.randInit(world);
         m.name = "子弹减伤者";
-        m.addPrice += 1000;
+        m.addPrice += 30;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
         m.r = 20;
@@ -376,22 +356,18 @@ class MonsterFinally {
         m.bullyChangeDetails.r = 150;
         m.bullyChangeDetails.f = 1;
         m.bullyChangeDetails.bullyDD = -1;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 14;
         return m;
     }
 
     static Shouter(world) {
         let m = MonsterShooter.randInit(world);
         m.name = "射击者";
-        m.addPrice += 1000;
+        m.addPrice += 30;
         m.speedNumb = 0.15;
         m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
         m.r = 20;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 15;
         return m;
     }
 
@@ -407,10 +383,7 @@ class MonsterFinally {
 
         m.deadSummonAble = true;
         m.summonMonsterFunc = MonsterFinally.Slime_M;
-
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 16;
         return m;
     }
 
@@ -427,9 +400,7 @@ class MonsterFinally {
         m.deadSummonAble = true;
         m.summonMonsterFunc = MonsterFinally.Slime_S;
 
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 16;
         return m;
     }
 
@@ -442,9 +413,7 @@ class MonsterFinally {
         m.bodyStrokeColor = MyColor.arrTo([47, 113, 56, 1]);
         m.bodyStrokeWidth = 3;
         m.r = 10;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 16;
         return m;
     }
 
@@ -464,10 +433,7 @@ class MonsterFinally {
         m.summonCount = 4;
         m.summonDistance = Math.random() * 30 + 30;
         m.summonMonsterFunc = MonsterFinally.bat;
-
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 17;
         return m;
     }
 
@@ -483,10 +449,7 @@ class MonsterFinally {
         m.accelerationV = 0.01;
         m.maxSpeedN = 5;
         m.r = 5;
-
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 18;
         return m;
     }
 
@@ -494,10 +457,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "醉酒懒汉";
         m.speedNumb = 3;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
         m.changeSpeedFunc = m.selfSwingMove;
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 19;
         return m;
     }
 
@@ -505,10 +466,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "溜冰";
         m.speedNumb = 3;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
         m.changeSpeedFunc = m.selfSuddenlyMove;
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 20;
         return m;
     }
 
@@ -516,10 +475,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "激动";
         m.speedNumb = 3;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
         m.changeSpeedFunc = m.selfExcitingMove;
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 21;
         return m;
     }
 
@@ -527,10 +484,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "参观者";
         m.speedNumb = 3;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
         m.changeSpeedFunc = m.selfDoubleSwingMove;
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 22;
         return m;
     }
 
@@ -538,11 +493,9 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "小黑";
         m.speedNumb = 1;
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
 
         m.teleportingAble = true;
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 23;
         return m;
     }
 
@@ -550,58 +503,66 @@ class MonsterFinally {
         let m = MonsterMortis.randInit(world);
         m.name = "麦缇斯";
         m.speedNumb = 1;
-
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 24;
         return m;
     }
 
     static T800(world) {
         let m = MonsterTerminator.randInit(world);
         m.name = "T800";
-        m.hpInit(m.maxHp + Functions.timeMonsterHp(world.time));
-        m.colishDamage += Functions.timeMonsterAtt(world.time);
-        m.addPrice += Functions.timeAddPrise(world.time);
+        m.imgIndex = 25;
         return m;
     }
 }
 
 
-const MONSTERS_FUNC_ARR = [
-    // MonsterFinally.Ox1,
-    // MonsterFinally.Ox2,
-    // MonsterFinally.Ox3,
-    // MonsterFinally.Bomber1,
-    // MonsterFinally.Bomber2,
-    // MonsterFinally.Bomber3,
-    // MonsterFinally.Thrower1,
-    // MonsterFinally.BlackHole,
-    // MonsterFinally.Bulldozer,
-    // MonsterFinally.Glans,
-    // MonsterFinally.Medic,
-    // MonsterFinally.Medic_M,
-    // MonsterFinally.Medic_S,
-    // MonsterFinally.AttackAdder,
-    // MonsterFinally.SpeedAdder,
-    // MonsterFinally.BulletWearer,
-    // MonsterFinally.BulletRepellent,
-    // MonsterFinally.DamageReducers,
-    // MonsterFinally.Shouter,
-    //
-    // MonsterFinally.Slime_L,
-    // MonsterFinally.witch_N,
-    // MonsterFinally.bat,
-    // MonsterFinally.Spoke,
-    // MonsterFinally.SpokeMan,
-    // MonsterFinally.Exciting,
-    // MonsterFinally.Visitor,
-    // MonsterFinally.Enderman,
-    // MonsterFinally.Mts,
-    // MonsterFinally.T800,
+const MONSTERS_FUNC_ARR_ALL = [
+    MonsterFinally.Ox1,
+    MonsterFinally.Ox2,
+    MonsterFinally.Ox3,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Bomber2,
+    MonsterFinally.Bomber3,
+    MonsterFinally.Thrower1,
+    MonsterFinally.BlackHole,
+    MonsterFinally.Bulldozer,
+    MonsterFinally.Glans,
+    MonsterFinally.Medic,
+    MonsterFinally.Medic_M,
+    MonsterFinally.Medic_S,
+    MonsterFinally.AttackAdder,
+    MonsterFinally.SpeedAdder,
+    MonsterFinally.BulletWearer,
+    MonsterFinally.BulletRepellent,
+    MonsterFinally.DamageReducers,
+    MonsterFinally.Shouter,
 
-    // MonsterFinally.Normal,
-    MonsterFinally.TestMonster,
+    MonsterFinally.Slime_L,
+    MonsterFinally.witch_N,
+    MonsterFinally.bat,
+    MonsterFinally.Spoke,
+    MonsterFinally.SpokeMan,
+    MonsterFinally.Exciting,
+    MonsterFinally.Visitor,
+    MonsterFinally.Enderman,
+    MonsterFinally.Mts,
+    MonsterFinally.T800,
+
+    MonsterFinally.Normal,
+    // MonsterFinally.TestMonster,
+];
+const MONSTERS_FUNC_ARR_1 = [
+    MonsterFinally.Normal,
+    MonsterFinally.Ox1,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Thrower1,
+    MonsterFinally.Bulldozer,
+    MonsterFinally.Medic,
+    MonsterFinally.Medic_M,
+    MonsterFinally.Medic_S,
+    MonsterFinally.AttackAdder,
+    MonsterFinally.SpeedAdder,
+    MonsterFinally.Shouter,
 ];
 // 打算画一个1000 x 1000 的图片，其中能容纳 100个100x100的方块，这些网格中放置怪物贴图
 const MONSTERS_IMG = new Image();

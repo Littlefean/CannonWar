@@ -1,10 +1,11 @@
-function levelMonsterFlowNum(level) {
-    let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
-    res += Math.log(level + 1) * 10;
-    res = Math.floor(res);
-    return res <= 0 ? 1 : res;
-}
-
-for (let i = 1; i < 500; i++) {
-    console.log(i, levelMonsterFlowNum(i));
+function Orderprocessing1() {
+    let vid = document.getElementById("myVideo");//获取音频对象
+    let start = 0;//定义循环的变量
+    let times = 3;//定于循环的次数
+    vid.addEventListener("ended", function () {
+        vid.play();//启动音频，也就是播放
+        start++;//循环
+        start === times && vid.pause();//也就是当循环的变量等于次数的时候，就会终止循环并且关掉音频
+    });
+    vid.play();//启动音频，用于第一次启动
 }

@@ -8,15 +8,43 @@
 
 <body>
 <div class="gameApp">
+    <div class="sounds">
+        <!--存放一些音乐、音效-->
+        <!-- -->
+        <audio src="sound/Waterflame - Glorious Morning.mp3" preload="auto" id="warBgm"></audio>
+        <audio src="sound/firing4.ogg" id="firing4" preload="auto"></audio>
+        <audio src="sound/pekka_deploy_end_03.mp3" id="bigPika" preload="auto"></audio>
+        <audio src="sound/large_gun_fire1.ogg" id="ArtilleryLunch" preload="auto"></audio>
+        <audio src="sound/large_gun_fire2.ogg" id="ArtilleryBomb" preload="auto"></audio>
+        <audio src="sound/missile_fire.ogg" id="MissileLunch" preload="auto"></audio>
+        <audio src="sound/missile_hit.ogg" id="MissileBomb" preload="auto"></audio>
+        <audio src="sound/zappyshot_01.mp3" id="zap" preload="auto"></audio>
+    </div>
     <div class="main-interface interface">
         <h1>Cannon War</h1>
         <h2>炮塔战争</h2>
         <div class="btnList">
             <button class="startGame">开始游戏</button>
+            <button class="help">帮助说明</button>
             <button class="wiki">游戏图鉴</button>
         </div>
         <div class="leftTopArea">
-            <button class="soundSet">开启声音（未开发）</button>
+            <button class="soundSet">
+                <audio src="sound/病毒进化游戏原声.mp3" id="bgm" controls="controls" autoplay loop>
+                    你的浏览器不支持播放
+                </audio>
+            </button>
+        </div>
+    </div>
+    <div class="help-interface interface" style="display: none">
+        <h1>帮助说明</h1>
+        <p>点击右侧按钮，再点击画布就可以放置新建筑了。</p>
+        <p>取消放置新建筑可以按右键</p>
+        <p>点击怪物可以查看信息</p>
+        <p>点击舞台上的建筑可以对其进行升级，尤其是建筑显示绿色剪头的时候，就表示可以升级了</p>
+
+        <div class="leftTopArea">
+            <button class="backPage">返回</button>
         </div>
     </div>
 
@@ -73,7 +101,7 @@
             <button class="backPage">返回</button>
         </div>
         <!--一个小升级窗口-->
-        <div id="smallLevelUpPanel">
+        <div id="smallLevelUpPanel" style="display: none">
             <p><span class="name"></span>可以升级为：</p>
             <div class="levelUpItems">
                 <!--这个盒子里的内容会不断清空更新-->
@@ -97,20 +125,20 @@
             <p>名字：<span class="monsterName"></span></p>
             <p>细节描述：<span class="monsterComment"></span></p>
         </div>
-<!--        <div class="buildingData">-->
-<!--            <p>名字：<span class="buildingName"></span></p>-->
-<!--            <p>细节描述：<span class="buildingComment"></span></p>-->
-<!--            <p>可以升级为：</p>-->
-<!--            &lt;!&ndash;  升级列表  &ndash;&gt;-->
-<!--            <div class="levelUpList"></div>-->
-<!--            <button class="levelDown">降级</button>-->
-<!--            <button class="sell">不想要了，卖钱</button>-->
-<!--            <button class="cancelChoice">取消选择</button>-->
-<!--        </div>-->
+        <!--        <div class="buildingData">-->
+        <!--            <p>名字：<span class="buildingName"></span></p>-->
+        <!--            <p>细节描述：<span class="buildingComment"></span></p>-->
+        <!--            <p>可以升级为：</p>-->
+        <!--            &lt;!&ndash;  升级列表  &ndash;&gt;-->
+        <!--            <div class="levelUpList"></div>-->
+        <!--            <button class="levelDown">降级</button>-->
+        <!--            <button class="sell">不想要了，卖钱</button>-->
+        <!--            <button class="cancelChoice">取消选择</button>-->
+        <!--        </div>-->
     </div>
 </div>
 
-
+<script src="sound/sounds.js"></script>
 <script src="model/myColor.js"></script>
 <script src="model/functions.js"></script>
 <script src="model/vector.js"></script>

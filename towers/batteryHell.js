@@ -15,6 +15,7 @@ class BatteryHell extends Battery {
         this.price = 1000 // 这个炮塔需要花多少钱来买
 
         this.nowDamage = 1;
+        this.damageRate = 5000;  // 这个数越小越厉害
         this.targetLiveTime = 0;  // 锁定目标的时间
     }
 
@@ -22,10 +23,12 @@ class BatteryHell extends Battery {
      * 寻找目标
      */
     getTarget() {
-        for (let m of this.world.monsters) {
-            if (this.getViewCircle().impact(m.getBodyCircle())) {
-                this.target = m;
-                return;
+        if (this.target === null || this.target.isDead() || this.target === undefined) {
+            for (let m of this.world.monsters) {
+                if (this.getViewCircle().impact(m.getBodyCircle())) {
+                    this.target = m;
+                    return;
+                }
             }
         }
     }
@@ -38,15 +41,19 @@ class BatteryHell extends Battery {
         // 准备攻击这个怪物
         if (this.laserFreezeNow === this.laserFreezeMax) {
             // 冷却好了，开始进攻
-            this.target.hpChange(-Functions.timeHellTowerDamage(this.targetLiveTime));
+            this.target.hpChange(-(Math.pow(this.targetLiveTime, 2) / this.damageRate));
             this.targetLiveTime++;
             // 添加特效
             let e = new EffectLine(this.pos, this.target.pos);
-            e.initLineStyle(new MyColor(255, 200, 2, 0.8), 5);
+            e.initLineStyle(new MyColor(255, 0, 0, 0.5), 15);
             this.world.addEffect(e);
             e = new EffectLine(this.pos, this.target.pos);
-            e.initLineStyle(new MyColor(255, 0, 2, 1), 2);
+            e.initLineStyle(new MyColor(255, 0, 255, 0.5), 10);
             this.world.addEffect(e);
+            e = new EffectLine(this.pos, this.target.pos);
+            e.initLineStyle(new MyColor(255, 255, 19, 1), 5);
+            this.world.addEffect(e);
+
         }
         if (this.target.isDead()) {
             this.targetLiveTime = 0;

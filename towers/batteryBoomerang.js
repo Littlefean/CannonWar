@@ -32,7 +32,7 @@ class BatteryBoomerang extends Battery {
 
         let barLine = new Line(p1, p2);
         barLine.strokeColor = new MyColor(255, 124, 36, 0.8);
-        barLine.strokeWidth = this.barLen;
+        barLine.strokeWidth = this.barWidth;
         // console.log(barLine);
         return barLine;
     }

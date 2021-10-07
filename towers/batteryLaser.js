@@ -21,6 +21,13 @@ class BatteryLaser extends Battery {
         this.laserMaxDamage = 10000;  // 最大蓄力强度
         this.laserDamageAdd = 0;  // 目前已经蓄力的攻击力存储
         this.laserDamagePreAdd = 5;  // 蓄力后每个tick增加多少攻击力
+        this.laserColor = new MyColor(0, 100, 255, 0.7);
+
+        // zap特性
+        this.zapCount = 10;  // 最多目标打击数量
+        this.damageMultipleRate = 3;  // 每多打一个目标，攻击伤害就翻多少倍
+        this.zapLen = 100;  // 闪电连续段最长范围
+        this.zapInitColor = new MyColor(0, 200, 255, 0.9);
     }
 
     goStep() {
@@ -38,10 +45,10 @@ class BatteryLaser extends Battery {
         // 冷却好了，递归
         if (this.laserFreezeNow === this.laserFreezeMax) {
             let monsterSet = new Set();
-            let len = this.rangeR;  // 一次闪电的长度 暂时不打算让它随着递归的变化而变化
+            let len = this.zapLen;  // 一次闪电的长度 暂时不打算让它随着递归的变化而变化
             let nowPos = this.pos.copy();  // 当前闪电发射的起点
-            let maxCount = 10;  // 允许递归的最大次数
-            let damageMultipleRate = 5; // 每多打一个目标，攻击伤害就翻多少倍
+            let maxCount = this.zapCount;  // 允许递归的最大次数
+            let damageMultipleRate = this.damageMultipleRate; // 每多打一个目标，攻击伤害就翻多少倍
             let zapDamage = this.laserBaseDamage + this.laserDamageAdd;
             let attacked = false;
 
@@ -49,8 +56,12 @@ class BatteryLaser extends Battery {
                 let find = false;  // 是否找到下一个可以电击的怪物
                 // 检查每一个怪物
                 for (let m of this.world.monsters) {
-
-                    let cc = new Circle(nowPos.x, nowPos.y, len);
+                    let cc;
+                    if (maxCount === this.zapCount) {
+                        cc = new Circle(nowPos.x, nowPos.y, this.rangeR);
+                    } else {
+                        cc = new Circle(nowPos.x, nowPos.y, len);
+                    }
                     if (cc.impact(m.getBodyCircle())) {
                         // 是寻找范围内的怪物
 
@@ -68,7 +79,7 @@ class BatteryLaser extends Battery {
 
                             let e = new EffectLine(nowPos, m.pos);
                             e.duration = 20;
-                            let blue = new MyColor(0, 200, 255, 0.9);
+                            let blue = this.zapInitColor;
                             blue.change(+30 * (10 - maxCount), -20 * (10 - maxCount), 10, 0);
                             e.initLineStyle(blue, 20);
                             e.animationFunc = e.laserAnimation;
@@ -80,7 +91,7 @@ class BatteryLaser extends Battery {
                             {
                                 let ec = new EffectCircle(nowPos);
                                 ec.duration = 15;
-                                ec.initCircleStyle(new MyColor(103, 150, 162, 1),
+                                ec.initCircleStyle(new MyColor(255, 150, 255, 1),
                                     blue, 1);
                                 ec.animationFunc = ec.bombAnimation;
                                 this.world.addEffect(ec);
@@ -90,6 +101,7 @@ class BatteryLaser extends Battery {
                     }
                 }
                 if (find) {
+                    Sounds.Zap();  // 播放电击音效
                     maxCount--;
                     if (maxCount > 0) {
                         dfs();
@@ -185,7 +197,8 @@ class BatteryLaser extends Battery {
 
             // 添加特效
             let e = new EffectLine(this.pos, this.target.pos);
-            e.initLineStyle(new MyColor(0, 100, 255, 0.7), 50);
+
+            e.initLineStyle(this.laserColor , 50);
             e.animationFunc = e.laserAnimation;
             e.duration = 10;
             this.world.addEffect(e);

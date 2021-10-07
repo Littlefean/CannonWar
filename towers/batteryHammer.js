@@ -12,8 +12,7 @@ class BatteryHammer extends Battery {
         this.itemRange = this.rangeR;  // 当前物品的旋转半径
         this.itemRidus = 20;
         this.itemDamage = 1000;
-        this.initSpeed = 10;
-        this.itemSpeed = this.initSpeed; // 1~100  越小越快
+        this.itemSpeed = 10; // 1~100  越小越快
         this.additionItem = this.initAdditionItem();  // 进攻物品
     }
 

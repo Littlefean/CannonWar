@@ -54,6 +54,7 @@ class Bully extends CircleObject {
         this.splitBully = BullyFinally.Normal;
         this.splitRangeRate = 100;  // 分裂后的子弹可以存在的攻击范围 px
         this.isSliptedBully = false; // 当前这个子弹是不是分裂后的小子弹
+        this.splitRate = 1;  // 继续发生分裂的概率
 
         this.repel = 0;  // 单次击退能力 这个数值会让怪物倒退一步距离，这个数值是这一步距离乘以的倍数
 
@@ -68,6 +69,8 @@ class Bully extends CircleObject {
         this.viewRadius = 100;  // 跟踪视野
         this.target = null;  // 当前是否有目标
         this.speedToTargetN = 5;  // 找到目标的时候的速度
+
+        this.collideSound = null;  // 打到怪物身上的时候的声音
     }
 
     goStep() {
@@ -84,7 +87,9 @@ class Bully extends CircleObject {
             if (this.pos.dis(this.originalPos) > this.splitRangeRate) {
                 if (this.splitAble) {
                     // 这个分裂的子弹是否还可以继续分裂
-                    this.split();
+                    if (Math.random() < this.splitRate) {
+                        this.split();
+                    }
                 }
                 this.remove();
             }
@@ -161,10 +166,15 @@ class Bully extends CircleObject {
                 // 造成击退
                 // m.backMove(this.repel);
                 m.changedSpeed.add(this.speed.mul(this.repel));
+                // 播放音效 todo
+                if (this.collideSound !== null) {
+                    this.collideSound.play();
+                }
                 // 发生分裂
                 this.split();
                 // 删除子弹
                 this.remove();
+
                 break;
             }
         }
@@ -242,6 +252,7 @@ class Bully extends CircleObject {
         // 添加爆炸特效圆
         let e = new EffectCircle(this.pos.copy());
         e.circle.r = this.bombRange;
+        // e.animationFunc = this.animationFunc;
         this.world.addEffect(e);
     }
 

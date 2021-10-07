@@ -33,6 +33,7 @@ class Battery extends CircleObject {
         this.bullyRotate = 0;
         this.attackBullyNum = 1;  // 一次性发射子弹的数量
         this.bullySlideRate = 1;  // 子弹可滑行距离
+        this.attackFunc = this.normalAttack;
 
         this.hpInit(1000);
 
@@ -47,7 +48,7 @@ class Battery extends CircleObject {
         this.bodyStrokeWidth = 1;
         this.bodyStrokeColor = MyColor.Transparent();
         this.hpBarHeight = 5;
-        this.attackFunc = this.normalAttack;
+
 
         // 贴图编号
         this.imgIndex = 0;

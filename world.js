@@ -71,8 +71,8 @@ class World {
 
     addMonsters() {
         // todo 当前这个是随机增加一个怪物
-        let randIndex = Math.floor(Math.random() * MONSTERS_FUNC_ARR.length);
-        this.monsters.push(MONSTERS_FUNC_ARR[randIndex](this));
+        let randIndex = Math.floor(Math.random() * MONSTERS_FUNC_ARR_ALL.length);
+        this.monsters.push(MONSTERS_FUNC_ARR_ALL[randIndex](this));
     }
 
     /**
@@ -156,6 +156,8 @@ class World {
             et.duration = 100;
             et.pos = new Vector(this.width / 2, this.height / 2);
             this.addEffect(et);
+            // 添加声音提醒
+            Sounds.playNewMonsterFlow();
         }
         // 炮塔行动
         for (let b of this.batterys) {

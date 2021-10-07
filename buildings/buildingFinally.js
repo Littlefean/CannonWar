@@ -21,10 +21,12 @@ class BuildingFinally {
         let res = new Building(Vector.zero(), world);
         res.name = "采集器";
         res.moneyAddedAble = true;
-        res.moneyAddedNum = 1;
-        res.moneyAddedFreezeTime = 20;
-        res.r = 3;
+        res.moneyAddedNum = 2;
+        res.moneyAddedFreezeTime = 2000;
+        res.r = 30;
         res.hpInit(300);
+
+        res.price = 3000;
 
         res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
         res.bodyStrokeWidth = 1;
@@ -42,7 +44,7 @@ class BuildingFinally {
         res.otherHpAddFreezeTime = 100;
         res.r = 5;
         res.hpInit(3000);
-        res.price = 100;
+        res.price = 1200;
 
         res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
         res.bodyStrokeWidth = 1;

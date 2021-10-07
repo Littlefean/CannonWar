@@ -93,6 +93,8 @@ class Monster extends CircleObject {
         this.teleportingAble = false;
         this.teleportingRange = 100;  // 一次瞬移半径
         this.teleportingCount = 3;
+
+        this.imgIndex = 0;
     }
 
     /**
@@ -102,6 +104,15 @@ class Monster extends CircleObject {
         let res = new this(Vector.randRectBrim(0, world.width, 0, world.height), world);
         res.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
         return res;
+    }
+
+    /**
+     * 初始化这个怪物的数据，根据波数
+     */
+    dataInit(flowNum) {
+        this.hpInit(this.maxHp + Functions.levelMonsterHpAdded(flowNum));
+        this.colishDamage += Functions.levelCollideAdded(flowNum);
+        this.addPrice = Functions.levelAddPrice(flowNum);
     }
 
     /**
@@ -423,8 +434,8 @@ class Monster extends CircleObject {
     render(ctx) {
         super.render(ctx);
         // 绘制贴图
-
-        ctx.drawImage(MONSTERS_IMG, 0, 0, MONSTER_IMG_PRE_WIDTH, MONSTER_IMG_PRE_HEIGHT,
+        let imgStartPos = this.getImgStartPosByIndex(this.imgIndex);
+        ctx.drawImage(MONSTERS_IMG, imgStartPos.x, imgStartPos.y, MONSTER_IMG_PRE_WIDTH, MONSTER_IMG_PRE_HEIGHT,
             this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
         // 写上名字
         ctx.fillStyle = "black";

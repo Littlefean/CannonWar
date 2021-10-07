@@ -31,7 +31,9 @@ class BatteryRay extends Battery {
         this.rayClock = 1;  // 发射线的频率
         this.rayBullys = new Set();  // 发射线段
         this.rayThrowAble = true;
-        this.rayRepel = 1;  // 该光子弹的击退能力
+        this.rayRepel = 0;  // 该光子弹的击退能力
+        this.rayColor = MyColor.GRAY();
+        this.rayWidth = 3;
     }
 
     /**
@@ -58,16 +60,18 @@ class BatteryRay extends Battery {
      * 朝着目标方向发射一个激光
      */
     shoot() {
-        let line = new Line(this.pos, this.pos.plus(this.dirction.mul(this.rayLen)));
-        for (let m of this.world.monsters) {
-            if (line.intersectWithCircle(m.getBodyCircle())) {
-                m.hpChange(-this.damage);
+        if (this.liveTime % this.rayClock === 0) {
+            let line = new Line(this.pos, this.pos.plus(this.dirction.mul(this.rayLen)));
+            for (let m of this.world.monsters) {
+                if (line.intersectWithCircle(m.getBodyCircle())) {
+                    m.hpChange(-this.damage);
+                }
             }
+            let e = new EffectLine(line.PosStart, line.PosEnd);
+            e.initLineStyle(this.rayColor, this.rayWidth);
+            e.duration = 50;
+            this.world.addEffect(e);
         }
-        let e = new EffectLine(line.PosStart, line.PosEnd);
-        e.initLineStyle(new MyColor(255, 10, 0, 1), 1);
-        e.duration = 50;
-        this.world.addEffect(e);
     }
 
     /**
@@ -180,7 +184,7 @@ class BatteryRay extends Battery {
                     }
                     // 击退能力
                     if (this.rayRepel !== 0) {
-                        m.pos = m.pos.copy().plus(br.speed);
+                        m.pos = m.pos.copy().plus(br.speed.mul(this.rayRepel));
                     }
                 }
             }
@@ -191,8 +195,8 @@ class BatteryRay extends Battery {
         super.render(ctx);
         // 渲染子弹
         for (let b of this.rayBullys) {
-            b.strokeColor = new MyColor(0, 10, 255, 1);
-            b.strokeWidth = 5;
+            b.strokeColor = this.rayColor;
+            b.strokeWidth = this.rayWidth;
             b.render(ctx);
         }
     }

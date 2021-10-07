@@ -18,7 +18,7 @@ window.onload = function () {
 function mainInterface() {
     let startBtn = document.querySelector(".startGame");
     let wikiBtn = document.querySelector(".wiki");
-    let soundBtn = document.querySelector(".soundSet");
+    let helpBtn = document.querySelector(".help");
 
     startBtn.addEventListener("click", () => {
         gotoPage("modeChoice-interface");
@@ -29,9 +29,9 @@ function mainInterface() {
         gotoPage("wiki-interface");
         wikiInterface();
     });
-
-    soundBtn.addEventListener("click", () => {
-        alert("还没做声音！");
+    helpBtn.addEventListener("click", () => {
+        gotoPage("help-interface");
+        helpInterface();
     });
 }
 
@@ -57,6 +57,15 @@ function choiceInterface() {
     });
 }
 
+/**
+ * 帮助界面逻辑
+ */
+function helpInterface() {
+    let thisInterface = document.querySelector(".help-interface");
+    thisInterface.querySelector(".backPage").addEventListener("click", () => {
+        gotoPage("main-interface");
+    });
+}
 /**
  * wiki 界面逻辑
  */
@@ -85,7 +94,7 @@ function cannonInterface() {
     });
     let contentEle = thisInterface.querySelector(".content");
     let worldVoid = new World(100, 100);
-    // todo 重复进入会发现这里不断增多
+    // todo 炮塔界面，遍历一棵树，深度优先遍历，添加到数组再渲染。
     if (contentEle.children.length === 0) {
         for (let tower of TOWER_FUNC_ARR) {
             // 炮塔div
@@ -127,6 +136,11 @@ function cannonInterface() {
             line = document.createElement("p");
             line.innerText = `价格：${towerObj.price}`;
             data.appendChild(line);
+
+            line = document.createElement("p");
+            line.innerText = `详细信息：${towerObj.comment}`;
+            data.appendChild(line);
+
             towerEle.appendChild(data);
             // todo 用 canvas 画成雷达图
             // 概述
@@ -150,7 +164,7 @@ function monstersInterface() {
     let contentEle = thisInterface.querySelector(".content");
     let worldVoid = new World(100, 100);
     if (contentEle.children.length === 0) {
-        for (let monster of MONSTERS_FUNC_ARR) {
+        for (let monster of MONSTERS_FUNC_ARR_ALL) {
             let monsterObj = monster(worldVoid);
             let monsterEle = document.createElement("div");
             monsterEle.classList.add("monster");
@@ -192,6 +206,9 @@ function monstersInterface() {
             line.innerText = `加速度：${monsterObj.accelerationV}`;
             data.appendChild(line);
 
+            line = document.createElement("p");
+            line.innerText = `介绍：${monsterObj.comment}`;
+            data.appendChild(line);
             monsterEle.appendChild(data);
 
             contentEle.appendChild(monsterEle);
@@ -243,8 +260,12 @@ function endlessMode() {
         // 点击返回按钮，应该让游戏立刻结束
         gameEnd = true;
         choiceBtn.style.display = "none";
+        Sounds.switchBgm("main");
         gotoPage("modeChoice-interface");
     });
+
+    // 背景音乐切换
+    Sounds.switchBgm("war");
 
     let world = new World(canvasEle.width, canvasEle.height);
     /**
@@ -285,9 +306,7 @@ function endlessMode() {
         // 如果初始化面板里面还没有被填充内容，则就先填充内容
         if (panelEle.innerHTML === "") {
             let thingsFuncArr = [];  // 即将添加的按钮数组
-            for (let bF of TOWER_FUNC_ARR) {
-                thingsFuncArr.push(bF);
-            }
+            thingsFuncArr.push(BatteryFinally.BasicCannon);
             for (let bF of BUILDING_FUNC_ARR) {
                 thingsFuncArr.push(bF);
             }
@@ -343,8 +362,7 @@ function endlessMode() {
      * @returns {boolean}
      */
     document.oncontextmenu = function (e) {
-        let ev = e || window.event;
-        if (ev.button === 2) { //判断是否是右键
+        if (e.button === 2) { //判断是否是右键
             addedThingFunc = null;
             world.user.putLoc.building = null;
             return false;
@@ -538,6 +556,12 @@ function endlessMode() {
         } else {
             // 手上有炮塔，放置炮塔
             let addedThing = addedThingFunc(world);
+            if (world.user.money < addedThing.price) {
+                let et = new EffectText("钱不够了！");
+                et.pos = addedThing.pos.copy();
+                world.addEffect(et);
+                return;
+            }
             addedThing.pos = clickPos;
             // 检测此处是否可以放建筑
             for (let item of world.getAllBuildingArr()) {
@@ -579,10 +603,15 @@ function endlessMode() {
     /**
      * 时刻更新按钮状态
      * 让按钮是否可以点击，金钱限制
+     * todo 还要更新按钮的价格
      * 更新是否取消放置的按钮
      */
     let freshBtn = setInterval(() => {
         let towerBtnArr = document.getElementsByClassName(btnClassName);
+
+        let basicC = BatteryFinally.BasicCannon(world);
+        towerBtnArr[0].setAttribute("data-price", basicC.price.toString());
+        towerBtnArr[0].innerHTML = basicC.name + `<br>${basicC.price}￥`;
         for (let btn of towerBtnArr) {
             if (btn.dataset.price <= world.user.money) {
                 btn.removeAttribute("disabled");
