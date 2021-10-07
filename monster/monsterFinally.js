@@ -24,7 +24,6 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "铁牛1级";
         m.bodyColor = MyColor.arrTo([80, 20, 20, 1]);
-        m.addPrice += 20;
         m.speedNumb = 0.01;
         m.accelerationV = 0.01;
         m.maxSpeedN = 5;
@@ -38,7 +37,6 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "铁牛2级";
         m.bodyColor = MyColor.arrTo([120, 20, 20, 1]);
-        m.addPrice += 40;
         m.speedNumb = 0.01;
         m.accelerationV = 0.05;
         m.maxSpeedN = 7;
@@ -52,7 +50,6 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "铁牛3级";
         m.bodyColor = MyColor.arrTo([150, 20, 20, 1]);
-        m.addPrice += 50;
         m.speedNumb = 0.01;
         m.accelerationV = 0.1;
         m.maxSpeedN = 10;
@@ -66,7 +63,6 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "炸弹人1级";
         m.bodyColor = MyColor.arrTo([60, 60, 20, 1]);
-        m.addPrice += 20;
         m.speedNumb = 0.5;
         m.r = 30;
         m.bombSelfAble = true;
@@ -82,8 +78,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "炸弹人2级";
         m.bodyColor = MyColor.arrTo([90, 90, 30, 1]);
-        m.addPrice += 20;
-        m.speedNumb = 0.5;
+        m.addPrice += 10;
+        m.speedNumb = 0.55;
         m.r = 50;
         m.bombSelfAble = true;
         m.bombSelfRange = 120;
@@ -98,8 +94,8 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "炸弹人3级";
         m.bodyColor = MyColor.arrTo([150, 150, 50, 1]);
-        m.addPrice += 50;
-        m.speedNumb = 0.5;
+        m.addPrice += 10;
+        m.speedNumb = 0.6;
         m.r = 80;
         m.bombSelfAble = true;
         m.bombSelfRange = 200;
@@ -117,7 +113,7 @@ class MonsterFinally {
 
         m.bodyColor = MyColor.arrTo([50, 150, 150, 0.5]);
         m.bodyStrokeColor = MyColor.arrTo([5, 15, 15, 1]);
-        m.addPrice += 150;
+        m.addPrice += 10;
         m.speedNumb = 0.4;
         m.r = 30;
 
@@ -152,7 +148,7 @@ class MonsterFinally {
         m.name = "推土机1级";
         m.throwAble = true;
         m.addPrice += 10;
-        m.speedNumb = 0.2;
+        m.speedNumb = 0.3;
         m.bodyColor = MyColor.arrTo([50, 30, 50, 1]);
         m.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
         m.colishDamage = 1000000000;
@@ -171,7 +167,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "鳖蛋子";
         m.addPrice += 10;
-        m.speedNumb = 0.2;
+        m.speedNumb = 0.3;
         m.bodyColor = MyColor.arrTo([152, 118, 170, 1]);
         m.r = 25;
 
@@ -193,7 +189,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "丢包医疗兵";
         m.addPrice += 10;
-        m.speedNumb = 0.2;
+        m.speedNumb = 0.5;
         m.bodyColor = MyColor.arrTo([105, 117, 60, 1]);
         m.r = 20;
         m.haveGain = true;
@@ -217,7 +213,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "搞比例医疗兵";
         m.addPrice += 10;
-        m.speedNumb = 0.2;
+        m.speedNumb = 0.5;
         m.bodyColor = MyColor.arrTo([92, 117, 79, 1]);
         m.r = 30;
         m.haveGain = true;
@@ -241,7 +237,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "上限医疗兵";
         m.addPrice += 10;
-        m.speedNumb = 0.2;
+        m.speedNumb = 0.3;
         m.bodyColor = MyColor.arrTo([120, 188, 85, 1]);
         m.r = 40;
         m.haveGain = true;
@@ -265,7 +261,7 @@ class MonsterFinally {
         let m = Monster.randInit(world);
         m.name = "速度增加";
         m.addPrice += 10;
-        m.speedNumb = 0.15;
+        m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([68, 230, 249, 1]);
         m.r = 10;
         m.haveGain = true;
@@ -288,8 +284,8 @@ class MonsterFinally {
     static AttackAdder(world) {
         let m = Monster.randInit(world);
         m.name = "攻击增加";
-        m.addPrice += 15;
-        m.speedNumb = 0.15;
+        m.addPrice += 10;
+        m.speedNumb = 0.55;
         m.bodyColor = MyColor.arrTo([255, 198, 109, 1]);
         m.r = 10;
         m.haveGain = true;
@@ -312,8 +308,8 @@ class MonsterFinally {
     static BulletWearer(world) {
         let m = Monster.randInit(world);
         m.name = "子弹削子";
-        m.addPrice += 20;
-        m.speedNumb = 0.15;
+        m.addPrice += 5;
+        m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([62, 134, 160, 1]);
         m.r = 10;
 
@@ -330,8 +326,8 @@ class MonsterFinally {
     static BulletRepellent(world) {
         let m = Monster.randInit(world);
         m.name = "子弹排斥者";
-        m.addPrice += 30;
-        m.speedNumb = 0.15;
+        m.addPrice += 5;
+        m.speedNumb = 0.25;
         m.bodyColor = MyColor.arrTo([186, 166, 128, 1]);
         m.r = 20;
 
@@ -341,14 +337,15 @@ class MonsterFinally {
         // m.bullyChangeDetails.bullyDR = -1;
         m.bullyChangeDetails.bullyAN = 1;
         m.imgIndex = 13;
+        m.comment = "自身会有一个排斥子弹的场，能够把场内的飞过来的子弹向外排斥，改变子弹的轨迹，只是对子弹有效果，对激光和其他武器没有效果";
         return m;
     }
 
     static DamageReducers(world) {
         let m = Monster.randInit(world);
         m.name = "子弹减伤者";
-        m.addPrice += 30;
-        m.speedNumb = 0.15;
+        m.addPrice += 5;
+        m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
         m.r = 20;
 
@@ -357,17 +354,19 @@ class MonsterFinally {
         m.bullyChangeDetails.f = 1;
         m.bullyChangeDetails.bullyDD = -1;
         m.imgIndex = 14;
+        m.comment = "能够对自身一定范围内的区域内的所有子弹减少伤害，伤害小的子弹比如小枪的子弹可能就没有伤害了。";
         return m;
     }
 
     static Shouter(world) {
         let m = MonsterShooter.randInit(world);
         m.name = "射击者";
-        m.addPrice += 30;
-        m.speedNumb = 0.15;
+        m.addPrice += 5;
+        m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
         m.r = 20;
         m.imgIndex = 15;
+        m.comment = "会对你的建筑进行远程射击，造成伤害";
         return m;
     }
 
@@ -384,6 +383,7 @@ class MonsterFinally {
         m.deadSummonAble = true;
         m.summonMonsterFunc = MonsterFinally.Slime_M;
         m.imgIndex = 16;
+        m.comment = "大型史莱姆，死亡之后会分裂成四个中型史莱姆，每个中型史莱姆死亡之后又会分裂成四个小型史莱姆";
         return m;
     }
 
@@ -401,6 +401,7 @@ class MonsterFinally {
         m.summonMonsterFunc = MonsterFinally.Slime_S;
 
         m.imgIndex = 16;
+        m.comment = "中型史莱姆，由大型史莱姆分裂得到";
         return m;
     }
 
@@ -414,6 +415,7 @@ class MonsterFinally {
         m.bodyStrokeWidth = 3;
         m.r = 10;
         m.imgIndex = 16;
+        m.comment = "小型史莱姆，跑的比较快";
         return m;
     }
 
@@ -434,6 +436,7 @@ class MonsterFinally {
         m.summonDistance = Math.random() * 30 + 30;
         m.summonMonsterFunc = MonsterFinally.bat;
         m.imgIndex = 17;
+        m.comment = "暗夜女巫会不停的召唤小蝙蝠";
         return m;
     }
 
@@ -450,6 +453,7 @@ class MonsterFinally {
         m.maxSpeedN = 5;
         m.r = 5;
         m.imgIndex = 18;
+        m.comment = "快速飞到你的大本，对你的大本造成撞击伤害";
         return m;
     }
 
@@ -459,6 +463,7 @@ class MonsterFinally {
         m.speedNumb = 3;
         m.changeSpeedFunc = m.selfSwingMove;
         m.imgIndex = 19;
+        m.comment = "一种移动路径来回摇摆的普通怪物";
         return m;
     }
 
@@ -468,6 +473,7 @@ class MonsterFinally {
         m.speedNumb = 3;
         m.changeSpeedFunc = m.selfSuddenlyMove;
         m.imgIndex = 20;
+        m.comment = "一种路径来回前后突进的普通怪物";
         return m;
     }
 
@@ -477,6 +483,7 @@ class MonsterFinally {
         m.speedNumb = 3;
         m.changeSpeedFunc = m.selfExcitingMove;
         m.imgIndex = 21;
+        m.comment = "一种移动路径前后更加剧烈的快速的怪物，看起来很激动";
         return m;
     }
 
@@ -486,6 +493,7 @@ class MonsterFinally {
         m.speedNumb = 3;
         m.changeSpeedFunc = m.selfDoubleSwingMove;
         m.imgIndex = 22;
+        m.comment = "移动路径会很怪，它会旋转的走向目标，绕很多圈才会进行撞击，像是来参观的";
         return m;
     }
 
@@ -496,6 +504,7 @@ class MonsterFinally {
 
         m.teleportingAble = true;
         m.imgIndex = 23;
+        m.comment = "一旦受到子弹碰撞，就会瞬移，所以它免疫子弹撞击伤害（不能免疫爆炸等其他伤害），但是它可能会一不小心瞬移到你的建筑上，然后撞死了。";
         return m;
     }
 
@@ -504,6 +513,8 @@ class MonsterFinally {
         m.name = "麦缇斯";
         m.speedNumb = 1;
         m.imgIndex = 24;
+        m.addPrice = 50;
+        m.comment = "像忍者一样，一旦发现了你的建筑，便会迅速对你的建筑进行收割，像忍者一样来回穿过你的建筑，对你的建筑造成伤害";
         return m;
     }
 
@@ -511,6 +522,8 @@ class MonsterFinally {
         let m = MonsterTerminator.randInit(world);
         m.name = "T800";
         m.imgIndex = 25;
+        m.addPrice = 600;
+        m.comment = "一种由金属打造而成的恐怖机器，威力小的子弹几乎对他没有伤害。具有很强的近战能力。";
         return m;
     }
 }

@@ -98,6 +98,15 @@ body .gameApp .war-interface .rightTopArea .backPage {
 body .gameApp .war-interface .rightTopArea .backPage:hover {
   transform: scale(1.1);
 }
+body .gameApp .help-interface .content {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+body .gameApp .help-interface .content .h2 {
+  text-align: center;
+  position: static;
+}
 body .gameApp .cannon-interface,
 body .gameApp .monsters-interface {
   overflow-y: scroll;

@@ -88,7 +88,7 @@ class Functions {
      * @returns {number|number}
      */
     static levelT800Count(level) {
-        let res = Math.floor(Math.pow(level, 0.35));
+        let res = Math.floor(Math.pow(level, 1.2) / 10);
         return res < 1 ? 1 : res;
     }
 
@@ -130,7 +130,7 @@ class Functions {
         return Math.floor(Math.exp(num) / 1000);
     }
 }
-
+//
 // for (let i = 1; i < 1000; i++) {
-//     console.log(i, Functions.TowerNumPriceAdded(i));
+//     console.log(i, Functions.levelT800Count(i));
 // }

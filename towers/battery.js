@@ -173,6 +173,7 @@ class Battery extends CircleObject {
 
     /**
      * 通过索引获得当前这个炮塔的贴图在大图片中的切割起始位置
+     *
      * @param n 索引
      */
     getImgStartPosByIndex(n) {

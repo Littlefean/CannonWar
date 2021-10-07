@@ -66,6 +66,7 @@ function helpInterface() {
         gotoPage("main-interface");
     });
 }
+
 /**
  * wiki 界面逻辑
  */
@@ -95,27 +96,41 @@ function cannonInterface() {
     let contentEle = thisInterface.querySelector(".content");
     let worldVoid = new World(100, 100);
     // todo 炮塔界面，遍历一棵树，深度优先遍历，添加到数组再渲染。
+
+
     if (contentEle.children.length === 0) {
-        for (let tower of TOWER_FUNC_ARR) {
+        let allTowerArr = [];
+        let towerFunc = BatteryFinally.BasicCannon;
+        let dfs = (tf) => {
+            let t = tf(worldVoid);
+            allTowerArr.push(t);
+            if (t.levelUpArr === null) {
+                return;
+            }
+            for (let ntf of t.levelUpArr) {
+                dfs(ntf);
+            }
+        };
+        dfs(towerFunc);
+
+        for (let towerObj of allTowerArr) {
             // 炮塔div
             let towerEle = document.createElement("div");
             towerEle.classList.add("tower");
-            let towerObj = tower(worldVoid);
             // 标题
             let title = document.createElement("h3");
             title.innerText = towerObj.name;
             towerEle.appendChild(title);
-            // 模型
-            let towerShape = document.createElement("div");
-            towerShape.classList.add("tower-shape");
-            let rRate = 4;  // 半径缩放倍数
-            towerShape.style.width = towerObj.r * rRate + "px";
-            towerShape.style.height = towerObj.r * rRate + "px";
-            towerShape.style.backgroundColor = towerObj.bodyColor.toStringRGBA();
-            towerShape.style.borderWidth = towerObj.bodyStrokeWidth + "px";
-            towerShape.style.borderStyle = "solid";
-            towerShape.style.borderColor = towerObj.bodyStrokeColor.toStringRGBA();
-            towerEle.appendChild(towerShape);
+            // 贴图
+            let towerImg = document.createElement("div");
+            towerImg.style.backgroundImage = `url('towers/imgs/towers.png')`;
+            towerImg.style.width = TOWER_IMG_PRE_WIDTH + "px";
+            towerImg.style.height = TOWER_IMG_PRE_HEIGHT + "px";
+            let diffPos = towerObj.getImgStartPosByIndex(towerObj.imgIndex);
+            towerImg.style.backgroundPositionX = -diffPos.x + "px";
+            towerImg.style.backgroundPositionY = -diffPos.y + "px";
+            towerImg.style.margin = "0 auto";
+            towerEle.appendChild(towerImg);
             // 数据域
             let data = document.createElement("div");
             // 射程、子弹速度、血量、攻击间歇时间、一次性发射子弹数量
@@ -172,17 +187,16 @@ function monstersInterface() {
             let title = document.createElement("h3");
             title.innerText = monsterObj.name;
             monsterEle.appendChild(title);
-            // 模型
-            let towerShape = document.createElement("div");
-            towerShape.classList.add("monster-shape");
-            let rRate = 3;  // 半径缩放倍数
-            towerShape.style.width = monsterObj.r * rRate + "px";
-            towerShape.style.height = monsterObj.r * rRate + "px";
-            towerShape.style.backgroundColor = monsterObj.bodyColor.toStringRGBA();
-            towerShape.style.borderWidth = monsterObj.bodyStrokeWidth + "px";
-            towerShape.style.borderStyle = "solid";
-            towerShape.style.borderColor = monsterObj.bodyStrokeColor.toStringRGBA();
-            monsterEle.appendChild(towerShape);
+            // 贴图
+            let imgDiv = document.createElement("div");
+            imgDiv.style.backgroundImage = `url('monster/imgs/monsters.png')`;
+            imgDiv.style.width = MONSTER_IMG_PRE_WIDTH + "px";
+            imgDiv.style.height = MONSTER_IMG_PRE_HEIGHT + "px";
+            let diffPos = monsterObj.getImgStartPosByIndex(monsterObj.imgIndex);
+            imgDiv.style.backgroundPositionX = -diffPos.x + "px";
+            imgDiv.style.backgroundPositionY = -diffPos.y + "px";
+            imgDiv.style.margin = "0 auto";
+            monsterEle.appendChild(imgDiv);
             // 数据域
             let data = document.createElement("div");
 

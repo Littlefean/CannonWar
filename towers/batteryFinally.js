@@ -18,6 +18,7 @@ class BatteryFinally {
         ];
         res.levelDownGetter = null;
         res.price = 50 + Functions.TowerNumPriceAdded(world.batterys.length);
+        res.comment = "最基础的炮塔，想获得厉害的炮塔就要从它开始进化，但是基础炮塔不太能无限获取，获取基础炮塔越多，需要的费用就越贵，其实只是在限制你不能在舞台上摆放太多的炮塔造成卡顿而已啦。";
         return res;
     }
 
@@ -38,6 +39,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.BasicCannon;
         res.imgIndex = 1;
         res.price = 60;
+        res.comment = "从基础炮塔升到这一个炮塔之后，接下来的炮塔都是中世纪风格的炮塔。";
         return res;
     }
 
@@ -56,6 +58,7 @@ class BatteryFinally {
         ];
         res.price = 120;
         res.imgIndex = 20;
+        res.comment = "接下来的风格都是军事风格的炮塔";
         return res;
     }
 
@@ -86,6 +89,7 @@ class BatteryFinally {
         ];
         b.price = 800;
         b.imgIndex = 50;
+        b.comment = "想要获取更强大的激光、闪电等等的高科技武器，就要从此处升级开始，该高科技炮塔会发射激光粒子子弹";
         return b;
     }
 
@@ -105,6 +109,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.AncientCannon;
         res.imgIndex = 2;
         res.price = 190;
+        res.comment = "一种威力不小的攻击东西，回旋镖能够穿过敌人，对所有穿过的敌人造成伤害";
         return res;
     }
 
@@ -121,6 +126,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang;
         res.imgIndex = 2;
         res.price = 230;
+        res.comment = "回旋镖的距离更远了";
         return res;
     }
 
@@ -138,6 +144,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang_Far_1;
         res.imgIndex = 2;
         res.price = 350;
+        res.comment = "距离又远了";
         return res;
     }
 
@@ -155,6 +162,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang_Far_2;
         res.imgIndex = 2;
         res.price = 300;
+        res.comment = "距离又又又远了";
         return res;
     }
 
@@ -173,6 +181,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang;
         res.imgIndex = 2;
         res.price = 300;
+        res.comment = "相对于普通的回旋镖，距离虽然没那么远了，但是伤害更大了，回旋镖也更大更强了";
         return res;
     }
 
@@ -191,6 +200,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang_Power_1;
         res.imgIndex = 2;
         res.price = 350;
+        res.comment = "伤害又继续猛增";
         return res;
     }
 
@@ -209,6 +219,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Boomerang_Power_2;
         res.imgIndex = 2;
         res.price = 400;
+        res.comment = "伤害更大了，这恐怕不是回旋镖了，叫回旋的板砖儿...";
         return res;
     }
 
@@ -225,6 +236,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.AncientCannon;
         res.imgIndex = 4;
         res.price = 60;
+        res.comment = "这个弓箭塔是中世纪最基本的一种塔楼";
         return res;
     }
 
@@ -242,6 +254,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.ArrowBow_1;
         res.imgIndex = 4;
         res.price = 70;
+        res.comment = "弓箭塔是偏远程的一种防御塔";
         return res;
     }
 
@@ -259,6 +272,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.ArrowBow_2;
         res.imgIndex = 4;
         res.price = 80;
+        res.comment = "没什么";
         return res;
     }
 
@@ -276,6 +290,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.ArrowBow_3;
         res.imgIndex = 4;
         res.price = 150;
+        res.comment = "四级弓箭塔更换了弓箭子弹，伤害提高了";
         return res;
     }
 
@@ -295,6 +310,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.ArrowBow_1;
         res.imgIndex = 3;
         res.price = 120;
+        res.comment = "连弩视野范围没有弓箭塔那么大，但是射速更快了";
         return res;
     }
 
@@ -314,6 +330,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Crossbow_1;
         res.imgIndex = 3;
         res.price = 130;
+        res.comment = `射速进一步加快，一次性能够射出${res.attackBullyNum}发子弹`;
         return res;
     }
 
@@ -333,6 +350,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Crossbow_2;
         res.imgIndex = 3;
         res.price = 200;
+        res.comment = `射速更快了，一次性能射出${res.attackBullyNum}发子弹`;
         return res;
     }
 
@@ -349,6 +367,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.AncientCannon;
         b.imgIndex = 5;
         b.price = 230;
+        b.comment = "他有一个转动的大铁球，这个转动的大铁球只要一碰到敌人，就能够造成很大的伤害。";
         return b;
     }
 
@@ -367,6 +386,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer;
         b.imgIndex = 5;
         b.price = 300;
+        b.comment = "这个转动的大铁球变小了，伤害变小了，但是转的更快了，能够更好的应对突然过来的怪物了";
         return b;
     }
 
@@ -385,6 +405,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer_Fast_1;
         b.imgIndex = 5;
         b.price = 370;
+        b.comment = "转的又更快了，伤害继续增加了一点，转动半径也增加了";
         return b;
     }
 
@@ -402,6 +423,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer_Fast_2;
         b.imgIndex = 5;
         b.price = 320;
+        b.comment = "转的飞快了，伤害继续增加，转动半径继续增加";
         return b;
     }
 
@@ -419,6 +441,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer_Power_2;
         b.imgIndex = 6;
         b.price = 400;
+        b.comment = "转的更慢了，但是大铁球变得更大了，转的慢了之后，对敌人的伤害也更高了，因为触碰一下就会伤害怪物，增加了铁球和敌人的触碰时间";
         return b;
     }
 
@@ -436,6 +459,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer_Power_1;
         b.imgIndex = 6;
         b.price = 450;
+        b.comment = "更大，更慢，更强";
         return b;
     }
 
@@ -453,6 +477,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Hammer_Power_2;
         b.imgIndex = 6;
         b.price = 500;
+        b.comment = "更大，更慢，更强";
         return b;
     }
 
@@ -471,6 +496,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.AncientCannon;
         b.imgIndex = 7;
         b.price = 100;
+        b.comment = "发射石头蛋子，威力超过弓箭很多很多，但是攻击速度慢了";
         return b;
     }
 
@@ -489,6 +515,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.StoneCannon;
         b.imgIndex = 8;
         b.price = 200;
+        b.comment = "增加了攻击距离";
         return b;
     }
 
@@ -506,6 +533,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.StoneCannon_Far_1;
         b.imgIndex = 8;
         b.price = 250;
+        b.comment = "进一步增加了攻击距离";
         return b;
     }
 
@@ -523,6 +551,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.StoneCannon_Far_2;
         b.imgIndex = 8;
         b.price = 300;
+        b.comment = "攻击距离更远了，射出的子弹成了中型号的石头蛋子";
         return b;
     }
 
@@ -545,6 +574,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.StoneCannon;
         b.imgIndex = 9;
         b.price = 120;
+        b.comment = "发射大型石头蛋子，大型石头蛋子打中怪物之后会碎裂成一些有伤害的小石头蛋子";
         return b;
     }
 
@@ -563,6 +593,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.StoneCannon_Power_1;
         b.imgIndex = 9;
         b.price = 300;
+        b.comment = "增加了一点攻击范围，石头蛋子滑出视野的距离增加了";
         return b;
     }
 
@@ -574,13 +605,13 @@ class BatteryFinally {
         b.bullySpeed = 10;
         b.clock += 55;
         b.hpInit(100000);
-        b.getmMainBullyFunc = BullyFinally.R_M;
         b.getmMainBullyFunc = BullyFinally.CannonStone_L;
         b.price = 3000;
         b.levelUpArr = [];
         b.levelDownGetter = BatteryFinally.StoneCannon_Power_2;
         b.imgIndex = 9;
         b.price = 320;
+        b.comment = "范围进一步增加";
         return b;
     }
 
@@ -598,6 +629,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.TraditionalCannon;
         res.imgIndex = 21;
         res.price = 120;
+        res.comment = "该炮塔是小型枪械的过渡";
         return res;
     }
 
@@ -612,6 +644,7 @@ class BatteryFinally {
         res.levelUpArr = [BatteryFinally.AirCannon_1, BatteryFinally.Earthquake];
         res.imgIndex = 22;
         res.price = 130;
+        res.comment =  `该炮塔能发展成一些比较特殊的军事器械`;
         return res;
     }
 
@@ -626,6 +659,7 @@ class BatteryFinally {
         res.imgIndex = 23;
         res.levelUpArr = [BatteryFinally.Artillery_1, BatteryFinally.MissileGun_1];
         res.price = 140;
+        res.comment =  `该炮塔能够发展成更有火药，伤害更强的军事器械`;
         return res;
     }
 
@@ -644,6 +678,7 @@ class BatteryFinally {
         res.imgIndex = 24;
         res.levelUpArr = [BatteryFinally.ThreeTubeCannon, BatteryFinally.SprayCannon_1, BatteryFinally.PowderCannon];
         res.price = 135;
+        res.comment =  `该炮塔主要朝着多发、散弹、群体伤害方向发展`;
         return res;
     }
 
@@ -659,6 +694,7 @@ class BatteryFinally {
         res.levelUpArr = [BatteryFinally.Rifle_2];
         res.imgIndex = 25;
         res.price = 160;
+        res.comment =  `就是步枪了啦`;
         return res;
     }
 
@@ -674,6 +710,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Rifle_1;
         res.imgIndex = 25;
         res.price = 170;
+        res.comment =  `范围和射速增加了啦`;
         return res;
     }
 
@@ -689,6 +726,7 @@ class BatteryFinally {
         res.levelDownGetter = BatteryFinally.Rifle_2;
         res.imgIndex = 25;
         res.price = 180;
+        res.comment =  `子弹的速度增加了，步枪子弹也加强了`;
         return res;
     }
 
@@ -708,6 +746,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.TraditionalCannon_Small;
         b.imgIndex = 26;
         b.price = 250;
+        b.comment =  `就是机枪了啦`;
         return b;
 
     }
@@ -731,6 +770,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.MachineGun_1;
         b.imgIndex = 26;
         b.price = 300;
+        b.comment =  `射速更快，子弹更多`;
         return b;
     }
 
@@ -753,6 +793,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.MachineGun_2;
         b.imgIndex = 27;
         b.price = 500;
+        b.comment =  `射速又加强了，子弹也加强了`;
         return b;
     }
 
@@ -771,6 +812,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.ArmorPiercing_2];
         b.imgIndex = 28;
         b.price = 220;
+        b.comment =  `穿甲炮的子弹能够穿过敌人，在穿过敌人的过程中对敌人持续造成伤害，但是子弹半径会变小，直到子弹消失，消失前子弹伤害是不变的`;
         return b;
     }
 
@@ -790,6 +832,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.AirCannon_1;
         b.imgIndex = 29;
         b.price = 250;
+        b.comment =  `子弹加强了，射速也更快了`;
         return b;
     }
 
@@ -809,6 +852,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.AirCannon_2;
         b.imgIndex = 29;
         b.price = 400;
+        b.comment =  `射速更慢了，但是子弹变成大型的穿甲弹了`;
         return b;
     }
 
@@ -828,6 +872,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Artillery_2];
         b.imgIndex = 33;
         b.price = 500;
+        b.comment =  `这曾经是世界大战中的武器，发射出去的炮弹会持续加速，击中目标或者超出一定范围后发生爆炸，对范围内的怪物造成爆炸伤害，越接近爆炸中心，爆炸伤害越高`;
         return b;
     }
 
@@ -851,6 +896,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Artillery_3];
         b.imgIndex = 34;
         b.price = 800;
+        b.comment =  `能够同时发射两枚炮弹了，发射的火炮弹伤害大大提高`;
         return b;
     }
 
@@ -873,6 +919,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 34;
         b.price = 1000;
+        b.comment =  `每次攻击都会同时发射两枚超大型号的炮弹，造成很大的爆炸伤害`;
         return b;
     }
 
@@ -892,6 +939,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.MissileGun_2];
         b.imgIndex = 35;
         b.price = 700;
+        b.comment =  `发射出去的导弹具有追踪能力，同时也会爆炸，只不过因为会追踪，所以伤害没有火炮那么高了`;
         return b;
     }
 
@@ -913,6 +961,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.MissileGun_3];
         b.imgIndex = 35;
         b.price = 750;
+        b.comment =  `每次发射能够发射三个导弹`;
         return b;
     }
 
@@ -934,6 +983,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 35;
         b.price = 1000;
+        b.comment =  `每次发射能够发射五个导弹，这可以说是多管导弹炮`;
         return b;
     }
 
@@ -956,6 +1006,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.AirCannon_2];
         b.imgIndex = 30;
         b.price = 300;
+        b.comment =  `发射出一个空气波，这个空气波对怪物具有击退作用`;
         return b;
     }
 
@@ -976,6 +1027,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.AirCannon_3];
         b.imgIndex = 30;
         b.price = 320;
+        b.comment =  `击退作用加强，运用的好可能可以赖敌人`;
         return b;
     }
 
@@ -996,6 +1048,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 30;
         b.price = 400;
+        b.comment =  `击退进一步加强了`;
         return b;
     }
 
@@ -1016,6 +1069,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Earthquake_Power_1, BatteryFinally.Earthquake_Speed_1];
         b.imgIndex = 31;
         b.price = 250;
+        b.comment =  `直接发生一个地震，对范围内的敌人统一造成伤害，妥妥的群伤`;
         return b;
     }
 
@@ -1036,6 +1090,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Earthquake_Power_2];
         b.imgIndex = 32;
         b.price = 260;
+        b.comment =  `很长时间才能地震一次，但是一旦地震，伤害巨大，并且还可以蓄力`;
         return b;
     }
 
@@ -1056,6 +1111,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 32;
         b.price = 300;
+        b.comment =  `地震伤害本来很大了，但是这下子更大了`;
         return b;
     }
 
@@ -1076,6 +1132,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Earthquake_Speed_2];
         b.imgIndex = 31;
         b.price = 260;
+        b.comment =  `地震伤害变得很小了，但是频率非常高`;
         return b;
     }
 
@@ -1097,6 +1154,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 31;
         b.price = 400;
+        b.comment =  `地震的频率进一步提高了，非常快`;
         return b;
     }
 
@@ -1115,6 +1173,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Flamethrower_1, BatteryFinally.FrozenCannon_1, BatteryFinally.Poison_1];
         b.imgIndex = 36;
         b.price = 260;
+        b.comment =  `这个炮塔发射的是呛人的瓦斯烟雾，同时也是为了进化成发射粉尘类，烟雾类等等的炮塔而过渡`;
         return b;
     }
 
@@ -1135,6 +1194,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Flamethrower_2];
         b.imgIndex = 37;
         b.price = 420;
+        b.comment =  `喷射火焰，让敌人持续受到伤害，同时让敌人获得烧伤效果，敌人获得烧伤效果之后会按照比例持续掉血，血量再厚的敌人也撑不过多久，坏处就是烧伤会让敌人加速`;
         return b;
     }
 
@@ -1155,6 +1215,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 37;
         b.price = 500;
+        b.comment =  `喷射的火焰采用了冷火焰，好处是让敌人加速的不那么快了，伤害丝毫不会打折扣`;
         return b;
     }
 
@@ -1174,6 +1235,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.FrozenCannon_2];
         b.imgIndex = 39;
         b.price = 620;
+        b.comment =  `击中之后的冰冻蛋子会发生小爆炸，爆炸范围内的敌人会减速，这个减速效果可以累加，直到达到一个上限。但是冰冻和烧伤是互斥的，二者不能同时存在`;
         return b;
     }
 
@@ -1195,6 +1257,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.FrozenCannon_1;
         b.imgIndex = 39;
         b.price = 1200;
+        b.comment =  `迅速发射大量更密集的冰冻蛋子`;
         return b;
     }
 
@@ -1215,6 +1278,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Poison_2];
         b.imgIndex = 38;
         b.price = 400;
+        b.comment =  `被毒气烟雾熏到的敌人会受到伤害`;
         return b;
     }
 
@@ -1235,6 +1299,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Poison_1;
         b.imgIndex = 38;
         b.price = 600;
+        b.comment =  `毒气伤害增加`;
         return b;
     }
 
@@ -1256,6 +1321,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Shotgun_1, BatteryFinally.ShotCannon_1];
         b.imgIndex = 42;
         b.price = 400;
+        b.comment =  `一种散弹`;
         return b;
     }
 
@@ -1278,6 +1344,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Shotgun_2];
         b.imgIndex = 44;
         b.price = 500;
+        b.comment =  `发射频率很快的散弹子弹`;
         return b;
     }
 
@@ -1300,6 +1367,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 44;
         b.price = 800;
+        b.comment =  `发射的频率更快了，但是子弹的移动速度可能并不是很快`;
         return b;
     }
 
@@ -1323,6 +1391,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.ShotCannon_2];
         b.imgIndex = 43;
         b.price = 600;
+        b.comment =  `像人拉屎窜稀一样，快速的喷泄出大量子弹，喷泄出的子弹速度不一`;
         return b;
     }
 
@@ -1345,6 +1414,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 43;
         b.price = 900;
+        b.comment =  `喷泄量增加了`;
         return b;
     }
 
@@ -1363,6 +1433,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.SprayCannon_2, BatteryFinally.SprayCannon_Double];
         b.imgIndex = 40;
         b.price = 250;
+        b.comment =  `发射出去的子弹可以发生分裂`;
         return b;
     }
 
@@ -1380,6 +1451,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.SprayCannon_3];
         b.imgIndex = 40;
         b.price = 360;
+        b.comment =  `发射的子弹由小型分裂弹变为中型分裂弹`;
         return b;
     }
 
@@ -1397,6 +1469,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 40;
         b.price = 500;
+        b.comment =  `发射大型分裂弹`;
         return b;
     }
 
@@ -1414,6 +1487,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.SprayCannon_Three];
         b.imgIndex = 41;
         b.price = 600;
+        b.comment =  `发射的子弹能够发生分裂，发生分裂后的子弹碰到怪物还能继续发生分裂`;
         return b;
     }
 
@@ -1431,6 +1505,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 41;
         b.price = 900;
+        b.comment =  `发生出去的子弹发生分裂，分裂后继续分裂，分裂后还能分裂！总共能够分裂三次`;
         return b;
     }
 
@@ -1456,6 +1531,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.FutureCannon_3];
         b.imgIndex = 51;
         b.price = 300;
+        b.comment =  `高科技塔，发射的光粒子弹加强了`;
         return b;
     }
 
@@ -1482,6 +1558,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.FutureCannon_4];
         b.imgIndex = 52;
         b.price = 600;
+        b.comment =  `发射的子弹进一步加强`;
         return b;
     }
 
@@ -1507,6 +1584,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.FutureCannon_5];
         b.imgIndex = 53;
         b.price = 800;
+        b.comment =  `发射的子弹能够穿过敌人了`;
         return b;
     }
 
@@ -1531,6 +1609,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 54;
         b.price = 1200;
+        b.comment =  `发射的子弹进一步加强了`;
         return b;
     }
 
@@ -1553,6 +1632,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.FutureCannon_1;
         b.imgIndex = 55;
         b.price = 400;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1570,6 +1650,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_1;
         b.imgIndex = 56;
         b.price = 1000;
+        b.comment =  `发射出去的球状闪电具有很强的跟踪能力`;
         return b;
     }
 
@@ -1587,6 +1668,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.ThunderBall_1;
         b.imgIndex = 56;
         b.price = 600;
+        b.comment =  `发射出去的球状闪电具有很强的跟踪能力`;
         return b;
     }
 
@@ -1604,6 +1686,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.ThunderBall_2;
         b.imgIndex = 56;
         b.price = 600;
+        b.comment =  `发射出去的球状闪电具有很强的跟踪能力`;
         return b;
     }
 
@@ -1625,6 +1708,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_1;
         b.imgIndex = 55;
         b.price = 600;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1646,6 +1730,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_2;
         b.imgIndex = 55;
         b.price = 600;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1667,6 +1752,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_Far_1;
         b.imgIndex = 55;
         b.price = 600;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1688,6 +1774,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_2;
         b.imgIndex = 55;
         b.price = 400;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1709,6 +1796,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Thunder_Power_1;
         b.imgIndex = 55;
         b.price = 1000;
+        b.comment =  `能够发射一道闪电，击中敌人后会继续电传导击中附近${b.zapLen}范围内的敌人，进行如上操作${b.zapCount}次数，每次伤害是上一个击中目标的${b.damageMultipleRate}倍数累加，闪电的基础伤害是${b.laserBaseDamage}，最大蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1728,6 +1816,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.FutureCannon_1;
         b.imgIndex = 60;
         b.price = 350;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1745,6 +1834,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser;
         b.imgIndex = 59;
         b.price = 600;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1761,6 +1851,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Blue_1;
         b.imgIndex = 59;
         b.price = 1200;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1777,6 +1868,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Blue_2;
         b.imgIndex = 59;
         b.price = 1000;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1789,6 +1881,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Blue_1;
         b.imgIndex = 69;
         b.price = 2000;
+        b.comment = `锁定敌人之后会持续对敌人发射激光，激光会越来越强，随着时间推移伤害会越来越高，无限制增高，血量再厚的敌人也抵挡不过它`
         return b;
     }
 
@@ -1801,6 +1894,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Hell_1;
         b.imgIndex = 69;
         b.price = 1000;
+        b.comment = `锁定目标后伤害增加的速度变得更快了`
         return b;
     }
 
@@ -1820,6 +1914,7 @@ class BatteryFinally {
         b.levelUpArr = [BatteryFinally.Laser_Green_2];
         b.imgIndex = 58;
         b.price = 400;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1838,6 +1933,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Green_1;
         b.imgIndex = 58;
         b.price = 500;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1856,6 +1952,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Blue_2;
         b.imgIndex = 58;
         b.price = 700;
+        b.comment = `蓄力发射激光直接瞬间命中敌人，攻击冷却是${b.laserFreezeMax}个时间刻度，每次击中基础伤害是${b.laserBaseDamage}，最大额外蓄力伤害是${b.laserMaxDamage}`;
         return b;
     }
 
@@ -1876,6 +1973,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser;
         b.imgIndex = 57;
         b.price = 800;
+        b.comment = `绿色激光是一种高频激光，蓝色激光是一种低频高伤害激光，而红色激光是一种大范围群体伤害激光，能够穿射`
         return b;
     }
 
@@ -1896,6 +1994,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Red;
         b.imgIndex = 57;
         b.price = 800;
+        b.comment = `这种激光的穿射能力更强了, 激光的长度几乎能够穿过整个战场`;
         return b;
     }
 
@@ -1916,6 +2015,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Red_Alpha_1;
         b.imgIndex = 57;
         b.price = 900;
+        b.comment = "增加了激光的伤害";
         return b;
     }
 
@@ -1935,6 +2035,7 @@ class BatteryFinally {
         b.levelDownGetter = BatteryFinally.Laser_Red;
         b.imgIndex = 57;
         b.price = 600;
+        b.comment = `激光不再有固定的目标，开始直接旋转扫射，只要被激光扫到，就会受到伤害`
         return b;
     }
 
@@ -1954,6 +2055,7 @@ class BatteryFinally {
         b.levelUpArr = [];
         b.imgIndex = 57;
         b.price = 1000;
+        b.comment = `全屏扫射`
         return b;
     }
 }
