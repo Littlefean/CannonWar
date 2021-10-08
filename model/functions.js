@@ -33,9 +33,14 @@ class Functions {
      * @param level
      */
     static levelMonsterFlowNum(level) {
-        // let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
-        // return res <= 0 ? 1 : res;
-        let res = Math.floor(Math.pow(level / 2, 1.3)) + 2;
+        let res = Math.floor(Math.pow(level / 2, 1.1)) + 2;
+        res += Math.log(level + 1) * 5;
+        res = Math.floor(res);
+        return res <= 0 ? 1 : res;
+    }
+
+    static levelMonsterFlowNumHard(level) {
+        let res = Math.floor(Math.pow(level / 2, 1.35)) + 2;
         res += Math.log(level + 1) * 10;
         res = Math.floor(res);
         return res <= 0 ? 1 : res;
@@ -78,8 +83,24 @@ class Functions {
      * @param level
      * @returns {number}
      */
-    static levelMonsterHpAdded(level) {
-        return Math.floor(Math.pow(level, 3) + Math.pow(level, 0.5) * 60);
+    static levelMonsterHpAddedHard(level) {
+        return Math.floor(Math.pow(level, 2.7) + Math.pow(level, 0.5) * 60);
+    }
+
+    static levelMonsterHpAddedNormal(level) {
+        let res = Math.floor(Math.pow(level, 2.5) + Math.pow(level, 0.5) * 60);
+        if (res > 100000) {
+            res = 100000;
+        }
+        return res;
+    }
+
+    static levelMonsterHpAddedEasy(level) {
+        let res = Math.floor(Math.pow(level, 2) + Math.pow(level, 0.5) * 60);
+        if (res > 5000) {
+            res = 5000;
+        }
+        return res;
     }
 
     /**
@@ -92,12 +113,25 @@ class Functions {
         return res < 1 ? 1 : res;
     }
 
+    static levelT800CountHard(level) {
+        let res = Math.floor(Math.pow(level, 1.5) / 10);
+        return res < 1 ? 1 : res;
+    }
+
     /**
      * 随着怪物波数的增加，每个怪物奖金的量
      * @param level
      */
     static levelAddPrice(level) {
         return Math.floor(Math.log(level) * (level / 10)) + 10;
+    }
+
+    static levelAddPriceNormal(level) {
+        return Math.floor(Math.log(level) * (level / 10));
+    }
+
+    static levelAddPriceHard(level) {
+        return Math.floor(Math.log(level) * (level / 20));
     }
 
     /**
@@ -118,6 +152,10 @@ class Functions {
      * @param level
      */
     static levelCollideAdded(level) {
+        return Math.floor(Math.pow(level, 1.55));
+    }
+
+    static levelCollideAddedHard(level) {
         return Math.floor(Math.pow(level, 2));
     }
 
@@ -129,8 +167,18 @@ class Functions {
     static TowerNumPriceAdded(num) {
         return Math.floor(Math.exp(num) / 1000);
     }
+
+    static TowerNumPriceAdded2(num) {
+        let x = num - 6;
+        if (x < 0) {
+            x = 0;
+        }
+        return Math.floor(Math.pow(x, 1.7));
+    }
 }
+
 //
 // for (let i = 1; i < 1000; i++) {
-//     console.log(i, Functions.levelT800Count(i));
+//     // console.log(i, Functions.levelAddPrice(i), Functions.levelAddPriceNormal(i), Functions.levelAddPriceHard(i));
+//     // console.log(i, Functions.TowerNumPriceAdded(i), Functions.TowerNumPriceAdded2(i),)
 // }

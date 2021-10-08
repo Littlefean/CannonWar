@@ -18,7 +18,7 @@ class World {
         this.effects = [];  // 特效层
         this.othersBullys = [];  // 多余的子弹，比如子弹分裂后的子弹
         this.time = 0;
-
+        this.mode = "normal";
         // 安置大本
         let RootBuilding = BuildingFinally.Root(this);
         RootBuilding.pos = new Vector(this.width / 2, this.height / 2);
@@ -31,8 +31,8 @@ class World {
         };
 
         // 当前怪物流信息
-        this.monsterFlow = MonsterGroup.getMonsterFlow(this, 1);
-        this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, 2);
+        this.monsterFlow = MonsterGroup.getMonsterFlow(this, 1, this.mode);
+        this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, 2, this.mode);
     }
 
     /**
@@ -144,10 +144,11 @@ class World {
         this.effects = eArr;
         // 添加怪物流
         if (this.monsterFlow.couldBegin()) {
-            this.monsterFlow.addToWorld();
+            this.monsterFlow.addToWorld(this.mode);
 
             this.monsterFlow = this.monsterFlowNext.copySelf();
-            this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, this.monsterFlowNext.level + 1);
+            this.monsterFlowNext = MonsterGroup.getMonsterFlow(this,
+                this.monsterFlowNext.level + 1, this.mode);
         }
         if (this.monsterFlow.delayTick === 200 - 1) {
             // 添加文字提醒

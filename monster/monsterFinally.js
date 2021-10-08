@@ -10,6 +10,13 @@ class MonsterFinally {
         return m;
     }
 
+    static Runner(world) {
+        let m = Monster.randInit(world);
+        m.speedNumb = 1;
+        m.comment = "一个更快的普通怪物";
+        return m;
+    }
+
     static TestMonster(world) {
         let m = Monster.randInit(world);
         m.name = "鸡肋的测试怪物";
@@ -334,7 +341,6 @@ class MonsterFinally {
         m.haveBullyChangeArea = true;
         m.bullyChangeDetails.r = 150;
         m.bullyChangeDetails.f = 1;
-        // m.bullyChangeDetails.bullyDR = -1;
         m.bullyChangeDetails.bullyAN = 1;
         m.imgIndex = 13;
         m.comment = "自身会有一个排斥子弹的场，能够把场内的飞过来的子弹向外排斥，改变子弹的轨迹，只是对子弹有效果，对激光和其他武器没有效果";
@@ -367,6 +373,51 @@ class MonsterFinally {
         m.r = 20;
         m.imgIndex = 15;
         m.comment = "会对你的建筑进行远程射击，造成伤害";
+        return m;
+    }
+
+    static Shouter_Stone(world) {
+        let m = MonsterShooter.randInit(world);
+        m.name = "石头蛋子射击者";
+        m.addPrice += 5;
+        m.speedNumb = 0.30;
+        m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
+        m.r = 20;
+        m.imgIndex = 15;
+        m.getmMainBullyFunc = BullyFinally.CannonStone_L;
+        m.clock = 50;
+        m.rangeR = 170;
+        m.comment = "会对你的建筑进行远程射击伤害巨大的石头蛋子";
+        return m;
+    }
+
+    static Shouter_Bomber(world) {
+        let m = MonsterShooter.randInit(world);
+        m.name = "火炮射击者";
+        m.addPrice += 5;
+        m.speedNumb = 0.30;
+        m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
+        m.r = 20;
+        m.imgIndex = 15;
+        m.getmMainBullyFunc = BullyFinally.H_S;
+        m.clock = 50;
+        m.rangeR = 170;
+        m.comment = "会对你的建筑进行远程射击伤害巨大的火炮";
+        return m;
+    }
+
+    static Shouter_Spike(world) {
+        let m = MonsterShooter.randInit(world);
+        m.name = "小仙人掌斯派克";
+        m.addPrice += 5;
+        m.speedNumb = 0.30;
+        m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
+        m.r = 20;
+        m.imgIndex = 15;
+        m.getmMainBullyFunc = BullyFinally.SpikeBully;
+        m.clock = 8;
+        m.rangeR = 100;
+        m.comment = "会对你的建筑进行远程射击仙人球";
         return m;
     }
 
@@ -533,6 +584,7 @@ const MONSTERS_FUNC_ARR_ALL = [
     MonsterFinally.Ox1,
     MonsterFinally.Ox2,
     MonsterFinally.Ox3,
+    MonsterFinally.Runner,
     MonsterFinally.Bomber1,
     MonsterFinally.Bomber2,
     MonsterFinally.Bomber3,
@@ -549,6 +601,9 @@ const MONSTERS_FUNC_ARR_ALL = [
     MonsterFinally.BulletRepellent,
     MonsterFinally.DamageReducers,
     MonsterFinally.Shouter,
+    MonsterFinally.Shouter_Stone,
+    MonsterFinally.Shouter_Bomber,
+    MonsterFinally.Shouter_Spike,
 
     MonsterFinally.Slime_L,
     MonsterFinally.witch_N,
@@ -562,21 +617,9 @@ const MONSTERS_FUNC_ARR_ALL = [
     MonsterFinally.T800,
 
     MonsterFinally.Normal,
-    // MonsterFinally.TestMonster,
+    MonsterFinally.TestMonster,
 ];
-const MONSTERS_FUNC_ARR_1 = [
-    MonsterFinally.Normal,
-    MonsterFinally.Ox1,
-    MonsterFinally.Bomber1,
-    MonsterFinally.Thrower1,
-    MonsterFinally.Bulldozer,
-    MonsterFinally.Medic,
-    MonsterFinally.Medic_M,
-    MonsterFinally.Medic_S,
-    MonsterFinally.AttackAdder,
-    MonsterFinally.SpeedAdder,
-    MonsterFinally.Shouter,
-];
+
 // 打算画一个1000 x 1000 的图片，其中能容纳 100个100x100的方块，这些网格中放置怪物贴图
 const MONSTERS_IMG = new Image();
 MONSTERS_IMG.src = "monster/imgs/monsters.png";

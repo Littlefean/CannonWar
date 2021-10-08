@@ -110,8 +110,8 @@ class Monster extends CircleObject {
      * 初始化这个怪物的数据，根据波数
      */
     dataInit(flowNum) {
-        this.hpInit(this.maxHp + Functions.levelMonsterHpAdded(flowNum));
-        this.colishDamage += Functions.levelCollideAdded(flowNum);
+        this.hpInit(this.maxHp + Functions.levelMonsterHpAddedHard(flowNum));
+        this.colishDamage += Functions.levelCollideAddedHard(flowNum);
         this.addPrice += Functions.levelAddPrice(flowNum);
     }
 
@@ -242,14 +242,14 @@ class Monster extends CircleObject {
                         defend(bully);
                         count++;
                         laserNumChange(-1);
-                        console.log("减少了")
+                        // console.log("减少了")
                     }
                 }
             }
             // 开始恢复子弹
             if (this.liveTime % this.laserRecoverFreeze === 0) {
                 laserNumChange(this.laserRecoverNum);
-                console.log("恢复了")
+                // console.log("恢复了")
             }
         }
     }

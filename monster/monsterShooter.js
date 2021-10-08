@@ -22,51 +22,47 @@ class MonsterShooter extends Monster {
         this.bullyDeviation = 0;  // 子弹平面随机偏移
         this.bullySlideRate = 1;  // 子弹可滑行距离
         this.bullys = [];
+
     }
 
     goStep() {
+        this.getTarget();
         super.goStep();
         this.attackAction();
 
         // 移动自己射过的子弹
         for (let bully of this.bullys) {
-            // b.goStep();
-            bully.move();
-            let c = new Circle(bully.pos.x, bully.pos.y, bully.r); // 当前子弹形状
-            for (let building of this.world.getAllBuildingArr()) {
-                if (c.impact(building.getBodyCircle())) {
-                    // 直接击中造成伤害
-                    console.log("造成的伤害是：", bully.damage)
-                    building.hpChange(-bully.damage);
-                    console.log("目前的血量是：", building.hp)
-                    console.log(building);
-                    // // 直接击中造成改变速速效果
-                    // b.speedFreezeNumb *= b.freezeCutDown;  // 每次减速都会叠加
-                    // // 燃烧属性
-                    // b.burnRate += b.burnRateAdd;
-                    // 可以穿过
-                    if (bully.throughable) {
-                        // 被削减掉了
-                        if (bully.r <= 0) {
-                            bully.remove();
-                            break;
-                        }
-                        bully.bodyRadiusChange(-bully.throughCutNum);
-                        continue;
-                    }
-                    // 发生爆炸
-                    bully.boom();
-                    // 造成击退
-                    // building.changedSpeed.add(bully.speed.mul(bully.repel));
-                    // // 发生分裂
-                    // b.split();
-                    // 删除子弹
-                    bully.remove();
-                    break;
-                }
+            bully.goStep();
+        }
+    }
+    move() {
+        if (this.haveTarget()) {
+
+        } else {
+            super.move();
+        }
+    }
+
+    /**
+     * 返回当前是否有目标
+     * @returns {boolean} 是否有目标
+     */
+    haveTarget() {
+        return !(this.target === null || this.target === undefined || this.target.isDead());
+    }
+
+    /**
+     * 寻找目标
+     */
+    getTarget() {
+        for (let building of this.world.getAllBuildingArr()) {
+            if (this.getViewCircle().impact(building.getBodyCircle())) {
+                this.target = building;
+                return;
             }
         }
     }
+
 
     /**
      * 攻击机制
@@ -75,13 +71,10 @@ class MonsterShooter extends Monster {
         if (this.liveTime % this.clock !== 0) {
             return;
         }
-        for (let building of this.world.getAllBuildingArr()) {
-            if (this.getViewCircle().impact(building.getBodyCircle())) {
-                this.dirction = building.pos.sub(this.pos).to1();
-                for (let i = 0; i < this.attackBullyNum; i++) {
-                    this.fire();
-                }
-                break;
+        if (this.haveTarget()) {
+            this.dirction = this.target.pos.sub(this.pos).to1();
+            for (let i = 0; i < this.attackBullyNum; i++) {
+                this.fire();
             }
         }
     }
@@ -105,6 +98,7 @@ class MonsterShooter extends Monster {
         if (res === undefined) {
             console.log("??????? 可能是finalBully忘了return了")
         }
+        res.targetTower = true;
         // 发射起始点
         res.originalPos = new Vector(this.pos.x, this.pos.y);
         // 世界绑定

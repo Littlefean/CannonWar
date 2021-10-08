@@ -259,7 +259,7 @@ class BullyFinally {
         b.damage = 500;
 
         b.haveBomb = true;
-        b.bombDamage = 5000;
+        b.bombDamage = 3500;
         b.bombRange = 120;
         b.bombFunc = b.bombFire;
         b.accelerationV = 0.05;
@@ -472,7 +472,6 @@ class BullyFinally {
 
     /**
      * 荒野乱斗中仙人掌斯派克的父亲爆裂子弹
-     * @returns {Bully_S}
      * @constructor
      */
     static SpikeBully() {

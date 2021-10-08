@@ -26,9 +26,9 @@ class MonsterTerminator extends Monster {
         } else if (damage < 1500) {
             super.hpChange(-100);
         } else if (damage < 3000) {
-            super.hpChange(-300);
-        }else {
-            super.hpChange(dh);
+            super.hpChange(-150);
+        } else {
+            super.hpChange(-250);
         }
     }
 

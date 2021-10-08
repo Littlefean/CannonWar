@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+@font-face {
+  font-family: myFont;
+  src: url("fonts/汉仪菱心体简.ttf");
+}
 body {
   overflow: hidden;
 }
@@ -11,7 +15,6 @@ body .gameApp {
   height: 100vh;
   left: 0;
   top: 0;
-  outline: solid 1px;
   position: absolute;
 }
 body .gameApp .interface {
@@ -20,13 +23,15 @@ body .gameApp .interface {
   height: 100%;
   left: 0;
   top: 0;
+  background-image: url("imgs/background (3).jpg");
 }
 body .gameApp .interface h1 {
   width: 100%;
   top: 15%;
   position: absolute;
   text-align: center;
-  font-family: "Times New Roman", serif;
+  font-weight: lighter;
+  font-family: myFont, "Times New Roman", serif;
   font-size: 60px;
 }
 body .gameApp .interface h2 {
@@ -34,24 +39,27 @@ body .gameApp .interface h2 {
   top: 15%;
   position: absolute;
   text-align: center;
-  font-family: "Times New Roman", serif;
+  font-weight: lighter;
+  font-family: myFont, "Times New Roman", serif;
   top: 25%;
   font-size: 40px;
 }
 body .gameApp .interface .leftTopArea {
-  outline: solid 1px;
   width: 100px;
   height: 100px;
   padding: 30px;
 }
 body .gameApp .interface .leftTopArea button {
   background-color: #1e1e1e;
-  color: orange;
+  color: #f1f3f4;
+  width: 400px;
   display: block;
   margin: 30px auto;
   padding: 10px;
   transition: all 0.2s;
   cursor: pointer;
+  border: none;
+  border-radius: 100px;
   margin: 0;
 }
 body .gameApp .interface .leftTopArea button:hover {
@@ -62,38 +70,77 @@ body .gameApp .interface .btnList {
   position: absolute;
   left: 50%;
   top: 40%;
-  outline: solid 1px;
   transform: translateX(-150px);
 }
 body .gameApp .interface .btnList button {
   background-color: #1e1e1e;
-  color: orange;
+  color: #f1f3f4;
+  width: 400px;
   display: block;
   margin: 30px auto;
   padding: 10px;
   transition: all 0.2s;
   cursor: pointer;
-  font-size: 20px;
-  font-family: "Times New Roman", serif;
+  border: none;
+  border-radius: 100px;
+  font-size: 30px;
+  padding: 25px 50px 25px 50px;
+  font-family: myFont, "Times New Roman", serif;
 }
 body .gameApp .interface .btnList button:hover {
   transform: scale(1.1);
 }
+body .gameApp .modeChoice-interface {
+  overflow-y: scroll;
+}
+body .gameApp .modeChoice-interface h1,
+body .gameApp .modeChoice-interface h2 {
+  position: static;
+  margin-top: 60px;
+}
+body .gameApp .modeChoice-interface .leftTopArea {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+body .gameApp .modeChoice-interface .btnList {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 30%;
+  width: 600px;
+  transform: translateX(-300px);
+  text-align: center;
+  padding-top: 50px;
+}
+body .gameApp .modeChoice-interface .btnList button {
+  margin: 15px auto;
+}
+body .gameApp .modeChoice-interface .btnList p {
+  margin: 10px;
+  text-align: center;
+}
+body .gameApp .war-interface {
+  background-image: url("imgs/background (2).jpg");
+}
 body .gameApp .war-interface .rightTopArea {
   width: 100px;
   position: absolute;
-  outline: solid 1px;
   right: 12%;
   top: 0;
 }
 body .gameApp .war-interface .rightTopArea .backPage {
   background-color: #1e1e1e;
-  color: orange;
+  color: #f1f3f4;
+  width: 400px;
   display: block;
   margin: 30px auto;
   padding: 10px;
   transition: all 0.2s;
   cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  width: 100px;
 }
 body .gameApp .war-interface .rightTopArea .backPage:hover {
   transform: scale(1.1);
@@ -102,10 +149,18 @@ body .gameApp .help-interface .content {
   width: 60%;
   margin: 0 auto;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 body .gameApp .help-interface .content .h2 {
   text-align: center;
   position: static;
+}
+body .gameApp .main-interface .btnList {
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-300px);
 }
 body .gameApp .cannon-interface,
 body .gameApp .monsters-interface {
@@ -121,19 +176,19 @@ body .gameApp .cannon-interface .content,
 body .gameApp .monsters-interface .content {
   width: 90%;
   margin: 0 auto;
-  background-color: gray;
   overflow: hidden;
 }
 body .gameApp .cannon-interface .content .tower,
 body .gameApp .monsters-interface .content .tower,
 body .gameApp .cannon-interface .content .monster,
 body .gameApp .monsters-interface .content .monster {
-  outline: solid 1px;
   float: left;
   width: 300px;
-  min-height: 300px;
+  height: 400px;
   padding: 30px;
   margin: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
 }
 body .gameApp .cannon-interface .content .tower h3,
 body .gameApp .monsters-interface .content .tower h3,
@@ -141,7 +196,7 @@ body .gameApp .cannon-interface .content .monster h3,
 body .gameApp .monsters-interface .content .monster h3 {
   text-align: center;
   line-height: 2em;
-  font-family: "Times New Roman", serif;
+  font-family: myFont, "Times New Roman", serif;
 }
 body .gameApp .cannon-interface .content .tower .tower-shape,
 body .gameApp .monsters-interface .content .tower .tower-shape,
@@ -159,8 +214,12 @@ body .gameApp .monsters-interface .content .monster .monster-shape {
 body .gameApp .cannon-interface .leftTopArea,
 body .gameApp .monsters-interface .leftTopArea {
   position: absolute;
-  right: 0;
+  right: 10%;
   top: 0;
+}
+body .gameApp .cannon-interface .leftTopArea .backPage,
+body .gameApp .monsters-interface .leftTopArea .backPage {
+  width: 100px;
 }
 body .gameApp #mainCanvas {
   left: 0;
@@ -173,9 +232,7 @@ body .choiceBtn {
   position: absolute;
   right: 0;
   top: 0;
-  outline: solid 1px;
   overflow-y: scroll;
-  background-color: pink;
 }
 body .choiceBtn .Battery {
   color: #9cdcfe;
@@ -210,16 +267,13 @@ body .choiceBtn button:active {
   right: 20%;
   bottom: 5%;
   padding: 5px;
-  outline: solid 1px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 #smallLevelUpPanel .levelUpItems .levelUpItem {
   float: left;
   width: 60px;
-  height: 60px;
   margin: 2px;
-  outline: solid 1px;
   transition: all 0.2s;
   cursor: pointer;
   user-select: none;
@@ -231,12 +285,22 @@ body .choiceBtn button:active {
 #smallLevelUpPanel .levelUpItems .levelUpItem:hover {
   transform: scale(1.1);
 }
+#smallLevelUpPanel .levelUpItems .levelUpItem .name {
+  height: 35px;
+  font-size: 10px;
+}
+#smallLevelUpPanel .levelUpItems .levelUpItem .icon {
+  margin: 0 auto;
+}
+#smallLevelUpPanel .levelUpItems .levelUpItem .price {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
 #smallLevelUpPanel .otherItems .item {
   float: left;
   width: 60px;
-  height: 60px;
   margin: 2px;
-  outline: solid 1px;
   transition: all 0.2s;
   cursor: pointer;
   user-select: none;
@@ -247,6 +311,22 @@ body .choiceBtn button:active {
 }
 #smallLevelUpPanel .otherItems .item:hover {
   transform: scale(1.1);
+}
+#smallLevelUpPanel .otherItems .levelDown .icon,
+#smallLevelUpPanel .otherItems .sell .icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  background-image: url("icon/down.png");
+  background-size: 50px 50px;
+}
+#smallLevelUpPanel .otherItems .levelDown .inner-text,
+#smallLevelUpPanel .otherItems .sell .inner-text {
+  text-align: center;
+  font-weight: bolder;
+}
+#smallLevelUpPanel .otherItems .sell .icon {
+  background-image: url("icon/sell.png");
 }
 button {
   color: white;

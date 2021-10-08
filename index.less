@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: myFont;
+  src: url("fonts/汉仪菱心体简.ttf");
+}
 
 body {
   overflow: hidden;
@@ -13,11 +17,13 @@ body {
     height: 100vh;
     left: 0;
     top: 0;
-    outline: solid 1px;
+    //outline: solid 1px;
     position: absolute;
 
     .fonts() {
-      font-family: "Times New Roman", serif;
+      font-family: myFont, "Times New Roman", serif;
+      //font-family: "Times New Roman", serif;
+      //font-family: "url(fonts/汉仪菱心体简.ttf)", serif;
     }
 
 
@@ -27,6 +33,7 @@ body {
       top: 15%;
       position: absolute;
       text-align: center;
+      font-weight: lighter;
       .fonts();
     }
 
@@ -37,6 +44,7 @@ body {
       left: 0;
       top: 0;
       //background-color: skyblue;
+      background-image: url("imgs/background (3).jpg");
 
       h1 {
         .header();
@@ -50,7 +58,7 @@ body {
       }
 
       .leftTopArea {
-        outline: solid 1px;
+        //outline: solid 1px;
         width: 100px;
         height: 100px;
         padding: 30px;
@@ -66,28 +74,76 @@ body {
         position: absolute;
         left: 50%;
         top: 40%;
-        outline: solid 1px;
+        //outline: solid 1px;
         transform: translateX(-150px);
 
         button {
           .interfaceBtn();
-          font-size: 20px;
+          font-size: 30px;
+          padding: 25px 50px 25px 50px;
           .fonts();
         }
       }
     }
 
+    .modeChoice-interface {
+      //border: solid 1px red;
+      overflow-y: scroll;
+
+      h1, h2 {
+        //top: 20px;
+        position: static;
+        margin-top: 60px;
+      }
+
+      .leftTopArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        //background-color: pink;
+      }
+
+      .btnList {
+        position: absolute;
+        display: block;
+        //outline: solid 1px white;
+        left: 50%;
+        top: 30%;
+        width: 600px;
+        //height: 600px;
+        transform: translateX(-300px);
+        text-align: center;
+        padding-top: 50px;
+
+        button {
+          margin: 15px auto;
+
+        }
+
+        p {
+          margin: 10px;
+          //outline: solid 1px;
+          text-align: center;
+        }
+      }
+    }
+
     .war-interface {
+      background-image: url("imgs/background (2).jpg");
+
       .rightTopArea {
         width: 100px;
         //height: 100px;
         position: absolute;
-        outline: solid 1px;
+        //outline: solid 1px;
+
         right: 12%;
         top: 0;
 
         .backPage {
           .interfaceBtn();
+          width: 100px;
+
         }
       }
     }
@@ -101,11 +157,23 @@ body {
         width: 60%;
         margin: 0 auto;
         text-align: center;
+        background-color: rgba(255, 255, 255, 0.5);
 
         .h2 {
           text-align: center;
           position: static;
         }
+      }
+    }
+
+    .main-interface {
+      .btnList {
+        width: 600px;
+        //outline: solid 1px;
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translateX(-300px);
       }
     }
 
@@ -119,17 +187,19 @@ body {
       .content {
         width: 90%;
         margin: 0 auto;
-        background-color: gray;
+        //background-color: gray;
         overflow: hidden;
 
         .tower, .monster {
-          outline: solid 1px;
+          //outline: solid 1px;
           float: left;
           width: 300px;
           //height: 300px;
-          min-height: 300px;
+          height: 400px;
           padding: 30px;
           margin: 10px;
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 30px;
 
           h3 {
             text-align: center;
@@ -148,8 +218,12 @@ body {
 
       .leftTopArea {
         position: absolute;
-        right: 0;
+        right: 10%;
         top: 0;
+
+        .backPage {
+          width: 100px;
+        }
       }
     }
 
@@ -161,12 +235,15 @@ body {
 
     .interfaceBtn() {
       background-color: #1e1e1e;
-      color: orange;
+      color: rgb(241, 243, 244);
+      width: 400px;
       display: block;
       margin: 30px auto;
       padding: 10px;
       transition: all 0.2s;
       cursor: pointer;
+      border: none;
+      border-radius: 100px;
 
       &:hover {
         transform: scale(1.1);
@@ -182,9 +259,9 @@ body {
     //float: left;
     right: 0;
     top: 0;
-    outline: solid 1px;
+    //outline: solid 1px;
     overflow-y: scroll;
-    background-color: pink;
+    //background-color: pink;
 
     .Battery {
       color: rgb(156, 220, 254);
@@ -220,6 +297,7 @@ body {
   }
 }
 
+// 小升级窗口
 #smallLevelUpPanel {
   position: absolute;
   width: 400px;
@@ -227,16 +305,16 @@ body {
   right: 20%;
   bottom: 5%;
   padding: 5px;
-  outline: solid 1px;
+  //outline: solid 1px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5);
 
   .btnItem() {
     float: left;
     width: 60px;
-    height: 60px;
+    //height: 60px;
     margin: 2px;
-    outline: solid 1px;
+    //outline: solid 1px;
     transition: all 0.2s;
     cursor: pointer;
     user-select: none;
@@ -253,13 +331,49 @@ body {
   .levelUpItems {
 
     .levelUpItem {
-      .btnItem()
+      .btnItem();
+
+      .name {
+        height: 35px;
+        font-size: 10px;
+      }
+
+      .icon {
+        margin: 0 auto;
+      }
+
+      .price {
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
     }
   }
 
   .otherItems {
     .item {
       .btnItem()
+    }
+
+    .levelDown, .sell {
+      .icon {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        background-image: url("icon/down.png");
+        background-size: 50px 50px;
+      }
+
+      .inner-text {
+        text-align: center;
+        font-weight: bolder;
+      }
+    }
+
+    .sell {
+      .icon {
+        background-image: url("icon/sell.png");
+      }
     }
 
   }

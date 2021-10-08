@@ -52,8 +52,9 @@ class MonsterGroup {
      *
      * @param world {World}
      * @param level {Number} >= 1 不要等于 0
+     * @param modeStr {String} "easy" "normal"  "hard"
      */
-    static getMonsterFlow(world, level) {
+    static getMonsterFlow(world, level, modeStr) {
         let res = new this(world);
         res.level = level;
         res.kinds = [];
@@ -65,28 +66,124 @@ class MonsterGroup {
         let choice = (arr) => {
             return arr[Math.floor(Math.random() * arr.length)];
         };
+        // todo 对mode进行分情况
         let monsterArr;
         if (level < 10) {
-            monsterArr = MONSTERS_FUNC_ARR_1;
+
+            monsterArr = [
+                MonsterFinally.Normal,
+                MonsterFinally.Runner,
+                MonsterFinally.Ox1,
+                MonsterFinally.Ox2,
+                MonsterFinally.Bomber1,
+                MonsterFinally.Thrower1,
+                MonsterFinally.Bulldozer,
+                MonsterFinally.Medic,
+                MonsterFinally.Medic_M,
+                MonsterFinally.Medic_S,
+                MonsterFinally.AttackAdder,
+                MonsterFinally.SpeedAdder,
+                MonsterFinally.Shouter,
+
+                MonsterFinally.Shouter_Spike,
+            ];
+
         } else {
-            monsterArr = MONSTERS_FUNC_ARR_ALL;
+            monsterArr = [
+                MonsterFinally.Ox1,
+                MonsterFinally.Ox2,
+                MonsterFinally.Ox3,
+                MonsterFinally.Runner,
+                MonsterFinally.Bomber1,
+                MonsterFinally.Bomber2,
+                MonsterFinally.Bomber3,
+                MonsterFinally.Thrower1,
+                MonsterFinally.BlackHole,
+                MonsterFinally.Bulldozer,
+                MonsterFinally.Glans,
+                MonsterFinally.Medic,
+                MonsterFinally.Medic_M,
+                MonsterFinally.Medic_S,
+                MonsterFinally.AttackAdder,
+                MonsterFinally.SpeedAdder,
+                MonsterFinally.BulletWearer,
+                MonsterFinally.BulletRepellent,
+                MonsterFinally.DamageReducers,
+                MonsterFinally.Shouter,
+                MonsterFinally.Shouter_Stone,
+                MonsterFinally.Shouter_Bomber,
+                MonsterFinally.Shouter_Spike,
+
+                MonsterFinally.Slime_L,
+                MonsterFinally.witch_N,
+                MonsterFinally.bat,
+                MonsterFinally.Spoke,
+                MonsterFinally.SpokeMan,
+                MonsterFinally.Exciting,
+                MonsterFinally.Visitor,
+                MonsterFinally.Enderman,
+                MonsterFinally.Mts,
+            ];
+        }
+        if (modeStr === "easy") {
+            monsterArr = [
+                MonsterFinally.Ox1,
+                MonsterFinally.Ox2,
+                MonsterFinally.Ox3,
+                MonsterFinally.Runner,
+                MonsterFinally.Bomber1,
+                MonsterFinally.Slime_S,
+                MonsterFinally.Slime_M,
+                MonsterFinally.Slime_L,
+                MonsterFinally.Medic,
+                MonsterFinally.Medic_S,
+            ];
         }
 
         if (level % 10 === 0) {
-            let sumNum = Functions.levelT800Count(level);
-            res.kinds.push(MonsterFinally.T800);
-            res.kindCount.push(sumNum);
+            if (modeStr === "easy") {
+                let sumNum = Functions.levelMonsterFlowNum(level);
+                for (let i = 0; i < 5; i++) {
+                    res.kinds.push(choice(monsterArr));
+                    res.kindCount.push(Math.floor(sumNum / 3));
+                }
+            } else {
+                let sumNum;
+                if (modeStr === "normal") {
+                    sumNum = Functions.levelT800Count(level);
+                } else if (modeStr === "hard") {
+                    sumNum = Functions.levelT800CountHard(level);
+                }
+                res.kinds.push(MonsterFinally.T800);
+                res.kindCount.push(sumNum);
+            }
         } else if (level % 5 === 0) {
             // 随机选择三种怪物,也有可能是同一种
-            let sumNum = Functions.levelMonsterFlowNum(level);
-            for (let i = 0; i < 3; i++) {
+            let sumNum;
+            let kindNum;
+            if (modeStr === "normal" || modeStr === "easy") {
+                sumNum = Functions.levelMonsterFlowNum(level);
+                kindNum = 3;
+            } else if (modeStr === "hard") {
+                sumNum = Functions.levelMonsterFlowNumHard(level);
+                kindNum = 8;
+            }
+            for (let i = 0; i < kindNum; i++) {
                 res.kinds.push(choice(monsterArr));
                 res.kindCount.push(Math.floor(sumNum / 3));
             }
         } else {
             // 随机选择两种怪物,也有可能是同一种
-            let sumNum = Functions.levelMonsterFlowNum(level);
-            for (let i = 0; i < 2; i++) {
+            let sumNum;
+            let kindNum;
+            if (modeStr === "normal" || modeStr === "easy") {
+                sumNum = Functions.levelMonsterFlowNum(level);
+                kindNum = 2;
+            } else if (modeStr === "hard") {
+                sumNum = Functions.levelMonsterFlowNumHard(level);
+                kindNum = 5;
+            }
+            for (let i = 0; i < kindNum; i++) {
                 res.kinds.push(choice(monsterArr));
                 res.kindCount.push(Math.floor(sumNum / 2));
             }
@@ -119,7 +216,11 @@ class MonsterGroup {
         return false;
     }
 
-    addToWorld() {
+    /**
+     * 将这一波怪物流添加到世界
+     * @param modeStr {String}
+     */
+    addToWorld(modeStr) {
         if (this.couldBegin()) {
             // 添加文字提醒
             let et = new EffectText(`第 ${this.level} 波`);
@@ -133,7 +234,20 @@ class MonsterGroup {
                 let count = this.kindCount[i];
                 for (let j = 0; j < count; j++) {
                     let m = kind(this.world);
-                    m.dataInit(this.level);
+
+                    if (modeStr === "easy") {
+                        m.hpInit(m.maxHp + Functions.levelMonsterHpAddedEasy(this.level));
+                        m.addPrice += Functions.levelAddPrice(this.level);
+                    } else if (modeStr === "normal") {
+                        m.hpInit(m.maxHp + Functions.levelMonsterHpAddedNormal(this.level));
+                        m.colishDamage += Functions.levelCollideAdded(this.level);
+                        m.addPrice += Functions.levelAddPriceNormal(this.level);
+                    } else if (modeStr === "hard") {
+                        m.hpInit(m.maxHp + Functions.levelMonsterHpAddedHard(this.level));
+                        m.colishDamage += Functions.levelCollideAddedHard(this.level);
+                        m.addPrice += Functions.levelAddPriceHard(this.level);
+                    }
+
                     this.world.monsters.push(m);
                 }
             }

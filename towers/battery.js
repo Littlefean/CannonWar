@@ -125,7 +125,6 @@ class Battery extends CircleObject {
             if (this.getViewCircle().impact(m.getBodyCircle())) {
                 let targetDir = m.pos.sub(this.pos).to1();  // 瞄准怪物的方向
                 for (let i = 0; i < this.attackBullyNum; i++) {
-                    // todo 更改this。的朝向
                     this.dirction = Vector.rotatePoint(Vector.zero(), targetDir,
                         2 * this.bullyRotate * (i / this.attackBullyNum))
                     this.dirction = Vector.rotatePoint(Vector.zero(), this.dirction,

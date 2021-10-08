@@ -71,6 +71,9 @@ class Bully extends CircleObject {
         this.speedToTargetN = 5;  // 找到目标的时候的速度
 
         this.collideSound = null;  // 打到怪物身上的时候的声音
+
+        // 子弹的进攻对象是否是炮塔
+        this.targetTower = false;
     }
 
     goStep() {
@@ -115,7 +118,13 @@ class Bully extends CircleObject {
     getTarget() {
         if (this.targetAble) {
             if (!this.haveTarget()) {
-                for (let m of this.world.monsters) {
+                let arr;
+                if (this.targetTower) {
+                    arr = this.world.getAllBuildingArr();
+                } else {
+                    arr = this.world.monsters;
+                }
+                for (let m of arr) {
                     if (m.getBodyCircle().impact(new Circle(this.pos.x, this.pos.y, this.viewRadius))) {
                         this.target = m;
                         break;
@@ -131,7 +140,13 @@ class Bully extends CircleObject {
      */
     collide(world) {
         let c = new Circle(this.pos.x, this.pos.y, this.r); // 当前子弹形状
-        for (let m of world.monsters) {
+        let arr;
+        if (this.targetTower) {
+            arr = this.world.getAllBuildingArr();
+        } else {
+            arr = this.world.monsters;
+        }
+        for (let m of arr) {
             if (c.impact(m.getBodyCircle())) {
                 // 如果击中的对象是具有瞬移能力的
                 if (m.teleportingAble) {
@@ -165,7 +180,9 @@ class Bully extends CircleObject {
                 this.boom();
                 // 造成击退
                 // m.backMove(this.repel);
-                m.changedSpeed.add(this.speed.mul(this.repel));
+                if (!this.targetTower) {
+                    m.changedSpeed.add(this.speed.mul(this.repel));
+                }
                 // 播放音效 todo
                 if (this.collideSound !== null) {
                     this.collideSound.play();
@@ -215,7 +232,6 @@ class Bully extends CircleObject {
      */
     split() {
         if (this.splitAble) {
-            // todo
             let fatherV = this.speed.copy(); // 父亲速度方向
             for (let i = 0; i < this.splitNum; i++) {
                 let b = this.splitBully();
@@ -229,7 +245,7 @@ class Bully extends CircleObject {
                 newDir = Vector.rotatePoint(Vector.zero(), newDir, -this.splitRotate / 2);
                 b.speed.add(newDir.mul(this.splitV));
                 b.splitRangeRate = this.splitRangeRate;
-
+                b.targetTower = this.targetTower;
                 // 添加到世界
                 this.world.othersBullys.push(b);
             }
@@ -242,7 +258,13 @@ class Bully extends CircleObject {
     bombFire() {
         // 爆炸区域圆
         let bC = new Circle(this.pos.x, this.pos.y, this.bombRange);
-        for (let m of this.world.monsters) {
+        let arr;
+        if (this.targetTower) {
+            arr = this.world.getAllBuildingArr();
+        } else {
+            arr = this.world.monsters;
+        }
+        for (let m of arr) {
             if (m.getBodyCircle().impact(bC)) {
                 let dis = this.pos.dis(m.pos);
                 let damage = (1 - (dis / this.bombRange)) * this.bombDamage;
@@ -264,7 +286,13 @@ class Bully extends CircleObject {
     bombFreeze() {
         // 爆炸区域圆
         let bC = new Circle(this.pos.x, this.pos.y, this.bombRange);
-        for (let m of this.world.monsters) {
+        let arr;
+        if (this.targetTower) {
+            arr = this.world.getAllBuildingArr();
+        } else {
+            arr = this.world.monsters;
+        }
+        for (let m of arr) {
             if (m.getBodyCircle().impact(bC)) {
                 // 均摊伤害
                 m.hpChange(-this.bombDamage);

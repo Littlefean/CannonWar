@@ -56,7 +56,12 @@
         <h1>Mode Choice</h1>
         <h2>模式选择</h2>
         <div class="btnList">
-            <button class="endlessMode">无尽模式</button>
+            <button class="endlessMode-easy">无尽模式-简单</button>
+            <p>怪物种类比较少，不会有强力的怪物</p>
+            <button class="endlessMode-normal">无尽模式-普通</button>
+            <p>怪物种类全面，怪物血量上限提高，血量上限随着波数的增加速度提高</p>
+            <button class="endlessMode-hard">无尽模式-困难</button>
+            <p>怪物种类全面，每波数量更多，每波种类更多，BOSS关更加困难，资金更少</p>
         </div>
         <div class="leftTopArea">
             <button class="backPage">返回</button>
@@ -128,17 +133,8 @@
             <p>名字：<span class="monsterName"></span></p>
             <p>细节描述：<span class="monsterComment"></span></p>
         </div>
-        <!--        <div class="buildingData">-->
-        <!--            <p>名字：<span class="buildingName"></span></p>-->
-        <!--            <p>细节描述：<span class="buildingComment"></span></p>-->
-        <!--            <p>可以升级为：</p>-->
-        <!--            &lt;!&ndash;  升级列表  &ndash;&gt;-->
-        <!--            <div class="levelUpList"></div>-->
-        <!--            <button class="levelDown">降级</button>-->
-        <!--            <button class="sell">不想要了，卖钱</button>-->
-        <!--            <button class="cancelChoice">取消选择</button>-->
-        <!--        </div>-->
     </div>
+
 </div>
 
 <script src="sound/sounds.js"></script>
@@ -154,6 +150,7 @@
 <script src="effect/effect.js"></script>
 <script src="effect/effectCircle.js"></script>
 <script src="effect/effectLine.js"></script>
+
 <script src="bullys/bully.js"></script>
 <script src="bullys/bullyFinally.js"></script>
 <script src="towers/battery.js"></script>
@@ -172,6 +169,7 @@
 <script src="monster/monsterTerminator.js"></script>
 <script src="monster/monsterFinally.js"></script>
 <script src="monster/monsterGroup.js"></script>
+
 <script src="world.js"></script>
 
 <script src="index.js"></script>

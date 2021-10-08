@@ -41,7 +41,7 @@ class MonsterMortis extends Monster {
             // 开始冲撞
             if (new Circle(this.bumpEndPoint.x, this.bumpEndPoint.y, 12).pointIn(this.pos.x, this.pos.y)) {
                 // 已经到达目的地附近 改变冲撞结束点
-                console.log("已经到达目的地，改变冲撞点")
+                // console.log("已经到达目的地，改变冲撞点")
                 if (this.haveTarget()) {
                     this.setEndPoint();
                 } else {

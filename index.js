@@ -41,18 +41,20 @@ function mainInterface() {
 function choiceInterface() {
     let thisInterface = document.querySelector(".modeChoice-interface");
 
-    let endlessModeBtn = thisInterface.querySelector(".endlessMode");
-    let rottenModeBtn = thisInterface.querySelector(".rottenMode");
-    let backBtn = thisInterface.querySelector(".backPage");
-    endlessModeBtn.addEventListener("click", () => {
+    thisInterface.querySelector(".endlessMode-easy").addEventListener("click", () => {
         gotoPage("war-interface");
-        endlessMode();
-    })
-
-    rottenModeBtn.addEventListener("click", () => {
-        alert("还在开发中！");
+        endlessMode("easy");
     });
-    backBtn.addEventListener("click", () => {
+    thisInterface.querySelector(".endlessMode-normal").addEventListener("click", () => {
+        gotoPage("war-interface");
+        endlessMode("normal");
+    });
+    thisInterface.querySelector(".endlessMode-hard").addEventListener("click", () => {
+        gotoPage("war-interface");
+        endlessMode("hard");
+    });
+
+    thisInterface.querySelector(".backPage").addEventListener("click", () => {
         gotoPage("main-interface");
     });
 }
@@ -247,8 +249,9 @@ function gotoPage(className) {
 /**
  * 开启无尽模式
  * 前提条件是： war-interface 被打开
+ * @param mode {String}
  */
-function endlessMode() {
+function endlessMode(mode) {
     /**
      * 当前页面
      * @type {HTMLDivElement}
@@ -282,6 +285,7 @@ function endlessMode() {
     Sounds.switchBgm("war");
 
     let world = new World(canvasEle.width, canvasEle.height);
+    world.mode = mode;
     /**
      * 开启游戏循环迭代
      */
@@ -348,14 +352,17 @@ function endlessMode() {
             panelEle.appendChild(cancelBtn);
 
             // 测试按钮
-            let testB = document.createElement("button");
-            testB.id = "testBtn";
-            testB.innerText = "多给钱";
-            testB.addEventListener("click", () => {
-                world.user.money += 100000;
-            });
-
-            panelEle.appendChild(testB);
+            // let testB = document.createElement("button");
+            // testB.id = "testBtn";
+            // testB.innerText = "多给钱";
+            // testB.addEventListener("click", () => {
+            //     world.user.money += 100000;
+            // });
+            //
+            // panelEle.appendChild(testB);
+            let addCommon = document.createElement("p");
+            addCommon.innerText = "如果无法放置炮塔，且画布在不停闪烁，请刷新浏览器重试。";
+            panelEle.appendChild(addCommon);
         }
     }
 
@@ -456,7 +463,6 @@ function endlessMode() {
         let nameSpan = smallLevelUpPanelEle.querySelector(".name");
         nameSpan.innerHTML = thing.name;
         let listEle = smallLevelUpPanelEle.querySelector(".levelUpItems");
-        console.log(listEle);
         listEle.innerHTML = "";  // 先清空
         // 遍历可以升级的项
         if (thing.levelUpArr.length === 0) {
@@ -471,8 +477,31 @@ function endlessMode() {
             let divLevelUpItemEle = document.createElement("div");
             divLevelUpItemEle.classList.add("levelUpItem");
             // 设置标签内容
-            divLevelUpItemEle.innerHTML = levelUpObj.name + `<br>${levelUpObj.price}元`;
-            // 给标签绑定价格属性
+            // 名称
+            let nameDiv = document.createElement("div");
+            nameDiv.classList.add("name");
+            nameDiv.innerText = levelUpObj.name;
+            divLevelUpItemEle.appendChild(nameDiv);
+            let imgDiv = document.createElement("div");
+            // 图标
+            imgDiv.classList.add("icon");
+            imgDiv.style.backgroundImage = "url('towers/imgs/towers.png')";
+            let rate = 0.5; // 缩放比率
+            imgDiv.style.backgroundSize = `${TOWER_IMG_WIDTH * rate}px ${TOWER_IMG_HEIGHT * rate}px`;
+            let diffPos = levelUpObj.getImgStartPosByIndex(levelUpObj.imgIndex);
+            imgDiv.style.width = TOWER_IMG_PRE_WIDTH * rate + "px";
+            imgDiv.style.height = TOWER_IMG_PRE_HEIGHT * rate + "px";
+            imgDiv.style.outline = "solid 1px";
+
+            imgDiv.style.backgroundPositionX = -diffPos.x * rate + "px";
+            imgDiv.style.backgroundPositionY = -diffPos.y * rate + "px";
+            divLevelUpItemEle.appendChild(imgDiv);
+            // 价格
+            let priceDiv = document.createElement("div");
+            priceDiv.classList.add("price");
+            priceDiv.innerText = `${levelUpObj.price}元`;
+            divLevelUpItemEle.appendChild(priceDiv);
+            // 价格属性
             divLevelUpItemEle.setAttribute("data-price", levelUpObj.price.toString());
 
             listEle.appendChild(divLevelUpItemEle);
@@ -501,7 +530,15 @@ function endlessMode() {
         // 设置降级项
         let levelDownEle = document.createElement("div");
         levelDownEle.classList.add("item");
-        levelDownEle.innerHTML = `降级<br>+${thing.price / 4}元`;
+        levelDownEle.classList.add("levelDown");
+        let iconDiv = document.createElement("div");
+        iconDiv.classList.add("icon");
+        levelDownEle.appendChild(iconDiv);
+
+        let textDiv = document.createElement("div");
+        textDiv.classList.add("inner-text");
+        textDiv.innerHTML = `降级<br>+${thing.price / 4}元`;
+        levelDownEle.appendChild(textDiv);
 
         levelDownEle.addEventListener("click", () => {
             // 降级点击函数
@@ -526,7 +563,17 @@ function endlessMode() {
         // 设置出售项
         let saleDownEle = document.createElement("div");
         saleDownEle.classList.add("item");
-        saleDownEle.innerHTML = `卖了<br>+${thing.price / 2}元`;
+
+        saleDownEle.classList.add("sell");
+        let imgDiv = document.createElement("div");
+        imgDiv.classList.add("icon");
+        saleDownEle.appendChild(imgDiv);
+
+
+        textDiv = document.createElement("div");
+        textDiv.classList.add("inner-text");
+        textDiv.innerHTML = `卖了<br>+${thing.price / 2}元`
+        saleDownEle.appendChild(textDiv);
         saleDownEle.addEventListener("click", () => {
             // 卖了点击函数
             world.user.money += Math.floor(thing.price / 2);
@@ -567,6 +614,7 @@ function endlessMode() {
                 }
             }
             selectedThing = null;
+            hideSmallLevelUpPanelEle();
         } else {
             // 手上有炮塔，放置炮塔
             let addedThing = addedThingFunc(world);
@@ -617,10 +665,10 @@ function endlessMode() {
     /**
      * 时刻更新按钮状态
      * 让按钮是否可以点击，金钱限制
-     * todo 还要更新按钮的价格
      * 更新是否取消放置的按钮
      */
     let freshBtn = setInterval(() => {
+        // 右侧塔楼列表
         let towerBtnArr = document.getElementsByClassName(btnClassName);
 
         let basicC = BatteryFinally.BasicCannon(world);
@@ -633,14 +681,27 @@ function endlessMode() {
                 btn.setAttribute("disabled", "disabled");
             }
         }
+        // 游戏结束
         if (gameEnd) {
             clearInterval(freshBtn);
         }
+        // 取消放置按钮
         let cancelSelectBtn = document.getElementById("cancelSelect");
         if (addedThingFunc === null) {
             cancelSelectBtn.setAttribute("disabled", "disabled");
         } else {
             cancelSelectBtn.removeAttribute("disabled");
+        }
+        // 更新小面板可以放置 todo
+        let itemArr = smallLevelUpPanelEle.getElementsByClassName("levelUpItem");
+        for (let itemEle of itemArr) {
+            if (itemEle.dataset.price <= world.user.money) {
+                itemEle.removeAttribute("disabled");
+                itemEle.style.opacity = "1";
+            } else {
+                itemEle.setAttribute("disabled", "disabled");
+                itemEle.style.opacity = "0.2";
+            }
         }
     }, 100);
 

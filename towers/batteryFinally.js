@@ -2114,5 +2114,7 @@ const TOWER_FUNC_ARR = [
 
 const TOWERS_IMG = new Image();
 TOWERS_IMG.src = "towers/imgs/towers.png";
+const TOWER_IMG_WIDTH = 1000;
+const TOWER_IMG_HEIGHT = 1000;
 const TOWER_IMG_PRE_WIDTH = 100;
 const TOWER_IMG_PRE_HEIGHT = 100;
