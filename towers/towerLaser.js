@@ -2,7 +2,7 @@
  * 激光塔类型的防御炮塔
  * by littlefean
  */
-class BatteryLaser extends Battery {
+class TowerLaser extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "特殊类型炮塔";

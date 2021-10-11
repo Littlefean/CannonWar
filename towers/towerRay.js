@@ -3,7 +3,7 @@
  * by littlefean
  */
 
-class BatteryRay extends Battery {
+class TowerRay extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "射线塔";

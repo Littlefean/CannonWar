@@ -7,7 +7,7 @@ class Bully extends CircleObject {
      *
      * @param pos {Vector}
      * @param speed {Vector} 速度
-     * @param father {Battery}
+     * @param father {Tower}
      * @param damage {Number} 子弹伤害
      * @param r {Number} 子弹半径
      */

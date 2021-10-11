@@ -2,7 +2,7 @@
  * 炮塔类
  * by littlefean
  */
-class Battery extends CircleObject {
+class Tower extends CircleObject {
     /**
      * 生成一个普通炮塔
      * @param x {Number}

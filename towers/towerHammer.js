@@ -2,7 +2,7 @@
  * 流星锤塔楼
  * by littlefean
  */
-class BatteryHammer extends Battery {
+class TowerHammer extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "附属物品塔楼";

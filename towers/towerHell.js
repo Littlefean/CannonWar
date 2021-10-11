@@ -2,7 +2,7 @@
  * 地狱塔
  * by littlefean
  */
-class BatteryHell extends Battery {
+class TowerHell extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "地狱塔";

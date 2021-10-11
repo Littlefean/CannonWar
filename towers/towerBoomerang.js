@@ -3,7 +3,7 @@
  * by littlefean
  */
 
-class BatteryBoomerang extends Battery {
+class TowerBoomerang extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "回旋镖";

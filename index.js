@@ -102,7 +102,7 @@ function cannonInterface() {
 
     if (contentEle.children.length === 0) {
         let allTowerArr = [];
-        let towerFunc = BatteryFinally.BasicCannon;
+        let towerFunc = TowerFinally.BasicCannon;
         let dfs = (tf) => {
             let t = tf(worldVoid);
             allTowerArr.push(t);
@@ -324,7 +324,7 @@ function endlessMode(mode) {
         // 如果初始化面板里面还没有被填充内容，则就先填充内容
         if (panelEle.innerHTML === "") {
             let thingsFuncArr = [];  // 即将添加的按钮数组
-            thingsFuncArr.push(BatteryFinally.BasicCannon);
+            thingsFuncArr.push(TowerFinally.BasicCannon);
             for (let bF of BUILDING_FUNC_ARR) {
                 thingsFuncArr.push(bF);
             }
@@ -451,7 +451,7 @@ function endlessMode(mode) {
     /**
      * 显示小升级面板
      * 引用外部变量：  smallLevelUpPanelEle  world
-     * @param thing {Battery}  是什么建筑的
+     * @param thing {Tower}  是什么建筑的
      * @param clickPos {Vector} 鼠标点击的位置
      */
     function showSmallLevelUpPanel(thing, clickPos) {
@@ -671,7 +671,7 @@ function endlessMode(mode) {
         // 右侧塔楼列表
         let towerBtnArr = document.getElementsByClassName(btnClassName);
 
-        let basicC = BatteryFinally.BasicCannon(world);
+        let basicC = TowerFinally.BasicCannon(world);
         towerBtnArr[0].setAttribute("data-price", basicC.price.toString());
         towerBtnArr[0].innerHTML = basicC.name + `<br>${basicC.price}￥`;
         for (let btn of towerBtnArr) {
