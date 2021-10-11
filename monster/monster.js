@@ -374,10 +374,14 @@ class Monster extends CircleObject {
         return super.hpChange(dh);
     }
 
+    /**
+     * 删除这个
+     */
     remove() {
         this.deadSummon();
         super.remove();
         this.hpSet(0);
+        this.world.monsters.delete(this);
     }
 
     /**

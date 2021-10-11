@@ -14,8 +14,8 @@ class World {
         this.height = height;
         this.batterys = [];
         this.buildings = [];
-        this.monsters = [];
-        this.effects = [];  // 特效层
+        this.monsters = new Set();
+        this.effects = new Set();  // 特效层
         this.othersBullys = [];  // 多余的子弹，比如子弹分裂后的子弹
         this.time = 0;
         this.mode = "normal";
@@ -69,22 +69,16 @@ class World {
         this.batterys.push(battery);
     }
 
-    addMonsters() {
-        // todo 当前这个是随机增加一个怪物
-        let randIndex = Math.floor(Math.random() * MONSTERS_FUNC_ARR_ALL.length);
-        this.monsters.push(MONSTERS_FUNC_ARR_ALL[randIndex](this));
-    }
-
     /**
      * 往世界中添加一个怪物
      * @param monster {Monster}
      */
     addMonster(monster) {
-        this.monsters.push(monster);
+        this.monsters.add(monster);
     }
 
     addEffect(effect) {
-        this.effects.push(effect);
+        this.effects.add(effect);
     }
 
     /**
@@ -96,16 +90,6 @@ class World {
     }
 
     goTick() {
-        // 清除怪物
-        let mArr = [];
-        for (let m of this.monsters) {
-            if (!m.isDead()) {
-                mArr.push(m);
-            } else {
-                this.user.money += m.addPrice;
-            }
-        }
-        this.monsters = mArr;
         // 清除独立子弹
         let pArr = [];
         for (let p of this.othersBullys) {
@@ -135,13 +119,11 @@ class World {
         }
         this.buildings = bArr;
         // 清除特效
-        let eArr = [];
         for (let e of this.effects) {
-            if (e.isPlay) {
-                eArr.push(e);
+            if (!e.isPlay) {
+                this.effects.delete(e);
             }
         }
-        this.effects = eArr;
         // 添加怪物流
         if (this.monsterFlow.couldBegin()) {
             this.monsterFlow.addToWorld(this.mode);
@@ -222,7 +204,7 @@ class World {
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
         ctx.fillText("金钱：" + this.user.money.toString(), 20, 20);
-        ctx.fillText("怪物数量：" + this.monsters.length, 20, 40);
+        ctx.fillText("怪物数量：" + this.monsters.size, 20, 40);
         ctx.fillText("炮塔数量：" + this.batterys.length, 20, 60);
         ctx.fillText("炮塔数量：" + this.batterys.length, 20, 60);
         ctx.fillText("下一波：" + this.monsterFlow.toString(), 20, 80);

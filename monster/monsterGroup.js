@@ -196,14 +196,14 @@ class MonsterGroup {
      * 判断是否可以进行下一波
      */
     couldNextFlow() {
-        return this.world.monsters.length === 0;
+        return this.world.monsters.size === 0;
     }
 
     /**
      * 判断当前这一波是否可以开始了
      */
     couldBegin() {
-        if (this.world.monsters.length === 0) {
+        if (this.world.monsters.size === 0) {
             this.state = 1;
             if (this.delayTick <= 0) {
                 return true;
@@ -248,7 +248,7 @@ class MonsterGroup {
                         m.addPrice += Functions.levelAddPriceHard(this.level);
                     }
 
-                    this.world.monsters.push(m);
+                    this.world.monsters.add(m);
                 }
             }
         }
