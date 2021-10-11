@@ -12,13 +12,13 @@ class Tower extends CircleObject {
     constructor(x, y, world) {
         super(new Vector(x, y), world);
         this.name = "普通炮塔";
-        this.gameType = "Battery";
+        this.gameType = "Tower";
         this.r = 15; // px;
         this.rangeR = 100;  // 射程
         this.dirction = new Vector(1, 2).to1();  // 炮塔的朝向
         this.clock = 5 // 间歇时间 1最短 必须是整数！ 越大攻击频率越慢  遇到怪物之后的反应刻
 
-        this.bullys = [];  // 发射过的子弹
+        this.bullys = new Set();  // 发射过的子弹
 
         this.getmMainBullyFunc = BullyFinally.Normal;  // 炮塔发射的主子弹，获取新子弹对象的方法
 
@@ -81,19 +81,16 @@ class Tower extends CircleObject {
      * 清除子弹库
      */
     removeOutRangeBullet() {
-        if (this.bullys.length === 0) {
+        if (this.bullys.size === 0) {
             return;
         }
-        let arr = [];
         for (let b of this.bullys) {
-            if (!b.outTowerViewRange()) {
-                arr.push(b);
-            } else {
+            if (b.outTowerViewRange()) {
                 b.boom();
                 b.split();
+                this.bullys.delete(b);
             }
         }
-        this.bullys = arr;
     }
 
     /**
@@ -121,6 +118,7 @@ class Tower extends CircleObject {
         if (this.liveTime % this.clock !== 0) {
             return;
         }
+
         for (let m of this.world.monsters) {
             if (this.getViewCircle().impact(m.getBodyCircle())) {
                 let targetDir = m.pos.sub(this.pos).to1();  // 瞄准怪物的方向
@@ -167,7 +165,7 @@ class Tower extends CircleObject {
         // 构造子弹实例
         let b = this.getRunningBully();
         // 添加子弹数组
-        this.bullys.push(b);
+        this.bullys.add(b);
     }
 
     /**

@@ -514,7 +514,7 @@ function endlessMode(mode) {
                     world.user.money -= thing.price;
                     let newThing = levelUpItemFunc(world);
                     newThing.pos = pos;
-                    world.addBattery(newThing);
+                    world.addTower(newThing);
                     thing.remove();
 
                     showSmallLevelUpPanel(newThing, clickPos);  // 看似是递归，但实际上又不是递归
@@ -554,7 +554,7 @@ function endlessMode(mode) {
                 let newPos = thing.pos.copy();
                 thing.remove();
                 downObj.pos = newPos;
-                world.addBattery(downObj);
+                world.addTower(downObj);
                 // 更新
                 showSmallLevelUpPanel(downObj, clickPos);  // 刷新小面板
             }
@@ -638,8 +638,8 @@ function endlessMode(mode) {
             // 可以放建筑
             world.user.money -= addedThing.price;
             switch (addedThing.gameType) {
-                case "Battery":
-                    world.addBattery(addedThing);
+                case "Tower":
+                    world.addTower(addedThing);
                     break;
                 case "Building":
                     world.addBuilding(addedThing);

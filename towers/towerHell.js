@@ -6,7 +6,6 @@ class TowerHell extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "地狱塔";
-        this.gameType = "Battery";
         this.clock = 1.1  // 设置为一个小数类型，表示这个炮塔永远不会发射圆圈形的炮弹
 
         this.target = null;  // 目标怪物

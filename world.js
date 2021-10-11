@@ -65,7 +65,7 @@ class World {
         return res;
     }
 
-    addBattery(battery) {
+    addTower(battery) {
         this.batterys.push(battery);
     }
 

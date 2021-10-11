@@ -6,7 +6,6 @@ class TowerHammer extends Tower {
     constructor(x, y, world) {
         super(x, y, world);
         this.name = "附属物品塔楼";
-        this.gameType = "Battery";
         this.clock = 1.1  // 设置为一个小数类型，表示这个炮塔永远不会发射圆圈形的炮弹
 
         this.itemRange = this.rangeR;  // 当前物品的旋转半径
