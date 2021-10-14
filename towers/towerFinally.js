@@ -1421,7 +1421,7 @@ class TowerFinally {
     static SprayCannon_1(world) {
         let b = new Tower(0, 0, world);
         b.name = "1级溅射炮塔";
-        b.rangeR = 100;
+        b.rangeR = 200;
         b.r += 10;
         b.bullySpeed = 5;
         b.clock += 20;
@@ -1440,7 +1440,7 @@ class TowerFinally {
     static SprayCannon_2(world) {
         let b = new Tower(0, 0, world);
         b.name = "2级溅射炮塔";
-        b.rangeR = 150;
+        b.rangeR = 220;
         b.r += 11;
         b.bullySpeed = 8;
         b.clock += 20;
@@ -1458,7 +1458,7 @@ class TowerFinally {
     static SprayCannon_3(world) {
         let b = new Tower(0, 0, world);
         b.name = "3级溅射炮塔";
-        b.rangeR = 200;
+        b.rangeR = 250;
         b.r += 12;
         b.bullySpeed = 11;
         b.clock += 20;

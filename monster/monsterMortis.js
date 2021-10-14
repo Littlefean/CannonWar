@@ -15,7 +15,8 @@ class MonsterMortis extends Monster {
         this.bumpEndPoint = null;  // 冲撞结束点
         this.target = null;  // 目标
         this.bumpSpeedVector = Vector.zero();  // 当前冲撞矢量
-
+        // this.colishDamage = 5;
+        this.bumpDamage = 5;  // 冲撞伤害
         this.bodyColor = new MyColor(46, 5, 39, 1);
         this.bodyStrokeColor = new MyColor(218, 60, 251, 1);
         this.bodyStrokeWidth = 3;
@@ -87,6 +88,21 @@ class MonsterMortis extends Monster {
         // 冲撞检测
         this.bump();
         super.goStep();
+    }
+
+    clash() {
+        // 与纯建筑碰撞
+        for (let b of this.world.getAllBuildingArr()) {
+            if (this.getBodyCircle().impact(b.getBodyCircle())) {
+                // 自爆
+                this.bombSelf();
+                b.hpChange(-this.bumpDamage);  // 这里使用的是突刺冲撞伤害
+                if (!this.throwAble) {
+                    this.remove();
+                    break;
+                }
+            }
+        }
     }
 
     move() {

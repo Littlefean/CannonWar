@@ -562,6 +562,7 @@ class MonsterFinally {
     static Mts(world) {
         let m = MonsterMortis.randInit(world);
         m.name = "麦缇斯";
+
         m.speedNumb = 1;
         m.imgIndex = 24;
         m.addPrice = 50;

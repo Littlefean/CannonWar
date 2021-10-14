@@ -382,6 +382,7 @@ class Monster extends CircleObject {
         super.remove();
         this.hpSet(0);
         this.world.monsters.delete(this);
+        this.world.user.money += this.addPrice;
     }
 
     /**
