@@ -269,7 +269,9 @@ class Monster extends CircleObject {
                             m.hpChange(m.maxHp * this.gainDetails.gainHpAddedRate);
                             m.hpChange(this.gainDetails.gainHpAddedNum);
                             m.maxHp += this.gainDetails.gainMaxHpAddedNum;
-                            m.speedNumb += this.gainDetails.gainSpeedNAddNum;
+                            if (m.speedNumb < 2.5) {  // 增加速度的最大量不能超过 2.5
+                                m.speedNumb += this.gainDetails.gainSpeedNAddNum;
+                            }
                             // 添加增益特效
                             let e = new EffectLine(this.pos, m.pos);
                             e.initLineStyle(new MyColor(0, 200, 0, 0.5), 3);

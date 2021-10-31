@@ -33,6 +33,11 @@ class World {
         // 当前怪物流信息
         this.monsterFlow = MonsterGroup.getMonsterFlow(this, 1, this.mode);
         this.monsterFlowNext = MonsterGroup.getMonsterFlow(this, 2, this.mode);
+        // 非怪物流模式信息
+        this.haveFlow = true;  // 一般是有怪物流的，若想取消怪物流，这个需要改成没有
+        this.monsterAddFreezeTick = 200;
+        this.monsterPreAdd = 3;  // 每次增加多少个怪物
+        this.maxMonsterNum = 250;  // 最多怪物数量
     }
 
     /**
@@ -125,23 +130,7 @@ class World {
             }
         }
         // 添加怪物流
-        if (this.monsterFlow.couldBegin()) {
-            this.monsterFlow.addToWorld(this.mode);
-
-            this.monsterFlow = this.monsterFlowNext.copySelf();
-            this.monsterFlowNext = MonsterGroup.getMonsterFlow(this,
-                this.monsterFlowNext.level + 1, this.mode);
-        }
-        if (this.monsterFlow.delayTick === 200 - 1) {
-            // 添加文字提醒
-            let et = new EffectText(`第 ${this.monsterFlow.level} 波即将到来！`);
-            et.textSize = 40;
-            et.duration = 100;
-            et.pos = new Vector(this.width / 2, this.height / 2);
-            this.addEffect(et);
-            // 添加声音提醒
-            Sounds.playNewMonsterFlow();
-        }
+        this.worldAddMonster();
         // 炮塔行动
         for (let b of this.batterys) {
             b.goStep();
@@ -163,6 +152,76 @@ class World {
             e.goStep();
         }
         this.time++;
+    }
+
+    /**
+     * 以这个世界自己的情况来添加怪物
+     */
+    worldAddMonster() {
+        if (this.haveFlow) {
+            // 以怪物流的方式添加怪物
+            if (this.monsterFlow.couldBegin()) {
+                this.monsterFlow.addToWorld(this.mode);
+
+                this.monsterFlow = this.monsterFlowNext.copySelf();
+                this.monsterFlowNext = MonsterGroup.getMonsterFlow(this,
+                    this.monsterFlowNext.level + 1, this.mode);
+            }
+            if (this.monsterFlow.delayTick === 200 - 1) {
+                // 添加文字提醒
+                let et = new EffectText(`第 ${this.monsterFlow.level} 波即将到来！`);
+                et.textSize = 40;
+                et.duration = 100;
+                et.pos = new Vector(this.width / 2, this.height / 2);
+                this.addEffect(et);
+                // 添加声音提醒
+                Sounds.playNewMonsterFlow();
+            }
+        } else {
+            // 随机添加怪物
+            if (this.time % this.monsterAddFreezeTick !== 0) {
+                return;
+            }
+
+            let monsterPreAddAdd;
+            if (this.mode === "easy") {
+                monsterPreAddAdd = Functions.tickAddMonsterNumEasy(this.time);
+            } else {
+                monsterPreAddAdd = Functions.tickAddMonsterNumHard(this.time);
+            }
+            if (this.time % 5000 === 0 && this.time !== 0) {
+                let m = MonsterFinally.T800(this);
+                for (let i = 0; i < Functions.levelT800Count(this.time / 500); i++) {
+                    this.monsters.add(m);
+                }
+                return;
+            }
+            for (let i = 0; i < this.monsterPreAdd + monsterPreAddAdd; i++) {
+                let choice = (arr) => {
+                    return arr[Math.floor(Math.random() * arr.length)];
+                };
+                let m = choice(MonsterAllArr)(this);
+                if (this.mode === "easy") {
+                    m = choice(MonsterEasyArr)(this);
+                    m.hpInit(m.maxHp + Functions.tickMonsterHpAddedEasy(this.time));
+                    m.addPrice += Functions.levelAddPrice(1 + this.time / 500);
+                } else if (this.mode === "normal") {
+                    m.hpInit(m.maxHp + Functions.levelMonsterHpAddedNormal(this.time / 500));
+                    m.colishDamage += Functions.levelCollideAdded(this.time / 500);
+                    m.addPrice += Functions.levelAddPriceNormal(this.time / 500);
+                } else if (this.mode === "hard") {
+                    if (this.time < 5000) {
+                        m = choice(Monster10BeforeArr)(this);
+                    }
+
+                    m.hpInit(m.maxHp + Functions.tickMonsterHpAddedHard(this.time));
+                    m.colishDamage += Functions.levelCollideAddedHard(this.time / 500);
+                    m.addPrice += Functions.levelAddPriceHard(1 + this.time / 500);
+                }
+                this.monsters.add(m);
+            }
+        }
+
     }
 
     /**

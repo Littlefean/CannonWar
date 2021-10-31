@@ -104,6 +104,32 @@ class Functions {
     }
 
     /**
+     * 怪物血量增加随着游戏时间刻的函数
+     * @param t
+     * @returns {number}
+     */
+    static tickMonsterHpAddedEasy(t) {
+        return Math.floor(Math.pow(t / 500, 2.5) + Math.pow(t / 500, 0.5) * 60);
+    }
+
+    static tickMonsterHpAddedHard(t) {
+        return  Math.floor(Math.pow(t / 500, 2.52) + Math.pow(t / 500, 0.5) * 60);
+    }
+
+    /**
+     * 无尽时间，没有波数情况下
+     * 怪物每一次增加数量
+     * @param t
+     */
+    static tickAddMonsterNumEasy(t) {
+        return Math.floor(t / 200);
+    }
+
+    static tickAddMonsterNumHard(t) {
+        return Math.floor(t / 180);
+    }
+
+    /**
      * 波数与T800数量的函数
      * @param level
      * @returns {number|number}

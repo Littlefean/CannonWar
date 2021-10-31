@@ -53,6 +53,15 @@ function choiceInterface() {
         gotoPage("war-interface");
         endlessMode("hard");
     });
+    // 无尽时间模式
+    thisInterface.querySelector(".infiniteTimeMode-easy").addEventListener("click", () => {
+        gotoPage("war-interface");
+        endlessMode("easy", false);
+    });
+    thisInterface.querySelector(".infiniteTimeMode-hard").addEventListener("click", () => {
+        gotoPage("war-interface");
+        endlessMode("hard", false);
+    });
 
     thisInterface.querySelector(".backPage").addEventListener("click", () => {
         gotoPage("main-interface");
@@ -97,7 +106,6 @@ function cannonInterface() {
     });
     let contentEle = thisInterface.querySelector(".content");
     let worldVoid = new World(100, 100);
-    // todo 炮塔界面，遍历一棵树，深度优先遍历，添加到数组再渲染。
 
 
     if (contentEle.children.length === 0) {
@@ -250,8 +258,9 @@ function gotoPage(className) {
  * 开启无尽模式
  * 前提条件是： war-interface 被打开
  * @param mode {String}
+ * @param haveGroup {Boolean} 是否含有怪物波数，如果是false，则是无尽时间模式
  */
-function endlessMode(mode) {
+function endlessMode(mode, haveGroup = true) {
     /**
      * 当前页面
      * @type {HTMLDivElement}
@@ -286,6 +295,12 @@ function endlessMode(mode) {
 
     let world = new World(canvasEle.width, canvasEle.height);
     world.mode = mode;
+    if (!haveGroup) {
+        world.haveFlow = false;
+        if (mode === "hard") {
+            world.user.money = 1000;
+        }
+    }
     /**
      * 开启游戏循环迭代
      */

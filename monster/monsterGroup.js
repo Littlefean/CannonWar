@@ -69,75 +69,13 @@ class MonsterGroup {
         // todo 对mode进行分情况
         let monsterArr;
         if (level < 10) {
-
-            monsterArr = [
-                MonsterFinally.Normal,
-                MonsterFinally.Runner,
-                MonsterFinally.Ox1,
-                MonsterFinally.Ox2,
-                MonsterFinally.Bomber1,
-                MonsterFinally.Thrower1,
-                MonsterFinally.Bulldozer,
-                MonsterFinally.Medic,
-                MonsterFinally.Medic_M,
-                MonsterFinally.Medic_S,
-                MonsterFinally.AttackAdder,
-                MonsterFinally.SpeedAdder,
-                MonsterFinally.Shouter,
-
-                MonsterFinally.Shouter_Spike,
-            ];
+            monsterArr = Monster10BeforeArr;
 
         } else {
-            monsterArr = [
-                MonsterFinally.Ox1,
-                MonsterFinally.Ox2,
-                MonsterFinally.Ox3,
-                MonsterFinally.Runner,
-                MonsterFinally.Bomber1,
-                MonsterFinally.Bomber2,
-                MonsterFinally.Bomber3,
-                MonsterFinally.Thrower1,
-                MonsterFinally.BlackHole,
-                MonsterFinally.Bulldozer,
-                MonsterFinally.Glans,
-                MonsterFinally.Medic,
-                MonsterFinally.Medic_M,
-                MonsterFinally.Medic_S,
-                MonsterFinally.AttackAdder,
-                MonsterFinally.SpeedAdder,
-                MonsterFinally.BulletWearer,
-                MonsterFinally.BulletRepellent,
-                MonsterFinally.DamageReducers,
-                MonsterFinally.Shouter,
-                MonsterFinally.Shouter_Stone,
-                MonsterFinally.Shouter_Bomber,
-                MonsterFinally.Shouter_Spike,
-
-                MonsterFinally.Slime_L,
-                MonsterFinally.witch_N,
-                MonsterFinally.bat,
-                MonsterFinally.Spoke,
-                MonsterFinally.SpokeMan,
-                MonsterFinally.Exciting,
-                MonsterFinally.Visitor,
-                MonsterFinally.Enderman,
-                MonsterFinally.Mts,
-            ];
+            monsterArr = MonsterAllArr;
         }
         if (modeStr === "easy") {
-            monsterArr = [
-                MonsterFinally.Ox1,
-                MonsterFinally.Ox2,
-                MonsterFinally.Ox3,
-                MonsterFinally.Runner,
-                MonsterFinally.Bomber1,
-                MonsterFinally.Slime_S,
-                MonsterFinally.Slime_M,
-                MonsterFinally.Slime_L,
-                MonsterFinally.Medic,
-                MonsterFinally.Medic_S,
-            ];
+            monsterArr = MonsterEasyArr;
         }
 
         if (level % 10 === 0) {
@@ -247,8 +185,9 @@ class MonsterGroup {
                         m.colishDamage += Functions.levelCollideAddedHard(this.level);
                         m.addPrice += Functions.levelAddPriceHard(this.level);
                     }
-
-                    this.world.monsters.add(m);
+                    if (this.world.monsters.size < this.world.maxMonsterNum) {
+                        this.world.monsters.add(m);
+                    }
                 }
             }
         }
@@ -266,3 +205,68 @@ class MonsterGroup {
 
 
 }
+
+let MonsterEasyArr = [
+    MonsterFinally.Ox1,
+    MonsterFinally.Ox2,
+    MonsterFinally.Ox3,
+    MonsterFinally.Runner,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Slime_S,
+    MonsterFinally.Slime_M,
+    MonsterFinally.Slime_L,
+    MonsterFinally.Medic,
+    MonsterFinally.Medic_S,
+];
+let Monster10BeforeArr = [
+    MonsterFinally.Normal,
+    MonsterFinally.Runner,
+    MonsterFinally.Ox1,
+    MonsterFinally.Ox2,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Thrower1,
+    MonsterFinally.Bulldozer,
+    MonsterFinally.Medic,
+    // MonsterFinally.Medic_M,
+    MonsterFinally.Medic_S,
+    MonsterFinally.AttackAdder,
+    MonsterFinally.SpeedAdder,
+    MonsterFinally.Shouter,
+
+    MonsterFinally.Shouter_Spike,
+];
+let MonsterAllArr = [
+    MonsterFinally.Ox1,
+    MonsterFinally.Ox2,
+    MonsterFinally.Ox3,
+    MonsterFinally.Runner,
+    MonsterFinally.Bomber1,
+    MonsterFinally.Bomber2,
+    MonsterFinally.Bomber3,
+    MonsterFinally.Thrower1,
+    MonsterFinally.BlackHole,
+    MonsterFinally.Bulldozer,
+    MonsterFinally.Glans,
+    MonsterFinally.Medic,
+    // MonsterFinally.Medic_M,
+    MonsterFinally.Medic_S,
+    MonsterFinally.AttackAdder,
+    MonsterFinally.SpeedAdder,
+    MonsterFinally.BulletWearer,
+    MonsterFinally.BulletRepellent,
+    MonsterFinally.DamageReducers,
+    MonsterFinally.Shouter,
+    MonsterFinally.Shouter_Stone,
+    MonsterFinally.Shouter_Bomber,
+    MonsterFinally.Shouter_Spike,
+
+    MonsterFinally.Slime_L,
+    MonsterFinally.witch_N,
+    MonsterFinally.bat,
+    MonsterFinally.Spoke,
+    MonsterFinally.SpokeMan,
+    MonsterFinally.Exciting,
+    MonsterFinally.Visitor,
+    MonsterFinally.Enderman,
+    MonsterFinally.Mts,
+];

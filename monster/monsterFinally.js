@@ -138,7 +138,7 @@ class MonsterFinally {
         m.speedNumb = 0.2;
         m.bodyColor = MyColor.arrTo([0, 0, 0, 1]);
         m.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
-        m.colishDamage = 1000000000;
+        m.colishDamage = 10;
 
         m.haveGArea = true;
         m.gAreaR = 200;  // 引力场半径
@@ -158,7 +158,7 @@ class MonsterFinally {
         m.speedNumb = 0.3;
         m.bodyColor = MyColor.arrTo([50, 30, 50, 1]);
         m.bodyStrokeColor = MyColor.arrTo([0, 0, 0, 1]);
-        m.colishDamage = 1000000000;
+        m.colishDamage = 10;
 
         m.haveGArea = true;
         m.gAreaR = 50;  // 引力场半径
@@ -273,12 +273,12 @@ class MonsterFinally {
         m.r = 10;
         m.haveGain = true;
         m.gainDetails = {
-            gainRadius: 200,  // 给队友增益的范围
+            gainRadius: 100,  // 给队友增益的范围
             gainFrequency: 5,  // 执行增益的频率
 
             gainCollideDamageAddNum: 0,  // 一次增加伤害
             gainHpAddedNum: 0, // 一次加血量
-            gainSpeedNAddNum: 0.1, // 一次增加速度量
+            gainSpeedNAddNum: 0.02, // 一次增加速度量
             gainHpAddedRate: 0.0, // 一次加血量百分比
             gainMaxHpAddedNum: 0, // 一次加血量上限
         };
