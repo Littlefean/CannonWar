@@ -277,6 +277,20 @@ function endlessMode(mode, haveGroup = true) {
      */
     let choiceBtn = document.querySelector(".choiceBtn");
     choiceBtn.style.display = "block";  // 把右侧选择按钮打开
+    /**
+     * 游戏暂停按钮
+     * @type {Element}
+     */
+    let pauseBtn = document.querySelector(".pause");
+    let isGamePause = false;
+    pauseBtn.addEventListener("click", () => {
+        isGamePause = !isGamePause;
+        if (isGamePause) {
+            pauseBtn.innerHTML = "开始";
+        } else {
+            pauseBtn.innerHTML = "暂停";
+        }
+    })
 
     let gameEnd = false;  // 游戏是否被迫结束
     /**
@@ -305,11 +319,13 @@ function endlessMode(mode, haveGroup = true) {
      * 开启游戏循环迭代
      */
     let mainAni = setInterval(() => {
-        world.goTick();
+        if (!isGamePause) {
+            world.goTick();
+        }
         world.render(canvasEle);
         if (gameEnd) {
             clearInterval(mainAni);
-            return;
+            return;  // todo 游戏暂停功能
         }
         if (world.rootBuilding.isDead()) {
             alert("你失败了");
@@ -616,6 +632,7 @@ function endlessMode(mode, haveGroup = true) {
                     // selectedThing = item;
                     // showSelectedPanel(true);
                     showSmallLevelUpPanel(item, clickPos);
+                    item.selected = true;
                     return;
                 }
             }
@@ -625,6 +642,7 @@ function endlessMode(mode, haveGroup = true) {
                     // 这里有怪物
                     selectedThing = item;
                     showSelectedPanel(true);
+                    item.selected = true;
                     return;
                 }
             }

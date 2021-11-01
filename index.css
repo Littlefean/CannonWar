@@ -132,7 +132,8 @@ body .gameApp .war-interface .rightTopArea {
   right: 12%;
   top: 0;
 }
-body .gameApp .war-interface .rightTopArea .backPage {
+body .gameApp .war-interface .rightTopArea .backPage,
+body .gameApp .war-interface .rightTopArea .pause {
   background-color: #1e1e1e;
   color: #f1f3f4;
   width: 400px;
@@ -145,7 +146,8 @@ body .gameApp .war-interface .rightTopArea .backPage {
   border-radius: 100px;
   width: 100px;
 }
-body .gameApp .war-interface .rightTopArea .backPage:hover {
+body .gameApp .war-interface .rightTopArea .backPage:hover,
+body .gameApp .war-interface .rightTopArea .pause:hover {
   transform: scale(1.1);
 }
 body .gameApp .help-interface .content {

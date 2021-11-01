@@ -31,6 +31,8 @@ class CircleObject {
 
         // 一些细节描述，用于在Wiki中展示
         this.comment = "细节待补充.....内容还在完善中。。。";
+        // 当前是否被选中
+        this.selected = false;
     }
 
     /**

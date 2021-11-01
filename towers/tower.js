@@ -49,7 +49,6 @@ class Tower extends CircleObject {
         this.bodyStrokeColor = MyColor.Transparent();
         this.hpBarHeight = 5;
 
-
         // 贴图编号
         this.imgIndex = 0;
     }
@@ -189,7 +188,7 @@ class Tower extends CircleObject {
         ctx.drawImage(TOWERS_IMG, imgStartPos.x, imgStartPos.y, TOWER_IMG_PRE_WIDTH, TOWER_IMG_PRE_HEIGHT,
             this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
         // 渲染视野半径圆
-        if (!this.isDead()) {
+        if (!this.isDead() && this.selected) {
             this.getViewCircle().renderView(ctx);
         }
         // 渲染每一个子弹  子弹在覆盖身体上层
