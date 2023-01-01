@@ -318,6 +318,7 @@ function endlessMode(mode, haveGroup = true) {
     /**
      * 开启游戏循环迭代
      */
+
     let mainAni = setInterval(() => {
         if (!isGamePause) {
             world.goTick();
@@ -325,7 +326,7 @@ function endlessMode(mode, haveGroup = true) {
         world.render(canvasEle);
         if (gameEnd) {
             clearInterval(mainAni);
-            return;  // todo 游戏暂停功能
+            return;
         }
         if (world.rootBuilding.isDead()) {
             alert("你失败了");

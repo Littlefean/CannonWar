@@ -93,6 +93,10 @@ body .gameApp .interface .btnList button:hover {
 body .gameApp .modeChoice-interface {
   overflow-y: scroll;
 }
+body .gameApp .modeChoice-interface .note {
+  background-color: black;
+  color: orangered;
+}
 body .gameApp .modeChoice-interface h1,
 body .gameApp .modeChoice-interface h2 {
   position: static;
@@ -150,15 +154,32 @@ body .gameApp .war-interface .rightTopArea .backPage:hover,
 body .gameApp .war-interface .rightTopArea .pause:hover {
   transform: scale(1.1);
 }
+body .gameApp .help-interface {
+  overflow-y: scroll;
+}
+body .gameApp .help-interface .rightTopArea {
+  position: absolute;
+  width: 100px;
+  right: 12%;
+  top: 0;
+}
 body .gameApp .help-interface .content {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 100px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
 }
-body .gameApp .help-interface .content .h2 {
+body .gameApp .help-interface .content h2.helpTitle {
   text-align: center;
   position: static;
+  line-height: 2em;
+}
+body .gameApp .help-interface .content video {
+  margin: 20px;
+  outline: solid 2px;
+  width: 80%;
 }
 body .gameApp .main-interface .btnList {
   width: 600px;
