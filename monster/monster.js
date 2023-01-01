@@ -442,13 +442,22 @@ class Monster extends CircleObject {
         super.render(ctx);
         // 绘制贴图
         let imgStartPos = this.getImgStartPosByIndex(this.imgIndex);
-        ctx.drawImage(MONSTERS_IMG, imgStartPos.x, imgStartPos.y, MONSTER_IMG_PRE_WIDTH, MONSTER_IMG_PRE_HEIGHT,
-            this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
+        ctx.drawImage(
+            MONSTERS_IMG,
+            imgStartPos.x,
+            imgStartPos.y,
+            MONSTER_IMG_PRE_WIDTH,
+            MONSTER_IMG_PRE_HEIGHT,
+            standardize(this.pos.x - this.r),
+            standardize(this.pos.y - this.r),
+            standardize(this.r * 2),
+            standardize(this.r * 2)
+        );
         // 写上名字
         ctx.fillStyle = "black";
         ctx.font = "12px Microsoft YaHei";
         ctx.textAlign = "center";
-        ctx.fillText(this.name, this.pos.x, this.pos.y + this.r * 1.5);
+        ctx.fillText(this.name, standardize(this.pos.x), standardize(this.pos.y + this.r * 1.5));
 
         // 渲染爆炸范围
         if (this.bombSelfAble) {
@@ -492,7 +501,7 @@ class Monster extends CircleObject {
             ctx.textAlign = "center";
             //垂直对齐方式
             ctx.textBaseline = "top";
-            ctx.fillText(txt, this.pos.x, this.pos.y - this.r - diff * barH + 1);
+            ctx.fillText(txt, standardize(this.pos.x), standardize(this.pos.y - this.r - diff * barH + 1));
         }
     }
 

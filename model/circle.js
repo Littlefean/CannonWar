@@ -1,5 +1,5 @@
 /**
- *
+ * 抽象圆形图形
  * by littlefean
  */
 class Circle {
@@ -40,7 +40,7 @@ class Circle {
         ctx.lineWidth = this.strokeWidth;
         ctx.strokeStyle = this.strokeColor.toStringRGBA();
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        ctx.arc(standardize(this.x), standardize(this.y), standardize(this.r), 0, 2 * Math.PI);
         ctx.stroke();
         ctx.fill();
         ctx.closePath();

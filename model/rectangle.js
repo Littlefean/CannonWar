@@ -29,7 +29,7 @@ class Rectangle {
         ctx.fillStyle = this.color;
         ctx.lineWidth = String(this.strokeWidth);
         ctx.strokeStyle = this.strokeColor;
-        ctx.rect(this.pos.x, this.pos.y, this.width, this.height);
+        ctx.rect(standardize(this.pos.x), standardize(this.pos.y), standardize(this.width), standardize(this.height));
         ctx.stroke();
         ctx.fill();
     }
