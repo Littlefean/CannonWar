@@ -308,6 +308,8 @@ function endlessMode(mode, haveGroup = true) {
     Sounds.switchBgm("war");
 
     let world = new World(canvasEle.width, canvasEle.height);
+    world.resizeCanvas(canvasEle);
+
     world.mode = mode;
     if (!haveGroup) {
         world.haveFlow = false;

@@ -5,7 +5,7 @@
 }
 @font-face {
   font-family: myFont;
-  src: url("fonts/汉仪菱心体简.ttf");
+  src: url("fonts/庞门正道标题体.ttf");
 }
 body {
   overflow: hidden;
@@ -24,6 +24,7 @@ body .gameApp .interface {
   left: 0;
   top: 0;
   background-image: url("imgs/background (3).jpg");
+  background-size: cover;
 }
 body .gameApp .interface h1 {
   width: 100%;
@@ -32,6 +33,7 @@ body .gameApp .interface h1 {
   text-align: center;
   font-weight: lighter;
   font-family: myFont, "Times New Roman", serif;
+  text-shadow: white 0 0 10px;
   font-size: 60px;
 }
 body .gameApp .interface h2 {
@@ -41,6 +43,7 @@ body .gameApp .interface h2 {
   text-align: center;
   font-weight: lighter;
   font-family: myFont, "Times New Roman", serif;
+  text-shadow: white 0 0 10px;
   top: 25%;
   font-size: 40px;
 }
@@ -109,21 +112,29 @@ body .gameApp .modeChoice-interface .leftTopArea {
 }
 body .gameApp .modeChoice-interface .btnList {
   position: absolute;
-  display: block;
   outline: solid 1px white;
   left: 50%;
   top: 30%;
-  width: 600px;
-  height: 500px;
+  width: 800px;
+  height: 520px;
   overflow-y: scroll;
-  transform: translateX(-300px);
+  transform: translateX(-400px);
   text-align: center;
   padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-body .gameApp .modeChoice-interface .btnList button {
+body .gameApp .modeChoice-interface .btnList .btnArea {
+  outline: solid 1px white;
+}
+body .gameApp .modeChoice-interface .btnList .btnArea button {
   margin: 15px auto;
+  font-size: 20px;
+  width: 250px;
+  padding: 10px;
 }
-body .gameApp .modeChoice-interface .btnList p {
+body .gameApp .modeChoice-interface .btnList .btnArea p {
   margin: 10px;
   text-align: center;
 }
@@ -203,18 +214,27 @@ body .gameApp .monsters-interface .content {
   width: 90%;
   margin: 0 auto;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 body .gameApp .cannon-interface .content .tower,
 body .gameApp .monsters-interface .content .tower,
 body .gameApp .cannon-interface .content .monster,
 body .gameApp .monsters-interface .content .monster {
   float: left;
-  width: 300px;
+  width: 200px;
   height: 400px;
-  padding: 30px;
-  margin: 10px;
+  padding: 10px;
+  margin: 5px;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 30px;
+  transition: all 0.2s;
+}
+body .gameApp .cannon-interface .content .tower:hover,
+body .gameApp .monsters-interface .content .tower:hover,
+body .gameApp .cannon-interface .content .monster:hover,
+body .gameApp .monsters-interface .content .monster:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 body .gameApp .cannon-interface .content .tower h3,
 body .gameApp .monsters-interface .content .tower h3,
@@ -223,6 +243,7 @@ body .gameApp .monsters-interface .content .monster h3 {
   text-align: center;
   line-height: 2em;
   font-family: myFont, "Times New Roman", serif;
+  font-weight: lighter;
 }
 body .gameApp .cannon-interface .content .tower .tower-shape,
 body .gameApp .monsters-interface .content .tower .tower-shape,
@@ -236,6 +257,13 @@ body .gameApp .monsters-interface .content .monster .monster-shape {
   height: 100px;
   margin: 0 auto;
   border-radius: 50%;
+  outline: solid 1px red;
+}
+body .gameApp .cannon-interface .content .tower p,
+body .gameApp .monsters-interface .content .tower p,
+body .gameApp .cannon-interface .content .monster p,
+body .gameApp .monsters-interface .content .monster p {
+  font-size: 10px;
 }
 body .gameApp .cannon-interface .leftTopArea,
 body .gameApp .monsters-interface .leftTopArea {

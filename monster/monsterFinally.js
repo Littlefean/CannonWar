@@ -34,7 +34,6 @@ class MonsterFinally {
         m.speedNumb = 0.01;
         m.accelerationV = 0.01;
         m.maxSpeedN = 5;
-        m.r = 30;
         m.imgIndex = 1;
         m.comment = "速度会越来越快";
         return m;
@@ -47,7 +46,6 @@ class MonsterFinally {
         m.speedNumb = 0.01;
         m.accelerationV = 0.05;
         m.maxSpeedN = 7;
-        m.r = 30;
         m.imgIndex = 1;
         m.comment = "加速度，速度越来越快";
         return m;
@@ -60,7 +58,6 @@ class MonsterFinally {
         m.speedNumb = 0.01;
         m.accelerationV = 0.1;
         m.maxSpeedN = 10;
-        m.r = 30;
         m.imgIndex = 1;
         m.comment = "比普通冲锋加速的更快";
         return m;
@@ -71,7 +68,6 @@ class MonsterFinally {
         m.name = "炸弹1级";
         m.bodyColor = MyColor.arrTo([60, 60, 20, 1]);
         m.speedNumb = 0.5;
-        m.r = 30;
         m.bombSelfAble = true;
         m.bombSelfRange = 80;
         m.bombSelfDamage = 200;
@@ -87,7 +83,6 @@ class MonsterFinally {
         m.bodyColor = MyColor.arrTo([90, 90, 30, 1]);
         m.addPrice += 10;
         m.speedNumb = 0.55;
-        m.r = 50;
         m.bombSelfAble = true;
         m.bombSelfRange = 120;
         m.bombSelfDamage = 800;
@@ -103,7 +98,6 @@ class MonsterFinally {
         m.bodyColor = MyColor.arrTo([150, 150, 50, 1]);
         m.addPrice += 10;
         m.speedNumb = 0.6;
-        m.r = 80;
         m.bombSelfAble = true;
         m.bombSelfRange = 200;
         m.bombSelfDamage = 5000;
@@ -141,10 +135,10 @@ class MonsterFinally {
         m.colishDamage = 10;
 
         m.haveGArea = true;
-        m.gAreaR = 200;  // 引力场半径
+        m.gAreaR = 160;  // 引力场半径
         m.gAreaNum = 2;  // 引力场强度
 
-        m.r = 20;
+        m.r = 30;
         m.imgIndex = 4;
         m.comment = "会把你的建筑吸走";
         return m;
@@ -203,7 +197,7 @@ class MonsterFinally {
         m.gainDetails = {
             gainRadius: 100,  // 给队友增益的范围
             gainFrequency: 10,  // 执行增益的频率
-
+            gainR: 0,
             gainCollideDamageAddNum: 0,  // 一次增加伤害
             gainHpAddedNum: 10, // 一次加血量
             gainSpeedNAddNum: 0, // 一次增加速度量
@@ -227,7 +221,7 @@ class MonsterFinally {
         m.gainDetails = {
             gainRadius: 200,  // 给队友增益的范围
             gainFrequency: 20,  // 执行增益的频率
-
+            gainR: 0,
             gainCollideDamageAddNum: 0,  // 一次增加伤害
             gainHpAddedNum: 0, // 一次加血量
             gainSpeedNAddNum: 0, // 一次增加速度量
@@ -251,7 +245,7 @@ class MonsterFinally {
         m.gainDetails = {
             gainRadius: 200,  // 给队友增益的范围
             gainFrequency: 30,  // 执行增益的频率
-
+            gainR: 2,
             gainCollideDamageAddNum: 0,  // 一次增加伤害
             gainHpAddedNum: 0, // 一次加血量
             gainSpeedNAddNum: 0, // 一次增加速度量
@@ -270,12 +264,12 @@ class MonsterFinally {
         m.addPrice += 10;
         m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([68, 230, 249, 1]);
-        m.r = 10;
         m.haveGain = true;
+
         m.gainDetails = {
             gainRadius: 100,  // 给队友增益的范围
             gainFrequency: 5,  // 执行增益的频率
-
+            gainR: 0,
             gainCollideDamageAddNum: 0,  // 一次增加伤害
             gainHpAddedNum: 0, // 一次加血量
             gainSpeedNAddNum: 0.02, // 一次增加速度量
@@ -294,12 +288,11 @@ class MonsterFinally {
         m.addPrice += 10;
         m.speedNumb = 0.55;
         m.bodyColor = MyColor.arrTo([255, 198, 109, 1]);
-        m.r = 10;
         m.haveGain = true;
         m.gainDetails = {
             gainRadius: 100,  // 给队友增益的范围
             gainFrequency: 1,  // 执行增益的频率
-
+            gainR: 0.1,
             gainCollideDamageAddNum: 10,  // 一次增加伤害
             gainHpAddedNum: 0, // 一次加血量
             gainSpeedNAddNum: 0.0, // 一次增加速度量
@@ -318,7 +311,6 @@ class MonsterFinally {
         m.addPrice += 5;
         m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([62, 134, 160, 1]);
-        m.r = 10;
 
         m.haveBullyChangeArea = true;
         m.bullyChangeDetails.r = 100;
@@ -336,7 +328,6 @@ class MonsterFinally {
         m.addPrice += 5;
         m.speedNumb = 0.25;
         m.bodyColor = MyColor.arrTo([186, 166, 128, 1]);
-        m.r = 20;
 
         m.haveBullyChangeArea = true;
         m.bullyChangeDetails.r = 150;
@@ -353,7 +344,6 @@ class MonsterFinally {
         m.addPrice += 5;
         m.speedNumb = 0.35;
         m.bodyColor = MyColor.arrTo([190, 145, 23, 1]);
-        m.r = 20;
 
         m.haveBullyChangeArea = true;
         m.bullyChangeDetails.r = 150;
@@ -423,7 +413,7 @@ class MonsterFinally {
 
     static Slime_L(world) {
         let m = Monster.randInit(world);
-        m.name = "小史莱姆";
+        m.name = "大史莱姆";
         m.addPrice += 10;
         m.speedNumb = 0.4;
         m.bodyColor = MyColor.arrTo([171, 236, 97, 0.8]);
@@ -458,7 +448,7 @@ class MonsterFinally {
 
     static Slime_S(world) {
         let m = Monster.randInit(world);
-        m.name = "大史莱姆";
+        m.name = "小史莱姆";
         m.addPrice += 10;
         m.speedNumb = 0.8;
         m.bodyColor = MyColor.arrTo([171, 236, 97, 0.8]);
@@ -562,7 +552,7 @@ class MonsterFinally {
     static Mts(world) {
         let m = MonsterMortis.randInit(world);
         m.name = "忍者";
-
+        m.r = 35;
         m.speedNumb = 1;
         m.imgIndex = 24;
         m.addPrice = 50;
@@ -573,7 +563,7 @@ class MonsterFinally {
     static T800(world) {
         let m = MonsterTerminator.randInit(world);
         m.name = "恐怖机器人";
-        m.imgIndex = 25;
+        m.imgIndex = 60;
         m.addPrice = 600;
         m.comment = "一种由金属打造而成的恐怖机器，威力小的子弹几乎对他没有伤害。具有很强的近战能力。";
         return m;

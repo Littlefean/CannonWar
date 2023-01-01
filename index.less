@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: myFont;
-  src: url("fonts/汉仪菱心体简.ttf");
+  src: url("fonts/庞门正道标题体.ttf");
 }
 
 body {
@@ -23,7 +23,6 @@ body {
     .fonts() {
       font-family: myFont, "Times New Roman", serif;
       //font-family: "Times New Roman", serif;
-      //font-family: "url(fonts/汉仪菱心体简.ttf)", serif;
     }
 
 
@@ -35,6 +34,7 @@ body {
       text-align: center;
       font-weight: lighter;
       .fonts();
+      text-shadow: white 0 0 10px;
     }
 
     .interface {
@@ -45,6 +45,7 @@ body {
       top: 0;
       //background-color: skyblue;
       background-image: url("imgs/background (3).jpg");
+      background-size: cover;
 
       h1 {
         .header();
@@ -86,6 +87,7 @@ body {
       }
     }
 
+    // 模式选择界面
     .modeChoice-interface {
       //border: solid 1px red;
       //height: auto;
@@ -111,26 +113,39 @@ body {
 
       .btnList {
         position: absolute;
-        display: block;
+        //display: block;
         outline: solid 1px white;
         left: 50%;
         top: 30%;
-        width: 600px;
-        height: 500px;
+        @W: 800px;
+        width: @W;
+        height: 520px;
+
         overflow-y: scroll;
-        transform: translateX(-300px);
+        transform: translateX(-(@W/2));
         text-align: center;
         padding-top: 50px;
 
-        button {
-          margin: 15px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-        }
+        .btnArea {
+          outline: solid 1px white;
 
-        p {
-          margin: 10px;
-          //outline: solid 1px;
-          text-align: center;
+
+          button {
+            margin: 15px auto;
+            font-size: 20px;
+            width: 250px;
+            padding: 10px;
+          }
+
+          p {
+            margin: 10px;
+            //outline: solid 1px;
+            text-align: center;
+          }
         }
       }
     }
@@ -210,22 +225,31 @@ body {
         margin: 0 auto;
         //background-color: gray;
         overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .tower, .monster {
           //outline: solid 1px;
           float: left;
-          width: 300px;
+          width: 200px;
           //height: 300px;
           height: 400px;
-          padding: 30px;
-          margin: 10px;
+          padding: 10px;
+          margin: 5px;
           background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 30px;
+          //border-radius: 30px;
+          transition: all 0.2s;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+          }
 
           h3 {
             text-align: center;
             line-height: 2em;
             .fonts();
+            font-weight: lighter;
           }
 
           .tower-shape, .monster-shape {
@@ -233,6 +257,11 @@ body {
             height: 100px;
             margin: 0 auto;
             border-radius: 50%;
+            outline: solid 1px red;
+          }
+
+          p {
+            font-size: 10px;
           }
         }
       }

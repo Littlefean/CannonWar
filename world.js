@@ -38,6 +38,15 @@ class World {
         this.monsterAddFreezeTick = 200;
         this.monsterPreAdd = 3;  // 每次增加多少个怪物
         this.maxMonsterNum = 250;  // 最多怪物数量
+
+    }
+
+    resizeCanvas(canvasElement) {
+        canvasElement.width = this.width * PR;
+        canvasElement.height = this.height * PR;
+        canvasElement.style.width = this.width + "px";
+        canvasElement.style.height = this.height + "px";
+        // this.ctx.translate(0.5 * PR, 0.5 * PR);
     }
 
     /**
@@ -231,7 +240,7 @@ class World {
     render(canvasEle) {
         let canvasElement = document.querySelector("canvas");
         let ctx = canvasElement.getContext("2d");
-        ctx.clearRect(0, 0, this.width, this.height);
+        ctx.clearRect(0, 0, standardize(this.width), standardize(this.height));
 
         for (let b of this.batterys) {
             b.render(ctx);

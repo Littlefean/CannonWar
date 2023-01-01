@@ -177,7 +177,7 @@ class CircleObject {
                 ctx.textAlign = "center";
                 //垂直对齐方式
                 ctx.textBaseline = "top";
-                ctx.fillText(txt, this.pos.x, this.pos.y - this.r - 2.5 * barH + 1);
+                ctx.fillText(txt, standardize(this.pos.x), standardize(this.pos.y - this.r - 2.5 * barH + 1));
             }
         }
     }

@@ -28,6 +28,7 @@
             <button class="help">帮助说明</button>
             <button class="wiki">游戏图鉴</button>
         </div>
+
         <div class="leftTopArea">
             <button class="soundSet">
                 <audio src="sound/病毒进化游戏原声.mp3" id="bgm" controls="controls" autoplay loop>
@@ -42,7 +43,7 @@
             <h2 class="helpTitle">帮助说明</h2>
             <p>点击右侧按钮，再点击画布就可以放置新建筑了。</p>
             <p>取消放置新建筑可以按右键</p>
-            <p>点击怪物可以查看信息</p>
+            <p>点击敌人可以查看信息</p>
             <p>点击舞台上的建筑可以对其进行升级，尤其是建筑显示绿色剪头的时候，就表示可以升级了</p>
             <h2 class="helpTitle">帮助视频（可能需要加载一会儿）</h2>
             <video src="mov/help_x264.mp4" controls="controls"></video>
@@ -58,18 +59,27 @@
         <h1>Mode Choice</h1>
         <h2>模式选择</h2>
         <div class="btnList">
-            <p class="note">在玩之前强烈建议您先看帮助</p>
-            <button class="endlessMode-easy">无尽波数-简单</button>
-            <p>怪物种类比较少，不会有强力的怪物</p>
-            <button class="endlessMode-normal">无尽波数-普通</button>
-            <p>怪物种类全面，怪物血量上限提高，血量上限随着波数的增加速度提高</p>
-            <button class="endlessMode-hard">无尽波数-困难</button>
-            <p>怪物种类全面，每波数量更多，每波种类更多，BOSS关更加困难，资金更少</p>
+            <div class="btnArea">
+                <button class="endlessMode-easy">无尽波数-简单</button>
+                <p>敌人种类比较少，不会有强力的敌人</p>
+            </div>
+            <div class="btnArea">
+                <button class="endlessMode-normal">无尽波数-普通</button>
+                <p>敌人种类全面，敌人血量上限提高，血量上限随着波数的增加速度提高</p>
+            </div>
+            <div class="btnArea">
+                <button class="endlessMode-hard">无尽波数-困难</button>
+                <p>敌人种类全面，每波数量更多，每波种类更多，BOSS关更加困难，资金更少</p>
+            </div>
             <!--            其他-->
-            <button class="infiniteTimeMode-easy">无尽时间-简单</button>
-            <p>怪物种类比较少，不会有强力的怪物</p>
-            <button class="infiniteTimeMode-hard">无尽时间-困难</button>
-            <p>。。。。</p>
+            <div class="btnArea">
+                <button class="infiniteTimeMode-easy">无尽时间-简单</button>
+                <p>敌人种类比较少，不会有强力的敌人</p>
+            </div>
+            <div class="btnArea">
+                <button class="infiniteTimeMode-hard">无尽时间-困难</button>
+                <p>。。。。</p>
+            </div>
         </div>
         <div class="leftTopArea">
             <button class="backPage">返回</button>
@@ -101,7 +111,7 @@
 
     <div class="monsters-interface interface" style="display: none">
         <h1>Monsters</h1>
-        <h2>怪物大全</h2>
+        <h2>敌人大全</h2>
         <div class="content">
 
         </div>
@@ -145,7 +155,7 @@
     </div>
 
 </div>
-
+<script src="model/staticInitData.js"></script>
 <script src="sound/sounds.js"></script>
 <script src="model/myColor.js"></script>
 <script src="model/functions.js"></script>
@@ -197,7 +207,7 @@
     瞬间伤害地雷、
     合并陷阱、分散陷阱、强制分裂陷阱
 
-    怪物：
+    敌人：
     具有像黑暗王子一样的护盾，抵抗单次高溢出伤害
     周期性隐身
 
@@ -217,6 +227,6 @@
     同时界面会更新成当前的这个升级后了的建筑
 
     如果点击了别处空白地方，右边的按钮面板会变成初始面板。
-    如果点击了怪物，会把怪物的信息展示在右边的面板上。
-    如果怪物突然死了，则右边的怪物信息面板就会消失，变成初始面板
+    如果点击了敌人，会把敌人的信息展示在右边的面板上。
+    如果敌人突然死了，则右边的敌人信息面板就会消失，变成初始面板
 -->

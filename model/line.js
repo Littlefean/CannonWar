@@ -56,8 +56,8 @@ class Line {
         ctx.strokeStyle = this.strokeColor.toStringRGBA();
         ctx.lineWidth = this.strokeWidth;
         ctx.beginPath();
-        ctx.moveTo(this.x1, this.y1);
-        ctx.lineTo(this.x2, this.y2);
+        ctx.moveTo(standardize(this.x1), standardize(this.y1));
+        ctx.lineTo(standardize(this.x2), standardize(this.y2));
         ctx.closePath();
         ctx.stroke();
     }

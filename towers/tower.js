@@ -185,8 +185,17 @@ class Tower extends CircleObject {
         super.render(ctx);
         // 渲染贴图
         let imgStartPos = this.getImgStartPosByIndex(this.imgIndex);
-        ctx.drawImage(TOWERS_IMG, imgStartPos.x, imgStartPos.y, TOWER_IMG_PRE_WIDTH, TOWER_IMG_PRE_HEIGHT,
-            this.pos.x - this.r, this.pos.y - this.r, this.r * 2, this.r * 2);
+        ctx.drawImage(
+            TOWERS_IMG,
+            imgStartPos.x,
+            imgStartPos.y,
+            TOWER_IMG_PRE_WIDTH,
+            TOWER_IMG_PRE_HEIGHT,
+            standardize(this.pos.x - this.r),
+            standardize(this.pos.y - this.r),
+            standardize(this.r * 2),
+            standardize(this.r * 2),
+        );
         // 渲染视野半径圆
         if (!this.isDead() && this.selected) {
             this.getViewCircle().renderView(ctx);
@@ -198,8 +207,17 @@ class Tower extends CircleObject {
         // 渲染升级图
         if (this.isUpLevelAble()) {
             let upDateImgStartPos = this.pos.plus(new Vector(this.r * 0.2, -this.r * 1.5));
-            ctx.drawImage(UP_LEVEL_ICON, 0, 0, 100, 100,
-                upDateImgStartPos.x, upDateImgStartPos.y + Math.sin(this.liveTime / 5) * 5, 20, 20);
+            ctx.drawImage(
+                UP_LEVEL_ICON,
+                standardize(0),
+                standardize(0),
+                standardize(100),
+                standardize(100),
+                standardize(upDateImgStartPos.x),
+                standardize(upDateImgStartPos.y + Math.sin(this.liveTime / 5) * 5),
+                standardize(20),
+                standardize(20)
+            );
         }
     }
 
