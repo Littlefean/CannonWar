@@ -167,7 +167,6 @@ function cannonInterface() {
             data.appendChild(line);
 
             towerEle.appendChild(data);
-            // todo 用 canvas 画成雷达图
             // 概述
             let common = document.createElement("div");
             towerEle.appendChild(common);
@@ -403,11 +402,14 @@ function endlessMode(mode, haveGroup = true) {
     /**
      * 时刻刷新右侧的选择面板
      */
-    setInterval(() => {
+    let refreshPanel = setInterval(() => {
         if (addedThingFunc === null && selectedThing === null) {
             showInitPanel();
         } else if (selectedThing !== null) {
             showSelectedPanel(false);
+        }
+        if (gameEnd) {
+            clearInterval(refreshPanel);
         }
     }, 100);
 
