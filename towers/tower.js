@@ -51,6 +51,8 @@ class Tower extends CircleObject {
 
         // 贴图编号
         this.imgIndex = 0;
+        // 发射子弹的音效
+        this.audioSrcString = "sound/发射音效/默认发射音效.mp3"
     }
 
 
@@ -99,12 +101,15 @@ class Tower extends CircleObject {
         if (this.liveTime % this.clock !== 0) {
             return;
         }
+
         for (let m of this.world.monsters) {
             if (this.getViewCircle().impact(m.getBodyCircle())) {
                 this.dirction = m.pos.sub(this.pos).to1();
                 for (let i = 0; i < this.attackBullyNum; i++) {
                     this.fire();
                 }
+                // 播放声音
+                new Audio(this.audioSrcString).play().then();
                 break;
             }
         }
@@ -128,6 +133,9 @@ class Tower extends CircleObject {
                         -this.bullyRotate);
                     this.fire();
                 }
+                // 播放声音
+                new Audio(this.audioSrcString).play().then();
+
                 break;
             }
         }

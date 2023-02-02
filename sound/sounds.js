@@ -10,16 +10,7 @@ const SOUND_WAR_BGM = document.getElementById("warBgm");
 SOUND_WAR_BGM.addEventListener("ended", function () {
     SOUND_WAR_BGM.play();
 })
-// 新一轮
-const SOUND_bigPika = document.getElementById("bigPika");
 
-// 开枪声
-const SOUND_firing4 = document.getElementById("firing4");
-const SOUND_ArtilleryLunch = document.getElementById("ArtilleryLunch");
-const SOUND_ArtilleryBomb = document.getElementById("ArtilleryBomb");
-const SOUND_MissileLunch = document.getElementById("MissileLunch");
-const SOUND_MissileBomb = document.getElementById("MissileBomb");
-const SOUND_Zap = document.getElementById("zap");
 
 class Sounds {
     /**
@@ -40,7 +31,7 @@ class Sounds {
     }
 
     static playNewMonsterFlow() {
-        SOUND_bigPika.play();
+        new Audio("sound/号角.mp3").play();
     }
 
     static playArtilleryLunch() {
@@ -60,6 +51,6 @@ class Sounds {
     }
 
     static Zap() {
-        SOUND_Zap.play();
+        new Audio("sound/zappyshot01.mp3").play();
     }
 }

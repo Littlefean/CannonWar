@@ -64,12 +64,14 @@ class TowerRay extends Tower {
             for (let m of this.world.monsters) {
                 if (line.intersectWithCircle(m.getBodyCircle())) {
                     m.hpChange(-this.damage);
+
                 }
             }
             let e = new EffectLine(line.PosStart, line.PosEnd);
             e.initLineStyle(this.rayColor, this.rayWidth);
             e.duration = 50;
             this.world.addEffect(e);
+            // new Audio("sound/发射音效/高科技塔发射.mp3").play()
         }
     }
 

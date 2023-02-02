@@ -19,6 +19,7 @@ class TowerFinally {
         res.levelDownGetter = null;
         res.price = 50 + Functions.TowerNumPriceAdded(world.batterys.length);
         res.comment = "最基础的炮塔，想获得厉害的炮塔就要从它开始进化，但是基础炮塔不太能无限获取，获取基础炮塔越多，需要的费用就越贵，其实只是在限制你不能在舞台上摆放太多的炮塔造成卡顿而已啦。";
+
         return res;
     }
 
@@ -40,6 +41,7 @@ class TowerFinally {
         res.imgIndex = 1;
         res.price = 60;
         res.comment = "从基础炮塔升到这一个炮塔之后，接下来的炮塔都是中世纪风格的炮塔。";
+
         return res;
     }
 
@@ -59,6 +61,7 @@ class TowerFinally {
         res.price = 120;
         res.imgIndex = 20;
         res.comment = "接下来的风格都是军事风格的炮塔";
+        res.audioSrcString = "sound/子弹音效/军事子弹.mp3";
         return res;
     }
 
@@ -90,6 +93,7 @@ class TowerFinally {
         b.price = 800;
         b.imgIndex = 50;
         b.comment = "想要获取更强大的激光、闪电等等的高科技武器，就要从此处升级开始，该高科技炮塔会发射激光粒子子弹";
+        b.audioSrcString = "sound/发射音效/高科技塔发射.mp3";
         return b;
     }
 
@@ -237,6 +241,7 @@ class TowerFinally {
         res.imgIndex = 4;
         res.price = 60;
         res.comment = "这个弓箭塔是中世纪最基本的一种塔楼";
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -255,6 +260,7 @@ class TowerFinally {
         res.imgIndex = 4;
         res.price = 70;
         res.comment = "弓箭塔是偏远程的一种防御塔";
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -273,6 +279,7 @@ class TowerFinally {
         res.imgIndex = 4;
         res.price = 80;
         res.comment = "没什么";
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -291,6 +298,7 @@ class TowerFinally {
         res.imgIndex = 4;
         res.price = 150;
         res.comment = "四级弓箭塔更换了弓箭子弹，伤害提高了";
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -311,6 +319,7 @@ class TowerFinally {
         res.imgIndex = 3;
         res.price = 120;
         res.comment = "连弩视野范围没有弓箭塔那么大，但是射速更快了";
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -331,6 +340,7 @@ class TowerFinally {
         res.imgIndex = 3;
         res.price = 130;
         res.comment = `射速进一步加快，一次性能够射出${res.attackBullyNum}发子弹`;
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -351,6 +361,7 @@ class TowerFinally {
         res.imgIndex = 3;
         res.price = 200;
         res.comment = `射速更快了，一次性能射出${res.attackBullyNum}发子弹`;
+        res.audioSrcString = "sound/发射音效/弓箭发射.mp3";
         return res;
     }
 
@@ -497,6 +508,7 @@ class TowerFinally {
         b.imgIndex = 7;
         b.price = 100;
         b.comment = "发射石头蛋子，威力超过弓箭很多很多，但是攻击速度慢了";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -516,6 +528,7 @@ class TowerFinally {
         b.imgIndex = 8;
         b.price = 200;
         b.comment = "增加了攻击距离";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -534,6 +547,7 @@ class TowerFinally {
         b.imgIndex = 8;
         b.price = 250;
         b.comment = "进一步增加了攻击距离";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -552,6 +566,7 @@ class TowerFinally {
         b.imgIndex = 8;
         b.price = 300;
         b.comment = "攻击距离更远了，射出的子弹成了中型号的石头蛋子";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -575,6 +590,7 @@ class TowerFinally {
         b.imgIndex = 9;
         b.price = 120;
         b.comment = "发射大型石头蛋子，大型石头蛋子打中怪物之后会碎裂成一些有伤害的小石头蛋子";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -594,6 +610,7 @@ class TowerFinally {
         b.imgIndex = 9;
         b.price = 300;
         b.comment = "增加了一点攻击范围，石头蛋子滑出视野的距离增加了";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -612,6 +629,7 @@ class TowerFinally {
         b.imgIndex = 9;
         b.price = 320;
         b.comment = "范围进一步增加";
+        b.audioSrcString = "sound/子弹音效/石头蛋子.mp3";
         return b;
     }
 
@@ -630,6 +648,7 @@ class TowerFinally {
         res.imgIndex = 21;
         res.price = 120;
         res.comment = "该炮塔是小型枪械的过渡";
+        res.audioSrcString = "sound/子弹音效/军事子弹.mp3";
         return res;
     }
 
@@ -645,6 +664,7 @@ class TowerFinally {
         res.imgIndex = 22;
         res.price = 130;
         res.comment =  `该炮塔能发展成一些比较特殊的军事器械`;
+        res.audioSrcString = "sound/子弹音效/军事子弹.mp3";
         return res;
     }
 
@@ -660,6 +680,7 @@ class TowerFinally {
         res.levelUpArr = [TowerFinally.Artillery_1, TowerFinally.MissileGun_1];
         res.price = 140;
         res.comment =  `该炮塔能够发展成更有火药，伤害更强的军事器械`;
+        res.audioSrcString = "sound/子弹音效/军事子弹.mp3";
         return res;
     }
 
@@ -679,6 +700,7 @@ class TowerFinally {
         res.levelUpArr = [TowerFinally.ThreeTubeCannon, TowerFinally.SprayCannon_1, TowerFinally.PowderCannon];
         res.price = 135;
         res.comment =  `该炮塔主要朝着多发、散弹、群体伤害方向发展`;
+        res.audioSrcString = "sound/子弹音效/军事子弹.mp3";
         return res;
     }
 
@@ -695,6 +717,7 @@ class TowerFinally {
         res.imgIndex = 25;
         res.price = 160;
         res.comment =  `就是步枪了啦`;
+        res.audioSrcString = "sound/子弹音效/步枪子弹.mp3";
         return res;
     }
 
@@ -711,6 +734,7 @@ class TowerFinally {
         res.imgIndex = 25;
         res.price = 170;
         res.comment =  `范围和射速增加了啦`;
+        res.audioSrcString = "sound/子弹音效/步枪子弹.mp3";
         return res;
     }
 
@@ -727,6 +751,7 @@ class TowerFinally {
         res.imgIndex = 25;
         res.price = 180;
         res.comment =  `子弹的速度增加了，步枪子弹也加强了`;
+        res.audioSrcString = "sound/子弹音效/步枪子弹.mp3";
         return res;
     }
 
@@ -747,6 +772,7 @@ class TowerFinally {
         b.imgIndex = 26;
         b.price = 250;
         b.comment =  `就是机枪了啦`;
+        b.audioSrcString = "sound/子弹音效/机枪子弹.mp3";
         return b;
 
     }
@@ -771,6 +797,7 @@ class TowerFinally {
         b.imgIndex = 26;
         b.price = 300;
         b.comment =  `射速更快，子弹更多`;
+        b.audioSrcString = "sound/子弹音效/机枪子弹.mp3";
         return b;
     }
 
@@ -794,6 +821,7 @@ class TowerFinally {
         b.imgIndex = 27;
         b.price = 500;
         b.comment =  `射速又加强了，子弹也加强了`;
+        b.audioSrcString = "sound/子弹音效/机枪子弹.mp3";
         return b;
     }
 
@@ -813,6 +841,7 @@ class TowerFinally {
         b.imgIndex = 28;
         b.price = 220;
         b.comment =  `穿甲炮的子弹能够穿过敌人，在穿过敌人的过程中对敌人持续造成伤害，但是子弹半径会变小，直到子弹消失，消失前子弹伤害是不变的`;
+        b.audioSrcString = "sound/子弹音效/穿甲弹.mp3";
         return b;
     }
 
@@ -833,6 +862,7 @@ class TowerFinally {
         b.imgIndex = 29;
         b.price = 250;
         b.comment =  `子弹加强了，射速也更快了`;
+        b.audioSrcString = "sound/子弹音效/穿甲弹.mp3";
         return b;
     }
 
@@ -853,6 +883,7 @@ class TowerFinally {
         b.imgIndex = 29;
         b.price = 400;
         b.comment =  `射速更慢了，但是子弹变成大型的穿甲弹了`;
+        b.audioSrcString = "sound/子弹音效/穿甲弹.mp3";
         return b;
     }
 
@@ -873,6 +904,7 @@ class TowerFinally {
         b.imgIndex = 33;
         b.price = 500;
         b.comment =  `这曾经是世界大战中的武器，发射出去的炮弹会持续加速，击中目标或者超出一定范围后发生爆炸，对范围内的怪物造成爆炸伤害，越接近爆炸中心，爆炸伤害越高`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -897,6 +929,7 @@ class TowerFinally {
         b.imgIndex = 34;
         b.price = 800;
         b.comment =  `能够同时发射两枚炮弹了，发射的火炮弹伤害大大提高`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -920,6 +953,7 @@ class TowerFinally {
         b.imgIndex = 34;
         b.price = 1000;
         b.comment =  `每次攻击都会同时发射两枚超大型号的炮弹，造成很大的爆炸伤害`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -940,6 +974,7 @@ class TowerFinally {
         b.imgIndex = 35;
         b.price = 700;
         b.comment =  `发射出去的导弹具有追踪能力，同时也会爆炸，只不过因为会追踪，所以伤害没有火炮那么高了`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -962,6 +997,7 @@ class TowerFinally {
         b.imgIndex = 35;
         b.price = 750;
         b.comment =  `每次发射能够发射三个导弹`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -984,6 +1020,7 @@ class TowerFinally {
         b.imgIndex = 35;
         b.price = 1000;
         b.comment =  `每次发射能够发射五个导弹，这可以说是多管导弹炮`;
+        b.audioSrcString = "sound/发射音效/火箭发射.ogg";
         return b;
     }
 
@@ -1174,6 +1211,7 @@ class TowerFinally {
         b.imgIndex = 36;
         b.price = 260;
         b.comment =  `这个炮塔发射的是呛人的瓦斯烟雾，同时也是为了进化成发射粉尘类，烟雾类等等的炮塔而过渡`;
+        b.audioSrcString = "sound/子弹音效/烟雾.mp3";
         return b;
     }
 
@@ -1195,6 +1233,7 @@ class TowerFinally {
         b.imgIndex = 37;
         b.price = 420;
         b.comment =  `喷射火焰，让敌人持续受到伤害，同时让敌人获得烧伤效果，敌人获得烧伤效果之后会按照比例持续掉血，血量再厚的敌人也撑不过多久，坏处就是烧伤会让敌人加速`;
+        // b.audioSrcString = "sound/子弹音效/烟雾.mp3";
         return b;
     }
 
@@ -1216,6 +1255,7 @@ class TowerFinally {
         b.imgIndex = 37;
         b.price = 500;
         b.comment =  `喷射的火焰采用了冷火焰，好处是让敌人加速的不那么快了，伤害丝毫不会打折扣`;
+        // b.audioSrcString = "sound/子弹音效/烟雾.mp3";
         return b;
     }
 
@@ -1236,6 +1276,7 @@ class TowerFinally {
         b.imgIndex = 39;
         b.price = 620;
         b.comment =  `击中之后的冰冻蛋子会发生小爆炸，爆炸范围内的敌人会减速，这个减速效果可以累加，直到达到一个上限。但是冰冻和烧伤是互斥的，二者不能同时存在`;
+        b.audioSrcString = "sound/子弹音效/冰冻.mp3";
         return b;
     }
 
@@ -1258,6 +1299,7 @@ class TowerFinally {
         b.imgIndex = 39;
         b.price = 1200;
         b.comment =  `迅速发射大量更密集的冰冻蛋子`;
+        b.audioSrcString = "sound/子弹音效/冰冻.mp3";
         return b;
     }
 
@@ -1279,6 +1321,7 @@ class TowerFinally {
         b.imgIndex = 38;
         b.price = 400;
         b.comment =  `被毒气烟雾熏到的敌人会受到伤害`;
+        // b.audioSrcString = "sound/子弹音效/烟雾.mp3";
         return b;
     }
 
@@ -1300,6 +1343,7 @@ class TowerFinally {
         b.imgIndex = 38;
         b.price = 600;
         b.comment =  `毒气伤害增加`;
+        // b.audioSrcString = "sound/子弹音效/烟雾.mp3";
         return b;
     }
 
@@ -1322,6 +1366,7 @@ class TowerFinally {
         b.imgIndex = 42;
         b.price = 400;
         b.comment =  `一种散弹`;
+        b.audioSrcString = "sound/子弹音效/散弹子弹.mp3";
         return b;
     }
 
@@ -1345,6 +1390,7 @@ class TowerFinally {
         b.imgIndex = 44;
         b.price = 500;
         b.comment =  `发射频率很快的散弹子弹`;
+        b.audioSrcString = "sound/子弹音效/散弹子弹.mp3";
         return b;
     }
 
@@ -1368,6 +1414,7 @@ class TowerFinally {
         b.imgIndex = 44;
         b.price = 800;
         b.comment =  `发射的频率更快了，但是子弹的移动速度可能并不是很快`;
+        b.audioSrcString = "sound/子弹音效/散弹子弹.mp3";
         return b;
     }
 
@@ -1392,6 +1439,7 @@ class TowerFinally {
         b.imgIndex = 43;
         b.price = 600;
         b.comment =  `像人拉屎窜稀一样，快速的喷泄出大量子弹，喷泄出的子弹速度不一`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1415,6 +1463,7 @@ class TowerFinally {
         b.imgIndex = 43;
         b.price = 900;
         b.comment =  `喷泄量增加了`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1434,6 +1483,7 @@ class TowerFinally {
         b.imgIndex = 40;
         b.price = 250;
         b.comment =  `发射出去的子弹可以发生分裂`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1452,6 +1502,7 @@ class TowerFinally {
         b.imgIndex = 40;
         b.price = 360;
         b.comment =  `发射的子弹由小型分裂弹变为中型分裂弹`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1470,6 +1521,7 @@ class TowerFinally {
         b.imgIndex = 40;
         b.price = 500;
         b.comment =  `发射大型分裂弹`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1488,6 +1540,7 @@ class TowerFinally {
         b.imgIndex = 41;
         b.price = 600;
         b.comment =  `发射的子弹能够发生分裂，发生分裂后的子弹碰到怪物还能继续发生分裂`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 
@@ -1506,6 +1559,7 @@ class TowerFinally {
         b.imgIndex = 41;
         b.price = 900;
         b.comment =  `发生出去的子弹发生分裂，分裂后继续分裂，分裂后还能分裂！总共能够分裂三次`;
+        b.audioSrcString = "sound/发射音效/喷泄.mp3";
         return b;
     }
 

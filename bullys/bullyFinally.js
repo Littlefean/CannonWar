@@ -5,7 +5,6 @@
 class BullyFinally {
     static Normal() {
         let res = new Bully(Vector.zero(), Vector.zero(), null, 5, 2.5);
-        res.collideSound = SOUND_firing4;
         return res;
     }
 
@@ -78,7 +77,6 @@ class BullyFinally {
         res.bodyColor = new MyColor(66, 66, 66, 1);
         res.bodyStrokeColor = new MyColor(135, 147, 154, 1);
         res.bodyStrokeWidth = 2;
-
         return res;
     }
 
@@ -105,7 +103,6 @@ class BullyFinally {
         res.splitRangeRate = 200;
         res.splitRotate = 1.5;
         res.splitBully = BullyFinally.littleStone;
-
         return res;
     }
 
@@ -120,7 +117,6 @@ class BullyFinally {
         res.bodyColor = new MyColor(86, 94, 39, 1);
         res.bodyStrokeColor = new MyColor(98, 151, 85, 1);
         res.bodyStrokeWidth = 1;
-
         return res;
     }
 
@@ -131,7 +127,6 @@ class BullyFinally {
         res.bodyColor = new MyColor(86, 94, 39, 1);
         res.bodyStrokeColor = new MyColor(98, 151, 85, 1);
         res.bodyStrokeWidth = 1;
-
         return res;
     }
 
@@ -142,7 +137,6 @@ class BullyFinally {
         res.bodyColor = new MyColor(86, 94, 39, 1);
         res.bodyStrokeColor = new MyColor(98, 151, 85, 1);
         res.bodyStrokeWidth = 1;
-
         return res;
     }
 
@@ -176,7 +170,6 @@ class BullyFinally {
         res.r = 1.2;
         res.bodyColor = new MyColor(64, 182, 224, 1);
         res.bodyStrokeColor = new MyColor(98, 151, 85, 1);
-        res.bodyStrokeWidth = 0.2;
         return res;
     }
 
@@ -232,7 +225,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([203, 91, 36, 1]);
         b.bodyStrokeColor = MyColor.arrTo([255, 100, 20, 1]);
         b.bodyStrokeWidth = 2;
-        b.collideSound = SOUND_ArtilleryBomb;
+        b.collideSound = new Audio("sound/子弹音效/火炮爆炸.ogg");
         return b;
     }
 
@@ -250,7 +243,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([203, 60, 10, 1]);
         b.bodyStrokeColor = MyColor.arrTo([255, 100, 20, 1]);
         b.bodyStrokeWidth = 4;
-        b.collideSound = SOUND_ArtilleryBomb;
+        b.collideSound = new Audio("sound/子弹音效/火炮爆炸.ogg");
         return b;
     }
 
@@ -267,7 +260,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([255, 20, 10, 1]);
         b.bodyStrokeColor = MyColor.arrTo([255, 100, 20, 1]);
         b.bodyStrokeWidth = 6;
-        b.collideSound = SOUND_ArtilleryBomb;
+        b.collideSound = new Audio("sound/子弹音效/火炮爆炸.ogg");
         return b;
     }
 
@@ -277,6 +270,7 @@ class BullyFinally {
         b.r = 1.6;
         b.damage = 40;
         b.bodyColor = MyColor.arrTo([0, 0, 255, 1]);
+
         return b;
     }
 
@@ -374,6 +368,7 @@ class BullyFinally {
         b.damage = 20;
         b.bodyColor = MyColor.arrTo([204, 120, 50, 1]);
         b.repel = 0.1;
+        b.collideSound = new Audio("sound/子弹音效/击退炮.mp3");
         return b;
     }
 
@@ -650,7 +645,7 @@ class BullyFinally {
         b.bodyColor = MyColor.arrTo([168, 182, 172, 1]);
         b.bodyStrokeColor = MyColor.arrTo([255, 198, 109, 1]);
         b.bodyStrokeWidth = 4;
-        b.collideSound = SOUND_ArtilleryBomb;
+        b.collideSound = new Audio("sound/large_gun_fire2.ogg");
         return b;
     }
 
