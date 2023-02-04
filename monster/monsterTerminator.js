@@ -12,23 +12,28 @@ class MonsterTerminator extends Monster {
         this.scar = new Set();  // 伤疤特效
     }
 
+    /**
+     * 恐怖机器人所受到的每个瞬间伤害均被分阶段吸收
+     * 用以模拟其防御的强力
+     * @param dh
+     */
     hpChange(dh) {
         let damage = -dh;
         if (damage < 10) {
             return;
         }
         if (damage < 100) {
-            super.hpChange(-0.001);
-        } else if (damage < 300) {
             super.hpChange(-1);
+        } else if (damage < 300) {
+            super.hpChange(-5);
         } else if (damage < 500) {
-            super.hpChange(-10);
-        } else if (damage < 1500) {
             super.hpChange(-100);
+        } else if (damage < 1500) {
+            super.hpChange(-300);
         } else if (damage < 3000) {
-            super.hpChange(-150);
+            super.hpChange(-500);
         } else {
-            super.hpChange(-250);
+            super.hpChange(damage * 0.75);
         }
     }
 
