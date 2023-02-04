@@ -563,7 +563,7 @@ class MonsterFinally {
     static T800(world) {
         let m = MonsterTerminator.randInit(world);
         m.name = "恐怖机器人";
-        m.imgIndex = 60;
+        m.imgIndex = 25;
         m.addPrice = 600;
         m.comment = "一种由金属打造而成的恐怖机器，威力小的子弹几乎对他没有伤害。具有很强的近战能力。";
         return m;
