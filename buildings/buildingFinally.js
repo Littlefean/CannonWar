@@ -16,15 +16,15 @@ class BuildingFinally {
         return res;
     }
 
-    // 采集器
+    // 金矿
     static Collector(world) {
         let res = new Building(Vector.zero(), world);
-        res.name = "采集器";
+        res.name = "金矿";
         res.moneyAddedAble = true;
         res.moneyAddedNum = 2;
         res.moneyAddedFreezeTime = 2000;
-        res.r = 30;
-        res.hpInit(300);
+        res.r = 15;
+        res.hpInit(3000);
 
         res.price = 3000;
 
@@ -37,13 +37,13 @@ class BuildingFinally {
     // 治疗仪器
     static Treatment(world) {
         let res = new Building(Vector.zero(), world);
-        res.name = "维修塔楼";
+        res.name = "维修塔";
         res.otherHpAddAble = true;
         res.otherHpAddNum = 200;
         res.otherHpAddRadius = 120;
         res.otherHpAddFreezeTime = 100;
-        res.r = 5;
-        res.hpInit(3000);
+        res.r = 10;
+        res.hpInit(10000);
         res.price = 1200;
 
         res.bodyStrokeColor = new MyColor(0, 0, 0, 1);
