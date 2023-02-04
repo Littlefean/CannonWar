@@ -49,8 +49,4 @@ class Sounds {
     static MissileBomb() {
 
     }
-
-    static Zap() {
-        new Audio("sound/zappyshot01.mp3").play();
-    }
 }

@@ -100,7 +100,7 @@ class TowerLaser extends Tower {
                     }
                 }
                 if (find) {
-                    new Audio("sound/发射音效/雷电塔射击.mp3").play();
+                    // new Audio("sound/发射音效/雷电塔射击.mp3").play();
                     maxCount--;
                     if (maxCount > 0) {
                         dfs();
@@ -197,7 +197,7 @@ class TowerLaser extends Tower {
 
             // 添加特效
             let e = new EffectLine(this.pos, this.target.pos);
-            new Audio("sound/发射音效/高科技激光.mp3").play()
+            // new Audio("sound/发射音效/高科技激光.mp3").play()
             e.initLineStyle(this.laserColor , 50);
             e.animationFunc = e.laserAnimation;
             e.duration = 10;
