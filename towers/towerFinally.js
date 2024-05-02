@@ -449,7 +449,7 @@ class TowerFinally {
         b.itemSpeed = 20;
         b.additionItem = b.initAdditionItem()
         b.levelUpArr = [TowerFinally.Hammer_Power_2];
-        b.levelDownGetter = TowerFinally.Hammer_Power_2;
+        b.levelDownGetter = TowerFinally.Hammer;
         b.imgIndex = 6;
         b.price = 400;
         b.comment = "转的更慢了，但是大铁球变得更大了，转的慢了之后，对敌人的伤害也更高了，因为触碰一下就会伤害怪物，增加了铁球和敌人的触碰时间";
